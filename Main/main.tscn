@@ -15,7 +15,7 @@ panel = NodePath("Panel")
 label = NodePath("Panel/Label")
 popup_panel = NodePath("PopupPanel")
 popup_label = NodePath("Panel/Label")
-popup_image = NodePath("PopupPanel/TextureRect")
+popup_image = NodePath("PopupPanel/PopupLabel/TextureRect")
 metadata/_edit_use_anchors_ = true
 
 [node name="Panel" type="Panel" parent="."]
@@ -53,16 +53,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PopupPanel" type="PopupPanel" parent="."]
+[node name="PopupPanel" type="MarginContainer" parent="."]
+z_index = 1
+layout_mode = 0
+offset_right = 1.0
+offset_bottom = 23.0
 
 [node name="PopupLabel" type="Label" parent="PopupPanel"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
+z_index = 1
+layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="PopupPanel"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 96.0
-offset_bottom = 96.0
+[node name="TextureRect" type="TextureRect" parent="PopupPanel/PopupLabel"]
+layout_mode = 2
+offset_right = 1.0
+offset_bottom = 23.0

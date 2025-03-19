@@ -3,7 +3,7 @@ extends Control
 @export var grid_container: GridContainer
 @export var panel: Panel
 @export var label: Label 
-@export var popup_panel: PopupPanel 
+@export var popup_panel: MarginContainer 
 @export var popup_label: Label
 @export var popup_image: TextureRect
 var periods: int = 7+3
@@ -201,8 +201,7 @@ var category_colors = {
 
 func _ready():
 	create_periodic_table()
-
-
+	popup_panel.visible = false 
 
 
 
@@ -281,28 +280,23 @@ func on_element_selected(symbol, button):
 	if "image" in element:
 		var img_texture = load(element["image"])
 		popup_image.texture = img_texture
-	
-	# Calcola la posizione del popup sopra il bottone
-	#var button_global_pos = button.get_global_transform_with_canvas().origin
 
 	var button_global_pos = button.global_position  # Posizione globale del bottone
-	#var button_size = button.size  # Dimensioni del bottone
-#
-	## Dimensioni finali del popup
-	#var popup_final_size = Vector2(btn_size * 6, btn_size * 10)
-#
-	## Calcola la posizione per centrare il popup sul bottone
-	#var popup_pos = button_global_pos + (button_size / 2) - (popup_final_size / 2)
+	var popup_pos = Vector2(button_global_pos.x-button.size.x,button_global_pos.y)
 
-	popup_panel.set_position(Vector2(button_global_pos.x-button.size.x,button_global_pos.y))
+
+	#popup_label.position = popup_pos
+	popup_panel.set_position(popup_pos)
 	
 	# Mostra il popup
-	popup_panel.popup()  # Mostra il popup
-	popup_panel.size = Vector2i(btn_size*3, btn_size*5)  # Inizializza la scala più piccola
+	popup_panel.visible = true  # Mostra il popup
+	popup_panel.size = Vector2(btn_size, btn_size)  # Inizializza la scala più piccola
 	popup_animation()  # Lancia l'animazione
-
+	# Posiziona il label **dentro il pannello**
+	popup_label.position = popup_pos  # Sposta il testo di 10px rispetto al bordo
+	popup_label.text = "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
 
 func popup_animation():
 	var tween = get_tree().create_tween()
-	tween.tween_property(popup_panel, "size", Vector2i(btn_size*6, btn_size*10), 0.2)
+	tween.tween_property(popup_panel, "size", Vector2(btn_size*6, btn_size*10), 0.3)
 	
