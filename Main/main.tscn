@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8bt1n7irs0ni"]
+
+[ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
+
+[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "panel", "label", "popup_panel", "popup_label", "popup_image")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yh5la")
+grid_container = NodePath("Panel/MarginContainer/GridContainer")
+panel = NodePath("Panel")
+label = NodePath("Panel/Label")
+popup_panel = NodePath("PopupPanel")
+popup_label = NodePath("Panel/Label")
+popup_image = NodePath("PopupPanel/TextureRect")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+
+[node name="PopupLabel" type="Label" parent="PopupPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
+
+[node name="TextureRect" type="TextureRect" parent="PopupPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 96.0
+offset_bottom = 96.0
