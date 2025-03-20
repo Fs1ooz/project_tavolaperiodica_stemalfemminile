@@ -3,7 +3,8 @@ extends Control
 @export var grid_container: GridContainer
 @export var panel: Panel
 @export var label: Label 
-@export var popup_panel: MarginContainer 
+@export var popup_margin: MarginContainer 
+@export var popup_panel: Panel 
 @export var popup_label: Label
 @export var popup_date_label: Label
 @export var popup_image: TextureRect
@@ -11,7 +12,6 @@ extends Control
 var periods: int = 7+3
 var groups: int = 18
 var btn_size: int = 50
-#var btn_font_size: int = 20
 var screen_size = get_viewport_rect().size
 
 #Database di tutti gli elementi
@@ -205,7 +205,7 @@ var category_colors = {
 func _ready():
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
-	popup_panel.visible = false 
+	popup_margin.visible = false 
 
 
 
@@ -282,12 +282,21 @@ func on_element_selected(symbol, button):
 	if "image" in element:
 		var img_texture = load(element["image"])
 		popup_image.texture = img_texture
+		
+		# Imposta la dimensione dell'immagine (ad esempio 100x100)
+		var img_size = Vector2(100, 100)
+		popup_image.size = img_size 
+		popup_image.custom_minimum_size = popup_image.size  # Imposta una dimensione minima per evitare che torni alla grandezza originale
+		# Imposta la posizione in alto a destra
+		var panel_size = popup_margin.size
+		popup_image.position = Vector2(panel_size.x - img_size.x, 0)  # 10px di margine
+
 	var button_global_pos = button.global_position  # Posizione globale del bottone
-	var popup_pos = Vector2(button_global_pos.x + 100, (screen_size.y - popup_panel.size.y) / 2)
-	popup_panel.set_position(popup_pos)
+	var popup_pos = Vector2(button_global_pos.x + 100, (screen_size.y - popup_margin.size.y) / 2)
+	popup_margin.set_position(popup_pos)
 	# Mostra il popup
-	popup_panel.visible = true  # Mostra il popup
-	popup_panel.size = Vector2(btn_size, btn_size)  # Inizializza la scala più piccola
+	popup_margin.visible = true  # Mostra il popup
+	popup_margin.size = Vector2(btn_size, btn_size)  # Inizializza la scala più piccola
 	popup_animation()  # Lancia l'animazione
 	# Posiziona il label **dentro il pannello**
 
@@ -295,12 +304,15 @@ func on_element_selected(symbol, button):
 		popup_label.text = element["scientist_name"]
 		popup_date_label.text = element["year"]
 		popup_label.position = popup_pos 
-		popup_date_label.position = Vector2(0,0)
+		popup_date_label.position = Vector2(0,popup_label.position.y + 20)
+		popup_label.add_theme_font_size_override("font_size", 50)
+		popup_date_label.add_theme_font_size_override("font_size", 20)
 
 	
 func popup_animation():
 	var tween = get_tree().create_tween()
-	tween.tween_property(popup_panel, "size", Vector2(400, screen_size.y), 0.3)
+	screen_size = get_viewport_rect().size
+	tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.3)
 	print(screen_size)
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
  	
