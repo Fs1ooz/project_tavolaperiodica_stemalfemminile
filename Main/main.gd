@@ -5,7 +5,9 @@ extends Control
 @export var label: Label 
 @export var popup_panel: MarginContainer 
 @export var popup_label: Label
+@export var popup_date_label: Label
 @export var popup_image: TextureRect
+
 var periods: int = 7+3
 var groups: int = 18
 var btn_size: int = 50
@@ -16,7 +18,8 @@ var screen_size = get_viewport_rect().size
 var elements: Dictionary = {
 	# Periodo 1
 	"H":  {"name": "Idrogeno", "number": 1, "category": "Non metallo", "group": 1, "period": 1,
-	"image": "res://Images/images.jpeg"},
+	 "scientist_name": "Hodgkin Dorothy", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1863"},
+	
 	"He": {"name": "Elio", "number": 2, "category": "Gas nobile", "group": 18, "period": 1},
 
 	# Periodo 2
@@ -200,6 +203,7 @@ var category_colors = {
 
 
 func _ready():
+	screen_size = get_viewport_rect().size
 	create_periodic_table()
 	popup_panel.visible = false 
 
@@ -270,33 +274,33 @@ func create_periodic_table():
 
 func on_element_selected(symbol, button):
 	var element = elements[symbol]
-	
 	# Imposta il testo
 	popup_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
 		element["name"], element["number"], element["category"]
 	]
-	
 	# Carica l'immagine se disponibile
 	if "image" in element:
 		var img_texture = load(element["image"])
 		popup_image.texture = img_texture
-
 	var button_global_pos = button.global_position  # Posizione globale del bottone
-	var popup_pos = Vector2(button_global_pos.x-button.size.x,button_global_pos.y)
-
-
-	#popup_label.position = popup_pos
+	var popup_pos = Vector2(button_global_pos.x + 100, (screen_size.y - popup_panel.size.y) / 2)
 	popup_panel.set_position(popup_pos)
-	
 	# Mostra il popup
 	popup_panel.visible = true  # Mostra il popup
 	popup_panel.size = Vector2(btn_size, btn_size)  # Inizializza la scala più piccola
 	popup_animation()  # Lancia l'animazione
 	# Posiziona il label **dentro il pannello**
-	popup_label.position = popup_pos  # Sposta il testo di 10px rispetto al bordo
-	popup_label.text = "TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT"
 
+	if "scientist_name" in element:
+		popup_label.text = element["scientist_name"]
+		popup_date_label.text = element["year"]
+		popup_label.position = popup_pos 
+		popup_date_label.position = Vector2(0,0)
+
+	
 func popup_animation():
 	var tween = get_tree().create_tween()
-	tween.tween_property(popup_panel, "size", Vector2(btn_size*6, btn_size*10), 0.3)
-	
+	tween.tween_property(popup_panel, "size", Vector2(400, screen_size.y), 0.3)
+	print(screen_size)
+	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
+ 	

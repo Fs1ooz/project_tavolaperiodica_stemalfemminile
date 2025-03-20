@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "panel", "label", "popup_panel", "popup_label", "popup_image")]
+[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "panel", "label", "popup_panel", "popup_label", "popup_date_label", "popup_image")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,15 +10,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yh5la")
-grid_container = NodePath("Panel/MarginContainer/GridContainer")
-panel = NodePath("Panel")
-label = NodePath("Panel/Label")
+grid_container = NodePath("Background/MarginContainer/GridContainer")
+panel = NodePath("Background")
+label = NodePath("Background/Label")
 popup_panel = NodePath("PopupPanel")
-popup_label = NodePath("Panel/Label")
-popup_image = NodePath("PopupPanel/PopupLabel/TextureRect")
+popup_label = NodePath("Background/Label")
+popup_date_label = NodePath("PopupPanel/Panel/PopupDateLabel")
+popup_image = NodePath("PopupPanel/Panel/TextureRect")
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
+modulate = Color(0.928839, 0.704215, 1, 1)
+self_modulate = Color(0.985831, 0.571032, 1, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,7 +30,7 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,13 +42,13 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="Background/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Label" type="Label" parent="Background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,15 +58,30 @@ grow_vertical = 2
 
 [node name="PopupPanel" type="MarginContainer" parent="."]
 z_index = 1
-layout_mode = 0
-offset_right = 1.0
-offset_bottom = 23.0
+layout_mode = 1
 
-[node name="PopupLabel" type="Label" parent="PopupPanel"]
+[node name="Panel" type="Panel" parent="PopupPanel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PopupPanel/Panel"]
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+stretch_mode = 3
+
+[node name="PopupDateLabel" type="Label" parent="PopupPanel/Panel"]
 z_index = 1
 layout_mode = 2
+offset_top = 528.0
+offset_right = 1920.0
+offset_bottom = 551.0
 
-[node name="TextureRect" type="TextureRect" parent="PopupPanel/PopupLabel"]
+[node name="PopupLabel" type="Label" parent="PopupPanel/Panel"]
+z_index = 1
 layout_mode = 2
-offset_right = 1.0
-offset_bottom = 23.0
+offset_top = 528.0
+offset_right = 1920.0
+offset_bottom = 551.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
