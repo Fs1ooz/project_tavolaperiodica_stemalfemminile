@@ -8,11 +8,11 @@ extends Control
 @export var popup_label: Label
 @export var popup_date_label: Label
 @export var popup_image: TextureRect
-
+@onready var screen_size = get_viewport_rect().size
 var periods: int = 7+3
 var groups: int = 18
 var btn_size: int = 50
-var screen_size = get_viewport_rect().size
+var can_press: bool = true
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
@@ -20,7 +20,8 @@ var elements: Dictionary = {
 	"H":  {"name": "Idrogeno", "number": 1, "category": "Non metallo", "group": 1, "period": 1,
 	 "scientist_name": "Hodgkin Dorothy", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1863"},
 	
-	"He": {"name": "Elio", "number": 2, "category": "Gas nobile", "group": 18, "period": 1},
+	"He": {"name": "Elio", "number": 2, "category": "Gas nobile", "group": 18, "period": 1,
+	"scientist_name": "Pisix", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1863"},
 
 	# Periodo 2
 	"Li": {"name": "Litio", "number": 3, "category": "Metallo alcalino", "group": 1, "period": 2},
@@ -201,7 +202,6 @@ var category_colors = {
 	"Attinide": Color(1, 0.2, 0.2)       # Rosso
 }
 
-
 func _ready():
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
@@ -273,6 +273,8 @@ func create_periodic_table():
 					btn.modulate = category_colors[element["category"]]
 
 func on_element_selected(symbol, button):
+	if not can_press:
+		return
 	var element = elements[symbol]
 	# Imposta il testo
 	popup_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
@@ -292,27 +294,27 @@ func on_element_selected(symbol, button):
 		popup_image.position = Vector2(panel_size.x - img_size.x, 0)  # 10px di margine
 
 	var button_global_pos = button.global_position  # Posizione globale del bottone
-	var popup_pos = Vector2(button_global_pos.x + 100, (screen_size.y - popup_margin.size.y) / 2)
+	var popup_pos = Vector2(button_global_pos.x + button.size.x, (screen_size.y - popup_margin.size.y) / 2)
 	popup_margin.set_position(popup_pos)
 	# Mostra il popup
-	popup_margin.visible = true  # Mostra il popup
-	popup_margin.size = Vector2(btn_size, btn_size)  # Inizializza la scala più piccola
-	popup_animation()  # Lancia l'animazione
-	# Posiziona il label **dentro il pannello**
-
 	if "scientist_name" in element:
 		popup_label.text = element["scientist_name"]
 		popup_date_label.text = element["year"]
-		popup_label.position = popup_pos 
-		popup_date_label.position = Vector2(0,popup_label.position.y + 20)
-		popup_label.add_theme_font_size_override("font_size", 50)
+		popup_label.position = Vector2(10,0)
+		popup_date_label.position = Vector2(10,40)
+		popup_label.add_theme_font_size_override("font_size", 30)
 		popup_date_label.add_theme_font_size_override("font_size", 20)
+	can_press = false
+	popup_animation() 
+	await get_tree().create_timer(0.3).timeout
+	can_press = true
 
-	
 func popup_animation():
 	var tween = get_tree().create_tween()
 	screen_size = get_viewport_rect().size
-	tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.3)
-	print(screen_size)
+	popup_margin.size = Vector2(400, screen_size.y)
+	popup_margin.visible = true
+	tween.tween_property(popup_margin, "size", Vector2(400+10, screen_size.y-10), 0.2)
+	tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.1)
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
  	
