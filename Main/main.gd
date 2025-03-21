@@ -18,7 +18,7 @@ var can_press: bool = true
 var elements: Dictionary = {
 	# Periodo 1
 	"H":  {"name": "Idrogeno", "number": 1, "category": "Non metallo", "group": 1, "period": 1,
-	 "scientist_name": "Hodgkin Dorothy", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1863"},
+	 "scientist_name": "Hodgkin Dorothy", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1910 - 1994"},
 	
 	"He": {"name": "Elio", "number": 2, "category": "Gas nobile", "group": 18, "period": 1,
 	"scientist_name": "Pisix", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1863"},
