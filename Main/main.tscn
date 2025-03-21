@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "panel", "label", "popup_margin", "popup_panel", "popup_label", "popup_date_label", "popup_image")]
+[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "panel", "label", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_year_label", "popup_description_label", "popup_quote_label", "popup_image")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,8 +15,11 @@ panel = NodePath("PopupLayer/PopupMargin/PopupPanel")
 label = NodePath("PeriodicTableLayer/Label")
 popup_margin = NodePath("PopupLayer/PopupMargin")
 popup_panel = NodePath("PopupLayer/PopupMargin")
-popup_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupLabel")
-popup_date_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupDateLabel")
+popup_name_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupNameLabel")
+popup_profession_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupProfessionLabel")
+popup_year_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupYearLabel")
+popup_description_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupDescriptionLabel")
+popup_quote_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupQuoteLabel")
 popup_image = NodePath("PopupLayer/PopupMargin/PopupPanel/TextureRect")
 metadata/_edit_use_anchors_ = true
 
@@ -71,22 +74,51 @@ grow_vertical = 2
 expand_mode = 1
 stretch_mode = 4
 
-[node name="PopupLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
+[node name="PopupNameLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="PopupDateLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
+[node name="PopupProfessionLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+autowrap_mode = 2
+
+[node name="PopupYearLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+autowrap_mode = 2
+
+[node name="PopupDescriptionLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+autowrap_mode = 2
+
+[node name="PopupQuoteLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+autowrap_mode = 2
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = 0

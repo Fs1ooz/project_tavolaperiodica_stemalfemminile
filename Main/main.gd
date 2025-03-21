@@ -5,8 +5,11 @@ extends Control
 @export var label: Label 
 @export var popup_margin: MarginContainer 
 @export var popup_panel: Panel 
-@export var popup_label: Label
-@export var popup_date_label: Label
+@export var popup_name_label: Label
+@export var popup_profession_label: Label
+@export var popup_year_label: Label
+@export var popup_description_label: Label
+@export var popup_quote_label: Label
 @export var popup_image: TextureRect
 @onready var screen_size = get_viewport_rect().size
 var periods: int = 7+3
@@ -18,7 +21,9 @@ var can_press: bool = true
 var elements: Dictionary = {
 	# Periodo 1
 	"H":  {"name": "Idrogeno", "number": 1, "category": "Non metallo", "group": 1, "period": 1,
-	 "scientist_name": "Hodgkin Dorothy", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1910 - 1994"},
+	"image": "res://Images/Hodgin Dorothy.jpg",
+	"scientist_name": "Hodgkin Dorothy", "year": "1910 - 1994","profession": "Chimica", 
+	"description": "Scienziate britannica famosa per le sue ricerche sulla cristallografia a raggi X. Ha scoperto la struttura della vitamina B12, della penicellina (1° antibiotico) e dell’insulizna. Per queste ricerche nel 1964 ha vinto il Premio Nobel per la Chimica. ","quote": "“Ci sono due momenti importanti. C’è il momento in cui sapete di poter trovare la risposta e il periodo in cui siete insonni prima di poter trovare qual è. Quando l’avete trovata e sapere qual è allora potete riposare tranquilli"},
 	
 	"He": {"name": "Elio", "number": 2, "category": "Gas nobile", "group": 18, "period": 1,
 	"scientist_name": "Pisix", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1863"},
@@ -217,11 +222,10 @@ func create_periodic_table():
 	for i in range(groups):
 		var group_label = Label.new()
 		group_label.text = str(i + 1)
-		group_label.add_theme_font_size_override("font_size", 20)
 		group_label.custom_minimum_size = Vector2(btn_size, btn_size)
 		group_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		grid_container.add_child(group_label)
-		group_label.add_theme_font_size_override("font_size", group_label.size.x * 0.5)
+		group_label.add_theme_font_size_override("font_size",20)
 	# Inizializziamo la tabella solo con spazi vuoti
 	var table_layout := []  
 	for _i in range(periods):  # 7 periodi
@@ -249,7 +253,7 @@ func create_periodic_table():
 			period_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			period_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		grid_container.add_child(period_label)
-		period_label.add_theme_font_size_override("font_size", period_label.size.y * 0.5)
+		period_label.add_theme_font_size_override("font_size",20)
 		# Aggiungiamo gli elementi della riga
 		for symbol in table_layout[i]:
 			if symbol == null:
@@ -267,7 +271,7 @@ func create_periodic_table():
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
 				grid_container.add_child(btn)
-				btn.add_theme_font_size_override("font_size", btn.size.y * 0.7)  
+				btn.add_theme_font_size_override("font_size", 25)  
 				var element = elements[symbol]
 				if "category" in element and element["category"] in category_colors:
 					btn.modulate = category_colors[element["category"]]
@@ -277,7 +281,7 @@ func on_element_selected(symbol, button):
 		return
 	var element = elements[symbol]
 	# Imposta il testo
-	popup_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
+	popup_name_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
 		element["name"], element["number"], element["category"]
 	]
 	# Carica l'immagine se disponibile
@@ -298,12 +302,18 @@ func on_element_selected(symbol, button):
 	popup_margin.set_position(popup_pos)
 	# Mostra il popup
 	if "scientist_name" in element:
-		popup_label.text = element["scientist_name"]
-		popup_date_label.text = element["year"]
-		popup_label.position = Vector2(10,0)
-		popup_date_label.position = Vector2(10,40)
-		popup_label.add_theme_font_size_override("font_size", 30)
-		popup_date_label.add_theme_font_size_override("font_size", 20)
+		popup_name_label.text = element["scientist_name"]
+		popup_profession_label.text = element["profession"]
+		popup_year_label.text = element["year"]
+		popup_description_label.text = element["description"]
+		popup_quote_label.text = element["quote"]
+		popup_name_label.position = Vector2(10,0)
+		popup_profession_label.position = Vector2(10,30)
+		popup_year_label.position = Vector2(10,60)
+		popup_description_label.position = Vector2(10,100)
+		popup_quote_label.position = Vector2(10,260)
+		popup_name_label.add_theme_font_size_override("font_size", 30)
+		popup_year_label.add_theme_font_size_override("font_size", 20)
 	can_press = false
 	popup_animation() 
 	await get_tree().create_timer(0.3).timeout
