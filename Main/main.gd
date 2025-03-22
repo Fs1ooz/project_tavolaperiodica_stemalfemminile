@@ -39,7 +39,7 @@ var elements: Dictionary = {
 	"C":  {"name": "Carbonio", "number": 6, "category": "Non metallo", "group": 14, "period": 2},
 	"N":  {"name": "Azoto", "number": 7, "category": "Non metallo", "group": 15, "period": 2},
 	"O":  {"name": "Ossigeno", "number": 8, "category": "Non metallo", "group": 16, "period": 2},
-	"F":  {"name": "Fluoro", "number": 9, "category": "Alogen", "group": 17, "period": 2},
+	"F":  {"name": "Fluoro", "number": 9, "category": "Alogeno", "group": 17, "period": 2},
 	"Ne": {"name": "Neon", "number": 10, "category": "Gas nobile", "group": 18, "period": 2},
 
 	# Periodo 3
@@ -49,7 +49,7 @@ var elements: Dictionary = {
 	"Si": {"name": "Silicio", "number": 14, "category": "Metalloide", "group": 14, "period": 3},
 	"P":  {"name": "Fosforo", "number": 15, "category": "Non metallo", "group": 15, "period": 3},
 	"S":  {"name": "Zolfo", "number": 16, "category": "Non metallo", "group": 16, "period": 3},
-	"Cl": {"name": "Cloro", "number": 17, "category": "Alogen", "group": 17, "period": 3},
+	"Cl": {"name": "Cloro", "number": 17, "category": "Alogeno", "group": 17, "period": 3},
 	"Ar": {"name": "Argon", "number": 18, "category": "Gas nobile", "group": 18, "period": 3},
 
 	# Periodo 4
@@ -69,7 +69,7 @@ var elements: Dictionary = {
 	"Ge": {"name": "Germanio", "number": 32, "category": "Metalloide", "group": 14, "period": 4},
 	"As": {"name": "Arsenico", "number": 33, "category": "Metalloide", "group": 15, "period": 4},
 	"Se": {"name": "Selenio", "number": 34, "category": "Non metallo", "group": 16, "period": 4},
-	"Br": {"name": "Bromo", "number": 35, "category": "Alogen", "group": 17, "period": 4},
+	"Br": {"name": "Bromo", "number": 35, "category": "Alogeno", "group": 17, "period": 4},
 	"Kr": {"name": "Kripton", "number": 36, "category": "Gas nobile", "group": 18, "period": 4},
 
 	# Periodo 5
@@ -89,7 +89,7 @@ var elements: Dictionary = {
 	"Sn": {"name": "Stagno", "number": 50, "category": "Metallo post-transizionale", "group": 14, "period": 5},
 	"Sb": {"name": "Antimonio", "number": 51, "category": "Metalloide", "group": 15, "period": 5},
 	"Te": {"name": "Tellurio", "number": 52, "category": "Metalloide", "group": 16, "period": 5},
-	"I":  {"name": "Iodio", "number": 53, "category": "Alogen", "group": 17, "period": 5},
+	"I":  {"name": "Iodio", "number": 53, "category": "Alogeno", "group": 17, "period": 5},
 	"Xe": {"name": "Xeno", "number": 54, "category": "Gas nobile", "group": 18, "period": 5},
 
 	# Periodo 6
@@ -125,7 +125,7 @@ var elements: Dictionary = {
 	"Pb": {"name": "Piombo", "number": 82, "category": "Metallo post-transizionale", "group": 14, "period": 6},
 	"Bi": {"name": "Bismuto", "number": 83, "category": "Metallo post-transizionale", "group": 15, "period": 6},
 	"Po": {"name": "Polonio", "number": 84, "category": "Metalloide", "group": 16, "period": 6},
-	"At": {"name": "Astato", "number": 85, "category": "Alogen", "group": 17, "period": 6},
+	"At": {"name": "Astato", "number": 85, "category": "Alogeno", "group": 17, "period": 6},
 	"Rn": {"name": "Radon", "number": 86, "category": "Gas nobile", "group": 18, "period": 6},
 
 	# Periodo 7
@@ -159,7 +159,7 @@ var elements: Dictionary = {
 	"Fl": {"name": "Flerovio", "number": 114, "category": "Metallo post-transizionale", "group": 14, "period": 7},
 	"Mc": {"name": "Moscovio", "number": 115, "category": "Metallo post-transizionale", "group": 15, "period": 7},
 	"Lv": {"name": "Livermorio", "number": 116, "category": "Metallo post-transizionale", "group": 16, "period": 7},
-	"Ts": {"name": "Tenessino", "number": 117, "category": "Alogen", "group": 17, "period": 7},
+	"Ts": {"name": "Tenessino", "number": 117, "category": "Alogeno", "group": 17, "period": 7},
 	"Og": {"name": "Oganesson", "number": 118, "category": "Gas nobile", "group": 18, "period": 7},
 
 	# Lantanidi (periodo fittizio 9, gruppo 3-18)
@@ -199,12 +199,12 @@ var elements: Dictionary = {
 }
 #Database colori degli elementi
 var category_colors = {
-	"Metallo alcalino": Color(1, 0.5, 0),       # Arancione
-	"Metallo alcalino-terroso": Color(1, 1, 0), # Giallo
+	"Metallo alcalino": Color.SKY_BLUE,       # Arancione
+	"Metallo alcalino-terroso": Color.ROSY_BROWN, 
 	"Metallo post-transizionale": Color(0.5, 0.5, 0.5), # Grigio
-	"Metalloide": Color(0, 1, 0),        # Verde
-	"Non metallo": Color(0, 1, 1),       # Azzurro
-	"Alogeno": Color(1, 0, 1),           # Viola
+	"Metalloide": Color.DARK_SEA_GREEN,        # Verde
+	"Non metallo": Color.THISTLE,       # Azzurro
+	"Alogeno": Color.INDIAN_RED,           # Viola
 	"Gas nobile": Color(0.6, 0, 1),      # Viola scuro
 	"Metallo di transizione": Color(0.5, 0.5, 1), # Blu tenue
 	"Lantanide": Color(0.8, 0.4, 1),     # Lilla
@@ -275,10 +275,14 @@ func create_periodic_table():
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
 				grid_container.add_child(btn)
-				btn.add_theme_font_size_override("font_size", 25)  
+				btn.add_theme_font_size_override("font_size", 25)
+
 				var element = elements[symbol]
-				if "category" in element and element["category"] in category_colors:
-					btn.modulate = category_colors[element["category"]]
+				var style = StyleBoxFlat.new()
+				if style:
+					btn.add_theme_stylebox_override("normal", style)
+					style.bg_color = category_colors[element["category"]]  
+					btn.add_theme_color_override("font_color", Color.WHITE) # Applica lo stile al bottone
 
 func on_element_selected(symbol, button):
 	if not can_press:
