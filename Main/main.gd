@@ -23,11 +23,15 @@ var elements: Dictionary = {
 	"H":  {"name": "Idrogeno", "number": 1, "category": "Non metallo", "group": 1, "period": 1,
 	"image": "res://Images/Hodgin Dorothy.jpg",
 	"scientist_name": "Hodgkin Dorothy", "year": "1910 - 1994","profession": "Chimica", 
-	"description": "Scienziate britannica famosa per le sue ricerche sulla cristallografia a raggi X. Ha scoperto la struttura della vitamina B12, della penicellina (1° antibiotico) e dell’insulizna. Per queste ricerche nel 1964 ha vinto il Premio Nobel per la Chimica. ","quote": "“Ci sono due momenti importanti. C’è il momento in cui sapete di poter trovare la risposta e il periodo in cui siete insonni prima di poter trovare qual è. Quando l’avete trovata e sapere qual è allora potete riposare tranquilli"},
-	
-	"He": {"name": "Elio", "number": 2, "category": "Gas nobile", "group": 18, "period": 1,
-	"scientist_name": "Pisix", "image": "res://Images/images.jpeg", "description": "un giorno pisilla", "year": "1863"},
+	"description": "Scienziate britannica famosa per le sue ricerche sulla cristallografia a raggi X. Ha scoperto la struttura della vitamina B12, della penicellina (1° antibiotico) e dell’insulizna. Per queste ricerche nel 1964 ha vinto il Premio Nobel per la Chimica. ",
+	"quote": "Ci sono due momenti importanti. C’è il momento in cui sapete di poter trovare la risposta e il periodo in cui siete insonni prima di poter trovare qual è. Quando l’avete trovata e sapere qual è allora potete riposare tranquilli"},
 
+	"He":  {"name": "Elio", "number": 2, "category": "Gas nobile", "group": 18, "period": 1,
+	"image": "res://Images/Hedy Lamarr.jpg",
+	"scientist_name": "Hedy Lamarr", "year": "1914 - 2000","profession": "Attrice e Inventrice", 
+	"description": "Celebre per la sua carriera ad Hollywood: considerata a lungo la donna più bella del mondo. Nessuno si rese conto che in realtà era un genio. Basandosi sull’accordatura del pianoforte scoprì il salto di frequenza, che consentì di comandare le cose a distanza senza fili. Questo principio divenne la base per le tecnologie moderne come Wi-fi, Bluetooth e GPS. Il suo contributo nella scienza è stato riconosciuto solo in tarda età, nel 1997, con il premio della Electronic Frontier Foundation (EFF).",
+	"quote": "La speranza e la curiosità per il futuro sembrano migliori delle certezze. L’ignoto è sempre stato così attraente per me... e lo è ancora."},
+	
 	# Periodo 2
 	"Li": {"name": "Litio", "number": 3, "category": "Metallo alcalino", "group": 1, "period": 2},
 	"Be": {"name": "Berillio", "number": 4, "category": "Metallo alcalino-terroso", "group": 2, "period": 2},
@@ -299,7 +303,11 @@ func on_element_selected(symbol, button):
 
 	var button_global_pos = button.global_position  # Posizione globale del bottone
 	var popup_pos = Vector2(button_global_pos.x + button.size.x, (screen_size.y - popup_margin.size.y) / 2)
-	popup_margin.set_position(popup_pos)
+
+	if popup_pos.x > screen_size.x / 2:
+		popup_margin.set_position(Vector2(button_global_pos.x - 400, popup_pos.y))
+	else:
+		popup_margin.set_position(popup_pos)
 	# Mostra il popup
 	if "scientist_name" in element:
 		popup_name_label.text = element["scientist_name"]
@@ -308,10 +316,10 @@ func on_element_selected(symbol, button):
 		popup_description_label.text = element["description"]
 		popup_quote_label.text = element["quote"]
 		popup_name_label.position = Vector2(10,0)
-		popup_profession_label.position = Vector2(10,30)
+		popup_profession_label.position = Vector2(10,35)
 		popup_year_label.position = Vector2(10,60)
 		popup_description_label.position = Vector2(10,100)
-		popup_quote_label.position = Vector2(10,260)
+		popup_quote_label.position = Vector2(10,460)
 		popup_name_label.add_theme_font_size_override("font_size", 30)
 		popup_year_label.add_theme_font_size_override("font_size", 20)
 	can_press = false
