@@ -3,8 +3,9 @@ extends Control
 @export var grid_container: GridContainer
 @export var panel: Panel
 @export var label: Label 
+@export var popup_layer: CanvasLayer 
 @export var popup_margin: MarginContainer 
-@export var popup_panel: Panel 
+@export var popup_panel: PanelContainer 
 @export var popup_name_label: Label
 @export var popup_profession_label: Label
 @export var popup_year_label: Label
@@ -20,24 +21,101 @@ var can_press: bool = true
 #Database di tutti gli elementi
 var elements: Dictionary = {
 	# Periodo 1
-	"H":  {"name": "Idrogeno", "number": 1, "category": "Non metallo", "group": 1, "period": 1,
-	"image": "res://Images/Hodgin Dorothy.jpg",
-	"scientist_name": "Hodgkin Dorothy", "year": "1910 - 1994","profession": "Chimica", 
-	"description": "Scienziate britannica famosa per le sue ricerche sulla cristallografia a raggi X. Ha scoperto la struttura della vitamina B12, della penicellina (1° antibiotico) e dell’insulizna. Per queste ricerche nel 1964 ha vinto il Premio Nobel per la Chimica. ",
-	"quote": "Ci sono due momenti importanti. C’è il momento in cui sapete di poter trovare la risposta e il periodo in cui siete insonni prima di poter trovare qual è. Quando l’avete trovata e sapere qual è allora potete riposare tranquilli"},
+	"H":  {
+		"name": "Idrogeno", 
+		"number": 1, 
+		"category": "Non metallo", 
+		"group": 1, 
+		"period": 1,
+		"image": "res://Images/STEAM Women/Hodgin Dorothy.jpg",
+		"scientist_name": "Hodgkin Dorothy",
+		"year": "1910 - 1994",
+		"profession": "Chimica", 
+		"description": "Scienziate britannica famosa per le sue ricerche sulla cristallografia a raggi X. Ha scoperto la struttura della vitamina B12, della penicellina (1° antibiotico) e dell’insulizna. Per queste ricerche nel 1964 ha vinto il Premio Nobel per la Chimica. ",
+		"quote": "Ci sono due momenti importanti. C’è il momento in cui sapete di poter trovare la risposta e il periodo in cui siete insonni prima di poter trovare qual è. Quando l’avete trovata e sapere qual è allora potete riposare tranquilli"},
 
-	"He":  {"name": "Elio", "number": 2, "category": "Gas nobile", "group": 18, "period": 1,
-	"image": "res://Images/Hedy Lamarr.jpg",
-	"scientist_name": "Hedy Lamarr", "year": "1914 - 2000","profession": "Attrice e Inventrice", 
-	"description": "Celebre per la sua carriera ad Hollywood: considerata a lungo la donna più bella del mondo. Nessuno si rese conto che in realtà era un genio. Basandosi sull’accordatura del pianoforte scoprì il salto di frequenza, che consentì di comandare le cose a distanza senza fili. Questo principio divenne la base per le tecnologie moderne come Wi-fi, Bluetooth e GPS. Il suo contributo nella scienza è stato riconosciuto solo in tarda età, nel 1997, con il premio della Electronic Frontier Foundation (EFF).",
-	"quote": "La speranza e la curiosità per il futuro sembrano migliori delle certezze. L’ignoto è sempre stato così attraente per me... e lo è ancora."},
-	
-	# Periodo 2
-	"Li": {"name": "Litio", "number": 3, "category": "Metallo alcalino", "group": 1, "period": 2},
-	"Be": {"name": "Berillio", "number": 4, "category": "Metallo alcalino-terroso", "group": 2, "period": 2},
-	"B":  {"name": "Boro", "number": 5, "category": "Metalloide", "group": 13, "period": 2},
-	"C":  {"name": "Carbonio", "number": 6, "category": "Non metallo", "group": 14, "period": 2},
-	"N":  {"name": "Azoto", "number": 7, "category": "Non metallo", "group": 15, "period": 2},
+	"He":  {
+		"name": "Elio", 
+		"number": 2, 
+		"category": "Gas nobile", 
+		"group": 18, 
+		"period": 1,
+		"image": "res://Images/STEAM Women/Hedy Lamarr.jpg",
+		"scientist_name": "Hedy Lamarr", 
+		"year": "1914 - 2000",
+		"profession": "Attrice e Inventrice", 
+		"description": 
+		"Celebre per la sua carriera ad Hollywood: considerata a lungo la donna più bella del mondo. Nessuno si rese conto che in realtà era un genio. Basandosi sull’accordatura del pianoforte scoprì il salto di frequenza, che consentì di comandare le cose a distanza senza fili. Questo principio divenne la base per le tecnologie moderne come Wi-fi, Bluetooth e GPS. Il suo contributo nella scienza è stato riconosciuto solo in tarda età, nel 1997, con il premio della Electronic Frontier Foundation (EFF).",
+		"quote": "La speranza e la curiosità per il futuro sembrano migliori delle certezze. L’ignoto è sempre stato così attraente per me... e lo è ancora."},
+	"Li": {
+		"name": "Litio", 
+		"number": 3, 
+		"category": "Metallo alcalino", 
+		"group": 1, 
+		"period": 2,
+		"image": "res://Images/Lise Meitner.jpg",
+		"scientist_name": "Lise Meitner", 
+		"year": "1878 - 1968",
+		"profession": "Fisica nucleare", 
+		"description": "Co-scopritrice della fissione nucleare e del proattinio (elemento 91). Nonostante il fondamentale contributo alle scoperte atomiche, fu esclusa dal Premio Nobel per discriminazioni di genere e razziali (essendo ebrea). Rifiutò di partecipare al Progetto Manhattan, dedicandosi all'energia atomica pacifica. Il suo lavoro ispirò sia i reattori nucleari che le bombe atomiche, sebbene lei stessa condannasse l'uso bellico.",
+		"quote": "Penso che sia una bella scoperta, se non fosse per la guerra che piega anche la scienza alle sue atroci necessità."
+	},
+
+	"Be": {
+		"name": "Berillio", 
+		"number": 4, 
+		"category": "Metallo alcalino-terroso", 
+		"group": 2, 
+		"period": 2,
+		"image": "res://Images/Beatrice Shilling.jpg",
+		"scientist_name": "Beatrice Shilling", 
+		"year": "1909 - 1990",
+		"profession": "Ingegnera aeronautica", 
+		"description": "Pioniera dell'ingegneria aerospaziale britannica. Durante la WWII risolse un problema critico nei motori degli Spitfire inventando il celebre 'orifizio di Miss Shilling', un semplice dispositivo che impediva ai carburatori di bloccarsi durante le picchiate. Corridore motociclistico dilettante, sfidò gli stereotipi di genere in un settore totalmente maschile.",
+		"quote": "Se non puoi aggiustarlo, mettici le mani"
+	},
+
+	"B": {
+		"name": "Boro", 
+		"number": 5, 
+		"category": "Metalloide", 
+		"group": 13, 
+		"period": 2,
+		"image": "res://Images/Ildegarda di Bingen.jpg",
+		"scientist_name": "Ildegarda di Bingen", 
+		"year": "1098 - 1179",
+		"profession": "Poliedrica medievale", 
+		"description": "Genio rinascimentale ante litteram. Suora benedettina che rivoluzionò la medicina medievale con studi su erbe medicinali e anatomia femminile. Scrisse enciclopedie scientifiche come 'Physica', anticipando concetti moderni di ecologia. Compositrice di musica sacra e mistica visionaria, fu proclamata Dottore della Chiesa nel 2012.",
+		"quote": "Guarda il cielo: Guarda il sole e le stelle. E adesso, rifletti. Quanto grande è il diletto che Dio dà all'umanità con tutte queste cose... Dobbiamo lavorare insieme a lei."
+	},
+
+	"C": {
+		"name": "Carbonio", 
+		"number": 6, 
+		"category": "Non metallo", 
+		"group": 14, 
+		"period": 2,
+		"image": "res://Images/Cecilia Payne-Gaposchkin.jpg",
+		"scientist_name": "Cecilia Payne-Gaposchkin", 
+		"year": "1900 - 1979",
+		"profession": "Astrofisica pioniera", 
+		"description": "Rivoluzionò l'astrofisica dimostrando nel 1925 che le stelle sono composte principalmente da idrogeno ed elio. Nonostante l'opposizione iniziale della comunità scientifica (all'epoca si credeva fossero simili alla Terra), la sua tesi divenne pietra miliare dell'astronomia. Prima donna a dirigere un dipartimento ad Harvard, aprì la strada alle scienziate nello studio del cosmo.",
+		"quote": "L'unico uomo che non ha mai commesso un errore è quello che non ha mai fatto nulla."
+	},
+
+	"N": {
+		"name": "Azoto", 
+		"number": 7, 
+		"category": "Non metallo", 
+		"group": 15, 
+		"period": 2,
+		"image": "res://Images/Francine Ntoumi.jpg",
+		"scientist_name": "Francine Ntoumi", 
+		"year": "1961 - Presente",
+		"profession": "Ricercatrice sul paludismo", 
+		"description": "Leader nella lotta alle malattie tropicali. Fondatrice della rete CANTAM che coordina la ricerca su malaria, HIV e tubercolosi in Africa Centrale. Pioniera nell'approccio integrato tra ricerca scientifica e sviluppo sanitario locale. Simbolo dell'emancipazione scientifica africana, combatte per formare una nuova generazione di ricercatori nel continente.",
+		"quote": "Mio padre si è indebitato perché io potessi studiare."
+	},
 	"O":  {"name": "Ossigeno", "number": 8, "category": "Non metallo", "group": 16, "period": 2},
 	"F":  {"name": "Fluoro", "number": 9, "category": "Alogeno", "group": 17, "period": 2},
 	"Ne": {"name": "Neon", "number": 10, "category": "Gas nobile", "group": 18, "period": 2},
@@ -195,27 +273,27 @@ var elements: Dictionary = {
 	"Md": {"name": "Mendelevio", "number": 101, "category": "Attinide", "group": 15, "period": 10},
 	"No": {"name": "Nobelio", "number": 102, "category": "Attinide", "group": 16, "period": 10},
 	"Lr": {"name": "Lawrencio", "number": 103, "category": "Attinide", "group": 17, "period": 10},
-
 }
 #Database colori degli elementi
 var category_colors = {
-	"Metallo alcalino": Color.SKY_BLUE,       # Arancione
-	"Metallo alcalino-terroso": Color.ROSY_BROWN, 
-	"Metallo post-transizionale": Color(0.5, 0.5, 0.5), # Grigio
-	"Metalloide": Color.DARK_SEA_GREEN,        # Verde
-	"Non metallo": Color.THISTLE,       # Azzurro
-	"Alogeno": Color.INDIAN_RED,           # Viola
-	"Gas nobile": Color(0.6, 0, 1),      # Viola scuro
-	"Metallo di transizione": Color(0.5, 0.5, 1), # Blu tenue
-	"Lantanide": Color(0.8, 0.4, 1),     # Lilla
-	"Attinide": Color(1, 0.2, 0.2)       # Rosso
+	"Metallo alcalino": Color.CORAL,  
+	"Metallo alcalino-terroso": Color.SADDLE_BROWN,
+	"Metallo di transizione": Color.BROWN, 
+	"Metallo post-transizionale": Color.DARK_SLATE_BLUE,  
+	"Metalloide": Color.TEAL, 
+	"Non metallo": Color.SEA_GREEN,  
+	"Alogeno": Color.VIOLET,  
+	"Gas nobile": Color.LIGHT_SKY_BLUE, 
+	"Lantanide": Color.WEB_PURPLE, 
+	"Attinide": Color.LIME_GREEN, 
 }
+
 
 func _ready():
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
+	popup_panel.visible = false 
 	popup_margin.visible = false 
-
 
 
 func create_periodic_table():
@@ -282,7 +360,7 @@ func create_periodic_table():
 				if style:
 					btn.add_theme_stylebox_override("normal", style)
 					style.bg_color = category_colors[element["category"]]  
-					btn.add_theme_color_override("font_color", Color.WHITE) # Applica lo stile al bottone
+					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
 
 func on_element_selected(symbol, button):
 	if not can_press:
@@ -293,25 +371,16 @@ func on_element_selected(symbol, button):
 		element["name"], element["number"], element["category"]
 	]
 	# Carica l'immagine se disponibile
-	if "image" in element:
-		var img_texture = load(element["image"])
-		popup_image.texture = img_texture
-		
-		# Imposta la dimensione dell'immagine (ad esempio 100x100)
-		var img_size = Vector2(100, 100)
-		popup_image.size = img_size 
-		popup_image.custom_minimum_size = popup_image.size  # Imposta una dimensione minima per evitare che torni alla grandezza originale
-		# Imposta la posizione in alto a destra
-		var panel_size = popup_margin.size
-		popup_image.position = Vector2(panel_size.x - img_size.x, 0)  # 10px di margine
-
+	set_image(symbol)
 	var button_global_pos = button.global_position  # Posizione globale del bottone
 	var popup_pos = Vector2(button_global_pos.x + button.size.x, (screen_size.y - popup_margin.size.y) / 2)
 
 	if popup_pos.x > screen_size.x / 2:
 		popup_margin.set_position(Vector2(button_global_pos.x - 400, popup_pos.y))
+		popup_panel.set_position(Vector2(button_global_pos.x - 400, popup_pos.y))
 	else:
 		popup_margin.set_position(popup_pos)
+		popup_panel.set_position(popup_pos)
 	# Mostra il popup
 	if "scientist_name" in element:
 		popup_name_label.text = element["scientist_name"]
@@ -319,11 +388,11 @@ func on_element_selected(symbol, button):
 		popup_year_label.text = element["year"]
 		popup_description_label.text = element["description"]
 		popup_quote_label.text = element["quote"]
-		popup_name_label.position = Vector2(10,0)
-		popup_profession_label.position = Vector2(10,35)
-		popup_year_label.position = Vector2(10,60)
-		popup_description_label.position = Vector2(10,100)
-		popup_quote_label.position = Vector2(10,460)
+		#popup_name_label.position = Vector2(10,0)
+		#popup_profession_label.position = Vector2(10,35)
+		#popup_year_label.position = Vector2(10,60)
+		#popup_description_label.position = Vector2(10,100)
+		#popup_quote_label.position = Vector2(10,460)
 		popup_name_label.add_theme_font_size_override("font_size", 30)
 		popup_year_label.add_theme_font_size_override("font_size", 20)
 	can_press = false
@@ -334,9 +403,30 @@ func on_element_selected(symbol, button):
 func popup_animation():
 	var tween = get_tree().create_tween()
 	screen_size = get_viewport_rect().size
-	popup_margin.size = Vector2(400, screen_size.y)
-	popup_margin.visible = true
-	tween.tween_property(popup_margin, "size", Vector2(400+10, screen_size.y-10), 0.2)
-	tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.1)
+	#popup_margin.size = Vector2(400, screen_size.y)
+	popup_margin.visible = true 
+	popup_panel.visible = true 
+	#tween.tween_property(popup_margin, "size", Vector2(400+2, screen_size.y+2), 0.2)
+	#tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.1)
+	#tween.tween_property(popup_panel, "scale", Vector2(1.05,0.95), 0.08)
+	tween.tween_property(popup_panel, "scale", Vector2(1, 1), 0.08)
+	tween.tween_property(popup_image, "self_modulate", Color(1,1,1,1), 0.1)
+	
+	print(popup_panel.position)
+	print(popup_panel.size)
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
  	
+func set_image(symbol):
+	var element = elements[symbol]
+	if "image" in element:
+		var img_texture = load(element["image"])
+		popup_image.texture = img_texture
+		popup_image.self_modulate = Color(1,1,1,0)
+		# Imposta la dimensione dell'immagine (ad esempio 100x100)
+		var img_size = Vector2(100, 100)
+		popup_image.size = img_size  # Imposta una dimensione minima per evitare che torni alla grandezza originale
+		var panel_size = popup_panel.size
+		popup_image.position = Vector2(panel_size.x, 10)
+		#print(popup_image.position)
+
+	

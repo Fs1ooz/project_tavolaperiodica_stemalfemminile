@@ -1,9 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8bt1n7irs0ni"]
+[gd_scene load_steps=4 format=3 uid="uid://b8bt1n7irs0ni"]
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
-[ext_resource type="Texture2D" uid="uid://crh1eht7i427j" path="res://Images/colorful-realisitc-science-background/3583503.jpg" id="2_2w1kt"]
+[ext_resource type="Texture2D" uid="uid://cf658dkmnvg2s" path="res://Images/background2.png" id="2_2w1kt"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "label", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_year_label", "popup_description_label", "popup_quote_label", "popup_image")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w1kt"]
+bg_color = Color(1, 1, 1, 0.858824)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.541176, 0.764706, 0.729412)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_year_label", "popup_description_label", "popup_quote_label", "popup_image")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,15 +24,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yh5la")
 grid_container = NodePath("PeriodicTableLayer/MarginContainer/GridContainer")
-label = NodePath("")
+popup_layer = NodePath("PopupLayer")
 popup_margin = NodePath("PopupLayer/PopupMargin")
-popup_panel = NodePath("PopupLayer/PopupMargin")
-popup_name_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupNameLabel")
-popup_profession_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupProfessionLabel")
-popup_year_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupYearLabel")
-popup_description_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupDescriptionLabel")
-popup_quote_label = NodePath("PopupLayer/PopupMargin/PopupPanel/PopupQuoteLabel")
-popup_image = NodePath("PopupLayer/PopupMargin/PopupPanel/TextureRect")
+popup_panel = NodePath("PopupLayer/PopupPanel")
+popup_name_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer/PopupNameLabel")
+popup_profession_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer/PopupProfessionLabel")
+popup_year_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer/PopupYearLabel")
+popup_description_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/PopupDescriptionLabel")
+popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/PopupQuoteLabel")
+popup_image = NodePath("PopupLayer/PopupPanel/PopupImage")
 metadata/_edit_use_anchors_ = true
 
 [node name="PeriodicTableLayer" type="CanvasLayer" parent="."]
@@ -46,77 +58,94 @@ metadata/_edit_use_anchors_ = true
 layer = 2
 
 [node name="PopupMargin" type="MarginContainer" parent="PopupLayer"]
-anchors_preset = 15
-anchor_right = 1.0
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 9
 anchor_bottom = 1.0
+offset_right = 420.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="ContentVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeadVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer"]
+layout_mode = 2
+
+[node name="PopupNameLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 1
+autowrap_mode = 2
+
+[node name="PopupProfessionLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 1
+autowrap_mode = 2
+
+[node name="PopupYearLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 1
+autowrap_mode = 2
+
+[node name="BodyVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="PopupDescriptionLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 3
+autowrap_mode = 3
+
+[node name="PopupQuoteLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 3
+autowrap_mode = 3
+
+[node name="PopupPanel" type="PanelContainer" parent="PopupLayer"]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -316.5
+offset_right = 220.0
+offset_bottom = 316.5
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+pivot_offset = Vector2(200, 0)
+size_flags_horizontal = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
 
-[node name="PopupPanel" type="ColorRect" parent="PopupLayer/PopupMargin"]
+[node name="PopupImage" type="TextureRect" parent="PopupLayer/PopupPanel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-mouse_filter = 2
-color = Color(1, 0.889531, 0.99793, 0.737255)
-
-[node name="TextureRect" type="TextureRect" parent="PopupLayer/PopupMargin/PopupPanel"]
-layout_mode = 2
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 expand_mode = 1
 stretch_mode = 4
-
-[node name="PopupNameLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="PopupProfessionLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-autowrap_mode = 2
-
-[node name="PopupYearLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-autowrap_mode = 2
-
-[node name="PopupDescriptionLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-autowrap_mode = 2
-
-[node name="PopupQuoteLabel" type="Label" parent="PopupLayer/PopupMargin/PopupPanel"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-autowrap_mode = 2
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = 0

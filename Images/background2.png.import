@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bioqrosa0twsf"
-path="res://.godot/imported/Hodgin Dorothy.jpg-37659189cd0c429f8a80d2948b649f95.ctex"
+uid="uid://cf658dkmnvg2s"
+path="res://.godot/imported/background2.png-bda0c906ab1eaadec64cfe3cccc39655.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Hodgin Dorothy.jpg"
-dest_files=["res://.godot/imported/Hodgin Dorothy.jpg-37659189cd0c429f8a80d2948b649f95.ctex"]
+source_file="res://Images/background2.png"
+dest_files=["res://.godot/imported/background2.png-bda0c906ab1eaadec64cfe3cccc39655.ctex"]
 
 [params]
 
