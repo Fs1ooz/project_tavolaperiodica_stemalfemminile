@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cenwcc374gahw"]
+
+[ext_resource type="FontFile" uid="uid://p84irkxwvdiu" path="res://Fonts/Astonpoliz.otf" id="1_c4d5t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4d5t"]
+bg_color = Color(0.780392, 0.756863, 0.905882, 1)
+
+[resource]
+Label/colors/font_color = Color(0.472198, 0.297883, 0.580219, 1)
+Label/colors/font_outline_color = Color(0.198686, 0.109506, 0.253231, 1)
+Label/constants/outline_size = 5
+Label/font_sizes/font_size = 40
+Label/fonts/font = ExtResource("1_c4d5t")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_c4d5t")

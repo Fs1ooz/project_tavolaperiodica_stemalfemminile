@@ -5,12 +5,16 @@ extends Control
 @export var label: Label 
 @export var popup_layer: CanvasLayer 
 @export var popup_margin: MarginContainer 
-@export var popup_panel: PanelContainer 
+@export var popup_panel: PanelContainer
 @export var popup_name_label: Label
 @export var popup_profession_label: Label
+@export var popup_brief_label: Label
 @export var popup_year_label: Label
+@export var popup_nationality_label: Label
 @export var popup_description_label: Label
+@export var popup_awards_label: Label
 @export var popup_quote_label: Label
+@export var popup_links_label: Label
 @export var popup_image: TextureRect
 @onready var screen_size = get_viewport_rect().size
 var periods: int = 7+3
@@ -34,19 +38,28 @@ var elements: Dictionary = {
 		"description": "Scienziate britannica famosa per le sue ricerche sulla cristallografia a raggi X. Ha scoperto la struttura della vitamina B12, della penicellina (1° antibiotico) e dell’insulizna. Per queste ricerche nel 1964 ha vinto il Premio Nobel per la Chimica. ",
 		"quote": "Ci sono due momenti importanti. C’è il momento in cui sapete di poter trovare la risposta e il periodo in cui siete insonni prima di poter trovare qual è. Quando l’avete trovata e sapere qual è allora potete riposare tranquilli"},
 
-	"He":  {
-		"name": "Elio", 
-		"number": 2, 
-		"category": "Gas nobile", 
-		"group": 18, 
-		"period": 1,
-		"image": "res://Images/STEAM Women/Hedy Lamarr.jpg",
-		"scientist_name": "Hedy Lamarr", 
-		"year": "1914 - 2000",
-		"profession": "Attrice e Inventrice", 
-		"description": 
-		"Celebre per la sua carriera ad Hollywood: considerata a lungo la donna più bella del mondo. Nessuno si rese conto che in realtà era un genio. Basandosi sull’accordatura del pianoforte scoprì il salto di frequenza, che consentì di comandare le cose a distanza senza fili. Questo principio divenne la base per le tecnologie moderne come Wi-fi, Bluetooth e GPS. Il suo contributo nella scienza è stato riconosciuto solo in tarda età, nel 1997, con il premio della Electronic Frontier Foundation (EFF).",
-		"quote": "La speranza e la curiosità per il futuro sembrano migliori delle certezze. L’ignoto è sempre stato così attraente per me... e lo è ancora."},
+	"He": {
+	"name": "Elio", 
+	"number": 2, 
+	"category": "Gas nobile", 
+	"group": 18, 
+	"period": 1,
+	"image": "res://Images/STEAM Women/Hedy Lamarr.jpg",
+	"scientist_name": "Hedy Lamarr", 
+	"profession": "Attrice e Inventrice",
+	"brief_subtitle": "Pioniera del wireless",
+	"year": "1914 - 2000",
+	"nationality": "Austriaca-Americana",
+	"description": 
+		"Celebre per la sua carriera a Hollywood, considerata a lungo la donna più bella del mondo. Nessuno si rese conto che in realtà era un genio. Basandosi sull’accordatura del pianoforte, scoprì il salto di frequenza, che consentì di trasmettere segnali senza fili in modo sicuro. Questo principio divenne la base per Wi-Fi, Bluetooth e GPS. Il suo contributo scientifico venne riconosciuto solo in tarda età.",
+	"awards": "Premio della Electronic Frontier Foundation (EFF) nel 1997",
+	"quote": "La speranza e la curiosità per il futuro sembrano migliori delle certezze. L’ignoto è sempre stato così attraente per me... e lo è ancora.",
+	"links": [
+		"https://en.wikipedia.org/wiki/Hedy_Lamarr",
+		"https://www.women-inventors.com/Hedy-Lamarr.asp"
+		]
+	},
+
 	"Li": {
 		"name": "Litio", 
 		"number": 3, 
@@ -371,30 +384,43 @@ func on_element_selected(symbol, button):
 		element["name"], element["number"], element["category"]
 	]
 	# Carica l'immagine se disponibile
-	set_image(symbol)
-	var button_global_pos = button.global_position  # Posizione globale del bottone
-	var popup_pos = Vector2(button_global_pos.x + button.size.x, (screen_size.y - popup_margin.size.y) / 2)
+	if "image" in element:
+		var img_texture = load(element["image"])
+		popup_image.texture = img_texture
 
+		# Imposta la dimensione dell'immagine (ad esempio 100x100)
+		var img_size = Vector2(110, 110)
+		#popup_image.size = img_size
+	
+	var button_global_pos = button.global_position 
+	var offset_x = 5
+	var popup_pos = Vector2(button_global_pos.x + button.size.x + offset_x, (screen_size.y - popup_margin.size.y) / 2)
+
+	
 	if popup_pos.x > screen_size.x / 2:
-		popup_margin.set_position(Vector2(button_global_pos.x - 400, popup_pos.y))
-		popup_panel.set_position(Vector2(button_global_pos.x - 400, popup_pos.y))
+		popup_margin.set_position(Vector2(button_global_pos.x - popup_margin.size.x - offset_x, popup_pos.y))
+		popup_panel.set_position(Vector2(button_global_pos.x - popup_panel.size.x - offset_x, popup_pos.y))
 	else:
 		popup_margin.set_position(popup_pos)
 		popup_panel.set_position(popup_pos)
 	# Mostra il popup
-	if "scientist_name" in element:
+	if "links" in element:
 		popup_name_label.text = element["scientist_name"]
-		popup_profession_label.text = element["profession"]
+		popup_profession_label.text =  element["profession"]
 		popup_year_label.text = element["year"]
 		popup_description_label.text = element["description"]
 		popup_quote_label.text = element["quote"]
+		popup_brief_label.text = element["brief_subtitle"]
+		popup_nationality_label.text = element["nationality"]
+		popup_awards_label.text =  element["awards"]
+		popup_links_label.text = "\n".join(element["links"]) if "links" in element else ""
 		#popup_name_label.position = Vector2(10,0)
 		#popup_profession_label.position = Vector2(10,35)
 		#popup_year_label.position = Vector2(10,60)
 		#popup_description_label.position = Vector2(10,100)
 		#popup_quote_label.position = Vector2(10,460)
-		popup_name_label.add_theme_font_size_override("font_size", 30)
-		popup_year_label.add_theme_font_size_override("font_size", 20)
+		#popup_name_label.add_theme_font_size_override("font_size", 30)
+		#popup_year_label.add_theme_font_size_override("font_size", 20)
 	can_press = false
 	popup_animation() 
 	await get_tree().create_timer(0.3).timeout
@@ -409,24 +435,14 @@ func popup_animation():
 	#tween.tween_property(popup_margin, "size", Vector2(400+2, screen_size.y+2), 0.2)
 	#tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.1)
 	#tween.tween_property(popup_panel, "scale", Vector2(1.05,0.95), 0.08)
+	popup_panel.self_modulate = Color(1,1,1,0)
+	popup_panel.size.y = popup_links_label.global_position.y + popup_links_label.size.y - popup_margin.global_position.y + 5
+	tween.tween_property(popup_panel, "self_modulate", Color(1,1,1,1), 0.1)
 	tween.tween_property(popup_panel, "scale", Vector2(1, 1), 0.08)
-	tween.tween_property(popup_image, "self_modulate", Color(1,1,1,1), 0.1)
-	
 	print(popup_panel.position)
 	print(popup_panel.size)
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
  	
-func set_image(symbol):
-	var element = elements[symbol]
-	if "image" in element:
-		var img_texture = load(element["image"])
-		popup_image.texture = img_texture
-		popup_image.self_modulate = Color(1,1,1,0)
-		# Imposta la dimensione dell'immagine (ad esempio 100x100)
-		var img_size = Vector2(100, 100)
-		popup_image.size = img_size  # Imposta una dimensione minima per evitare che torni alla grandezza originale
-		var panel_size = popup_panel.size
-		popup_image.position = Vector2(panel_size.x, 10)
 		#print(popup_image.position)
 
 	

@@ -1,21 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8bt1n7irs0ni"]
+[gd_scene load_steps=9 format=3 uid="uid://b8bt1n7irs0ni"]
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
 [ext_resource type="Texture2D" uid="uid://cf658dkmnvg2s" path="res://Images/background2.png" id="2_2w1kt"]
+[ext_resource type="Theme" uid="uid://cenwcc374gahw" path="res://Main/Themes/HeadTheme.tres" id="2_eunhr"]
+[ext_resource type="Theme" uid="uid://bmweex4776dnj" path="res://Main/Themes/BodyTheme.tres" id="2_qvhan"]
+[ext_resource type="Theme" uid="uid://0b13p35f616s" path="res://Main/Themes/BodySubTheme1.tres" id="4_ib3t1"]
+[ext_resource type="FontFile" uid="uid://d1lxp1jbqqlmx" path="res://Fonts/Gravity-Italic.otf" id="4_k3v36"]
+[ext_resource type="Theme" uid="uid://btaqw5ipnxw2a" path="res://Main/Themes/BodySubTheme2.tres" id="5_f6fdm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w1kt"]
-bg_color = Color(1, 1, 1, 0.858824)
+bg_color = Color(1, 0.878431, 0.929412, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(1, 0.541176, 0.764706, 0.729412)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+border_color = Color(0.991002, 0.475625, 0.840277, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
-[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_year_label", "popup_description_label", "popup_quote_label", "popup_image")]
+[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_quote_label", "popup_links_label", "popup_image")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,12 +32,16 @@ grid_container = NodePath("PeriodicTableLayer/MarginContainer/GridContainer")
 popup_layer = NodePath("PopupLayer")
 popup_margin = NodePath("PopupLayer/PopupMargin")
 popup_panel = NodePath("PopupLayer/PopupPanel")
-popup_name_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer/PopupNameLabel")
-popup_profession_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer/PopupProfessionLabel")
-popup_year_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer/PopupYearLabel")
-popup_description_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/PopupDescriptionLabel")
-popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/PopupQuoteLabel")
-popup_image = NodePath("PopupLayer/PopupPanel/PopupImage")
+popup_name_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer/PopupNameLabel")
+popup_profession_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer/PopupProfessionLabel")
+popup_brief_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer/PopupBriefSubTitle")
+popup_year_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/UpperBodyPanelContainer/UpperBodyVBoxContainer/PopupYearLabel")
+popup_nationality_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/UpperBodyPanelContainer/UpperBodyVBoxContainer/PopupNationalityLabel")
+popup_description_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/DescriptionPanelContainer/PopupDescriptionLabel")
+popup_awards_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/AwardsPanelContainer/PopupAwardsLabel")
+popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/QuotePanelContainer/PopupQuoteLabel")
+popup_links_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/LinksPanelContainer/PopupLinksLabel")
+popup_image = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/PopupImage")
 metadata/_edit_use_anchors_ = true
 
 [node name="PeriodicTableLayer" type="CanvasLayer" parent="."]
@@ -55,7 +64,6 @@ theme_override_constants/v_separation = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="PopupLayer" type="CanvasLayer" parent="."]
-layer = 2
 
 [node name="PopupMargin" type="MarginContainer" parent="PopupLayer"]
 custom_minimum_size = Vector2(400, 0)
@@ -66,63 +74,144 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 mouse_filter = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="ContentVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin"]
-custom_minimum_size = Vector2(380, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 0
 
-[node name="HeadVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer"]
+[node name="HeadPanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_eunhr")
 
-[node name="PopupNameLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(380, 0)
+[node name="HeadVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer"]
 layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PopupNameLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 1
+text = "\"Name\""
 autowrap_mode = 2
 
-[node name="PopupProfessionLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(380, 0)
+[node name="PopupProfessionLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 30
+text = "\"Profession\""
 autowrap_mode = 2
 
-[node name="PopupYearLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadVBoxContainer"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(380, 0)
+[node name="PopupBriefSubTitle" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 26
+text = "\"Brief subtitle\""
 autowrap_mode = 2
+
+[node name="PopupImage" type="TextureRect" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer"]
+z_index = 2
+custom_minimum_size = Vector2(105, 105)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+expand_mode = 1
+stretch_mode = 4
 
 [node name="BodyVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_constants/separation = 30
+theme = ExtResource("2_qvhan")
+theme_override_constants/separation = 0
 
-[node name="PopupDescriptionLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(380, 0)
+[node name="UpperBodyPanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_ib3t1")
+
+[node name="UpperBodyVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/UpperBodyPanelContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PopupYearLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/UpperBodyPanelContainer/UpperBodyVBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 1
+text = "\"Year\""
+autowrap_mode = 2
+
+[node name="PopupNationalityLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/UpperBodyPanelContainer/UpperBodyVBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "\"Nationality\""
+autowrap_mode = 2
+
+[node name="DescriptionPanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_f6fdm")
+
+[node name="PopupDescriptionLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/DescriptionPanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "\"Description\""
 horizontal_alignment = 3
 autowrap_mode = 3
 
-[node name="PopupQuoteLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
-modulate = Color(0, 0, 0, 1)
-custom_minimum_size = Vector2(380, 0)
+[node name="AwardsPanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_ib3t1")
+
+[node name="PopupAwardsLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/AwardsPanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 1
+text = "\"Awards\""
+autowrap_mode = 2
+
+[node name="QuotePanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_f6fdm")
+
+[node name="PopupQuoteLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/QuotePanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("4_k3v36")
+text = "\"Quote\""
 horizontal_alignment = 3
 autowrap_mode = 3
+
+[node name="LinksPanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_ib3t1")
+
+[node name="PopupLinksLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/LinksPanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "\"Links\""
+autowrap_mode = 2
 
 [node name="PopupPanel" type="PanelContainer" parent="PopupLayer"]
+self_modulate = Color(1, 1, 1, 0)
 z_index = -1
+custom_minimum_size = Vector2(400, 400)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -135,17 +224,8 @@ offset_bottom = 316.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(200, 0)
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
-
-[node name="PopupImage" type="TextureRect" parent="PopupLayer/PopupPanel"]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-expand_mode = 1
-stretch_mode = 4
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = 0
