@@ -277,8 +277,51 @@ var elements: Dictionary = {
 	"U":  {"name": "Uranio", "number": 92, "category": "Attinide", "group": 6, "period": 10},
 	"Np": {"name": "Nettunio", "number": 93, "category": "Attinide", "group": 7, "period": 10},
 	"Pu": {"name": "Plutonio", "number": 94, "category": "Attinide", "group": 8, "period": 10},
-	"Am": {"name": "Americio", "number": 95, "category": "Attinide", "group": 9, "period": 10},
-	"Cm": {"name": "Curio", "number": 96, "category": "Attinide", "group": 10, "period": 10},
+	
+	"Am": {
+	"name": "Americio", 
+	"number": 95, 
+	"category": "Attinide", 
+	"group": 9, 
+	"period": 10,
+	"image": "res://Images/STEAM Women/Amalie_Emmy_Noether.jpg",
+	"scientist_name": "Amalie Emmy Noether", 
+	"profession": "Matematica", 
+	"brief_subtitle": "Pioniera dell'algebra astratta", 
+	"year": "1882 - 1935", 
+	"nationality": "Tedesca", 
+	"description": 
+		"Emmy Noether è stata una matematica tedesca nota per il suo contributo all'algebra astratta e alla fisica teorica. Il suo teorema ha rivoluzionato la comprensione delle simmetrie in fisica. Nonostante le difficoltà dovute alla discriminazione di genere, ha lasciato un'eredità fondamentale nella matematica e nella fisica.",
+	"awards": "Premio Ackermann-Teubner (1932)",
+	"quote": "La matematica non è solo un mezzo per risolvere problemi, ma un linguaggio attraverso cui possiamo comprendere la struttura profonda della realtà.",
+	"links": [
+		"https://en.wikipedia.org/wiki/Emmy_Noether",
+		"https://mathshistory.st-andrews.ac.uk/Biographies/Noether/"
+	]
+},
+
+"Cm": {
+	"name": "Curio", 
+	"number": 96, 
+	"category": "Attinide", 
+	"group": 10, 
+	"period": 10,
+	"image": "res://Images/STEAM Women/Marie_Curie.jpg",
+	"scientist_name": "Maria Skłodowska Curie", 
+	"profession": "Fisica e Chimica", 
+	"brief_subtitle": "Pioniera della radioattività", 
+	"year": "1867 - 1934", 
+	"nationality": "Polacca-Francese", 
+	"description": 
+		"Marie Curie è stata una scienziata rivoluzionaria, pioniera degli studi sulla radioattività. Prima persona a vincere due Premi Nobel in discipline scientifiche diverse, ha scoperto il radio e il polonio e ha contribuito allo sviluppo della medicina e della fisica nucleare.",
+	"awards": "Premio Nobel per la Fisica (1903), Premio Nobel per la Chimica (1911)",
+	"quote": "Niente nella vita è da temere, è solo da comprendere. Ora è il momento di comprendere di più, affinché possiamo temere di meno.",
+	"links": [
+		"https://en.wikipedia.org/wiki/Marie_Curie",
+		"https://www.nobelprize.org/prizes/physics/1903/curie/biographical/"
+	]
+},
+
 	"Bk": {"name": "Berkelio", "number": 97, "category": "Attinide", "group": 11, "period": 10},
 	"Cf": {"name": "Californio", "number": 98, "category": "Attinide", "group": 12, "period": 10},
 	"Es": {"name": "Einsteinio", "number": 99, "category": "Attinide", "group": 13, "period": 10},
@@ -393,16 +436,48 @@ func on_element_selected(symbol, button):
 		#popup_image.size = img_size
 	
 	var button_global_pos = button.global_position 
-	var offset_x = 5
-	var popup_pos = Vector2(button_global_pos.x + button.size.x + offset_x, (screen_size.y - popup_margin.size.y) / 2)
 
-	
-	if popup_pos.x > screen_size.x / 2:
-		popup_margin.set_position(Vector2(button_global_pos.x - popup_margin.size.x - offset_x, popup_pos.y))
-		popup_panel.set_position(Vector2(button_global_pos.x - popup_panel.size.x - offset_x, popup_pos.y))
-	else:
-		popup_margin.set_position(popup_pos)
-		popup_panel.set_position(popup_pos)
+	var button_size = button.size
+	var offset_x = 5
+
+	# Aspetta un frame per ottenere le dimensioni corrette se necessario
+	await get_tree().process_frame
+	var popup_size = popup_margin.get_rect().size
+
+	# Calcola posizione di default (a destra del bottone)
+	var target_x = button_global_pos.x + button_size.x + offset_x
+	var target_y = button_global_pos.y + button_size.y
+
+	# Spazio disponibile sotto e sopra
+	var space_below = screen_size.y - (button_global_pos.y + button_size.y)
+	var space_above = button_global_pos.y
+
+	# Controllo spazio verticale
+	if popup_size.y > space_below:
+		# Se non c'è spazio sotto, posiziona sopra il bottone
+		target_y = button_global_pos.y - popup_size.y
+		
+		# Evita overflow sopra lo schermo
+		if target_y < 0:
+			target_y = max(0, button_global_pos.y - popup_size.y)
+			popup_margin.custom_minimum_size.y = button_global_pos.y  # Adatta altezza
+
+	# Controllo overflow orizzontale
+	if target_x + popup_size.x > screen_size.x:
+		target_x = button_global_pos.x - popup_size.x - offset_x
+		# Evita overflow a sinistra
+		target_x = max(0, target_x)
+
+	# Applica posizione finale
+	var final_pos = Vector2(target_x, target_y)
+	popup_margin.position = final_pos
+	popup_panel.position = final_pos
+
+	# Reset anchor per posizionamento assoluto
+	popup_margin.anchor_left = 0.0
+	popup_margin.anchor_right = 0.0
+	popup_margin.anchor_top = 0.0
+	popup_margin.anchor_bottom = 0.0
 	# Mostra il popup
 	if "links" in element:
 		popup_name_label.text = element["scientist_name"]
@@ -436,9 +511,8 @@ func popup_animation():
 	#tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.1)
 	#tween.tween_property(popup_panel, "scale", Vector2(1.05,0.95), 0.08)
 	popup_panel.self_modulate = Color(1,1,1,0)
-	
 	tween.tween_property(popup_panel, "self_modulate", Color(1,1,1,1), 0.1)
-	await get_tree().process_frames
+	await get_tree().process_frame
 	popup_panel.size = Vector2(420, popup_links_label.global_position.y + popup_links_label.size.y - popup_margin.global_position.y + 5)
 	#tween.tween_property(popup_panel, "scale", Vector2(1, 1), 0.08)
 	print(popup_panel.position)

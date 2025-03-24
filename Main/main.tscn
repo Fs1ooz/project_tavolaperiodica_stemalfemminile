@@ -67,11 +67,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PopupMargin" type="MarginContainer" parent="PopupLayer"]
 custom_minimum_size = Vector2(400, 0)
-anchors_preset = 9
-anchor_bottom = 1.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -125.5
 offset_right = 420.0
+offset_bottom = 125.5
 grow_vertical = 2
-size_flags_horizontal = 4
+pivot_offset = Vector2(208, 118.5)
+size_flags_horizontal = 0
 size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/margin_left = 5
