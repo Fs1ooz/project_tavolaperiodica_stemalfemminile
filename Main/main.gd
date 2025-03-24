@@ -436,9 +436,11 @@ func popup_animation():
 	#tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.1)
 	#tween.tween_property(popup_panel, "scale", Vector2(1.05,0.95), 0.08)
 	popup_panel.self_modulate = Color(1,1,1,0)
-	popup_panel.size.y = popup_links_label.global_position.y + popup_links_label.size.y - popup_margin.global_position.y + 5
+	
 	tween.tween_property(popup_panel, "self_modulate", Color(1,1,1,1), 0.1)
-	tween.tween_property(popup_panel, "scale", Vector2(1, 1), 0.08)
+	await get_tree().process_frames
+	popup_panel.size = Vector2(420, popup_links_label.global_position.y + popup_links_label.size.y - popup_margin.global_position.y + 5)
+	#tween.tween_property(popup_panel, "scale", Vector2(1, 1), 0.08)
 	print(popup_panel.position)
 	print(popup_panel.size)
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
