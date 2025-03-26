@@ -1,8 +1,7 @@
 extends Control
 
 @export var grid_container: GridContainer
-@export var panel: Panel
-@export var label: Label 
+@export var control_element_container: Control 
 @export var popup_layer: CanvasLayer 
 @export var popup_margin: MarginContainer 
 @export var popup_panel: PanelContainer
@@ -16,6 +15,7 @@ extends Control
 @export var popup_quote_label: Label
 @export var popup_links_label: Label
 @export var popup_image: TextureRect
+
 @onready var screen_size = get_viewport_rect().size
 var periods: int = 7+3
 var groups: int = 18
@@ -205,7 +205,7 @@ var elements: Dictionary = {
 			"https://it.wikipedia.org/wiki/Ipazia",
 			"https://www.britannica.com/biography/Hypatia"
 	]
-},
+	},
 	"Xe": {"name": "Xeno", "number": 54, "category": "Gas nobile", "group": 18, "period": 5},
 
 	# Periodo 6
@@ -323,38 +323,38 @@ var elements: Dictionary = {
 		"https://en.wikipedia.org/wiki/Emmy_Noether",
 		"https://mathshistory.st-andrews.ac.uk/Biographies/Noether/"
 	]
-},
+	},
 
-"Cm": {
-	"name": "Curio", 
-	"number": 96, 
-	"category": "Attinide", 
-	"group": 10, 
-	"period": 10,
-	"image": "res://Images/STEAM Women/Maria Curie.jpg",
-	"scientist_name": "Maria Curie", 
-	"profession": "Fisica e Chimica", 
-	"brief_subtitle": "Madre della radioattività", 
-	"year": "1867 - 1934", 
-	"nationality": "Polacca-Francese", 
-	"description": 
-		"Maria Skłodowska Curie è stata una scienziata rivoluzionaria, pioniera degli studi sulla radioattività. Prima persona a vincere due Premi Nobel in discipline scientifiche diverse, ha scoperto il radio e il polonio e ha contribuito allo sviluppo della medicina e della fisica nucleare.",
-	"awards": "Premio Nobel per la Fisica (1903), Premio Nobel per la Chimica (1911)",
-	"quote": "Niente nella vita è da temere, è solo da comprendere. Ora è il momento di comprendere di più, affinché possiamo temere di meno.",
-	"links": [
-		"https://en.wikipedia.org/wiki/Marie_Curie",
-		"https://www.nobelprize.org/prizes/physics/1903/curie/biographical/"
-	]
-},
+	"Cm": {
+		"name": "Curio", 
+		"number": 96, 
+		"category": "Attinide", 
+		"group": 10, 
+		"period": 10,
+		"image": "res://Images/STEAM Women/Maria Curie.jpg",
+		"scientist_name": "Maria Curie", 
+		"profession": "Fisica e Chimica", 
+		"brief_subtitle": "Madre della radioattività", 
+		"year": "1867 - 1934", 
+		"nationality": "Polacca-Francese", 
+		"description": 
+			"Maria Skłodowska Curie è stata una scienziata rivoluzionaria, pioniera degli studi sulla radioattività. Prima persona a vincere due Premi Nobel in discipline scientifiche diverse, ha scoperto il radio e il polonio e ha contribuito allo sviluppo della medicina e della fisica nucleare.",
+		"awards": "Premio Nobel per la Fisica (1903), Premio Nobel per la Chimica (1911)",
+		"quote": "Niente nella vita è da temere, è solo da comprendere. Ora è il momento di comprendere di più, affinché possiamo temere di meno.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Marie_Curie",
+			"https://www.nobelprize.org/prizes/physics/1903/curie/biographical/"
+		]
+	},
 
-	"Bk": {"name": "Berkelio", "number": 97, "category": "Attinide", "group": 11, "period": 10},
-	"Cf": {"name": "Californio", "number": 98, "category": "Attinide", "group": 12, "period": 10},
-	"Es": {"name": "Einsteinio", "number": 99, "category": "Attinide", "group": 13, "period": 10},
-	"Fm": {"name": "Fermio", "number": 100, "category": "Attinide", "group": 14, "period": 10},
-	"Md": {"name": "Mendelevio", "number": 101, "category": "Attinide", "group": 15, "period": 10},
-	"No": {"name": "Nobelio", "number": 102, "category": "Attinide", "group": 16, "period": 10},
-	"Lr": {"name": "Lawrencio", "number": 103, "category": "Attinide", "group": 17, "period": 10},
-}
+		"Bk": {"name": "Berkelio", "number": 97, "category": "Attinide", "group": 11, "period": 10},
+		"Cf": {"name": "Californio", "number": 98, "category": "Attinide", "group": 12, "period": 10},
+		"Es": {"name": "Einsteinio", "number": 99, "category": "Attinide", "group": 13, "period": 10},
+		"Fm": {"name": "Fermio", "number": 100, "category": "Attinide", "group": 14, "period": 10},
+		"Md": {"name": "Mendelevio", "number": 101, "category": "Attinide", "group": 15, "period": 10},
+		"No": {"name": "Nobelio", "number": 102, "category": "Attinide", "group": 16, "period": 10},
+		"Lr": {"name": "Lawrencio", "number": 103, "category": "Attinide", "group": 17, "period": 10},
+	}
 #Database colori degli elementi
 var category_colors = {
 	"Metallo alcalino": Color.CORAL,  
@@ -373,9 +373,9 @@ var category_colors = {
 func _ready():
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
+	control_element_container.queue_free()
 	popup_panel.visible = false 
 	popup_margin.visible = false 
-
 
 func create_periodic_table():
 	grid_container.columns = groups + 1  # +1 per la colonna dei periodi a sinistra
@@ -424,17 +424,32 @@ func create_periodic_table():
 				grid_container.add_child(empty)
 			else:
 				# Crea il bottone per l'elemento
+				var element = elements[symbol]
 				var btn = Button.new()
+				var lbl = Label.new()
+				var element_container = Control.new()
+				lbl.text = str(element["number"])
+				lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+				lbl.vertical_alignment = VERTICAL_ALIGNMENT_TOP
+				lbl.add_theme_font_size_override("font_size", 13)
+				lbl.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+				lbl.z_index = 2
 				btn.text = symbol
 				btn.custom_minimum_size = Vector2(btn_size, btn_size)
+				btn.size = Vector2(btn_size, btn_size)
 				btn.autowrap_mode = 2
-				btn.pressed.connect(on_element_selected.bind(symbol, btn))
+				btn.pressed.connect(on_element_selected.bind(symbol, element_container))
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
-				grid_container.add_child(btn)
-				btn.pivot_offset = btn.size/2
+				#btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 				btn.add_theme_font_size_override("font_size", 25)
-				var element = elements[symbol]
+				btn.pivot_offset = btn.size/2
+				element_container.custom_minimum_size = Vector2(btn_size, btn_size)
+				element_container.size = Vector2(btn_size, btn_size)
+				element_container.add_child(lbl)
+				element_container.add_child(btn)
+				element_container.pivot_offset = btn.size/2
+				printerr(btn.size)
 				var style = StyleBoxFlat.new()
 				if style:
 					style.corner_radius_bottom_left = 2
@@ -444,14 +459,13 @@ func create_periodic_table():
 					btn.add_theme_stylebox_override("normal", style)
 					style.bg_color = category_colors[element["category"]]  
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
-				
+				grid_container.add_child(element_container)
 				btn.mouse_entered.connect(func():
-					var tween = btn.create_tween()
-					tween.tween_property(btn, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
-
+					var tween = element_container.create_tween()
+					tween.tween_property(element_container, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
 				btn.mouse_exited.connect(func():
-					var tween = btn.create_tween()
-					tween.tween_property(btn, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
+					var tween = element_container.create_tween()
+					tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
 
 func on_element_selected(symbol, button):
 	if not can_press:
@@ -481,7 +495,6 @@ func on_element_selected(symbol, button):
 	can_press = true
 	
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
- 	
 
 func calculate_popup_position(button):
 	var button_global_pos = button.global_position 
