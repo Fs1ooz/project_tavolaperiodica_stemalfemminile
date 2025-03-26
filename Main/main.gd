@@ -19,13 +19,13 @@ extends Control
 @onready var screen_size = get_viewport_rect().size
 var periods: int = 7+3
 var groups: int = 18
-var btn_size: int = 50
+var btn_size: int = 55
 var can_press: bool = true
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
 	# Periodo 1
-	"H":  {
+	"H": {
 		"name": "Idrogeno", 
 		"number": 1, 
 		"category": "Non metallo", 
@@ -33,30 +33,36 @@ var elements: Dictionary = {
 		"period": 1,
 		"image": "res://Images/STEAM Women/Hodgin Dorothy.jpg",
 		"scientist_name": "Hodgkin Dorothy",
+		"profession": "Chimica",
+		"brief_subtitle": "Pioniera cristallografa",
 		"year": "1910 - 1994",
-		"profession": "Chimica", 
-		"description": "Scienziate britannica famosa per le sue ricerche sulla cristallografia a raggi X. Ha scoperto la struttura della vitamina B12, della penicellina (1° antibiotico) e dell’insulizna. Per queste ricerche nel 1964 ha vinto il Premio Nobel per la Chimica. ",
-		"quote": "Ci sono due momenti importanti. C’è il momento in cui sapete di poter trovare la risposta e il periodo in cui siete insonni prima di poter trovare qual è. Quando l’avete trovata e sapere qual è allora potete riposare tranquilli"},
-
+		"nationality": "Britannica",
+		"description": "Scienziata britannica famosa per le sue ricerche sulla cristallografia a raggi X. Ha scoperto la struttura della vitamina B12, della penicillina (1° antibiotico) e dell'insulina. Per queste ricerche nel 1964 ha vinto il Premio Nobel per la Chimica. Il suo lavoro ha rivoluzionato la comprensione delle strutture molecolari e ha aperto la strada a importanti progressi in medicina.",
+		"awards": "Premio Nobel per la Chimica (1964), Medaglia Copley (1976)",
+		"quote": "Ci sono due momenti importanti. C'è il momento in cui sapete di poter trovare la risposta e il periodo in cui siete insonni prima di poter trovare qual è. Quando l'avete trovata e sapete qual è allora potete riposare tranquilli",
+		"links": [
+			"https://en.wikipedia.org/wiki/Dorothy_Hodgkin",
+			"https://www.nobelprize.org/prizes/chemistry/1964/hodgkin/biographical/"
+		]
+	},
 	"He": {
-	"name": "Elio", 
-	"number": 2, 
-	"category": "Gas nobile", 
-	"group": 18, 
-	"period": 1,
-	"image": "res://Images/STEAM Women/Hedy Lamarr.jpg",
-	"scientist_name": "Hedy Lamarr", 
-	"profession": "Attrice e Inventrice",
-	"brief_subtitle": "Pioniera del wireless",
-	"year": "1914 - 2000",
-	"nationality": "Austriaca-Americana",
-	"description": 
-		"Celebre per la sua carriera a Hollywood, considerata a lungo la donna più bella del mondo. Nessuno si rese conto che in realtà era un genio. Basandosi sull’accordatura del pianoforte, scoprì il salto di frequenza, che consentì di trasmettere segnali senza fili in modo sicuro. Questo principio divenne la base per Wi-Fi, Bluetooth e GPS. Il suo contributo scientifico venne riconosciuto solo in tarda età.",
-	"awards": "Premio della Electronic Frontier Foundation (EFF) nel 1997",
-	"quote": "La speranza e la curiosità per il futuro sembrano migliori delle certezze. L’ignoto è sempre stato così attraente per me... e lo è ancora.",
-	"links": [
-		"https://en.wikipedia.org/wiki/Hedy_Lamarr",
-		"https://www.women-inventors.com/Hedy-Lamarr.asp"
+		"name": "Elio", 
+		"number": 2, 
+		"category": "Gas nobile", 
+		"group": 18, 
+		"period": 1,
+		"image": "res://Images/STEAM Women/Hedy Lamarr.jpg",
+		"scientist_name": "Hedy Lamarr", 
+		"profession": "Attrice e Inventrice",
+		"brief_subtitle": "Pioniera del wireless",
+		"year": "1914 - 2000",
+		"nationality": "Austriaca-Americana",
+		"description": "Celebre per la sua carriera a Hollywood, considerata a lungo la donna più bella del mondo. Nessuno si rese conto che in realtà era un genio. Basandosi sull’accordatura del pianoforte, scoprì il salto di frequenza, che consentì di trasmettere segnali senza fili in modo sicuro. Questo principio divenne la base per Wi-Fi, Bluetooth e GPS. Il suo contributo scientifico venne riconosciuto solo in tarda età.",
+		"awards": "Premio della Electronic Frontier Foundation (EFF) nel 1997",
+		"quote": "La speranza e la curiosità per il futuro sembrano migliori delle certezze. L’ignoto è sempre stato così attraente per me... e lo è ancora.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Hedy_Lamarr",
+			"https://www.women-inventors.com/Hedy-Lamarr.asp"
 		]
 	},
 
@@ -180,7 +186,26 @@ var elements: Dictionary = {
 	"Sn": {"name": "Stagno", "number": 50, "category": "Metallo post-transizionale", "group": 14, "period": 5},
 	"Sb": {"name": "Antimonio", "number": 51, "category": "Metalloide", "group": 15, "period": 5},
 	"Te": {"name": "Tellurio", "number": 52, "category": "Metalloide", "group": 16, "period": 5},
-	"I":  {"name": "Iodio", "number": 53, "category": "Alogeno", "group": 17, "period": 5},
+	"I": {
+		"name": "Iodio", 
+		"number": 53, 
+		"category": "Alogeno", 
+		"group": 17, 
+		"period": 5,
+		"image": "res://Images/STEAM Women/Ipazia.jpg",
+		"scientist_name": "Ipazia",
+		"profession": "Filosofa, Matematica e Astronoma",
+		"brief_subtitle": "Luce del sapere antico",  # Alternativa: "Martire della scienza"
+		"year": "360 ca. - 415 d.C.",
+		"nationality": "Alessandrina (Egitto)",
+		"description": "Figlia del matematico Teone di Alessandria, Ipazia fu pioniera nell'astronomia e nella filosofia neoplatonica. Progettò strumenti scientifici come l'astrolabio e il densimetro, fondamentali per misurare la posizione delle stelle e la densità dei liquidi. Simbolicamente, lo iodio (essenziale per la mente e la crescita) riflette il suo impegno per la conoscenza. Fu assassinata per le sue idee, diventando un'icona della libertà di pensiero e del femminismo scientifico.",
+		"awards": "",  # Non applicabile, ma potresti usare "Icona eterna della scienza"
+		"quote": "«Quando ti vedo mi prostro davanti a te e alle tue parole, vedendo la casa astrale della Vergine, infatti verso il cielo è rivolto ogni tuo atto Ipazia sacra, bellezza delle parole, astro incontaminato della sapiente cultura.»",
+		"links": [
+			"https://it.wikipedia.org/wiki/Ipazia",
+			"https://www.britannica.com/biography/Hypatia"
+	]
+},
 	"Xe": {"name": "Xeno", "number": 54, "category": "Gas nobile", "group": 18, "period": 5},
 
 	# Periodo 6
@@ -306,14 +331,14 @@ var elements: Dictionary = {
 	"category": "Attinide", 
 	"group": 10, 
 	"period": 10,
-	"image": "res://Images/STEAM Women/Marie_Curie.jpg",
-	"scientist_name": "Maria Skłodowska Curie", 
+	"image": "res://Images/STEAM Women/Maria Curie.jpg",
+	"scientist_name": "Maria Curie", 
 	"profession": "Fisica e Chimica", 
-	"brief_subtitle": "Pioniera della radioattività", 
+	"brief_subtitle": "Madre della radioattività", 
 	"year": "1867 - 1934", 
 	"nationality": "Polacca-Francese", 
 	"description": 
-		"Marie Curie è stata una scienziata rivoluzionaria, pioniera degli studi sulla radioattività. Prima persona a vincere due Premi Nobel in discipline scientifiche diverse, ha scoperto il radio e il polonio e ha contribuito allo sviluppo della medicina e della fisica nucleare.",
+		"Maria Skłodowska Curie è stata una scienziata rivoluzionaria, pioniera degli studi sulla radioattività. Prima persona a vincere due Premi Nobel in discipline scientifiche diverse, ha scoperto il radio e il polonio e ha contribuito allo sviluppo della medicina e della fisica nucleare.",
 	"awards": "Premio Nobel per la Fisica (1903), Premio Nobel per la Chimica (1911)",
 	"quote": "Niente nella vita è da temere, è solo da comprendere. Ora è il momento di comprendere di più, affinché possiamo temere di meno.",
 	"links": [
@@ -354,16 +379,16 @@ func _ready():
 
 func create_periodic_table():
 	grid_container.columns = groups + 1  # +1 per la colonna dei periodi a sinistra
-
 	# Prima riga: numeri dei gruppi (con uno spazio iniziale vuoto)
 	grid_container.add_child(Control.new())  # Spazio vuoto per allineare i numeri dei gruppi
 	for i in range(groups):
 		var group_label = Label.new()
 		group_label.text = str(i + 1)
 		group_label.custom_minimum_size = Vector2(btn_size, btn_size)
+		group_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		group_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		grid_container.add_child(group_label)
-		group_label.add_theme_font_size_override("font_size",20)
+		group_label.add_theme_font_size_override("font_size", 20)
 	# Inizializziamo la tabella solo con spazi vuoti
 	var table_layout := []  
 	for _i in range(periods):  # 7 periodi
@@ -378,9 +403,7 @@ func create_periodic_table():
 		if "period" in element and "group" in element:
 			var row = element["period"] - 1
 			var col = element["group"] - 1
-
 			table_layout[row][col] = symbol
-
 	# Ora riempiamo la tabella
 	for i in range(periods):
 		# Prima colonna: numeri dei periodi
@@ -409,76 +432,38 @@ func create_periodic_table():
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
 				grid_container.add_child(btn)
+				btn.pivot_offset = btn.size/2
 				btn.add_theme_font_size_override("font_size", 25)
-
 				var element = elements[symbol]
 				var style = StyleBoxFlat.new()
 				if style:
+					style.corner_radius_bottom_left = 2
+					style.corner_radius_bottom_right = 2
+					style.corner_radius_top_left = 2
+					style.corner_radius_top_right = 2
 					btn.add_theme_stylebox_override("normal", style)
 					style.bg_color = category_colors[element["category"]]  
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
+				
+				btn.mouse_entered.connect(func():
+					var tween = btn.create_tween()
+					tween.tween_property(btn, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
+
+				btn.mouse_exited.connect(func():
+					var tween = btn.create_tween()
+					tween.tween_property(btn, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
 
 func on_element_selected(symbol, button):
 	if not can_press:
 		return
 	var element = elements[symbol]
-	# Imposta il testo
 	popup_name_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
 		element["name"], element["number"], element["category"]
 	]
-	# Carica l'immagine se disponibile
 	if "image" in element:
 		var img_texture = load(element["image"])
 		popup_image.texture = img_texture
 
-		# Imposta la dimensione dell'immagine (ad esempio 100x100)
-		var img_size = Vector2(110, 110)
-		#popup_image.size = img_size
-	
-	var button_global_pos = button.global_position 
-
-	var button_size = button.size
-	var offset_x = 5
-
-	# Aspetta un frame per ottenere le dimensioni corrette se necessario
-	await get_tree().process_frame
-	var popup_size = popup_margin.get_rect().size
-
-	# Calcola posizione di default (a destra del bottone)
-	var target_x = button_global_pos.x + button_size.x + offset_x
-	var target_y = button_global_pos.y + button_size.y
-
-	# Spazio disponibile sotto e sopra
-	var space_below = screen_size.y - (button_global_pos.y + button_size.y)
-	var space_above = button_global_pos.y
-
-	# Controllo spazio verticale
-	if popup_size.y > space_below:
-		# Se non c'è spazio sotto, posiziona sopra il bottone
-		target_y = button_global_pos.y - popup_size.y
-		
-		# Evita overflow sopra lo schermo
-		if target_y < 0:
-			target_y = max(0, button_global_pos.y - popup_size.y)
-			popup_margin.custom_minimum_size.y = button_global_pos.y  # Adatta altezza
-
-	# Controllo overflow orizzontale
-	if target_x + popup_size.x > screen_size.x:
-		target_x = button_global_pos.x - popup_size.x - offset_x
-		# Evita overflow a sinistra
-		target_x = max(0, target_x)
-
-	# Applica posizione finale
-	var final_pos = Vector2(target_x, target_y)
-	popup_margin.position = final_pos
-	popup_panel.position = final_pos
-
-	# Reset anchor per posizionamento assoluto
-	popup_margin.anchor_left = 0.0
-	popup_margin.anchor_right = 0.0
-	popup_margin.anchor_top = 0.0
-	popup_margin.anchor_bottom = 0.0
-	# Mostra il popup
 	if "links" in element:
 		popup_name_label.text = element["scientist_name"]
 		popup_profession_label.text =  element["profession"]
@@ -489,36 +474,46 @@ func on_element_selected(symbol, button):
 		popup_nationality_label.text = element["nationality"]
 		popup_awards_label.text =  element["awards"]
 		popup_links_label.text = "\n".join(element["links"]) if "links" in element else ""
-		#popup_name_label.position = Vector2(10,0)
-		#popup_profession_label.position = Vector2(10,35)
-		#popup_year_label.position = Vector2(10,60)
-		#popup_description_label.position = Vector2(10,100)
-		#popup_quote_label.position = Vector2(10,460)
-		#popup_name_label.add_theme_font_size_override("font_size", 30)
-		#popup_year_label.add_theme_font_size_override("font_size", 20)
 	can_press = false
-	popup_animation() 
+	calculate_popup_position(button)
+	popup_animation(button) 
 	await get_tree().create_timer(0.3).timeout
 	can_press = true
-
-func popup_animation():
-	var tween = get_tree().create_tween()
-	screen_size = get_viewport_rect().size
-	#popup_margin.size = Vector2(400, screen_size.y)
-	popup_margin.visible = true 
-	popup_panel.visible = true 
-	#tween.tween_property(popup_margin, "size", Vector2(400+2, screen_size.y+2), 0.2)
-	#tween.tween_property(popup_margin, "size", Vector2(400, screen_size.y), 0.1)
-	#tween.tween_property(popup_panel, "scale", Vector2(1.05,0.95), 0.08)
-	popup_panel.self_modulate = Color(1,1,1,0)
-	tween.tween_property(popup_panel, "self_modulate", Color(1,1,1,1), 0.1)
-	await get_tree().process_frame
-	popup_panel.size = Vector2(420, popup_links_label.global_position.y + popup_links_label.size.y - popup_margin.global_position.y + 5)
-	#tween.tween_property(popup_panel, "scale", Vector2(1, 1), 0.08)
-	print(popup_panel.position)
-	print(popup_panel.size)
+	
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
  	
-		#print(popup_image.position)
 
+func calculate_popup_position(button):
+	var button_global_pos = button.global_position 
+	var offset = 5
 	
+	popup_margin.reset_size()
+	
+	var popup_pos_x = button_global_pos.x + button.size.x
+	var popup_pos_y = button_global_pos.y - button.size.y
+	
+	if popup_pos_x > screen_size.x / 2:
+		popup_pos_x = popup_pos_x - button.size.x - popup_margin.size.x - offset
+	else:
+		popup_pos_x = popup_pos_x + offset
+
+	if popup_pos_y > screen_size.y / 2 - button.size.y:
+		popup_margin.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
+		popup_pos_y = screen_size.y - popup_margin.size.y - offset
+	else:
+		popup_margin.set_anchors_preset(Control.PRESET_CENTER_TOP)
+		popup_pos_y = offset
+		
+	var popup_pos = Vector2(popup_pos_x, popup_pos_y)
+
+	popup_margin.global_position = popup_pos
+	popup_panel.global_position = popup_pos
+
+func popup_animation(button):
+	var tween = create_tween()
+	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.075)
+	tween.tween_property(button, "scale", Vector2(1, 1), 0.075)
+	popup_panel.size.y = (popup_margin.size.y)
+	
+	popup_margin.visible = true 
+	popup_panel.visible = true 
