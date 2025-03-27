@@ -369,7 +369,6 @@ var category_colors = {
 	"Attinide": Color.LIME_GREEN, 
 }
 
-
 func _ready():
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
@@ -427,6 +426,7 @@ func create_periodic_table():
 				var element = elements[symbol]
 				var btn = Button.new()
 				var lbl = Label.new()
+				var nm_lbl = Label.new()
 				var element_container = Control.new()
 				lbl.text = str(element["number"])
 				lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -434,6 +434,12 @@ func create_periodic_table():
 				lbl.add_theme_font_size_override("font_size", 13)
 				lbl.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
 				lbl.z_index = 2
+				nm_lbl.text = str(element["name"])
+				nm_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+				nm_lbl.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+				nm_lbl.add_theme_font_size_override("font_size", 9)
+				nm_lbl.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+				nm_lbl.z_index = 3
 				btn.text = symbol
 				btn.custom_minimum_size = Vector2(btn_size, btn_size)
 				btn.size = Vector2(btn_size, btn_size)
@@ -446,7 +452,9 @@ func create_periodic_table():
 				btn.pivot_offset = btn.size/2
 				element_container.custom_minimum_size = Vector2(btn_size, btn_size)
 				element_container.size = Vector2(btn_size, btn_size)
+				element_container.scale = Vector2(0,0)
 				element_container.add_child(lbl)
+				element_container.add_child(nm_lbl)
 				element_container.add_child(btn)
 				element_container.pivot_offset = btn.size/2
 				printerr(btn.size)
@@ -459,14 +467,21 @@ func create_periodic_table():
 					btn.add_theme_stylebox_override("normal", style)
 					style.bg_color = category_colors[element["category"]]  
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
+				var delay = (0.05)  
+				await get_tree().create_timer(delay).timeout 
 				grid_container.add_child(element_container)
+				var stween = element_container.create_tween()
+				stween.set_parallel(false)  # Fa sì che le animazioni vadano in sequenza
+				stween.tween_property(element_container, "scale", Vector2(1.4, 1.4), 0.05)
+				stween.tween_property(element_container, "scale", Vector2(1, 1), 0.05)
+				
 				btn.mouse_entered.connect(func():
 					var tween = element_container.create_tween()
 					tween.tween_property(element_container, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
 				btn.mouse_exited.connect(func():
 					var tween = element_container.create_tween()
 					tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
-
+				
 func on_element_selected(symbol, button):
 	if not can_press:
 		return
@@ -497,14 +512,14 @@ func on_element_selected(symbol, button):
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
 
 func calculate_popup_position(button):
-	var button_global_pos = button.global_position 
 	var offset = 5
 	
 	popup_margin.reset_size()
 	
-	var popup_pos_x = button_global_pos.x + button.size.x
-	var popup_pos_y = button_global_pos.y - button.size.y
-	
+	var popup_pos_x = button.global_position.x + button.size.x
+	var popup_pos_y = button.global_position.y - button.size.y
+	printerr(button.global_position.x)
+	printerr(button.size.x)
 	if popup_pos_x > screen_size.x / 2:
 		popup_pos_x = popup_pos_x - button.size.x - popup_margin.size.x - offset
 	else:
@@ -524,8 +539,9 @@ func calculate_popup_position(button):
 
 func popup_animation(button):
 	var tween = create_tween()
-	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.075)
-	tween.tween_property(button, "scale", Vector2(1, 1), 0.075)
+	tween.tween_property(button, "scale", Vector2(1, 1), 0.01).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
+	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.075).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	tween.tween_property(button, "scale", Vector2(1, 1), 0.05).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	popup_panel.size.y = (popup_margin.size.y)
 	
 	popup_margin.visible = true 
