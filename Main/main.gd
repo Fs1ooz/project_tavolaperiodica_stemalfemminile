@@ -65,7 +65,6 @@ var elements: Dictionary = {
 			"https://www.women-inventors.com/Hedy-Lamarr.asp"
 		]
 	},
-
 	"Li": {
 		"name": "Litio", 
 		"number": 3, 
@@ -73,13 +72,18 @@ var elements: Dictionary = {
 		"group": 1, 
 		"period": 2,
 		"image": "res://Images/Lise Meitner.jpg",
-		"scientist_name": "Lise Meitner", 
+		"scientist_name": "Lise Meitner",
+		"profession": "Fisica",
+		"brief_subtitle": "Madre della fissione nucleare",
 		"year": "1878 - 1968",
-		"profession": "Fisica nucleare", 
-		"description": "Co-scopritrice della fissione nucleare e del proattinio (elemento 91). Nonostante il fondamentale contributo alle scoperte atomiche, fu esclusa dal Premio Nobel per discriminazioni di genere e razziali (essendo ebrea). Rifiutò di partecipare al Progetto Manhattan, dedicandosi all'energia atomica pacifica. Il suo lavoro ispirò sia i reattori nucleari che le bombe atomiche, sebbene lei stessa condannasse l'uso bellico.",
-		"quote": "Penso che sia una bella scoperta, se non fosse per la guerra che piega anche la scienza alle sue atroci necessità."
+		"nationality": "Austriaca",
+		"description": "Fisica svedese di origine austriaca. Insieme a Otto Hahn, scoprì la fissione nucleare. A causa delle discriminazioni di genere e delle persecuzioni razziali non ricevette il premio Nobel come il suo compagno di laboratorio, ma le sue scoperte furono utilizzate per costruire la bomba atomica, attraverso il progetto Manhattan, a cui la scienziata si rifiutò di partecipare. Da quel momento in poi si dedicò all’uso pacifico dell’energia atomica. Scoprì il proattinio, elemento 91.",
+		"awards": "Medaglia Max Planck (1949), Premio Enrico Fermi (1966)",
+		"quote": "Penso che sia una bella scoperta, se non fosse per la guerra che piega anche la scienza alle sue atroci necessità.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Lise_Meitner"
+		]
 	},
-
 	"Be": {
 		"name": "Berillio", 
 		"number": 4, 
@@ -88,56 +92,123 @@ var elements: Dictionary = {
 		"period": 2,
 		"image": "res://Images/Beatrice Shilling.jpg",
 		"scientist_name": "Beatrice Shilling", 
-		"year": "1909 - 1990",
 		"profession": "Ingegnera aeronautica", 
+		"brief_subtitle": "Pioniera dell'aeronautica", 
+		"year": "1909 - 1990",
+		"nationality": "Britannica",
 		"description": "Pioniera dell'ingegneria aerospaziale britannica. Durante la WWII risolse un problema critico nei motori degli Spitfire inventando il celebre 'orifizio di Miss Shilling', un semplice dispositivo che impediva ai carburatori di bloccarsi durante le picchiate. Corridore motociclistico dilettante, sfidò gli stereotipi di genere in un settore totalmente maschile.",
-		"quote": "Se non puoi aggiustarlo, mettici le mani"
+		"awards": "Royal Aeronautical Society Silver Medal",
+		"quote": "Se non puoi aggiustarlo, mettici le mani",
+		"links": [
+			"https://en.wikipedia.org/wiki/Beatrice_Shilling"
+		]
 	},
-
 	"B": {
 		"name": "Boro", 
 		"number": 5, 
 		"category": "Metalloide", 
 		"group": 13, 
 		"period": 2,
-		"image": "res://Images/Ildegarda di Bingen.jpg",
-		"scientist_name": "Ildegarda di Bingen", 
-		"year": "1098 - 1179",
-		"profession": "Poliedrica medievale", 
-		"description": "Genio rinascimentale ante litteram. Suora benedettina che rivoluzionò la medicina medievale con studi su erbe medicinali e anatomia femminile. Scrisse enciclopedie scientifiche come 'Physica', anticipando concetti moderni di ecologia. Compositrice di musica sacra e mistica visionaria, fu proclamata Dottore della Chiesa nel 2012.",
-		"quote": "Guarda il cielo: Guarda il sole e le stelle. E adesso, rifletti. Quanto grande è il diletto che Dio dà all'umanità con tutte queste cose... Dobbiamo lavorare insieme a lei."
+		"image": "res://Images/Alice_Augusta_Ball.jpg",
+		"scientist_name": "Alice Augusta Ball", 
+		"profession": "Chimica", 
+		"brief_subtitle": "Sviluppò il trattamento per la lebbra", 
+		"year": "1892 - 1916",
+		"nationality": "Afroamericana",
+		"description": "Una delle prime donne a laurearsi in chimica all’Università delle Hawaii. È famosa per aver sviluppato il 'metodo Ball', una tecnica che ha reso possibile l’uso dell’olio di chaulmoogra come trattamento per la lebbra, una malattia infettiva che colpiva molte persone all’epoca. Il suo contributo alla medicina è stato riconosciuto solo molti anni dopo la sua morte.",
+		"awards": "Riconoscimento postumo dall'Università delle Hawaii",
+		"quote": "Non importa quanto difficile sia il cammino, la scienza ha il potere di cambiare la vita e migliorare il destino dell'umanità.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Alice_Augusta_Ball"
+		]
 	},
-
 	"C": {
 		"name": "Carbonio", 
 		"number": 6, 
 		"category": "Non metallo", 
 		"group": 14, 
 		"period": 2,
-		"image": "res://Images/Cecilia Payne-Gaposchkin.jpg",
+		"image": "res://Images/Cecilia_Payne-Gaposchkin.jpg",
 		"scientist_name": "Cecilia Payne-Gaposchkin", 
+		"profession": "Astrofisica", 
+		"brief_subtitle": "Scoprì la composizione delle stelle", 
 		"year": "1900 - 1979",
-		"profession": "Astrofisica pioniera", 
+		"nationality": "Anglo-statunitense",
 		"description": "Rivoluzionò l'astrofisica dimostrando nel 1925 che le stelle sono composte principalmente da idrogeno ed elio. Nonostante l'opposizione iniziale della comunità scientifica (all'epoca si credeva fossero simili alla Terra), la sua tesi divenne pietra miliare dell'astronomia. Prima donna a dirigere un dipartimento ad Harvard, aprì la strada alle scienziate nello studio del cosmo.",
-		"quote": "L'unico uomo che non ha mai commesso un errore è quello che non ha mai fatto nulla."
+		"awards": "Henry Norris Russell Lectureship (1976)",
+		"quote": "L'unico uomo che non ha mai commesso un errore è quello che non ha mai fatto nulla.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Cecilia_Payne-Gaposchkin"
+		]
 	},
-
 	"N": {
 		"name": "Azoto", 
 		"number": 7, 
 		"category": "Non metallo", 
 		"group": 15, 
 		"period": 2,
-		"image": "res://Images/Francine Ntoumi.jpg",
+		"image": "res://Images/Francine_Ntoumi.jpg",
 		"scientist_name": "Francine Ntoumi", 
-		"year": "1961 - Presente",
-		"profession": "Ricercatrice sul paludismo", 
-		"description": "Leader nella lotta alle malattie tropicali. Fondatrice della rete CANTAM che coordina la ricerca su malaria, HIV e tubercolosi in Africa Centrale. Pioniera nell'approccio integrato tra ricerca scientifica e sviluppo sanitario locale. Simbolo dell'emancipazione scientifica africana, combatte per formare una nuova generazione di ricercatori nel continente.",
-		"quote": "Mio padre si è indebitato perché io potessi studiare."
+		"profession": "Parassitologa", 
+		"brief_subtitle": "Esperta nella lotta al paludismo", 
+		"year": "1961 -",
+		"nationality": "Congolese",
+		"description": "Scienziata specializzata nella ricerca sul paludismo. È stata la prima donna africana a dirigere il segretariato dell'Iniziativa Multilaterale sul Paludismo. Ha contribuito alla creazione della rete CANTAM per la ricerca su tubercolosi, HIV/AIDS e paludismo, rafforzando la collaborazione scientifica in Africa centrale.",
+		"awards": "Premio Christophe Mérieux (2016)",
+		"quote": "Mio padre si è indebitato perché io potessi studiare.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Francine_Ntoumi"
+		]
 	},
-	"O":  {"name": "Ossigeno", "number": 8, "category": "Non metallo", "group": 16, "period": 2},
-	"F":  {"name": "Fluoro", "number": 9, "category": "Alogeno", "group": 17, "period": 2},
-	"Ne": {"name": "Neon", "number": 10, "category": "Gas nobile", "group": 18, "period": 2},
+	"O": {
+		"name": "Ossigeno",
+		"number": 8,
+		"category": "Non metallo",
+		"group": 16,
+		"period": 2,
+		"image": "res://Images/STEAM Women/Olga Ladyzhenskaya.jpg",
+		"scientist_name": "Olga Ladyzhenskaya",
+		"profession": "Matematica",
+		"brief_subtitle": "Esperta di equazioni differenziali",
+		"year": "1922 - 2004",
+		"nationality": "Russa",
+		"description": "Matematica russa famosa per i suoi contributi all'analisi matematica, alle equazioni differenziali parziali e alla meccanica dei fluidi. I suoi studi sulle equazioni di Navier-Stokes hanno avuto un impatto enorme sulla fluidodinamica e sulla meteorologia.",
+		"quote": "La matematica mi ha salvato.",
+		"links": []
+	},
+	"F": {
+		"name": "Fluoro",
+		"number": 9,
+		"category": "Non metallo",
+		"group": 17,
+		"period": 2,
+		"image": "res://Images/STEAM Women/Françoise Barré-Sinoussi.jpg",
+		"scientist_name": "Françoise Barré-Sinoussi",
+		"profession": "Virologa",
+		"brief_subtitle": "Scoprì il virus HIV",
+		"year": "1947 -",
+		"nationality": "Francese",
+		"description": "Virologa francese nota per la scoperta del virus dell'HIV nel 1983. Il suo lavoro ha rivoluzionato la medicina e ha aperto la strada a test diagnostici e terapie efficaci.",
+		"quote": "La scienza è una lotta costante contro l'ignoranza.",
+		"links": []
+	},
+	"Ne": {
+		"name": "Neon",
+		"number": 10,
+		"category": "Gas nobile",
+		"group": 18,
+		"period": 2,
+		"image": "res://Images/STEAM Women/Nettie Stevens.jpg",
+		"scientist_name": "Nettie Stevens",
+		"profession": "Genetista",
+		"brief_subtitle": "Scoprì il ruolo dei cromosomi sessuali",
+		"year": "1861 - 1912",
+		"nationality": "Statunitense",
+		"description": "Genetista statunitense che nel 1905 scoprì che il sesso negli organismi è determinato dai cromosomi X e Y.",
+		"quote": "La scienza è un viaggio verso la verità.",
+		"links": []
+	},
+
 
 	# Periodo 3
 	"Na": {"name": "Sodio", "number": 11, "category": "Metallo alcalino", "group": 1, "period": 3},
