@@ -173,8 +173,12 @@ var elements: Dictionary = {
 		"year": "1922 - 2004",
 		"nationality": "Russa",
 		"description": "Matematica russa famosa per i suoi contributi all'analisi matematica, alle equazioni differenziali parziali e alla meccanica dei fluidi. I suoi studi sulle equazioni di Navier-Stokes hanno avuto un impatto enorme sulla fluidodinamica e sulla meteorologia.",
+		"awards": "Premio Lomonosov (2002), Membro dell'Accademia delle Scienze Russa",
 		"quote": "La matematica mi ha salvato.",
-		"links": []
+		"links": [
+			"https://en.wikipedia.org/wiki/Olga_Ladyzhenskaya",
+			"https://mathshistory.st-andrews.ac.uk/Biographies/Ladyzhenskaya/"
+		]
 	},
 	"F": {
 		"name": "Fluoro",
@@ -188,9 +192,13 @@ var elements: Dictionary = {
 		"brief_subtitle": "Scoprì il virus HIV",
 		"year": "1947 -",
 		"nationality": "Francese",
-		"description": "Virologa francese nota per la scoperta del virus dell'HIV nel 1983. Il suo lavoro ha rivoluzionato la medicina e ha aperto la strada a test diagnostici e terapie efficaci.",
+		"description": "Virologa francese nota per la scoperta del virus dell'HIV nel 1983. Ha lavorato presso l'Istituto Pasteur di Parigi, dove ha guidato il team che isolò per la prima volta il virus. La scoperta dell'HIV come agente causale dell'AIDS è stata rivoluzionaria nel campo della medicina e ha aperto la strada allo sviluppo di test diagnostici e terapie antiretrovirali efficaci. Questo ha trasformato l'AIDS da una malattia mortale a una condizione cronica gestibile. Il suo lavoro ha rivoluzionato la medicina e ha aperto la strada a test diagnostici e terapie efficaci.",
+		"awards": "Premio Nobel per la Medicina (2008), Légion d'honneur (2013)",
 		"quote": "La scienza è una lotta costante contro l'ignoranza.",
-		"links": []
+		"links": [
+			"https://en.wikipedia.org/wiki/Françoise_Barré-Sinoussi",
+			"https://www.nobelprize.org/prizes/medicine/2008/barre-sinoussi/facts/"
+		]
 	},
 	"Ne": {
 		"name": "Neon",
@@ -206,7 +214,11 @@ var elements: Dictionary = {
 		"nationality": "Statunitense",
 		"description": "Genetista statunitense che nel 1905 scoprì che il sesso negli organismi è determinato dai cromosomi X e Y.",
 		"quote": "La scienza è un viaggio verso la verità.",
-		"links": []
+		"awards": "",
+		"links": [
+			"https://en.wikipedia.org/wiki/Nettie_Stevens",
+			"https://www.britannica.com/biography/Nettie-Stevens"
+		]
 	},
 
 
@@ -271,7 +283,7 @@ var elements: Dictionary = {
 		"nationality": "Alessandrina (Egitto)",
 		"description": "Figlia del matematico Teone di Alessandria, Ipazia fu pioniera nell'astronomia e nella filosofia neoplatonica. Progettò strumenti scientifici come l'astrolabio e il densimetro, fondamentali per misurare la posizione delle stelle e la densità dei liquidi. Simbolicamente, lo iodio (essenziale per la mente e la crescita) riflette il suo impegno per la conoscenza. Fu assassinata per le sue idee, diventando un'icona della libertà di pensiero e del femminismo scientifico.",
 		"awards": "",  # Non applicabile, ma potresti usare "Icona eterna della scienza"
-		"quote": "«Quando ti vedo mi prostro davanti a te e alle tue parole, vedendo la casa astrale della Vergine, infatti verso il cielo è rivolto ogni tuo atto Ipazia sacra, bellezza delle parole, astro incontaminato della sapiente cultura.»",
+		"quote": "Quando ti vedo mi prostro davanti a te e alle tue parole, vedendo la casa astrale della Vergine, infatti verso il cielo è rivolto ogni tuo atto Ipazia sacra, bellezza delle parole, astro incontaminato della sapiente cultura.",
 		"links": [
 			"https://it.wikipedia.org/wiki/Ipazia",
 			"https://www.britannica.com/biography/Hypatia"
@@ -284,7 +296,6 @@ var elements: Dictionary = {
 	"Ba": {"name": "Bario", "number": 56, "category": "Metallo alcalino-terroso", "group": 2, "period": 6},
 	
 	#"57-71": {"name": "Vedi Lantanidi", "number": "Vedi Lantanidi", "category": "Vedi Lantanidi", "group": 3, "period": 6},
-	
 	#"Ce": {"name": "Cerio", "number": 58, "category": "Lantanide", "group": 3, "period": 6},
 	#"Pr": {"name": "Praseodimio", "number": 59, "category": "Lantanide", "group": 3, "period": 6},
 	#"Nd": {"name": "Neodimio", "number": 60, "category": "Lantanide", "group": 3, "period": 6},
@@ -448,6 +459,8 @@ func _ready():
 	popup_margin.visible = false 
 
 func create_periodic_table():
+	var total_elements = elements.size()
+	var elements_created = 0
 	grid_container.columns = groups + 1  # +1 per la colonna dei periodi a sinistra
 	# Prima riga: numeri dei gruppi (con uno spazio iniziale vuoto)
 	grid_container.add_child(Control.new())  # Spazio vuoto per allineare i numeri dei gruppi
@@ -518,7 +531,6 @@ func create_periodic_table():
 				btn.pressed.connect(on_element_selected.bind(symbol, element_container))
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
-				#btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 				btn.add_theme_font_size_override("font_size", 25)
 				btn.pivot_offset = btn.size/2
 				element_container.custom_minimum_size = Vector2(btn_size, btn_size)
@@ -528,7 +540,6 @@ func create_periodic_table():
 				element_container.add_child(nm_lbl)
 				element_container.add_child(btn)
 				element_container.pivot_offset = btn.size/2
-				printerr(btn.size)
 				var style = StyleBoxFlat.new()
 				if style:
 					style.corner_radius_bottom_left = 2
@@ -538,14 +549,9 @@ func create_periodic_table():
 					btn.add_theme_stylebox_override("normal", style)
 					style.bg_color = category_colors[element["category"]]  
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
-				var delay = (0.05)  
-				await get_tree().create_timer(delay).timeout 
+				element_container.add_to_group("elements")
 				grid_container.add_child(element_container)
-				var stween = element_container.create_tween()
-				stween.set_parallel(false)  # Fa sì che le animazioni vadano in sequenza
-				stween.tween_property(element_container, "scale", Vector2(1.4, 1.4), 0.05)
-				stween.tween_property(element_container, "scale", Vector2(1, 1), 0.05)
-				
+				elements_created += 1
 				btn.mouse_entered.connect(func():
 					var tween = element_container.create_tween()
 					tween.tween_property(element_container, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
@@ -553,6 +559,39 @@ func create_periodic_table():
 					var tween = element_container.create_tween()
 					tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
 				
+				if elements_created == total_elements:
+					printerr(OK)
+					elements_animation(grid_container)
+
+func elements_animation(grid_container):
+	var speed: float = 0.3
+	var delay_map := {}
+
+	# Prepara una mappa: key = diagonale (riga + colonna), value = lista di elementi
+	for index in grid_container.get_child_count():
+		var element = grid_container.get_child(index)
+		if element.is_in_group("elements"):
+			var row = index / (groups + 1)
+			var col = index % (groups + 1)
+			var diagonal = int(row * 1.5 + col)
+
+			if not delay_map.has(diagonal):
+				delay_map[diagonal] = []
+			delay_map[diagonal].append(element)
+
+	# Ordina le chiavi delle diagonali
+	var sorted_keys = delay_map.keys()
+	sorted_keys.sort()
+
+	# Esegui le animazioni per diagonali
+	for key in sorted_keys:
+		for element in delay_map[key]:
+			var tween = element.create_tween().set_trans(Tween.TRANS_CUBIC)
+			tween.set_parallel(false)
+			tween.tween_property(element, "scale", Vector2(1.4, 1.4), speed)
+			tween.tween_property(element, "scale", Vector2(1, 1), speed)
+		await get_tree().create_timer(0.08).timeout
+
 func on_element_selected(symbol, button):
 	if not can_press:
 		return
