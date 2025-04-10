@@ -20,7 +20,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_quote_label", "popup_links_label", "popup_image")]
+[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,6 +40,7 @@ popup_year_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBo
 popup_nationality_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/UpperBodyPanelContainer/UpperBodyVBoxContainer/PopupNationalityLabel")
 popup_description_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/DescriptionPanelContainer/PopupDescriptionLabel")
 popup_awards_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/AwardsPanelContainer/PopupAwardsLabel")
+popup_awards_panel = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/AwardsPanelContainer")
 popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/QuotePanelContainer/PopupQuoteLabel")
 popup_links_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/LinksPanelContainer/PopupLinksLabel")
 popup_image = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/PopupImage")
@@ -125,6 +126,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
+theme_override_font_sizes/font_size = 35
 text = "\"Name\""
 vertical_alignment = 1
 autowrap_mode = 2
@@ -201,21 +203,9 @@ text = "\"Description\""
 horizontal_alignment = 3
 autowrap_mode = 3
 
-[node name="AwardsPanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
-layout_mode = 2
-theme = ExtResource("4_ib3t1")
-
-[node name="PopupAwardsLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/AwardsPanelContainer"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 1
-text = "\"Awards\""
-autowrap_mode = 2
-
 [node name="QuotePanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
 layout_mode = 2
-theme = ExtResource("5_f6fdm")
+theme = ExtResource("4_ib3t1")
 
 [node name="PopupQuoteLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/QuotePanelContainer"]
 custom_minimum_size = Vector2(400, 0)
@@ -227,7 +217,20 @@ text = "\"Quote\""
 horizontal_alignment = 3
 autowrap_mode = 3
 
+[node name="AwardsPanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_f6fdm")
+
+[node name="PopupAwardsLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/AwardsPanelContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "\"Awards\""
+autowrap_mode = 2
+
 [node name="LinksPanelContainer" type="PanelContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("4_ib3t1")
 

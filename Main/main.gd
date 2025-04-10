@@ -12,11 +12,14 @@ extends Control
 @export var popup_nationality_label: Label
 @export var popup_description_label: Label
 @export var popup_awards_label: Label
+@export var popup_awards_panel: PanelContainer 
 @export var popup_quote_label: Label
 @export var popup_links_label: Label
 @export var popup_image: TextureRect
 
 @onready var screen_size = get_viewport_rect().size
+
+var selected_button: Control = null
 var periods: int = 7+3
 var groups: int = 18
 var btn_size: int = 55
@@ -212,7 +215,7 @@ var elements: Dictionary = {
 		"brief_subtitle": "Scoprì il ruolo dei cromosomi sessuali",
 		"year": "1861 - 1912",
 		"nationality": "Statunitense",
-		"description": "Genetista statunitense che nel 1905 scoprì che il sesso negli organismi è determinato dai cromosomi X e Y.",
+		"description": "Genetista statunitense che nel 1905 scoprì che il sesso negli organismi è determinato dai cromosomi X e Y. Studiando gli insetti, identificò che i maschi possedevano un cromosoma più piccolo (poi chiamato cromosoma Y), mentre le femmine avevano due cromosomi X. Questa scoperta fu fondamentale per comprendere il meccanismo genetico della determinazione sessuale. ",
 		"quote": "La scienza è un viaggio verso la verità.",
 		"awards": "",
 		"links": [
@@ -221,16 +224,145 @@ var elements: Dictionary = {
 		]
 	},
 
-
 	# Periodo 3
-	"Na": {"name": "Sodio", "number": 11, "category": "Metallo alcalino", "group": 1, "period": 3},
-	"Mg": {"name": "Magnesio", "number": 12, "category": "Metallo alcalino-terroso", "group": 2, "period": 3},
-	"Al": {"name": "Alluminio", "number": 13, "category": "Metallo post-transizionale", "group": 13, "period": 3},
-	"Si": {"name": "Silicio", "number": 14, "category": "Metalloide", "group": 14, "period": 3},
-	"P":  {"name": "Fosforo", "number": 15, "category": "Non metallo", "group": 15, "period": 3},
-	"S":  {"name": "Zolfo", "number": 16, "category": "Non metallo", "group": 16, "period": 3},
-	"Cl": {"name": "Cloro", "number": 17, "category": "Alogeno", "group": 17, "period": 3},
-	"Ar": {"name": "Argon", "number": 18, "category": "Gas nobile", "group": 18, "period": 3},
+	"Na": {
+	  "name": "Sodio",
+	  "number": 11,
+	  "category": "Metallo alcalino",
+	  "group": 1,
+	  "period": 3,
+	  "image": "",
+	  "scientist_name": "Nancy Grace Roman",
+	  "profession": "Astronoma",
+	  "brief_subtitle": "Madre del telescopio spaziale Hubble",
+	  "year": "1925–2018",
+	  "nationality": "Statunitense",
+	  "description": "Conosciuta come la 'Madre di Hubble' per il suo ruolo fondamentale nello sviluppo del telescopio spaziale Hubble. È stata una delle prime donne a ricoprire posizioni dirigenziali alla NASA, promuovendo la ricerca spaziale e l’astronomia. Nonostante le difficoltà incontrate come donna nella scienza, contribuì alla pianificazione di missioni pionieristiche per lo studio dello spazio profondo. Il suo lavoro ha influenzato generazioni di scienziati e ha aperto la strada a importanti scoperte cosmologiche.",
+	  "awards": "",
+	  "quote": "Lavorate sodo in qualcosa che vi appassiona e non lasciate che nessuno vi scoraggi.",
+	  "links": []
+	},
+	"Mg": {
+	  "name": "Magnesio",
+	  "number": 12,
+	  "category": "Metallo alcalino-terroso",
+	  "group": 2,
+	  "period": 3,
+	  "image": "",
+	  "scientist_name": "Marguerite Perey",
+	  "profession": "Chimica",
+	  "brief_subtitle": "Scopritrice del francio",
+	  "year": "1909–1975",
+	  "nationality": "Francese",
+	  "description": "Nota per aver scoperto il francio nel 1939. Lavorò come assistente di Marie Curie all'Istituto del Radio di Parigi, specializzandosi nello studio degli elementi radioattivi. La sua scoperta del francio, l'ultimo elemento naturale individuato, fu cruciale per la chimica nucleare. Fu la prima donna ammessa all'Académie des Sciences di Francia. Il suo lavoro contribuì allo sviluppo della fisica atomica, nonostante le conseguenze sulla sua salute dovute all'esposizione alle radiazioni.",
+	  "awards": "",
+	  "quote": "La scoperta del francio non è stata il risultato di un colpo di genio, ma di un paziente e meticoloso lavoro di ricerca.",
+	  "links": []
+	},
+	"Al": {
+	  "name": "Alluminio",
+	  "number": 13,
+	  "category": "Metallo post-transizionale",
+	  "group": 13,
+	  "period": 3,
+	  "image": "",
+	  "scientist_name": "Ada Lovelace",
+	  "profession": "Matematica e scrittrice",
+	  "brief_subtitle": "Prima programmatrice della storia",
+	  "year": "1815–1852",
+	  "nationality": "Britannica",
+	  "description": "È considerata la prima programmatrice della storia. È nota per il suo lavoro sulla macchina analitica di Charles Babbage, un prototipo di computer meccanico. Lovelace non solo tradusse un articolo sull’argomento, ma aggiunse anche delle note in cui descrisse un algoritmo per calcolare i numeri di Bernoulli, considerato il primo programma informatico della storia. Nonostante il suo contributo pionieristico, Ada Lovelace non ricevette premi durante la sua vita, poiché il suo lavoro fu riconosciuto solo molti anni dopo la sua morte. Oggi, però, è celebrata come una figura fondamentale nella storia dell’informatica.",
+	  "awards": "",
+	  "quote": "Quel cervello mio è qualcosa di più che meramente mortale, come il tempo dimostrerà.",
+	  "links": []
+	},
+
+
+	"Si": {
+	  "name": "Silicio",
+	  "number": 14,
+	  "category": "Metalloide",
+	  "group": 14,
+	  "period": 3,
+	  "image": "",
+	  "scientist_name": "Sibylla Maria Merian",
+	  "profession": "Naturalista e illustratrice",
+	  "brief_subtitle": "Pioniera dell'entomologia moderna",
+	  "year": "1647–1717",
+	  "nationality": "Tedesca",
+	  "description": "Famosa per i suoi studi sugli insetti e la loro metamorfosi. Ha viaggiato in Suriname, un’area tropicale, dove ha studiato la fauna e la flora locali, documentando il ciclo di vita degli insetti in modo straordinariamente preciso e dettagliato. Le sue illustrazioni, pubblicate in opere come *Metamorphosis insectorum Surinamensium* (1705), sono ancora oggi considerate capolavori di arte scientifica.",
+	  "awards": "",
+	  "quote": "La natura è un libro che ci insegna continuamente, se solo abbiamo occhi per guardare.",
+	  "links": []
+	},
+	"P": {
+	  "name": "fosforo",
+	  "number": 15,
+	  "category": "Non metallo",
+	  "group": 15,
+	  "period": 3,
+	  "image": "",
+	  "scientist_name": "Pardis Sabeti",
+	  "profession": "Biologa",
+	  "brief_subtitle": "Genetista esperta in epidemie e genomica evolutiva",
+	  "year": "1975-",
+	  "nationality": "iraniano-americana",
+	  "description": "Pardis Sabeti è una genetista e biologa computazionale iraniano-americana, nota per il suo lavoro sull'evoluzione dei patogeni e la risposta alle epidemie. Professoressa ad Harvard e membro del Broad Institute, ha sviluppato algoritmi per studiare la selezione naturale nel DNA umano. Durante l'epidemia di Ebola del 2014, il suo team ha sequenziato rapidamente il virus, contribuendo alla comprensione della sua diffusione. Oltre alla ricerca, è anche musicista e ha ricevuto numerosi riconoscimenti scientifici.",
+	  "awards": "",
+	  "quote": "Abbiamo la capacità di cambiare, adattarci ed essere resilienti. Ed è questo che fa la scienza: trovare soluzioni e andare avanti.",
+	  "links": []
+	},
+	"S": {
+	  "name": "zolfo",
+	  "number": 16,
+	  "category": "Non metallo",
+	  "group": 16,
+	  "period": 3,
+	  "image": "",
+	  "scientist_name": "Henrietta Swan Leavitt",
+	  "profession": "Astronoma",
+	  "brief_subtitle": "Scoprì la relazione periodo-luminosità delle Cefeidi",
+	  "year": "1868-1921",
+	  "nationality": "statunitense",
+	  "description": "Henrietta Swan Leavitt è stata un'astronoma statunitense. Ha lavorato presso l'Osservatorio di Harvard come \"computer umano\", analizzando le lastre fotografiche del cielo. La sua scoperta più importante riguarda la relazione tra il periodo e la luminosità delle variabili Cefeidi, che ha permesso di misurare le distanze cosmiche e rivoluzionato l'astronomia. Questa scoperta è stata fondamentale per Edwin Hubble nella dimostrazione dell’espansione dell’universo.",
+	  "awards": "",
+	  "quote": "A tutti coloro che studiano le stelle, spero che il mio lavoro possa essere utile.",
+	  "links": []
+	},
+	"Cl": {
+	  "name": "cloro",
+	  "number": 17,
+	  "category": "Alogeno",
+	  "group": 17,
+	  "period": 3,
+	  "image": "",
+	  "scientist_name": "Claudia Alexander",
+	  "profession": "Scienziata e ingegnera",
+	  "brief_subtitle": "Astrofisica NASA, protagonista delle missioni Galileo",
+	  "year": "1961–2015",
+	  "nationality": "americana",
+	  "description": "Claudia Alexander è conosciuta per il suo lavoro nel campo dell’astrofisica e dell’esplorazione spaziale. È stata una delle scienziate di punta nella NASA, contribuendo in modo significativo a progetti di missioni spaziali, in particolare alla missione Galileo, che ha studiato Giove e le sue lune. Nel corso della sua carriera, Claudia Alexander ha lavorato instancabilmente per promuovere la scienza tra i giovani, in particolare le ragazze, cercando di abbattere le barriere di genere nelle scienze STEM.",
+	  "awards": "",
+	  "quote": "La scienza non ha confini, e se continuiamo a guardare in alto, possiamo scoprire sempre qualcosa di nuovo.",
+	  "links": []
+	},
+	"Ar": {
+	  "name": "argon",
+	  "number": 18,
+	  "category": "Gas nobile",
+	  "group": 18,
+	  "period": 3,
+	  "image": "",
+	  "scientist_name": "Artemisia Gentileschi",
+	  "profession": "Artista",
+	  "brief_subtitle": "Pioniera del Barocco, simbolo della resilienza femminile",
+	  "year": "1593-1653",
+	  "nationality": "italiana",
+	  "description": "Artemisia Gentileschi è stata una pittrice italiana del periodo barocco, tra le prime donne a ottenere successo nel mondo dell'arte. Formata dal padre Orazio, sviluppò uno stile drammatico e realistico influenzato da Caravaggio. Le sue opere spesso raffigurano eroine bibliche e mitologiche con grande forza espressiva, come Giuditta che decapita Oloferne. Il suo lavoro è considerato un simbolo della resilienza femminile e del talento artistico.",
+	  "awards": "",
+	  "quote": "L’opera d’arte è il riflesso dell’anima di chi la crea.",
+	  "links": []
+	},
 
 	# Periodo 4
 	"K":  {"name": "Potassio", "number": 19, "category": "Metallo alcalino", "group": 1, "period": 4},
@@ -595,6 +727,15 @@ func elements_animation(grid_container):
 func on_element_selected(symbol, button):
 	if not can_press:
 		return
+		
+	if selected_button == button:
+		selected_button = null
+		popup_margin.visible = false 
+		popup_panel.visible = false 
+		return
+
+	selected_button = button
+		
 	var element = elements[symbol]
 	popup_name_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
 		element["name"], element["number"], element["category"]
@@ -611,8 +752,13 @@ func on_element_selected(symbol, button):
 		popup_quote_label.text = element["quote"]
 		popup_brief_label.text = element["brief_subtitle"]
 		popup_nationality_label.text = element["nationality"]
-		popup_awards_label.text =  element["awards"]
 		popup_links_label.text = "\n".join(element["links"]) if "links" in element else ""
+		if element["awards"] != "":
+			popup_awards_panel.visible =  true
+			popup_awards_label.text =  element["awards"]
+			print("funzia")
+		else:
+			popup_awards_panel.visible =  false
 	can_press = false
 	calculate_popup_position(button)
 	popup_animation(button) 
@@ -650,8 +796,8 @@ func calculate_popup_position(button):
 func popup_animation(button):
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1, 1), 0.01).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
-	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.075).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	tween.tween_property(button, "scale", Vector2(1, 1), 0.05).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.075).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
+	tween.tween_property(button, "scale", Vector2(1, 1), 0.05).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 	popup_panel.size.y = (popup_margin.size.y)
 	
 	popup_margin.visible = true 
