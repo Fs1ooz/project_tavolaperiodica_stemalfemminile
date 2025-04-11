@@ -27,6 +27,58 @@ var can_press: bool = true
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
+	# Periodo 1-2 Gruppo 4-11 Fittizio
+	"1": {
+		"name": " ", 
+		"category": "Category", 
+		"group": 4, 
+		"period": 2,
+	},
+	"2": {
+		"name": " ", 
+		"category": "Category", 
+		"group": 5, 
+		"period": 2,
+	},
+	"3": {
+		"name": " ", 
+		"category": "Category", 
+		"group": 6, 
+		"period": 2,
+	},
+	"4": {
+		"name": " ", 
+		"category": "Category", 
+		"group": 7, 
+		"period": 2,
+	},
+	"5": {
+		"name": " ", 
+		"category": "Category", 
+		"group": 8, 
+		"period": 2,
+	},
+	"6": {
+		"name": " ", 
+		"category": "Category", 
+		"group": 9, 
+		"period": 2,
+	},
+	"7": {
+		"name": " ", 
+		"category": "Category", 
+		"group": 10, 
+		"period": 2,
+	},
+	"8": {
+		"name": " ", 
+		"category": "Category", 
+		"group": 11, 
+		"period": 2,
+	},
+	
+	
+	
 	# Periodo 1
 	"H": {
 		"name": "Idrogeno", 
@@ -571,6 +623,7 @@ var elements: Dictionary = {
 	}
 #Database colori degli elementi
 var category_colors = {
+	"Category": Color.TRANSPARENT, 
 	"Metallo alcalino": Color.CORAL,  
 	"Metallo alcalino-terroso": Color.SADDLE_BROWN,
 	"Metallo di transizione": Color.BROWN, 
@@ -583,7 +636,13 @@ var category_colors = {
 	"Attinide": Color.LIME_GREEN, 
 }
 
-func _ready():
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and popup_panel.visible and popup_margin.visible:
+		if not popup_panel.get_global_rect().has_point(get_global_mouse_position()):
+			popup_panel.visible = false
+			popup_margin.visible = false
+
+func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
 	control_element_container.queue_free()
@@ -644,7 +703,8 @@ func create_periodic_table():
 				var lbl = Label.new()
 				var nm_lbl = Label.new()
 				var element_container = Control.new()
-				lbl.text = str(element["number"])
+				if "number" in element:
+					lbl.text = str(element["number"])
 				lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 				lbl.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 				lbl.add_theme_font_size_override("font_size", 13)
@@ -692,7 +752,6 @@ func create_periodic_table():
 					tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
 				
 				if elements_created == total_elements:
-					printerr(OK)
 					elements_animation(grid_container)
 
 func elements_animation(grid_container):
@@ -757,7 +816,6 @@ func on_element_selected(symbol, button):
 		if element["awards"] != "":
 			popup_awards_panel.visible =  true
 			popup_awards_label.text =  element["awards"]
-			print("funzia")
 		else:
 			popup_awards_panel.visible =  false
 	can_press = false
@@ -777,8 +835,6 @@ func calculate_popup_position(button):
 	
 	var popup_pos_x = button.global_position.x + button.size.x
 	var popup_pos_y = button.global_position.y - button.size.y
-	printerr(button.global_position.x)
-	printerr(button.size.x)
 	if popup_pos_x > screen_size.x / 2:
 		popup_pos_x = popup_pos_x - button.size.x - popup_margin.size.x - offset
 	else:
