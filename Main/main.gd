@@ -732,6 +732,7 @@ func on_element_selected(symbol, button):
 		selected_button = null
 		popup_margin.visible = false 
 		popup_panel.visible = false 
+		popup_animation(button) 
 		return
 
 	selected_button = button
@@ -761,6 +762,8 @@ func on_element_selected(symbol, button):
 			popup_awards_panel.visible =  false
 	can_press = false
 	calculate_popup_position(button)
+	popup_margin.visible = true 
+	popup_panel.visible = true 
 	popup_animation(button) 
 	await get_tree().create_timer(0.3).timeout
 	can_press = true
@@ -799,6 +802,3 @@ func popup_animation(button):
 	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.075).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 	tween.tween_property(button, "scale", Vector2(1, 1), 0.05).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 	popup_panel.size.y = (popup_margin.size.y)
-	
-	popup_margin.visible = true 
-	popup_panel.visible = true 
