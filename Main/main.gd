@@ -28,50 +28,50 @@ var can_press: bool = true
 #Database di tutti gli elementi
 var elements: Dictionary = {
 	# Periodo 1-2 Gruppo 4-11 Fittizio
-	"1": {
-		"name": " ", 
+	"Phy": {
+		"name": "Fisica", 
 		"category": "Category", 
 		"group": 4, 
 		"period": 2,
 	},
-	"2": {
-		"name": " ", 
+	"Chem": {
+		"name": "Chimica", 
 		"category": "Category", 
 		"group": 5, 
 		"period": 2,
 	},
-	"3": {
-		"name": " ", 
+	"Bio": {
+		"name": "Biologia", 
 		"category": "Category", 
 		"group": 6, 
 		"period": 2,
 	},
-	"4": {
-		"name": " ", 
+	"Mat": {
+		"name": "Mat", 
 		"category": "Category", 
 		"group": 7, 
 		"period": 2,
 	},
-	"5": {
-		"name": " ", 
+	"Ing": {
+		"name": "Ingegneria", 
 		"category": "Category", 
 		"group": 8, 
 		"period": 2,
 	},
-	"6": {
-		"name": " ", 
+	"Med": {
+		"name": "Medicina", 
 		"category": "Category", 
 		"group": 9, 
 		"period": 2,
 	},
-	"7": {
-		"name": " ", 
+	"Uman": {
+		"name": "Umanità", 
 		"category": "Category", 
 		"group": 10, 
 		"period": 2,
 	},
-	"8": {
-		"name": " ", 
+	"Art": {
+		"name": "Arte", 
 		"category": "Category", 
 		"group": 11, 
 		"period": 2,
@@ -723,7 +723,10 @@ func create_periodic_table():
 				btn.pressed.connect(on_element_selected.bind(symbol, element_container))
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
-				btn.add_theme_font_size_override("font_size", 25)
+				if not "number" in element:
+					btn.add_theme_font_size_override("font_size", 16)
+				else:
+					btn.add_theme_font_size_override("font_size", 25)
 				btn.pivot_offset = btn.size/2
 				element_container.custom_minimum_size = Vector2(btn_size, btn_size)
 				element_container.size = Vector2(btn_size, btn_size)
