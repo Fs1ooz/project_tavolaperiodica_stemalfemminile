@@ -22,7 +22,7 @@ extends Control
 var selected_button: Control = null
 var periods: int = 7+3
 var groups: int = 18
-var btn_size: int = 55
+var btn_size: int = 60
 var can_press: bool = true
 
 #Database di tutti gli elementi
@@ -47,7 +47,7 @@ var elements: Dictionary = {
 		"period": 2,
 	},
 	"Mat": {
-		"name": "Mat", 
+		"name": "Matematica", 
 		"category": "Category", 
 		"group": 7, 
 		"period": 2,
@@ -238,7 +238,7 @@ var elements: Dictionary = {
 	"F": {
 		"name": "Fluoro",
 		"number": 9,
-		"category": "Non metallo",
+		"category": "Alogeno",
 		"group": 17,
 		"period": 2,
 		"image": "res://Images/STEAM Women/Françoise Barré-Sinoussi.jpg",
@@ -348,7 +348,7 @@ var elements: Dictionary = {
 	  "links": []
 	},
 	"P": {
-	  "name": "fosforo",
+	  "name": "Fosforo",
 	  "number": 15,
 	  "category": "Non metallo",
 	  "group": 15,
@@ -365,7 +365,7 @@ var elements: Dictionary = {
 	  "links": []
 	},
 	"S": {
-	  "name": "zolfo",
+	  "name": "Zolfo",
 	  "number": 16,
 	  "category": "Non metallo",
 	  "group": 16,
@@ -382,7 +382,7 @@ var elements: Dictionary = {
 	  "links": []
 	},
 	"Cl": {
-	  "name": "cloro",
+	  "name": "Cloro",
 	  "number": 17,
 	  "category": "Alogeno",
 	  "group": 17,
@@ -399,7 +399,7 @@ var elements: Dictionary = {
 	  "links": []
 	},
 	"Ar": {
-	  "name": "argon",
+	  "name": "Argon",
 	  "number": 18,
 	  "category": "Gas nobile",
 	  "group": 18,
@@ -631,7 +631,7 @@ var category_colors = {
 	"Metalloide": Color.TEAL, 
 	"Non metallo": Color.SEA_GREEN,  
 	"Alogeno": Color.VIOLET,  
-	"Gas nobile": Color.LIGHT_SKY_BLUE, 
+	"Gas nobile": Color.SKY_BLUE, 
 	"Lantanide": Color.WEB_PURPLE, 
 	"Attinide": Color.LIME_GREEN, 
 }
@@ -658,11 +658,13 @@ func create_periodic_table():
 	for i in range(groups):
 		var group_label = Label.new()
 		group_label.text = str(i + 1)
-		group_label.custom_minimum_size = Vector2(btn_size, btn_size)
-		group_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		group_label.custom_minimum_size = Vector2(btn_size, 10)
+		group_label.size = Vector2(btn_size, 10)
+		group_label.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 		group_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		grid_container.add_child(group_label)
-		group_label.add_theme_font_size_override("font_size", 20)
+		group_label.add_theme_font_override("font", load("res://Fonts/Gravity-Bold.otf"))
+		group_label.add_theme_font_size_override("font_size", 17)
 	# Inizializziamo la tabella solo con spazi vuoti
 	var table_layout := []  
 	for _i in range(periods):  # 7 periodi
@@ -684,17 +686,20 @@ func create_periodic_table():
 		var period_label = Label.new()
 		if i < periods - 3:
 			period_label.text = str(i + 1)
-			period_label.custom_minimum_size = Vector2(btn_size, btn_size)
-			period_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			period_label.custom_minimum_size = Vector2(10, btn_size)
+			period_label.size = Vector2(10, btn_size)
+			period_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 			period_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 		grid_container.add_child(period_label)
-		period_label.add_theme_font_size_override("font_size",20)
+		period_label.add_theme_font_override("font", load("res://Fonts/Gravity-Bold.otf"))
+		period_label.add_theme_font_size_override("font_size", 17)
 		# Aggiungiamo gli elementi della riga
 		for symbol in table_layout[i]:
 			if symbol == null:
 				# Spazio vuoto per mantenere la struttura della tavola
 				var empty = Control.new()
-				empty.custom_minimum_size = Vector2(btn_size, btn_size)
+				empty.custom_minimum_size = Vector2(btn_size/3, btn_size/3)
+				empty.size = Vector2(btn_size/3, btn_size/3)
 				grid_container.add_child(empty)
 			else:
 				# Crea il bottone per l'elemento
@@ -707,14 +712,17 @@ func create_periodic_table():
 					lbl.text = str(element["number"])
 				lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 				lbl.vertical_alignment = VERTICAL_ALIGNMENT_TOP
-				lbl.add_theme_font_size_override("font_size", 13)
 				lbl.set_anchors_and_offsets_preset(Control.PRESET_TOP_LEFT)
+				lbl.add_theme_font_override("font", load("res://Fonts/Gravity-Bold.otf"))
+				lbl.add_theme_font_size_override("font_size", 14)
 				lbl.z_index = 2
 				nm_lbl.text = str(element["name"])
 				nm_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				nm_lbl.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
-				nm_lbl.add_theme_font_size_override("font_size", 9)
+				nm_lbl.add_theme_font_override("font", load("res://Fonts/texgyreheroscn-bold.otf"))
+				nm_lbl.add_theme_font_size_override("font_size", 12)
 				nm_lbl.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+				nm_lbl.set_offset(SIDE_BOTTOM, 2) 
 				nm_lbl.z_index = 3
 				btn.text = symbol
 				btn.custom_minimum_size = Vector2(btn_size, btn_size)
@@ -723,8 +731,9 @@ func create_periodic_table():
 				btn.pressed.connect(on_element_selected.bind(symbol, element_container))
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
+				btn.add_theme_font_override("font", load("res://Fonts/texgyreheros-bold.otf"))
 				if not "number" in element:
-					btn.add_theme_font_size_override("font_size", 16)
+					btn.add_theme_font_size_override("font_size", 18)
 				else:
 					btn.add_theme_font_size_override("font_size", 25)
 				btn.pivot_offset = btn.size/2
@@ -737,10 +746,11 @@ func create_periodic_table():
 				element_container.pivot_offset = btn.size/2
 				var style = StyleBoxFlat.new()
 				if style:
-					style.corner_radius_bottom_left = 2
-					style.corner_radius_bottom_right = 2
-					style.corner_radius_top_left = 2
-					style.corner_radius_top_right = 2
+					var radius: int = 2
+					style.corner_radius_bottom_left = radius
+					style.corner_radius_bottom_right = radius
+					style.corner_radius_top_left = radius
+					style.corner_radius_top_right = radius
 					btn.add_theme_stylebox_override("normal", style)
 					style.bg_color = category_colors[element["category"]]  
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
@@ -800,6 +810,8 @@ func on_element_selected(symbol, button):
 	selected_button = button
 		
 	var element = elements[symbol]
+	if element["category"] == "Category":
+		return
 	popup_name_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
 		element["name"], element["number"], element["category"]
 	]
