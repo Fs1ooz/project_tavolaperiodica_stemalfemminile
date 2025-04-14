@@ -65,7 +65,7 @@ var elements: Dictionary = {
 		"period": 2,
 	},
 	"Uman": {
-		"name": "Umanità", 
+		"name": "Umanitistiche", 
 		"category": "Category", 
 		"group": 10, 
 		"period": 2,
@@ -76,8 +76,6 @@ var elements: Dictionary = {
 		"group": 11, 
 		"period": 2,
 	},
-	
-	
 	
 	# Periodo 1
 	"H": {
@@ -317,10 +315,10 @@ var elements: Dictionary = {
 	  "category": "Metallo post-transizionale",
 	  "group": 13,
 	  "period": 3,
-	  "image": "",
+	  "image": "res://Images/STEAM Women/Ada Lovelace.jpg",
 	  "scientist_name": "Ada Lovelace",
 	  "profession": "Matematica e scrittrice",
-	  "brief_subtitle": "Prima programmatrice della storia",
+	  "brief_subtitle": "Prima programmatrice",
 	  "year": "1815–1852",
 	  "nationality": "Britannica",
 	  "description": "È considerata la prima programmatrice della storia. È nota per il suo lavoro sulla macchina analitica di Charles Babbage, un prototipo di computer meccanico. Lovelace non solo tradusse un articolo sull’argomento, ma aggiunse anche delle note in cui descrisse un algoritmo per calcolare i numeri di Bernoulli, considerato il primo programma informatico della storia. Nonostante il suo contributo pionieristico, Ada Lovelace non ricevette premi durante la sua vita, poiché il suo lavoro fu riconosciuto solo molti anni dopo la sua morte. Oggi, però, è celebrata come una figura fondamentale nella storia dell’informatica.",
@@ -479,21 +477,22 @@ var elements: Dictionary = {
 	"Cs": {"name": "Cesio", "number": 55, "category": "Metallo alcalino", "group": 1, "period": 6},
 	"Ba": {"name": "Bario", "number": 56, "category": "Metallo alcalino-terroso", "group": 2, "period": 6},
 	
-	#"57-71": {"name": "Vedi Lantanidi", "number": "Vedi Lantanidi", "category": "Vedi Lantanidi", "group": 3, "period": 6},
-	#"Ce": {"name": "Cerio", "number": 58, "category": "Lantanide", "group": 3, "period": 6},
-	#"Pr": {"name": "Praseodimio", "number": 59, "category": "Lantanide", "group": 3, "period": 6},
-	#"Nd": {"name": "Neodimio", "number": 60, "category": "Lantanide", "group": 3, "period": 6},
-	#"Pm": {"name": "Promezio", "number": 61, "category": "Lantanide", "group": 3, "period": 6},
-	#"Sm": {"name": "Samario", "number": 62, "category": "Lantanide", "group": 3, "period": 6},
-	#"Eu": {"name": "Europio", "number": 63, "category": "Lantanide", "group": 3, "period": 6},
-	#"Gd": {"name": "Gadolinio", "number": 64, "category": "Lantanide", "group": 3, "period": 6},
-	#"Tb": {"name": "Terbio", "number": 65, "category": "Lantanide", "group": 3, "period": 6},
-	#"Dy": {"name": "Disprosio", "number": 66, "category": "Lantanide", "group": 3, "period": 6},
-	#"Ho": {"name": "Olmio", "number": 67, "category": "Lantanide", "group": 3, "period": 6},
-	#"Er": {"name": "Erbio", "number": 68, "category": "Lantanide", "group": 3, "period": 6},
-	#"Tm": {"name": "Tulio", "number": 69, "category": "Lantanide", "group": 3, "period": 6},
-	#"Yb": {"name": "Itterbio", "number": 70, "category": "Lantanide", "group": 3, "period": 6},
-	#"Lu": {"name": "Lutezio", "number": 71, "category": "Lantanide", "group": 3, "period": 6},
+	" . ": {
+		"name": "Lantanidi", 
+		"number": "57-71",
+		"category": "F-Block", 
+		"group": 3, 
+		"period": 6,
+	},
+	
+	" .. ": {
+		"name": "Attinidi", 
+		"number": "89-103",
+		"category": "F-Block", 
+		"group": 3, 
+		"period": 7,
+	},
+	
 	"Hf": {"name": "Hafnio", "number": 72, "category": "Metallo di transizione", "group": 4, "period": 6},
 	"Ta": {"name": "Tantalio", "number": 73, "category": "Metallo di transizione", "group": 5, "period": 6},
 	"W":  {"name": "Tungsteno", "number": 74, "category": "Metallo di transizione", "group": 6, "period": 6},
@@ -624,6 +623,7 @@ var elements: Dictionary = {
 #Database colori degli elementi
 var category_colors = {
 	"Category": Color.TRANSPARENT, 
+	"F-Block": Color("#596759"),
 	"Metallo alcalino": Color.CORAL,  
 	"Metallo alcalino-terroso": Color.SADDLE_BROWN,
 	"Metallo di transizione": Color.BROWN, 
@@ -643,6 +643,7 @@ func _input(event):
 			popup_margin.visible = false
 
 func _ready() -> void:
+	print(Color.LIME_GREEN.to_html())
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
 	control_element_container.queue_free()
@@ -810,7 +811,7 @@ func on_element_selected(symbol, button):
 	selected_button = button
 		
 	var element = elements[symbol]
-	if element["category"] == "Category":
+	if element["category"] == "Category" or element["category"] == "F-Block":
 		return
 	popup_name_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
 		element["name"], element["number"], element["category"]

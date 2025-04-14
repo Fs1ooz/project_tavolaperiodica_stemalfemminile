@@ -91,6 +91,7 @@ offset_bottom = 23.0
 [node name="PopupLayer" type="CanvasLayer" parent="."]
 
 [node name="PopupMargin" type="MarginContainer" parent="PopupLayer"]
+texture_filter = 4
 custom_minimum_size = Vector2(420, 0)
 anchors_preset = 5
 anchor_left = 0.5
