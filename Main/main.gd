@@ -25,6 +25,7 @@ var groups: int = 18
 var btn_size: int = 60
 var can_press: bool = true
 var animation_finished: bool = false
+var category_counter: int
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
@@ -71,11 +72,8 @@ var elements: Dictionary = {
 		"group": 10, 
 		"period": 2,
 	},
-
-	"HumArt": {
-		"name": "Discipline
-		Umanistiche
-		Artistiche", 
+	"Hum": {
+		"name": "Umanistica", 
 		"category": "Category", 
 		"group": 11, 
 		"period": 2,
@@ -100,7 +98,8 @@ var elements: Dictionary = {
 		"links": [
 			"https://en.wikipedia.org/wiki/Dorothy_Hodgkin",
 			"https://www.nobelprize.org/prizes/chemistry/1964/hodgkin/biographical/"
-		]
+		],
+		"profession_id": "Chem",
 	},
 	"He": {
 		"name": "Elio", 
@@ -120,7 +119,8 @@ var elements: Dictionary = {
 		"links": [
 			"https://en.wikipedia.org/wiki/Hedy_Lamarr",
 			"https://www.women-inventors.com/Hedy-Lamarr.asp"
-		]
+		],
+		"profession_id": ["Ing", "Hum"]
 	},
 	"Li": {
 		"name": "Litio", 
@@ -2170,7 +2170,16 @@ var elements: Dictionary = {
 }
 #Database colori degli elementi
 var category_colors = {
-	"Category": Color.TRANSPARENT, 
+		"Category": {
+			"1": Color(0.5, 0, 0.5),  # Rebecca Purple (Viola)
+			"2": Color(0.6, 0, 0.8),  # Web Purple
+			"3": Color(0.8, 0, 0.8),  # Blue Violet
+			"4": Color(0.9, 0, 0.7),  # Magenta
+			"5": Color(1, 0, 0.6),    # Strong Pink
+			"6": Color(1, 0.3, 0.5),  # Hot Pink
+			"7": Color(1, 0.5, 0.3),  # Light Pink
+			"8": Color(1, 0.7, 0.2),  # Light Rose
+		},
 	"F-Block": Color("#596759"),
 	"Metallo alcalino": Color.CORAL,  
 	"Metallo alcalino-terroso": Color.SADDLE_BROWN,
@@ -2183,6 +2192,17 @@ var category_colors = {
 	"Lantanide": Color.WEB_PURPLE, 
 	"Attinide": Color.LIME_GREEN, 
 	"Sconosciuto": Color.DIM_GRAY, 
+}
+
+var prof_to_key = {
+	"Phy": "1",
+	"Astro": "2",
+	"Chem": "3",
+	"Bio": "4",
+	"Mat": "5",
+	"Ing": "6",
+	"Med": "7",
+	"Hum": "8",
 }
 
 func _input(event):
@@ -2274,8 +2294,8 @@ func create_periodic_table():
 				nm_lbl.add_theme_font_override("font", load("res://Fonts/texgyreheroscn-bold.otf"))
 				nm_lbl.add_theme_font_size_override("font_size", 12)
 				if element["category"] == "Category":
-					lbl.add_theme_font_size_override("font_size", 4)
-					nm_lbl.add_theme_font_size_override("font_size", 10)
+					nm_lbl.add_theme_font_size_override("font_size", 13)
+					nm_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 				nm_lbl.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 				nm_lbl.set_offset(SIDE_BOTTOM, 2) 
 				nm_lbl.z_index = 3
@@ -2288,7 +2308,7 @@ func create_periodic_table():
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
 				btn.add_theme_font_override("font", load("res://Fonts/texgyreheros-bold.otf"))
 				if not "number" in element:
-					btn.add_theme_font_size_override("font_size", 18)
+					btn.add_theme_font_size_override("font_size", 20)
 				else:
 					btn.add_theme_font_size_override("font_size", 25)
 				btn.pivot_offset = btn.size/2
@@ -2306,20 +2326,43 @@ func create_periodic_table():
 					style.corner_radius_bottom_right = radius
 					style.corner_radius_top_left = radius
 					style.corner_radius_top_right = radius
+					if element["category"] == "Category":
+						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
+						style.bg_color = category_colors["Category"][str(category_counter)]
+						print(style.bg_color)
+						print(category_counter)
+					else:
+						style.bg_color = category_colors[element["category"]]
 					btn.add_theme_stylebox_override("normal", style)
-					style.bg_color = category_colors[element["category"]]  
+					btn.add_theme_stylebox_override("hover", style)
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
-				element_container.add_to_group("elements")
-				grid_container.add_child(element_container)
-				elements_created += 1
-				btn.mouse_entered.connect(func():
-					var tween = element_container.create_tween()
-					tween.tween_property(element_container, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
-				btn.mouse_exited.connect(func():
-					var tween = element_container.create_tween()
-					tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
-				if elements_created == total_elements:
-					elements_animation(grid_container)
+					element_container.add_to_group("elements")
+					grid_container.add_child(element_container)
+					elements_created += 1
+					var original_color = style.bg_color
+					var hover_color = original_color
+					if "profession_id" in element:
+						for prof in element["profession_id"]:
+							if prof in prof_to_key:
+								hover_color = category_colors["Category"][ prof_to_key[prof] ]
+								break
+					btn.mouse_entered.connect(func():
+						var tween = element_container.create_tween()
+						style.bg_color = hover_color.darkened(0.2)  # o .brightened() se preferisci
+						tween.tween_property(element_container, "scale", Vector2(1.1,1.1), 0.2) \
+							 .set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+					)
+					btn.mouse_exited.connect(func():
+						var tween = element_container.create_tween()
+						if element["category"] == "Category":
+							category_counter = 0
+							category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
+							style.bg_color = original_color
+						else:
+							style.bg_color = category_colors[element["category"]]
+						tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
+					if elements_created == total_elements:
+						elements_animation(grid_container)
 
 func elements_animation(grid_container):
 	var speed: float = 0.3
