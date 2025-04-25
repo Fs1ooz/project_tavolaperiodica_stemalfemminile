@@ -35,44 +35,47 @@ var elements: Dictionary = {
 		"group": 4, 
 		"period": 2,
 	},
+	"Astro": {
+		"name": "Astronomia", 
+		"category": "Category", 
+		"group": 5, 
+		"period": 2,
+	},
 	"Chem": {
 		"name": "Chimica", 
 		"category": "Category", 
-		"group": 5, 
+		"group": 6, 
 		"period": 2,
 	},
 	"Bio": {
 		"name": "Biologia", 
 		"category": "Category", 
-		"group": 6, 
+		"group": 7, 
 		"period": 2,
 	},
 	"Mat": {
 		"name": "Matematica", 
 		"category": "Category", 
-		"group": 7, 
+		"group": 8, 
 		"period": 2,
 	},
 	"Ing": {
 		"name": "Ingegneria", 
 		"category": "Category", 
-		"group": 8, 
+		"group": 9, 
 		"period": 2,
 	},
 	"Med": {
 		"name": "Medicina", 
 		"category": "Category", 
-		"group": 9, 
-		"period": 2,
-	},
-	"Uman": {
-		"name": "Umanitistiche", 
-		"category": "Category", 
 		"group": 10, 
 		"period": 2,
 	},
-	"Art": {
-		"name": "Arte", 
+
+	"HumArt": {
+		"name": "Discipline
+		Umanistiche
+		Artistiche", 
 		"category": "Category", 
 		"group": 11, 
 		"period": 2,
@@ -530,7 +533,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 7,
 		"period": 4,
-		"image": "res://Images/Maria Montessori.jpg",
+		"image": "res://Images/STEAM Women/Maria Montessori.png",
 		"scientist_name": "Maria Montessori",
 		"profession": "Educatrice e Medica",
 		"brief_subtitle": "Rivoluzionaria dell'educazione infantile",
@@ -612,7 +615,7 @@ var elements: Dictionary = {
 	"Zn": {
 		"name": "Zinco",
 		"number": 30,
-		"category": "Metallo post-transizionale",
+		"category": "Metallo di transizione",
 		"group": 12,
 		"period": 4,
 		"image": "res://Images/Zhenan Bao.jpg",
@@ -930,7 +933,7 @@ var elements: Dictionary = {
 	"Cd": {
 		"name": "Cadmio",
 		"number": 48,
-		"category": "Metallo post-transizionale",
+		"category": "Metallo di transizione",
 		"group": 12,
 		"period": 5,
 		"image": "res://Images/Candace Pert.jpg",
@@ -951,7 +954,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",
 		"group": 13,
 		"period": 5,
-		"image": "res://Images/Indira Nath.jpg",
+		"image": "res://Images/STEAM Women/Indira Nath.jpg",
 		"scientist_name": "Indira Nath",
 		"profession": "Immunologa",
 		"brief_subtitle": "Combattente contro la lebbra",
@@ -969,7 +972,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",
 		"group": 14,
 		"period": 5,
-		"image": "res://Images/Sara Negri.jpg",
+		"image": "res://Images/STEAM Women/Sara Negri.jpg",
 		"scientist_name": "Sara Negri",
 		"profession": "Matematica e Logica",
 		"brief_subtitle": "Esperta in logica costruttiva",
@@ -1234,7 +1237,7 @@ var elements: Dictionary = {
 	"Hg": {  
 		"name": "Mercurio",  
 		"number": 80,  
-		"category": "Metallo post-transizionale",  
+		"category": "Metallo di transizione",  
 		"group": 12,  
 		"period": 6,  
 		"image": "res://Images/Margherita Hack.jpg",  
@@ -1306,7 +1309,7 @@ var elements: Dictionary = {
 	"Po": {  
 		"name": "Polonio",  
 		"number": 84,  
-		"category": "Metallo post-transizionale",  
+		"category": "Metalloide",  
 		"group": 16,  
 		"period": 6,  
 		"image": "res://Images/Polly Matzinger.jpg",  
@@ -1446,7 +1449,6 @@ var elements: Dictionary = {
 		"quote": "Ho sempre sentito di dover lavorare più duramente e più a lungo di un uomo per dimostrare il mio valore.",
 		"links": ["<https://en.wikipedia.org/wiki/Beatrice_Hicks>"]
 	},
-
 	"Hs": {
 		"name": "Hassio",
 		"number": 108,
@@ -1464,7 +1466,6 @@ var elements: Dictionary = {
 		"quote": "Le stelle appartengono a tutti.",
 		"links": ["<https://en.wikipedia.org/wiki/Helen_Sawyer_Hogg>"]
 	},
-
 	"Mt": {
 		"name": "Meitnerio",
 		"number": 109,
@@ -1482,7 +1483,6 @@ var elements: Dictionary = {
 		"quote": "Credo che la scienza sia qualcosa che deve essere fatta con passione.",
 		"links": ["<https://en.wikipedia.org/wiki/Martha_Chase>"]
 	},
-
 	"Ds": {
 		"name": "Darmstadio",
 		"number": 110,
@@ -1517,11 +1517,10 @@ var elements: Dictionary = {
 		"quote": "La ricerca è un viaggio di scoperta che può cambiare la vita di milioni di persone, un passo alla volta.",
 		"links": ["<https://en.wikipedia.org/wiki/Regina_Kapeller-Adler>"]
 	},
-
 	"Cn": {
 		"name": "Copernicio",
 		"number": 112,
-		"category": "Metallo post-transizionale",
+		"category": "Metallo di transizione",
 		"group": 12,
 		"period": 7,
 		"image": "res://Images/Caroline Herschel.jpg",
@@ -1535,7 +1534,6 @@ var elements: Dictionary = {
 		"quote": "Non ho cercato nulla al di fuori del lavoro che mio fratello mi ha affidato.",
 		"links": ["<https://en.wikipedia.org/wiki/Caroline_Herschel>"]
 	},
-
 	"Nh": {
 		"name": "Nihonio",
 		"number": 113,
@@ -1553,7 +1551,6 @@ var elements: Dictionary = {
 		"quote": "Ogni specie che salviamo è una storia che continuiamo a raccontare, un legame che preserviamo per il futuro del nostro pianeta.",
 		"links": ["<https://nationalzoo.si.edu/staff/nucharin-songsasen>"]
 	},
-
 	"Fl": {
 		"name": "Flerovio",
 		"number": 114,
@@ -1571,7 +1568,6 @@ var elements: Dictionary = {
 		"quote": "La scienza non è solo una ricerca di risposte, ma un viaggio continuo verso una comprensione più profonda del nostro mondo e di noi stessi.",
 		"links": ["<https://it.wikipedia.org/wiki/Filomena_Nitti>"]
 	},
-
 	"Mc": {
 		"name": "Moscovio",
 		"number": 115,
@@ -1589,7 +1585,6 @@ var elements: Dictionary = {
 		"quote": "Se vuoi qualcosa, vai a prendertelo. Non aspettarti che gli altri ti aprano la strada.",
 		"links": ["<https://en.wikipedia.org/wiki/Mildred_Cohn>"]
 	},
-
 	"Lv": {
 		"name": "Livermorio",
 		"number": 116,
@@ -1607,7 +1602,6 @@ var elements: Dictionary = {
 		"quote": "La scienza non ha genere, razza o etnia: è per tutti.",
 		"links": ["<https://en.wikipedia.org/wiki/Lydia_Villa-Komaroff>"]
 	},
-
 	"Ts": {
 		"name": "Tennesso",
 		"number": 117,
@@ -1625,7 +1619,6 @@ var elements: Dictionary = {
 		"quote": "Comprendere il cervello significa comprendere la natura stessa dell’intelligenza.",
 		"links": ["<https://en.wikipedia.org/wiki/Tatyana_Sharpee>"]
 	},
-
 	"Og": {
 		"name": "Oganesson",
 		"number": 118,
@@ -1645,52 +1638,395 @@ var elements: Dictionary = {
 	},
 
 	# Lantanidi (periodo fittizio 9, gruppo 3-18)
-	"La": {"name": "Lantanio", "number": 57, "category": "Lantanide", "group": 3, "period": 9},
-	"Ce": {"name": "Cerio", "number": 58, "category": "Lantanide", "group": 4, "period": 9},
-	"Pr": {"name": "Praseodimio", "number": 59, "category": "Lantanide", "group": 5, "period": 9},
-	"Nd": {"name": "Neodimio", "number": 60, "category": "Lantanide", "group": 6, "period": 9},
-	"Pm": {"name": "Promezio", "number": 61, "category": "Lantanide", "group": 7, "period": 9},
-	"Sm": {"name": "Samario", "number": 62, "category": "Lantanide", "group": 8, "period": 9},
-	"Eu": {"name": "Europio", "number": 63, "category": "Lantanide", "group": 9, "period": 9},
-	"Gd": {"name": "Gadolinio", "number": 64, "category": "Lantanide", "group": 10, "period": 9},
-	"Tb": {"name": "Terbio", "number": 65, "category": "Lantanide", "group": 11, "period": 9},
-	"Dy": {"name": "Disprosio", "number": 66, "category": "Lantanide", "group": 12, "period": 9},
-	"Ho": {"name": "Olmio", "number": 67, "category": "Lantanide", "group": 13, "period": 9},
-	"Er": {"name": "Erbio", "number": 68, "category": "Lantanide", "group": 14, "period": 9},
-	"Tm": {"name": "Tulio", "number": 69, "category": "Lantanide", "group": 15, "period": 9},
-	"Yb": {"name": "Itterbio", "number": 70, "category": "Lantanide", "group": 16, "period": 9},
-	"Lu": {"name": "Lutezio", "number": 71, "category": "Lantanide", "group": 17, "period": 9},
-
-	# Attinidi (periodo fittizio 10, gruppo 3-18)
-	"Ac": {"name": "Attinio", "number": 89, "category": "Attinide", "group": 3, "period": 10},
-	"Th": {"name": "Torio", "number": 90, "category": "Attinide", "group": 4, "period": 10},
-	"Pa": {"name": "Protoattinio", "number": 91, "category": "Attinide", "group": 5, "period": 10},
-	"U":  {"name": "Uranio", "number": 92, "category": "Attinide", "group": 6, "period": 10},
-	"Np": {"name": "Nettunio", "number": 93, "category": "Attinide", "group": 7, "period": 10},
-	"Pu": {"name": "Plutonio", "number": 94, "category": "Attinide", "group": 8, "period": 10},
-	
-	"Am": {
-	"name": "Americio", 
-	"number": 95, 
-	"category": "Attinide", 
-	"group": 9, 
-	"period": 10,
-	"image": "res://Images/STEAM Women/Amalie_Emmy_Noether.jpg",
-	"scientist_name": "Amalie Emmy Noether", 
-	"profession": "Matematica", 
-	"brief_subtitle": "Pioniera dell'algebra astratta", 
-	"year": "1882 - 1935", 
-	"nationality": "Tedesca", 
-	"description": 
-		"Emmy Noether è stata una matematica tedesca nota per il suo contributo all'algebra astratta e alla fisica teorica. Il suo teorema ha rivoluzionato la comprensione delle simmetrie in fisica. Nonostante le difficoltà dovute alla discriminazione di genere, ha lasciato un'eredità fondamentale nella matematica e nella fisica.",
-	"awards": "Premio Ackermann-Teubner (1932)",
-	"quote": "La matematica non è solo un mezzo per risolvere problemi, ma un linguaggio attraverso cui possiamo comprendere la struttura profonda della realtà.",
-	"links": [
-		"https://en.wikipedia.org/wiki/Emmy_Noether",
-		"https://mathshistory.st-andrews.ac.uk/Biographies/Noether/"
-	]
+	"La": {
+		"name": "Lantanio",
+		"number": 57,
+		"category": "Lantanide",
+		"group": 3,
+		"period": 9,
+		"image": "res://Images/Laura Bassi.jpg",
+		"scientist_name": "Laura Bassi",
+		"profession": "Fisica e Accademica",
+		"brief_subtitle": "Prima donna europea con un dottorato in scienze",
+		"year": "1711 - 1778",
+		"nationality": "Italiana",
+		"description": "Fisica italiana pioniera, prima donna in Europa a ottenere un dottorato in filosofia (1732) e cattedratica di fisica sperimentale a Bologna (1776). Diffuse le teorie newtoniane e condusse esperimenti su elettricità e meccanica in un’epoca dominata dagli uomini.",
+		"awards": "",
+		"quote": "La scienza è il linguaggio della verità, e il mio impegno è nel rivelarla attraverso la curiosità e la dedizione, senza limiti di genere.",
+		"links": ["<https://en.wikipedia.org/wiki/Laura_Bassi>"]
 	},
 
+	"Ce": {
+		"name": "Cerio",
+		"number": 58,
+		"category": "Lantanide",
+		"group": 4,
+		"period": 9,
+		"image": "res://Images/Celeste Saulo.jpg",
+		"scientist_name": "Celeste Saulo",
+		"profession": "Meteorologa",
+		"brief_subtitle": "Pioniera della meteorologia globale",
+		"year": "1964 - ",
+		"nationality": "Argentina",
+		"description": "Meteorologa argentina, prima donna a dirigere il Servizio Meteorologico Nazionale Argentino (2014) e Prima Vicepresidente dell’Organizzazione Meteorologica Mondiale (2018). Promuove tecnologie avanzate per previsioni climatiche precise e accessibili.",
+		"awards": "",
+		"quote": "La scienza è il nostro strumento più potente per comprendere e affrontare le sfide globali...",
+		"links": ["<https://en.wikipedia.org/wiki/Celeste_Saulo>"]
+	},
+
+	"Pr": {
+		"name": "Praseodimio",
+		"number": 59,
+		"category": "Lantanide",
+		"group": 5,
+		"period": 9,
+		"image": "res://Images/Pratibha Gai.jpg",
+		"scientist_name": "Pratibha Gai",
+		"profession": "Chimica e Ricercatrice",
+		"brief_subtitle": "Rivoluzionaria della microscopia atomica",
+		"year": "",
+		"nationality": "Britannica",
+		"description": "Chimica britannica che ha rivoluzionato la microscopia elettronica (TEM), permettendo l’osservazione diretta di atomi singoli. Le sue innovazioni hanno accelerato progressi in nanotecnologia e scienza dei materiali.",
+		"awards": "Premio L’Oréal-UNESCO (2013), Medaglia Hughes della Royal Society (2020)",
+		"quote": "La scienza è una finestra sul mondo microscopico...",
+		"links": ["<https://en.wikipedia.org/wiki/Pratibha_Gai>"]
+	},
+
+	"Nd": {
+		"name": "Neodimio",
+		"number": 60,
+		"category": "Lantanide",
+		"group": 6,
+		"period": 9,
+		"image": "res://Images/Nina Fedoroff.jpg",
+		"scientist_name": "Nina Fedoroff",
+		"profession": "Biotecnologa e Genetista",
+		"brief_subtitle": "Pioniera degli OGM sostenibili",
+		"year": "1942 - ",
+		"nationality": "Americana",
+		"description": "Biotecnologa americana, ex presidente della AAAS. Ha sviluppato piante geneticamente modificate resistenti a malattie e clima estremo, promuovendo soluzioni per la sicurezza alimentare globale.",
+		"awards": "National Medal of Science (2006)",
+		"quote": "La biotecnologia agricola ha il potenziale per alimentare il mondo in modo sostenibile...",
+		"links": ["<https://en.wikipedia.org/wiki/Nina_Fedoroff>"]
+	},
+	"Pm": {
+		"name": "Promezio",
+		"number": 61,
+		"category": "Lantanide",
+		"group": 7,
+		"period": 9,
+		"image": "res://Images/Patricia Medici.jpg",
+		"scientist_name": "Patricia Medici",
+		"profession": "Biologa della conservazione",
+		"brief_subtitle": "Protettrice dei tapiri sudamericani",
+		"year": "",
+		"nationality": "Brasiliana",
+		"description": "Biologa brasiliana fondatrice del Lowland Tapir Conservation Initiative. Il suo lavoro ha protetto habitat critici in Amazzonia, salvando il tapiro e preservando la biodiversità.",
+		"awards": "Premio Whitley per la Conservazione (2008)",
+		"quote": "Salvare i tapiri significa salvare i loro habitat...",
+		"links": ["<https://en.wikipedia.org/wiki/Patricia_Medici>"]
+	},
+	"Sm": {
+		"name": "Samario",
+		"number": 62,
+		"category": "Lantanide",
+		"group": 8,
+		"period": 9,
+		"image": "res://Images/Susan Murphy.jpg",
+		"scientist_name": "Susan Murphy",
+		"profession": "Statistica",
+		"brief_subtitle": "Innovatrice della medicina personalizzata",
+		"year": "1958 - ",
+		"nationality": "Americana",
+		"description": "Statistica americana, professoressa ad Harvard. Ha creato i SMART trials per ottimizzare terapie in tempo reale, rivoluzionando il trattamento di malattie croniche come diabete e depressione.",
+		"awards": "MacArthur Fellowship (2013), Medaglia Nazionale della Scienza (2021)",
+		"quote": "Amo la statistica e mi piace che permetta così tanta libertà.",
+		"links": ["<https://en.wikipedia.org/wiki/Susan_Murphy_(statistician)>"]
+	},
+	"Eu": {
+		"name": "Europio",
+		"number": 63,
+		"category": "Lantanide",
+		"group": 9,
+		"period": 9,
+		"image": "res://Images/Eugenie Clark.jpg",
+		"scientist_name": "Eugenie Clark",
+		"profession": "Biologa marina",
+		"brief_subtitle": "La Signora degli Squali",
+		"year": "1922 - 2015",
+		"nationality": "Americana",
+		"description": "Biologa marina americana, pioniera nello studio degli squali. Fondò il Mote Marine Laboratory e dimostrò l’intelligenza di questi predatori, sfatando miti e promuovendo la conservazione degli oceani. Scoprì nuove specie e scrisse libri per avvicinare il pubblico alla vita marina.",
+		"awards": "",
+		"quote": "Anche la più piccola creatura sulla Terra ha uno scopo. Non esiste una vita insignificante.",
+		"links": ["<https://en.wikipedia.org/wiki/Eugenie_Clark>"]
+	},
+
+	"Gd": {
+		"name": "Gadolinio",
+		"number": 64,
+		"category": "Lantanide",
+		"group": 10,
+		"period": 9,
+		"image": "res://Images/Gertrude Elion.jpg",
+		"scientist_name": "Gertrude Elion",
+		"profession": "Chimica e Farmacologa",
+		"brief_subtitle": "Nobel per i farmaci salva-vita",
+		"year": "1918 - 1999",
+		"nationality": "Americana",
+		"description": "Chimica americana vincitrice del Nobel per la Medicina (1988). Sviluppò farmaci rivoluzionari come l’azatioprina (per trapianti) e l’aciclovir (antivirale), utilizzando un approccio razionale che ha trasformato la farmacologia moderna.",
+		"awards": "Premio Nobel per la Medicina (1988)",
+		"quote": "Non aver paura del duro lavoro. Nulla di valido arriva facilmente.",
+		"links": ["<https://en.wikipedia.org/wiki/Gertrude_B._Elion>"]
+	},
+
+	"Tb": {
+		"name": "Terbio",
+		"number": 65,
+		"category": "Lantanide",
+		"group": 11,
+		"period": 9,
+		"image": "res://Images/Tatiana Birshtein.jpg",
+		"scientist_name": "Tatiana Birshtein",
+		"profession": "Scienziata dei polimeri",
+		"brief_subtitle": "Pioniera della fisica macromolecolare",
+		"year": "1928 - 2022",
+		"nationality": "Russa",
+		"description": "Scienziata russa specializzata nello studio di DNA, micelle e polimeri. Lavorò all’Istituto dei Composti Macromolecolari di San Pietroburgo, contribuendo a definire i principi strutturali delle macromolecole. Vincitrice del Premio L’Oréal-UNESCO (2007).",
+		"awards": "Premio L’Oréal-UNESCO per le Donne nella Scienza (2007)",
+		"quote": "La scienza dei polimeri è un filo invisibile che lega il mondo materiale alla comprensione profonda della natura.",
+		"links": ["<https://en.wikipedia.org/wiki/Tatiana_Birshtein>"]
+	},
+
+	"Dy": {
+		"name": "Disprosio",
+		"number": 66,
+		"category": "Lantanide",
+		"group": 12,
+		"period": 9,
+		"image": "res://Images/Dian Fossey.jpg",
+		"scientist_name": "Dian Fossey",
+		"profession": "Primatologa",
+		"brief_subtitle": "Protettrice dei gorilla di montagna",
+		"year": "1932 - 1985",
+		"nationality": "Americana",
+		"description": "Primatologa americana che dedicò la vita allo studio e alla protezione dei gorilla in Ruanda. Fondò il Karisoke Research Center (1967) e combatté il bracconaggio fino al suo assassinio nel 1985. Il suo lavoro ispirò il film *Gorilla nella nebbia*.",
+		"awards": "",
+		"quote": "Quando ti rendi conto del valore di tutta la vita, ti concentri sulla conservazione del futuro.",
+		"links": ["<https://en.wikipedia.org/wiki/Dian_Fossey>"]
+	},
+
+	"Ho": {
+		"name": "Olmio",
+		"number": 67,
+		"category": "Lantanide",
+		"group": 13,
+		"period": 9,
+		"image": "res://Images/Hope Jahren.jpg",
+		"scientist_name": "Hope Jahren",
+		"profession": "Geobiologa",
+		"brief_subtitle": "Voce della crisi climatica",
+		"year": "1969 - ",
+		"nationality": "Americana",
+		"description": "Geobiologa americana, autrice di *Lab Girl* (2016) e *The Story of More* (2020). Studia l’impatto umano sul clima attraverso l’analisi degli isotopi nelle piante, unendo ricerca scientifica e divulgazione accessibile.",
+		"awards": "",
+		"quote": "Lavorare in un laboratorio significa ogni giorno chiedere al mondo qualcosa che non ha mai chiesto prima...",
+		"links": ["<https://en.wikipedia.org/wiki/Hope_Jahren>"]
+	},
+	"Er": {
+		"name": "Erbio",
+		"number": 68,
+		"category": "Lantanide",
+		"group": 14,
+		"period": 9,
+		"image": "res://Images/Erika Cremer.jpg",
+		"scientist_name": "Erika Cremer",
+		"profession": "Chimica e Fisica",
+		"brief_subtitle": "Pioniera della cromatografia a gas",
+		"year": "1900 - 1996",
+		"nationality": "Tedesca",
+		"description": "Chimica fisica tedesca che sviluppò la cromatografia a gas nel 1944, tecnica rivoluzionaria per l'analisi chimica. Nonostante il suo lavoro sia stato inizialmente ignorato a causa del genere, è oggi riconosciuta come una delle figure chiave della chimica analitica del XX secolo. Professoressa all'Università di Innsbruck, dedicò la vita alla ricerca scientifica.",
+		"awards": "",
+		"quote": "La scienza avanza grazie alla perseveranza di chi osa esplorare l'invisibile.",
+		"links": ["<https://en.wikipedia.org/wiki/Erika_Cremer>"]
+	},
+
+	"Tm": {
+		"name": "Tulio",
+		"number": 69,
+		"category": "Lantanide",
+		"group": 15,
+		"period": 9,
+		"image": "res://Images/Margaret Todd.jpg",
+		"scientist_name": "Margaret Todd",
+		"profession": "Medico e Scrittrice",
+		"brief_subtitle": "Ideatrice del termine 'isotopo'",
+		"year": "1859 - 1918",
+		"nationality": "Scozzese",
+		"description": "Medica e scrittrice scozzese che coniò il termine *isotopo* nel 1913, suggerendolo a Frederick Soddy durante i suoi studi sulla radioattività. Autrice del romanzo *Mona Maclean, Medical Student* (1892), ispirato alla sua esperienza in medicina. Fu una figura poliedrica, impegnata anche per i diritti delle donne nella scienza.",
+		"awards": "",
+		"quote": "La scoperta della verità non è nelle mani di uno solo, ma nella collaborazione di molti.",
+		"links": ["<https://en.wikipedia.org/wiki/Margaret_Todd_(doctor)>"]
+	},
+
+	"Yb": {
+		"name": "Itterbio",
+		"number": 70,
+		"category": "Lantanide",
+		"group": 16,
+		"period": 9,
+		"image": "res://Images/Yvonne Choquet-Bruhat.jpg",
+		"scientist_name": "Yvonne Choquet-Bruhat",
+		"profession": "Matematica e Fisica",
+		"brief_subtitle": "Decifratrice delle equazioni di Einstein",
+		"year": "1923 - 2023",
+		"nationality": "Francese",
+		"description": "Matematica e fisica francese, prima donna eletta all'Académie des Sciences (1979). Risolse le equazioni di Einstein della relatività generale, dimostrando l'esistenza di soluzioni per lo spazio-tempo. Insegnò a Princeton e all'IHÉS, influenzando la cosmologia e la fisica matematica moderna.",
+		"awards": "Premio Dannie Heineman (2003), Grande Médaille de l'Académie des Sciences (2015)",
+		"quote": "Volevo comprendere le leggi fondamentali della fisica con rigore matematico.",
+		"links": ["<https://en.wikipedia.org/wiki/Yvonne_Choquet-Bruhat>"]
+	},
+
+	"Lu": {
+		"name": "Lutezio",
+		"number": 71,
+		"category": "Lantanide",
+		"group": 17,
+		"period": 9,
+		"image": "res://Images/Lynn Margulis.jpg",
+		"scientist_name": "Lynn Margulis",
+		"profession": "Biologa evoluzionista",
+		"brief_subtitle": "Teorica dell'endosimbiosi",
+		"year": "1938 - 2011",
+		"nationality": "Statunitense",
+		"description": "Biologa americana rivoluzionaria, propose la teoria endosimbiotica (1967), dimostrando che mitocondri e cloroplasti derivano da batteri antichi. Collaborò con James Lovelock sulla teoria di Gaia e sfidò il paradigma darwiniano, enfatizzando la cooperazione nell'evoluzione. Vincitrice del Premio Darwin-Wallace (1999).",
+		"awards": "Premio Darwin-Wallace (1999), National Medal of Science (1999)",
+		"quote": "L’essere umano si crede invincibile, invulnerabile. Niente di più lontano dalla realtà.",
+		"links": ["<https://en.wikipedia.org/wiki/Lynn_Margulis>"]
+	},
+
+	# Attinidi (periodo fittizio 10, gruppo 3-18)
+	"Ac": {
+		"name": "Attinio",
+		"number": 89,
+		"category": "Attinide",
+		"group": 3,
+		"period": 10,
+		"image": "res://Images/Alice Catherine Evans.jpg",
+		"scientist_name": "Alice Catherine Evans",
+		"profession": "Microbiologa",
+		"brief_subtitle": "Salvatrice del latte sicuro",
+		"year": "1881 - 1975",
+		"nationality": "Statunitense",
+		"description": "Microbiologa statunitense che identificò il Bacillus abortus come causa della brucellosi, portando alla pastorizzazione obbligatoria del latte. Prima donna a ottenere una borsa di studio in batteriologia all’Università del Wisconsin, rivoluzionò la sicurezza alimentare globale.",
+		"awards": "",
+		"quote": "La rotta che era aperta per la navigazione della mia nave era nel complesso gratificante. Il percorso a volte è stato difficile, ma c'erano tratti di navigazione libera.",
+		"links": ["<https://en.wikipedia.org/wiki/Alice_Catherine_Evans>"]
+	},
+	"Th": {
+		"name": "Torio",
+		"number": 90,
+		"category": "Attinide",
+		"group": 4,
+		"period": 10,
+		"image": "res://Images/Thelma Estrin.jpg",
+		"scientist_name": "Thelma Estrin",
+		"profession": "Informatica e Ingegnere biomedica",
+		"brief_subtitle": "Pioniera dell’informatica medica",
+		"year": "1924 - 2014",
+		"nationality": "Americana",
+		"description": "Informatica americana che integrò l’IA nell’assistenza sanitaria, sviluppando sistemi esperti per analisi mediche. Prima donna a dirigere il Dipartimento di Ingegneria Biomedica all’UCLA, promosse l’inclusione femminile nella tecnologia.",
+		"awards": "",
+		"quote": "Bisogna ampliare l'accesso delle donne alla tecnologia, rompendo la storia patriarcale della scienza.",
+		"links": ["<https://en.wikipedia.org/wiki/Thelma_Estrin>"]
+	},
+	"Pa": {
+		"name": "Protoattinio",
+		"number": 91,
+		"category": "Attinide",
+		"group": 5,
+		"period": 10,
+		"image": "res://Images/Patricia Cowings.jpg",
+		"scientist_name": "Patricia Cowings",
+		"profession": "Psicofisiologa aerospaziale",
+		"brief_subtitle": "Addestratrice di astronauti",
+		"year": "1948 - ",
+		"nationality": "Americana",
+		"description": "Psicofisiologa afroamericana pioniera alla NASA, sviluppò tecniche di biofeedback per contrastare il mal di spazio. Prima donna nera formata come astronauta, le sue ricerche migliorarono l’adattamento umano alle missioni spaziali.",
+		"awards": "",
+		"quote": "Se puoi imparare a controllare il tuo corpo, puoi adattarti a quasi tutto.",
+		"links": ["<https://en.wikipedia.org/wiki/Patricia_Cowings>"]
+	},
+	"U": {
+		"name": "Uranio",
+		"number": 92,
+		"category": "Attinide",
+		"group": 6,
+		"period": 10,
+		"image": "res://Images/Ursula Franklin.jpg",
+		"scientist_name": "Ursula Franklin",
+		"profession": "Fisica e Attivista",
+		"brief_subtitle": "Paladina della tecnologia etica",
+		"year": "1921 - 2016",
+		"nationality": "Canadese",
+		"description": "Fisica canadese di origine tedesca, pioniera nello studio degli impatti sociali della tecnologia. Denunciò i rischi delle armi nucleari e promosse un uso sostenibile dell’energia. Prima donna professoressa di ingegneria a Toronto.",
+		"awards": "Order of Canada (1981)",
+		"quote": "La pace non è l'assenza di guerra, la pace è l'assenza di paura.",
+		"links": ["<https://en.wikipedia.org/wiki/Ursula_Franklin>"]
+	},
+	"Np": {
+		"name": "Nettunio",
+		"number": 93,
+		"category": "Attinide",
+		"group": 7,
+		"period": 10,
+		"image": "res://Images/Nathalie Picqué.jpg",
+		"scientist_name": "Nathalie Picqué",
+		"profession": "Fisica quantistica",
+		"brief_subtitle": "Maestra della metrologia quantistica",
+		"year": "1973 - ",
+		"nationality": "Francese",
+		"description": "Fisica francese che rivoluzionò la precisione delle misurazioni con tecniche quantistiche. Direttrice al Max Planck Institute, il suo lavoro ha applicazioni in telecomunicazioni e energia pulita.",
+		"awards": "Premio Fresnel (2019)",
+		"quote": "La precisione nelle misurazioni è la chiave per comprendere l'universo.",
+		"links": ["<https://en.wikipedia.org/wiki/Nathalie_Picqu%C3%A9>"]
+	},
+	"Pu": {
+		"name": "Plutonio",
+		"number": 94,
+		"category": "Attinide",
+		"group": 8,
+		"period": 10,
+		"image": "res://Images/Purnima Sinha.jpg",
+		"scientist_name": "Purnima Sinha",
+		"profession": "Fisica ambientale",
+		"brief_subtitle": "Difensora della sostenibilità",
+		"year": "1927 - 2015",
+		"nationality": "Indiana",
+		"description": "Fisica indiana pioniera nello studio di materiali sostenibili e soluzioni per il cambiamento climatico. Ricercatrice al Tata Institute, unì scienza e attivismo per la tutela delle risorse naturali.",
+		"awards": "",
+		"quote": "La scienza deve creare un futuro sostenibile per le prossime generazioni.",
+		"links": ["<https://en.wikipedia.org/wiki/Purnima_Sinha>"]
+	},
+	"Am": {
+		"name": "Americio", 
+		"number": 95, 
+		"category": "Attinide", 
+		"group": 9, 
+		"period": 10,
+		"image": "res://Images/STEAM Women/Amalie_Emmy_Noether.jpg",
+		"scientist_name": "Amalie Emmy Noether", 
+		"profession": "Matematica", 
+		"brief_subtitle": "Pioniera dell'algebra astratta", 
+		"year": "1882 - 1935", 
+		"nationality": "Tedesca", 
+		"description": "Emmy Noether è stata una matematica tedesca nota per il suo contributo all'algebra astratta e alla fisica teorica. Il suo teorema ha rivoluzionato la comprensione delle simmetrie in fisica. Nonostante le difficoltà dovute alla discriminazione di genere, ha lasciato un'eredità fondamentale nella matematica e nella fisica.",
+		"awards": "Premio Ackermann-Teubner (1932)",
+		"quote": "La matematica non è solo un mezzo per risolvere problemi, ma un linguaggio attraverso cui possiamo comprendere la struttura profonda della realtà.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Emmy_Noether",
+			"https://mathshistory.st-andrews.ac.uk/Biographies/Noether/"
+			]
+	},
 	"Cm": {
 		"name": "Curio", 
 		"number": 96, 
@@ -1703,8 +2039,7 @@ var elements: Dictionary = {
 		"brief_subtitle": "Madre della radioattività", 
 		"year": "1867 - 1934", 
 		"nationality": "Polacca-Francese", 
-		"description": 
-			"Maria Skłodowska Curie è stata una scienziata rivoluzionaria, pioniera degli studi sulla radioattività. Prima persona a vincere due Premi Nobel in discipline scientifiche diverse, ha scoperto il radio e il polonio e ha contribuito allo sviluppo della medicina e della fisica nucleare.",
+		"description": "Maria Skłodowska Curie è stata una scienziata rivoluzionaria, pioniera degli studi sulla radioattività. Prima persona a vincere due Premi Nobel in discipline scientifiche diverse, ha scoperto il radio e il polonio e ha contribuito allo sviluppo della medicina e della fisica nucleare.",
 		"awards": "Premio Nobel per la Fisica (1903), Premio Nobel per la Chimica (1911)",
 		"quote": "Niente nella vita è da temere, è solo da comprendere. Ora è il momento di comprendere di più, affinché possiamo temere di meno.",
 		"links": [
@@ -1712,15 +2047,127 @@ var elements: Dictionary = {
 			"https://www.nobelprize.org/prizes/physics/1903/curie/biographical/"
 		]
 	},
+	"Bk": {
+		"name": "Berkelio",
+		"number": 97,
+		"category": "Attinide",
+		"group": 11,
+		"period": 10,
+		"image": "res://Images/Barbara McClintock.jpg",
+		"scientist_name": "Barbara McClintock",
+		"profession": "Biologa",
+		"brief_subtitle": "Scopritrice dei 'geni che saltano'",
+		"year": "1902 - 1992",
+		"nationality": "Statunitense",
+		"description": "Biologa statunitense premio Nobel per la Medicina (1983) per la scoperta dei trasposoni, segmenti di DNA mobili che rivoluzionarono la genetica. Il suo lavoro pionieristico, inizialmente osteggiato, dimostrò che il genoma non è statico ma dinamico.",
+		"awards": "Premio Nobel per la Medicina (1983)",
+		"quote": "Bisogna sempre credere alle nostre osservazioni, per quanto bizzarre possano essere. Forse stanno cercando di dirci qualcosa.",
+		"links": ["<https://en.wikipedia.org/wiki/Barbara_McClintock>"]
+	},
+	"Cf": {
+		"name": "Californio",
+		"number": 98,
+		"category": "Attinide",
+		"group": 12,
+		"period": 10,
+		"image": "res://Images/Chaterine Feuillet.jpg",
+		"scientist_name": "Catherine Feuillet",
+		"profession": "Genetista delle piante",
+		"brief_subtitle": "Mappatrice del genoma del grano",
+		"year": "1965 - ",
+		"nationality": "Francese",
+		"description": "Genetista francese che ha guidato il sequenziamento del genoma del frumento, aprendo la strada a colture resistenti ai cambiamenti climatici. Direttrice scientifica di aziende agrotech, il suo lavoro è cruciale per la sicurezza alimentare globale.",
+		"awards": "",
+		"quote": "La genetica è la chiave per nutrire il futuro.",
+		"links": ["<https://en.wikipedia.org/wiki/Catherine_Feuillet>"]
+	},
+	"Es": {
+		"name": "Einsteinio",
+		"number": 99,
+		"category": "Attinide",
+		"group": 13,
+		"period": 10,
+		"image": "res://Images/Esther Lederberg.jpg",
+		"scientist_name": "Esther Lederberg",
+		"profession": "Microbiologa e Genetista",
+		"brief_subtitle": "Pioniera della genetica batterica",
+		"year": "1922 - 2006",
+		"nationality": "Statunitense",
+		"description": "Microbiologa americana scopritrice del batteriofago lambda e inventrice del replica plating, tecnica per studiare mutazioni genetiche. Nonostante il marito Joshua Lederberg abbia vinto il Nobel, il suo contributo fu a lungo ignorato.",
+		"awards": "",
+		"quote": "La scienza avanza con piccoli passi, e ogni scoperta è un tassello fondamentale per comprendere il mondo che ci circonda.",
+		"links": ["<https://en.wikipedia.org/wiki/Esther_Lederberg>"]
+	},
+	"Fm": {
+		"name": "Fermio",
+		"number": 100,
+		"category": "Attinide",
+		"group": 14,
+		"period": 10,
+		"image": "res://Images/Fay Ajzenberg-Selove.jpg",
+		"scientist_name": "Fay Ajzenberg-Selove",
+		"profession": "Fisica Nucleare",
+		"brief_subtitle": "Esploratrice dei nuclei atomici",
+		"year": "1926 - 2012",
+		"nationality": "Statunitense",
+		"description": "Fisica nucleare statunitense che mappò le proprietà dei nuclei leggeri, contribuendo alla comprensione della fusione stellare e della nucleosintesi. Professoressa all’Università della Pennsylvania, sfidò le barriere di genere nella fisica teorica.",
+		"awards": "",
+		"quote": "La passione per la scienza ci spinge a scoprire l'invisibile e a comprendere l'universo.",
+		"links": ["<https://en.wikipedia.org/wiki/Fay_Ajzenberg-Selove>"]
+	},
+	"Md": {
+		"name": "Mendelevio",
+		"number": 101,
+		"category": "Attinide",
+		"group": 15,
+		"period": 10,
+		"image": "res://Images/Maud Menten.jpg",
+		"scientist_name": "Maud Menten",
+		"profession": "Biochimica",
+		"brief_subtitle": "Pioniera della cinetica enzimatica",
+		"year": "1879 - 1960",
+		"nationality": "Canadese",
+		"description": "Biochimica canadese che rivoluzionò lo studio degli enzimi sviluppando, con Leonor Michaelis, l'equazione di Michaelis-Menten. Questo modello descrive la velocità delle reazioni enzimatiche e rimane un pilastro della biochimica moderna. Contribuì anche alla comprensione del metabolismo cellulare, superando le barriere di genere nella scienza del XX secolo.",
+		"awards": "",
+		"quote": "La chimica è il ponte che collega la biologia alla fisica.",
+		"links": ["<https://en.wikipedia.org/wiki/Maud_Menten>"]
+	},
 
-		"Bk": {"name": "Berkelio", "number": 97, "category": "Attinide", "group": 11, "period": 10},
-		"Cf": {"name": "Californio", "number": 98, "category": "Attinide", "group": 12, "period": 10},
-		"Es": {"name": "Einsteinio", "number": 99, "category": "Attinide", "group": 13, "period": 10},
-		"Fm": {"name": "Fermio", "number": 100, "category": "Attinide", "group": 14, "period": 10},
-		"Md": {"name": "Mendelevio", "number": 101, "category": "Attinide", "group": 15, "period": 10},
-		"No": {"name": "Nobelio", "number": 102, "category": "Attinide", "group": 16, "period": 10},
-		"Lr": {"name": "Lawrencio", "number": 103, "category": "Attinide", "group": 17, "period": 10},
+	"No": {
+		"name": "Nobelio",
+		"number": 102,
+		"category": "Attinide",
+		"group": 16,
+		"period": 10,
+		"image": "res://Images/Noreen Murray.jpg",
+		"scientist_name": "Noreen Murray",
+		"profession": "Biochimica e Genetista Molecolare",
+		"brief_subtitle": "Architetta del DNA ricombinante",
+		"year": "1935 - 2011",
+		"nationality": "Inglese",
+		"description": "Biochimica britannica pioniera nell'ingegneria genetica. Sviluppò vettori di DNA ricombinante fondamentali per la terapia genica e la biotecnologia. Il suo lavoro ha permesso progressi nella produzione di farmaci biologici e nella ricerca biomedica.",
+		"awards": "",
+		"quote": "La scienza è una porta aperta verso l’innovazione, e ogni scoperta è un passo avanti per migliorare il mondo.",
+		"links": ["<https://en.wikipedia.org/wiki/Noreen_Murray>"]
+	},
+	"Lr": {
+		"name": "Laurenzio",
+		"number": 103,
+		"category": "Attinide",
+		"group": 17,
+		"period": 10,
+		"image": "res://Images/Mary Leakey.jpg",
+		"scientist_name": "Mary Leakey",
+		"profession": "Archeologa e Paleontologa",
+		"brief_subtitle": "Scopritrice delle impronte di Laetoli",
+		"year": "1913 - 1996",
+		"nationality": "Britannica",
+		"description": "Archeologa britannica che scoprì le impronte fossili di Laetoli (Tanzania, 1978), risalenti a 3,6 milioni di anni fa. Queste impronte dimostrarono che gli ominidi camminavano eretti molto prima del previsto, rivoluzionando la comprensione dell'evoluzione umana.",
+		"awards": "",
+		"quote": "Le ossa raccontano la storia dell’umanità, dobbiamo solo imparare ad ascoltarle.",
+		"links": ["<https://en.wikipedia.org/wiki/Mary_Leakey>"]
 	}
+}
 #Database colori degli elementi
 var category_colors = {
 	"Category": Color.TRANSPARENT, 
@@ -1823,8 +2270,12 @@ func create_periodic_table():
 				nm_lbl.text = str(element["name"])
 				nm_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				nm_lbl.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+				nm_lbl.add_theme_constant_override("line_spacing", -5)
 				nm_lbl.add_theme_font_override("font", load("res://Fonts/texgyreheroscn-bold.otf"))
 				nm_lbl.add_theme_font_size_override("font_size", 12)
+				if element["category"] == "Category":
+					lbl.add_theme_font_size_override("font_size", 4)
+					nm_lbl.add_theme_font_size_override("font_size", 10)
 				nm_lbl.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
 				nm_lbl.set_offset(SIDE_BOTTOM, 2) 
 				nm_lbl.z_index = 3
@@ -1867,14 +2318,12 @@ func create_periodic_table():
 				btn.mouse_exited.connect(func():
 					var tween = element_container.create_tween()
 					tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
-				
 				if elements_created == total_elements:
 					elements_animation(grid_container)
 
 func elements_animation(grid_container):
 	var speed: float = 0.3
 	var delay_map := {}
-
 	# Prepara una mappa: key = diagonale (riga + colonna), value = lista di elementi
 	for index in grid_container.get_child_count():
 		var element = grid_container.get_child(index)
@@ -1953,10 +2402,10 @@ func on_element_selected(symbol, button):
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
 
 func calculate_popup_position(button):
-	var offset = 10
+	var offset = 5
 	
 	popup_margin.reset_size()
-	
+	button.scale = Vector2(1.0, 1.0)
 	var popup_pos_x = button.global_position.x + button.size.x
 	print("popup_pos_x: ", popup_pos_x, " button.global_position.x: ", button.global_position.x, " button.size.x: ", button.size.x)
 	print("button_scale: ", button.scale)

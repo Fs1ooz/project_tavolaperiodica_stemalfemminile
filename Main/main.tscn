@@ -183,6 +183,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 1
 text = "\"Year\""
 autowrap_mode = 2
+visible_ratio = -0.166667
 
 [node name="PopupNationalityLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/UpperBodyPanelContainer/UpperBodyVBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
