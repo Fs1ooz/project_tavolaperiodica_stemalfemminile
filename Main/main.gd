@@ -24,6 +24,7 @@ var periods: int = 7+3
 var groups: int = 18
 var btn_size: int = 60
 var can_press: bool = true
+var animation_finished: bool = false
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
@@ -326,8 +327,6 @@ var elements: Dictionary = {
 	  "quote": "Quel cervello mio è qualcosa di più che meramente mortale, come il tempo dimostrerà.",
 	  "links": []
 	},
-
-
 	"Si": {
 	  "name": "Silicio",
 	  "number": 14,
@@ -415,42 +414,608 @@ var elements: Dictionary = {
 	},
 
 	# Periodo 4
-	"K":  {"name": "Potassio", "number": 19, "category": "Metallo alcalino", "group": 1, "period": 4},
-	"Ca": {"name": "Calcio", "number": 20, "category": "Metallo alcalino-terroso", "group": 2, "period": 4},
-	"Sc": {"name": "Scandio", "number": 21, "category": "Metallo di transizione", "group": 3, "period": 4},
-	"Ti": {"name": "Titanio", "number": 22, "category": "Metallo di transizione", "group": 4, "period": 4},
-	"V":  {"name": "Vanadio", "number": 23, "category": "Metallo di transizione", "group": 5, "period": 4},
-	"Cr": {"name": "Cromo", "number": 24, "category": "Metallo di transizione", "group": 6, "period": 4},
-	"Mn": {"name": "Manganese", "number": 25, "category": "Metallo di transizione", "group": 7, "period": 4},
-	"Fe": {"name": "Ferro", "number": 26, "category": "Metallo di transizione", "group": 8, "period": 4},
-	"Co": {"name": "Cobalto", "number": 27, "category": "Metallo di transizione", "group": 9, "period": 4},
-	"Ni": {"name": "Nichel", "number": 28, "category": "Metallo di transizione", "group": 10, "period": 4},
-	"Cu": {"name": "Rame", "number": 29, "category": "Metallo di transizione", "group": 11, "period": 4},
-	"Zn": {"name": "Zinco", "number": 30, "category": "Metallo di transizione", "group": 12, "period": 4},
-	"Ga": {"name": "Gallio", "number": 31, "category": "Metallo post-transizionale", "group": 13, "period": 4},
-	"Ge": {"name": "Germanio", "number": 32, "category": "Metalloide", "group": 14, "period": 4},
-	"As": {"name": "Arsenico", "number": 33, "category": "Metalloide", "group": 15, "period": 4},
-	"Se": {"name": "Selenio", "number": 34, "category": "Non metallo", "group": 16, "period": 4},
-	"Br": {"name": "Bromo", "number": 35, "category": "Alogeno", "group": 17, "period": 4},
-	"Kr": {"name": "Kripton", "number": 36, "category": "Gas nobile", "group": 18, "period": 4},
+	"K": {
+		"name": "Potassio",
+		"number": 19,
+		"category": "Metallo alcalino",
+		"group": 1,
+		"period": 4,
+		"image": "res://Images/Katherine Johnson.jpg",
+		"scientist_name": "Katherine Johnson",
+		"profession": "Matematica e scienziata",
+		"brief_subtitle": "Pioniera della scienza spaziale",
+		"year": "1918 - 2020",
+		"nationality": "Statunitense",
+		"description": "Matematica e scienziata statunitense fondamentale per il successo delle missioni NASA. Esperta nei calcoli di traiettorie, contribuì alle missioni Mercury, Apollo 11 e allo Space Shuttle. Il suo lavoro fu cruciale per il primo volo orbitale di John Glenn (1962). Superò discriminazioni razziali e di genere in un campo dominato dagli uomini. La sua storia ha ispirato il film *Il diritto di contare*.",
+		"awards": "Medaglia Presidenziale della Libertà (2015)",
+		"quote": "La matematica è la lingua con cui Dio ha scritto l’universo.",
+		"links": [
+			"<https://en.wikipedia.org/wiki/Katherine_Johnson>"
+		]
+	},
+	"Ca": {
+		"name": "Calcio",
+		"number": 20,
+		"category": "Metallo alcalino-terroso",
+		"group": 2,
+		"period": 4,
+		"image": "res://Images/Caroline Herschel.jpg",
+		"scientist_name": "Caroline Herschel",
+		"profession": "Astronoma",
+		"brief_subtitle": "Prima donna astronoma stipendiata",
+		"year": "1750 - 1848",
+		"nationality": "Tedesca-Britannica",
+		"description": "Astronoma tedesca-britannica, famosa per i suoi contributi significativi all'astronomia. Scoprì 8 comete e catalogò 2.500 nuove stelle. Collaborò con il fratello William Herschel, contribuendo alla preparazione delle osservazioni per il suo telescopio riflettore, uno degli strumenti più avanzati dell'epoca.",
+		"awards": "",
+		"quote": "La passione per la scienza è la sola che possa essere veramente senza fine.",
+		"links": [
+			"<https://en.wikipedia.org/wiki/Caroline_Herschel>"
+		]
+	},
+	"Sc": {
+		"name": "Scandio",
+		"number": 21,
+		"category": "Metallo di transizione",
+		"group": 3,
+		"period": 4,
+		"image": "res://Images/Caterina Scarpelli.jpg",
+		"scientist_name": "Caterina Scarpelli",
+		"profession": "Astronoma e meteorologa",
+		"brief_subtitle": "Pioniera della meteorologia italiana",
+		"year": "1808 - 1873",
+		"nationality": "Italiana",
+		"description": "Astronoma e meteorologa italiana. Collaborò con l'Osservatorio del Collegio Romano e scoprì una cometa nel 1854. Pioniera nella divulgazione scientifica e nelle osservazioni meteorologiche, contribuì alla nascita della meteorologia moderna in Italia. Ottenne una medaglia d'oro da Pio IX.",
+		"awards": "Medaglia d'oro da Pio IX",
+		"quote": "Dedicare la vita all’osservazione del cielo è comprendere i segreti dell’universo.",
+		"links": [
+			"<https://it.wikipedia.org/wiki/Caterina_Scarpelli>"
+		]
+	},
+	"Ti": {
+		"name": "Titanio",
+		"number": 22,
+		"category": "Metallo di transizione",
+		"group": 4,
+		"period": 4,
+		"image": "res://Images/Tina M. Henkin.jpg",
+		"scientist_name": "Tina M. Henkin",
+		"profession": "Microbiologa",
+		"brief_subtitle": "Esperta in regolazione genica batterica",
+		"year": "1956 - ",
+		"nationality": "Statunitense",
+		"description": "Microbiologa statunitense specializzata nella regolazione dell'espressione genica nei batteri. Ha scoperto nuovi meccanismi di regolazione tramite RNA (come i riboswitches), aprendo la strada a nuovi trattamenti antibiotici per infezioni batteriche.",
+		"awards": "",
+		"quote": "La scienza è come un codice da decifrare: ogni scoperta apre una nuova porta alla comprensione della vita.",
+		"links": [
+			"<https://en.wikipedia.org/wiki/Tina_M._Henkin>"
+		]
+	},
+	"V": {
+		"name": "Vanadio",
+		"number": 23,
+		"category": "Metallo di transizione",
+		"group": 5,
+		"period": 4,
+		"image": "res://Images/Virginia Apgar.jpg",
+		"scientist_name": "Virginia Apgar",
+		"profession": "Dottoressa e anestesiologa",
+		"brief_subtitle": "Pioniera della medicina neonatale",
+		"year": "1909 - 1974",
+		"nationality": "Statunitense",
+		"description": "Medica statunitense che rivoluzionò la neonatologia con il punteggio Apgar (1952), sistema standardizzato per valutare la salute dei neonati. Studiò gli effetti dell’anestesia su madri e bambini, migliorando la sicurezza del parto. Negli ultimi anni si dedicò alla prevenzione delle malformazioni congenite.",
+		"awards": "",
+		"quote": "Un buon medico è colui che non solo cura, ma anche comprende, educa e dà speranza.",
+		"links": ["<https://en.wikipedia.org/wiki/Virginia_Apgar>"]
+	},
+	"Cr": {
+		"name": "Cromo",
+		"number": 24,
+		"category": "Metallo di transizione",
+		"group": 6,
+		"period": 4,
+		"image": "res://Images/Cristina Alberini.jpg",
+		"scientist_name": "Cristina Alberini",
+		"profession": "Neuroscienziata",
+		"brief_subtitle": "Esperta nei meccanismi della memoria",
+		"year": "",
+		"nationality": "Italiana",
+		"description": "Neuroscienziata italiana specializzata nello studio della memoria. Professoressa alla Mount Sinai School of Medicine di New York, indaga i processi molecolari alla base dell’apprendimento e della codifica delle esperienze emotive nel cervello.",
+		"awards": "",
+		"quote": "La memoria non è un contenitore di informazioni, ma un processo dinamico che cambia nel tempo.",
+		"links": ["<https://en.wikipedia.org/wiki/Cristina_Alberini>"]
+	},
+	"Mn": {
+		"name": "Manganese",
+		"number": 25,
+		"category": "Metallo di transizione",
+		"group": 7,
+		"period": 4,
+		"image": "res://Images/Maria Montessori.jpg",
+		"scientist_name": "Maria Montessori",
+		"profession": "Educatrice e Medica",
+		"brief_subtitle": "Rivoluzionaria dell'educazione infantile",
+		"year": "1870 - 1952",
+		"nationality": "Italiana",
+		"description": "Medica e pedagogista italiana, prima donna a laurearsi in medicina in Italia. Sviluppò il metodo Montessori, basato su indipendenza e sviluppo naturale del bambino, adottato globalmente.",
+		"awards": "",
+		"quote": "Aiutami a fare da solo.",
+		"links": ["<https://en.wikipedia.org/wiki/Maria_Montessori>"]
+	},
+	"Fe": {
+		"name": "Ferro",
+		"number": 26,
+		"category": "Metallo di transizione",
+		"group": 8,
+		"period": 4,
+		"image": "res://Images/Felisa Wolfe-Simon.jpg",
+		"scientist_name": "Felisa Wolfe-Simon",
+		"profession": "Microbiologa",
+		"brief_subtitle": "Esploratrice della chimica della vita",
+		"year": "",
+		"nationality": "Statunitense",
+		"description": "Microbiologa nota per la scoperta (2010) di batteri che sostituiscono il fosforo con l’arsenico. La sua ricerca suggerisce possibilità di vita in ambienti estremi con biochimiche alternative.",
+		"awards": "",
+		"quote": "",
+		"links": ["<https://en.wikipedia.org/wiki/Felisa_Wolfe-Simon>"]
+	},
+	"Co": {
+		"name": "Cobalto",
+		"number": 27,
+		"category": "Metallo di transizione",
+		"group": 9,
+		"period": 4,
+		"image": "res://Images/Odile Speed.jpg",
+		"scientist_name": "Odile Speed",
+		"profession": "Artista",
+		"brief_subtitle": "Ritrattista della doppia elica",
+		"year": "1920 - 2007",
+		"nationality": "Britannica",
+		"description": "Artista britannica che realizzò i disegni della struttura del DNA per l’articolo di Crick e Watson su Nature (1953). Contribuì a rendere iconica la doppia elica nel panorama scientifico.",
+		"awards": "",
+		"quote": "L'arte e la scienza si intrecciano come i filamenti del DNA, rivelando la bellezza intrinseca della vita.",
+		"links": ["<https://en.wikipedia.org/wiki/Odile_Crick>"]
+	},
+	"Ni": {
+		"name": "Nichel",
+		"number": 28,
+		"category": "Metallo di transizione",
+		"group": 10,
+		"period": 4,
+		"image": "res://Images/Florence Nightingale.jpg",
+		"scientist_name": "Florence Nightingale",
+		"profession": "Infermiera",
+		"brief_subtitle": "Fondatrice dell'infermieristica moderna",
+		"year": "1820 - 1910",
+		"nationality": "Britannica",
+		"description": "Infermiera inglese che rivoluzionò l’assistenza sanitaria durante la guerra di Crimea. Introdusse l’uso della statistica per dimostrare l’efficacia dell’igiene nella riduzione della mortalità.",
+		"awards": "",
+		"quote": "La professione infermieristica è l’arte di servire e aiutare l’umanità, ed è più di un semplice compito, è una vocazione.",
+		"links": ["<https://en.wikipedia.org/wiki/Florence_Nightingale>"]
+	},
+	"Cu": {
+		"name": "Rame",
+		"number": 29,
+		"category": "Metallo di transizione",
+		"group": 11,
+		"period": 4,
+		"image": "res://Images/Colette Guillaum.jpg",
+		"scientist_name": "Colette Guillaumin",
+		"profession": "Sociologa",
+		"brief_subtitle": "Teorica delle disuguaglianze sociali",
+		"year": "1934 - 2017",
+		"nationality": "Francese",
+		"description": "Sociologa francese pioniera negli studi su genere e razza. Analizzò i meccanismi strutturali delle disuguaglianze, contribuendo alla sociologia critica del lavoro e dei ruoli sociali.",
+		"awards": "",
+		"quote": "Le disuguaglianze non sono il frutto di differenze naturali, ma di una costruzione sociale.",
+		"links": ["<https://en.wikipedia.org/wiki/Colette_Guillaumin>"]
+	},
+	"Zn": {
+		"name": "Zinco",
+		"number": 30,
+		"category": "Metallo post-transizionale",
+		"group": 12,
+		"period": 4,
+		"image": "res://Images/Zhenan Bao.jpg",
+		"scientist_name": "Zhenan Bao",
+		"profession": "Scienziata e ingegnera",
+		"brief_subtitle": "Pioniera della pelle elettronica",
+		"year": "1970 - ",
+		"nationality": "Cinese",
+		"description": "Ingegnera chimica cinese, professoressa a Stanford. Sviluppa materiali elettronici flessibili che imitano la pelle umana, con applicazioni in sensori e tecnologie mediche.",
+		"awards": "",
+		"quote": "L’innovazione è la capacità di vedere le opportunità nei problemi e di trasformarli in soluzioni che possano migliorare la vita quotidiana.",
+		"links": ["<https://en.wikipedia.org/wiki/Zhenan_Bao>"]
+	},
+	"Ga": {
+		"name": "Gallio",
+		"number": 31,
+		"category": "Metallo post-transizionale",
+		"group": 13,
+		"period": 4,
+		"image": "res://Images/Jane Goodall.jpg",
+		"scientist_name": "Jane Goodall",
+		"profession": "Etologa e antropologa",
+		"brief_subtitle": "Voce degli scimpanzé",
+		"year": "1934 - ",
+		"nationality": "Britannica",
+		"description": "Etologa britannica rivoluzionaria: dimostrò l’uso di strumenti e la caccia organizzata negli scimpanzé. Attivista per la conservazione della natura e il benessere animale.",
+		"awards": "",
+		"quote": "Ciò che fai fa la differenza, e devi decidere che tipo di differenza vuoi fare.",
+		"links": ["<https://en.wikipedia.org/wiki/Jane_Goodall>"]
+	},
+	"Ge": {
+		"name": "Germanio",
+		"number": 32,
+		"category": "Metalloide",
+		"group": 14,
+		"period": 4,
+		"image": "res://Images/Gerty Cori.jpg",
+		"scientist_name": "Gerty Cori",
+		"profession": "Biochimica",
+		"brief_subtitle": "Nobel per il metabolismo del glucosio",
+		"year": "1896 - 1957",
+		"nationality": "Ceco-americana",
+		"description": "Prima donna a vincere il Nobel per la medicina (1947). Scoprì con il marito Carl il ciclo di Cori, fondamentale per la comprensione del metabolismo energetico.",
+		"awards": "Premio Nobel per la Fisiologia o Medicina (1947)",
+		"quote": "I momenti indimenticabili sono le pietre miliari della conoscenza.",
+		"links": ["<https://en.wikipedia.org/wiki/Gerty_Cori>"]
+	},
+	"As": {
+		"name": "Arsenico",
+		"number": 33,
+		"category": "Metalloide",
+		"group": 15,
+		"period": 4,
+		"image": "res://Images/Asima Chatterjee.jpg",
+		"scientist_name": "Asima Chatterjee",
+		"profession": "Chimica",
+		"brief_subtitle": "Pioniera dei farmaci antitumorali",
+		"year": "1917 - 2006",
+		"nationality": "Indiana",
+		"description": "Chimica indiana pioniera: studiò alcaloidi della vinca per sviluppare farmaci contro cancro ed epilessia. Prima donna indiana a ottenere un dottorato in scienze.",
+		"awards": "",
+		"quote": "Desidero dedicare la mia vita, per quanto possibile, alla causa dell'umanità sofferente.",
+		"links": ["<https://en.wikipedia.org/wiki/Asima_Chatterjee>"]
+	},
+	"Se": {
+		"name": "Selenio",
+		"number": 34,
+		"category": "Non metallo",
+		"group": 16,
+		"period": 4,
+		"image": "res://Images/Florence Seibert.jpg",
+		"scientist_name": "Florence Seibert",
+		"profession": "Biochimica",
+		"brief_subtitle": "Combattente contro la tubercolosi",
+		"year": "1897 - 1991",
+		"nationality": "Statunitense",
+		"description": "Biochimica statunitense che sviluppò il test PPD per diagnosticare la tubercolosi. Migliorò la sterilizzazione delle soluzioni endovenose, rendendo le trasfusioni più sicure.",
+		"awards": "National Women’s Hall of Fame (1990)",
+		"quote": "Sono sempre stata felice in laboratorio e mi sono sentita più a casa lì.",
+		"links": ["<https://en.wikipedia.org/wiki/Florence_Seibert>"]
+	},
+	"Br": {
+		"name": "Bromo",
+		"number": 35,
+		"category": "Alogeno",
+		"group": 17,
+		"period": 4,
+		"image": "res://Images/Brigitte Kieffer.jpg",
+		"scientist_name": "Brigitte Kieffer",
+		"profession": "Neuroscienziata",
+		"brief_subtitle": "Scopritrice del recettore μ-oppioide",
+		"year": "1955 - ",
+		"nationality": "Francese",
+		"description": "Neuroscienziata francese che identificò il recettore della morfina (μ-oppioide). La sua ricerca ha trasformato lo studio del dolore, della dipendenza e delle emozioni.",
+		"awards": "",
+		"quote": "Comprendere la chimica del cervello apre la porta a nuovi trattamenti per la salute mentale.",
+		"links": ["<https://en.wikipedia.org/wiki/Brigitte_Kieffer>"]
+	},
+
+	"Kr": {
+		"name": "Kripton",
+		"number": 36,
+		"category": "Gas nobile",
+		"group": 18,
+		"period": 4,
+		"image": "res://Images/Kristina M. Johnson.jpg",
+		"scientist_name": "Kristina M. Johnson",
+		"profession": "Ingegnera",
+		"brief_subtitle": "Innovatrice in ottica ed energia",
+		"year": "1957 - ",
+		"nationality": "Statunitense",
+		"description": "Ingegnera statunitense specializzata in fotonica ed energie rinnovabili. Ex rettore della Ohio State University e Segretaria dell’Energia USA. Co-fondatrice di aziende green-tech.",
+		"awards": "",
+		"quote": "L’innovazione consiste nel vedere il mondo in modo diverso e fare la differenza.",
+		"links": ["<https://en.wikipedia.org/wiki/Kristina_M._Johnson>"]
+	},
 
 	# Periodo 5
-	"Rb": {"name": "Rubidio", "number": 37, "category": "Metallo alcalino", "group": 1, "period": 5},
-	"Sr": {"name": "Stronzio", "number": 38, "category": "Metallo alcalino-terroso", "group": 2, "period": 5},
-	"Y":  {"name": "Ittrio", "number": 39, "category": "Metallo di transizione", "group": 3, "period": 5},
-	"Zr": {"name": "Zirconio", "number": 40, "category": "Metallo di transizione", "group": 4, "period": 5},
-	"Nb": {"name": "Niobio", "number": 41, "category": "Metallo di transizione", "group": 5, "period": 5},
-	"Mo": {"name": "Molibdeno", "number": 42, "category": "Metallo di transizione", "group": 6, "period": 5},
-	"Tc": {"name": "Tecnezio", "number": 43, "category": "Metallo di transizione", "group": 7, "period": 5},
-	"Ru": {"name": "Rutenio", "number": 44, "category": "Metallo di transizione", "group": 8, "period": 5},
-	"Rh": {"name": "Rodio", "number": 45, "category": "Metallo di transizione", "group": 9, "period": 5},
-	"Pd": {"name": "Palladio", "number": 46, "category": "Metallo di transizione", "group": 10, "period": 5},
-	"Ag": {"name": "Argento", "number": 47, "category": "Metallo di transizione", "group": 11, "period": 5},
-	"Cd": {"name": "Cadmio", "number": 48, "category": "Metallo di transizione", "group": 12, "period": 5},
-	"In": {"name": "Indio", "number": 49, "category": "Metallo post-transizionale", "group": 13, "period": 5},
-	"Sn": {"name": "Stagno", "number": 50, "category": "Metallo post-transizionale", "group": 14, "period": 5},
-	"Sb": {"name": "Antimonio", "number": 51, "category": "Metalloide", "group": 15, "period": 5},
-	"Te": {"name": "Tellurio", "number": 52, "category": "Metalloide", "group": 16, "period": 5},
+	"Rb": {
+		"name": "Rubidio",
+		"number": 37,
+		"category": "Metallo alcalino",
+		"group": 1,
+		"period": 5,
+		"image": "res://Images/Ruby Payne-Scott.jpg",
+		"scientist_name": "Ruby Payne-Scott",
+		"profession": "Fisica",
+		"brief_subtitle": "Pioniera della radioastronomia solare",
+		"year": "1912 - 1981",
+		"nationality": "Australiana",
+		"description": "Fisica e radioastronoma australiana, tra le prime a utilizzare le onde radio per studiare il Sole. Contribuì alla scoperta delle tempeste solari radio e sviluppò tecniche fondamentali per l'interferometria radioastronomica. La sua carriera fu interrotta a causa delle restrizioni contro le donne sposate nel servizio pubblico, ma il suo lavoro gettò le basi per la moderna radioastronomia.",
+		"awards": "",
+		"quote": "La scoperta scientifica è un viaggio, non una destinazione.",
+		"links": ["<https://en.wikipedia.org/wiki/Ruby_Payne-Scott>"]
+	},
+
+	"Sr": {
+		"name": "Stronzio",
+		"number": 38,
+		"category": "Metallo alcalino-terroso",
+		"group": 2,
+		"period": 5,
+		"image": "res://Images/Sophie Taeuber-Arp.jpg",
+		"scientist_name": "Sophie Taeuber-Arp",
+		"profession": "Pittrice e designer",
+		"brief_subtitle": "Icona del movimento Dada",
+		"year": "1889 - 1943",
+		"nationality": "Svizzera",
+		"description": "Artista poliedrica svizzera, figura centrale del movimento Dada. Sperimentò l'arte astratta attraverso pittura, scultura, tessuti e design, con un approccio geometrico innovativo. Il suo lavoro influenzò profondamente l'evoluzione dell'arte astratta del XX secolo, sfidando le convenzioni artistiche dell'epoca.",
+		"awards": "",
+		"quote": "L'arte non è qualcosa che fai, è qualcosa che vivi.",
+		"links": ["<https://en.wikipedia.org/wiki/Sophie_Taeuber-Arp>"]
+	},
+
+	"Y": {
+		"name": "Ittrio",
+		"number": 39,
+		"category": "Metallo di transizione",
+		"group": 3,
+		"period": 5,
+		"image": "res://Images/Ada Yonath.jpg",
+		"scientist_name": "Ada Yonath",
+		"profession": "Chimica e cristallografa",
+		"brief_subtitle": "Decifratrice dei ribosomi",
+		"year": "1939 - ",
+		"nationality": "Israeliana",
+		"description": "Cristallografa israeliana premio Nobel per la Chimica nel 2009 per aver svelato la struttura dei ribosomi mediante cristallografia a raggi X. Le sue scoperte hanno rivoluzionato la comprensione della sintesi proteica e sono alla base dello sviluppo di nuovi antibiotici. Prima donna israeliana a vincere un Nobel scientifico.",
+		"awards": "Premio Nobel per la Chimica (2009)",
+		"quote": "Non ho mai pensato al genere o alla fama, amo semplicemente la scienza.",
+		"links": ["<https://en.wikipedia.org/wiki/Ada_Yonath>"]
+	},
+
+	"Zr": {
+		"name": "Zirconio",
+		"number": 40,
+		"category": "Metallo di transizione",
+		"group": 4,
+		"period": 5,
+		"image": "res://Images/Maria Zuber.jpg",
+		"scientist_name": "Maria Zuber",
+		"profession": "Scienziata planetaria",
+		"brief_subtitle": "Esploratrice di Marte",
+		"year": "1959 - ",
+		"nationality": "Statunitense",
+		"description": "Scienziata planetaria statunitense, prima donna a dirigere il dipartimento di scienze planetarie al MIT. Ha mappato la topografia e la struttura interna di Marte attraverso missioni come il Mars Global Surveyor. Il suo lavoro è fondamentale per la comprensione dell'evoluzione geologica del sistema solare.",
+		"awards": "",
+		"quote": "La scienza non riguarda il dimostrare di avere ragione, ma nel fare le domande giuste.",
+		"links": ["<https://en.wikipedia.org/wiki/Maria_T._Zuber>"]
+	},
+	"Nb": {
+		"name": "Niobio",
+		"number": 41,
+		"category": "Metallo di transizione",
+		"group": 5,
+		"period": 5,
+		"image": "res://Images/Nina Byers.jpg",
+		"scientist_name": "Nina Byers",
+		"profession": "Fisica teorica",
+		"brief_subtitle": "Pioniera delle simmetrie nella fisica fondamentale",
+		"year": "1930 - 2014",
+		"nationality": "Americana",
+		"description": "Fisica teorica americana che ha contribuito allo studio delle interazioni elettrodeboli e della fisica delle particelle. Il suo lavoro sulle simmetrie ha influenzato la comprensione della fisica fondamentale. Attivista per la documentazione storica del ruolo delle donne nella scienza, ha dedicato parte della sua carriera a valorizzare il loro contributo spesso dimenticato.",
+		"awards": "",
+		"quote": "Molte donne hanno contribuito in modo sostanziale alla scienza, anche se la loro storia è stata spesso trascurata.",
+		"links": ["<https://en.wikipedia.org/wiki/Nina_Byers>"]
+	},
+
+	"Mo": {
+		"name": "Molibdeno",
+		"number": 42,
+		"category": "Metallo di transizione",
+		"group": 6,
+		"period": 5,
+		"image": "res://Images/Rita Levi-Montalcini.jpg",
+		"scientist_name": "Rita Levi-Montalcini",
+		"profession": "Neurologa",
+		"brief_subtitle": "Scopritrice del fattore di crescita nervoso (NGF)",
+		"year": "1909 - 2012",
+		"nationality": "Italiana",
+		"description": "Neuroscienziata italiana Premio Nobel per la Medicina nel 1986 per la scoperta del NGF, proteina cruciale per lo sviluppo e la sopravvivenza dei neuroni. La sua ricerca ha aperto nuove strade nello studio delle malattie neurodegenerative. Senatrice a vita, ha lottato per i diritti delle donne nella scienza e per la libertà accademica durante il fascismo.",
+		"awards": "Premio Nobel per la Medicina (1986)",
+		"quote": "Meglio aggiungere vita ai giorni, che non giorni alla vita.",
+		"links": ["<https://en.wikipedia.org/wiki/Rita_Levi-Montalcini>"]
+	},
+
+	"Tc": {
+		"name": "Tecnezio",
+		"number": 43,
+		"category": "Metallo di transizione",
+		"group": 7,
+		"period": 5,
+		"image": "res://Images/Tatyana Chernigovskaya.jpg",
+		"scientist_name": "Tatyana Chernigovskaya",
+		"profession": "Neuroscienziata e linguista",
+		"brief_subtitle": "Esploratrice del cervello e del linguaggio",
+		"year": "1950 - ",
+		"nationality": "Russa",
+		"description": "Neuroscienziata e linguista russa specializzata nello studio della neurobiologia della coscienza e dell’elaborazione del linguaggio nel cervello. Il suo lavoro interdisciplinare unisce neuroscienze cognitive, intelligenza artificiale e filosofia della mente, esplorando come il cervello genera pensiero, creatività e percezione del mondo.",
+		"awards": "",
+		"quote": "Non siamo noi a pensare con il cervello, è il cervello che pensa con noi.",
+		"links": ["<https://en.wikipedia.org/wiki/Tatiana_Chernigovskaya>"]
+	},
+
+	"Ru": {
+		"name": "Rutenio",
+		"number": 44,
+		"category": "Metallo di transizione",
+		"group": 8,
+		"period": 5,
+		"image": "res://Images/Vera Rubin.jpg",
+		"scientist_name": "Vera Rubin",
+		"profession": "Astronoma",
+		"brief_subtitle": "Rivelatrice della materia oscura",
+		"year": "1928 - 2016",
+		"nationality": "Americana",
+		"description": "Astronoma americana che ha rivoluzionato l’astrofisica dimostrando l’esistenza della materia oscura attraverso lo studio delle curve di rotazione delle galassie. Le sue osservazioni hanno rivelato che la maggior parte della massa dell’universo è invisibile, ridefinendo i modelli cosmologici. Icona femminile in un campo dominato dagli uomini, ha aperto la strada alle scienziate del XX secolo.",
+		"awards": "",
+		"quote": "La scienza non ha genere. C’è solo la scienza che deve essere fatta, e ci sono persone che la fanno.",
+		"links": ["<https://en.wikipedia.org/wiki/Vera_Rubin>"]
+	},
+
+	"Rh": {
+		"name": "Rodio",
+		"number": 45,
+		"category": "Metallo di transizione",
+		"group": 9,
+		"period": 5,
+		"image": "res://Images/Rashika El Ridi.jpg",
+		"scientist_name": "Rashika El Ridi",
+		"profession": "Immunologa",
+		"brief_subtitle": "Combattente contro le malattie parassitarie",
+		"year": "",
+		"nationality": "Egiziana",
+		"description": "Immunologa egiziana pioniera nella ricerca sulla schistosomiasi, malattia parassitaria tropicale. Professoressa all’Università del Cairo, ha dedicato la sua carriera allo sviluppo di un vaccino e alla comprensione della biochimica dei parassiti. Il suo lavoro ha avuto un impatto globale nella lotta contro le malattie trascurate dei Paesi in via di sviluppo.",
+		"awards": "Numerosi riconoscimenti accademici per la ricerca sulle malattie parassitarie",
+		"quote": "La scienza è la chiave per risolvere i problemi che minacciano la salute umana, e dedicare la mia vita alla ricerca è il modo migliore per fare la differenza.",
+		"links": ["<https://en.wikipedia.org/wiki/Rashika_El_Ridi>"]
+	},
+	"Pd": {
+		"name": "Palladio",
+		"number": 46,
+		"category": "Metallo di transizione",
+		"group": 10,
+		"period": 5,
+		"image": "res://Images/Patricia Goldman-Rakic.jpg",
+		"scientist_name": "Patricia S. Goldman-Rakic",
+		"profession": "Neuroscienziata",
+		"brief_subtitle": "Pioniera della memoria di lavoro",
+		"year": "1937 - 2003",
+		"nationality": "Americana",
+		"description": "Neuroscienziata americana che rivoluzionò lo studio della corteccia prefrontale e della memoria di lavoro. I suoi studi hanno gettato le basi per terapie contro l'Alzheimer, la schizofrenia e l'ADHD. Integrò neuroscienze cognitive e neurobiologia, ridefinendo la comprensione delle funzioni cerebrali superiori.",
+		"awards": "",
+		"quote": "Capire la mente significa capire la nostra essenza più profonda.",
+		"links": ["<https://en.wikipedia.org/wiki/Patricia_Goldman-Rakic>"]
+	},
+
+	"Ag": {
+		"name": "Argento",
+		"number": 47,
+		"category": "Metallo di transizione",
+		"group": 11,
+		"period": 5,
+		"image": "res://Images/Agnes Pockels.jpg",
+		"scientist_name": "Agnes Pockels",
+		"profession": "Chimica",
+		"brief_subtitle": "Innovatrice della chimica delle superfici",
+		"year": "1862 - 1935",
+		"nationality": "Tedesca",
+		"description": "Chimica tedesca autodidatta che sviluppò tecniche pionieristiche per studiare la tensione superficiale dei liquidi, nonostante la mancanza di un'istruzione formale. I suoi esperimenti domestici influenzarono la ricerca in chimica colloidale e ispirarono futuri scienziati come Irving Langmuir.",
+		"awards": "",
+		"quote": "Non bisogna essere in un laboratorio per fare scienza, basta la passione per la scoperta.",
+		"links": ["<https://en.wikipedia.org/wiki/Agnes_Pockels>"]
+	},
+
+	"Cd": {
+		"name": "Cadmio",
+		"number": 48,
+		"category": "Metallo post-transizionale",
+		"group": 12,
+		"period": 5,
+		"image": "res://Images/Candace Pert.jpg",
+		"scientist_name": "Candace Pert",
+		"profession": "Neuroscienziata e Farmacologa",
+		"brief_subtitle": "Scopritrice dei recettori degli oppioidi",
+		"year": "1946 - 2013",
+		"nationality": "Americana",
+		"description": "Farmacologa americana che scoprì i recettori degli oppioidi nel cervello, rivoluzionando la comprensione del dolore e delle emozioni. Il suo lavoro ha ispirato lo sviluppo di farmaci per disturbi neurologici e ha esplorato il legame tra neurochimica e medicina mente-corpo.",
+		"awards": "",
+		"quote": "Le emozioni parlano al nostro corpo attraverso la biochimica.",
+		"links": ["<https://en.wikipedia.org/wiki/Candace_Pert>"]
+	},
+
+	"In": {
+		"name": "Indio",
+		"number": 49,
+		"category": "Metallo post-transizionale",
+		"group": 13,
+		"period": 5,
+		"image": "res://Images/Indira Nath.jpg",
+		"scientist_name": "Indira Nath",
+		"profession": "Immunologa",
+		"brief_subtitle": "Combattente contro la lebbra",
+		"year": "1938 - 2021",
+		"nationality": "Indiana",
+		"description": "Immunologa indiana pioniera nella ricerca sulla lebbra. I suoi studi sulla risposta immunitaria hanno migliorato i trattamenti per questa malattia, riducendo lo stigma sociale. È stata un faro per la scienza nei Paesi in via di sviluppo.",
+		"awards": "Numerosi premi per la ricerca sulle malattie infettive",
+		"quote": "La scienza non riguarda solo la conoscenza, ma il miglioramento della vita umana.",
+		"links": ["<https://en.wikipedia.org/wiki/Indira_Nath>"]
+	},
+
+	"Sn": {
+		"name": "Stagno",
+		"number": 50,
+		"category": "Metallo post-transizionale",
+		"group": 14,
+		"period": 5,
+		"image": "res://Images/Sara Negri.jpg",
+		"scientist_name": "Sara Negri",
+		"profession": "Matematica e Logica",
+		"brief_subtitle": "Esperta in logica costruttiva",
+		"year": "1970 - ",
+		"nationality": "Italiana",
+		"description": "Matematica italiana specializzata in logica costruttiva e sistemi deduttivi. I suoi lavori hanno applicazioni nell'informatica teorica e nell'intelligenza artificiale, ponendo ponti tra filosofia della logica e tecnologia avanzata.",
+		"awards": "",
+		"quote": "La logica è il ponte tra il pensiero e la conoscenza.",
+		"links": ["<https://en.wikipedia.org/wiki/Sara_Negri>"]
+	},
+
+	"Sb": {
+		"name": "Antimonio",
+		"number": 51,
+		"category": "Metalloide",
+		"group": 15,
+		"period": 5,
+		"image": "res://Images/Sara Borrel Ruiz.jpg",
+		"scientist_name": "Sara Borrel Ruiz",
+		"profession": "Farmacista e Biochimica",
+		"brief_subtitle": "Pioniera degli ormoni steroidei",
+		"year": "1917 - 1999",
+		"nationality": "Spagnola",
+		"description": "Biochimica spagnola che introdusse tecniche avanzate per l'analisi degli ormoni steroidei. Direttrice della Sezione Steroidi all'Istituto Gregorio Marañón e membro fondatore della SEBBM, ha contribuito alla crescita della biochimica in Spagna.",
+		"awards": "",
+		"quote": "La scienza non è solo una raccolta di conoscenze, ma un modo di pensare, di esplorare, e di cercare risposte per migliorare la nostra comprensione del mondo.",
+		"links": ["<https://es.wikipedia.org/wiki/Sara_Borrel_Ruiz>"]
+	},
+
+	"Te": {
+		"name": "Tellurio",
+		"number": 52,
+		"category": "Metalloide",
+		"group": 16,
+		"period": 5,
+		"image": "res://Images/Valentina Tereshkova.jpg",
+		"scientist_name": "Valentina Tereshkova",
+		"profession": "Cosmonauta e Politica",
+		"brief_subtitle": "Prima donna nello spazio",
+		"year": "1937 - ",
+		"nationality": "Russa",
+		"description": "Cosmonauta sovietica che nel 1963 completò 48 orbite terrestri a bordo della Vostok 6, diventando la prima donna nello spazio. Dopo il volo, ricoprì ruoli politici nel Partito Comunista e nel Parlamento russo, promuovendo il ruolo delle donne nella scienza.",
+		"awards": "Eroe dell'Unione Sovietica",
+		"quote": "Un uccello non può volare con una sola ala. Il volo spaziale umano non può progredire ulteriormente senza la partecipazione attiva delle donne.",
+		"links": ["<https://en.wikipedia.org/wiki/Valentina_Tereshkova>"]
+	},
 	"I": {
 		"name": "Iodio", 
 		"number": 53, 
@@ -471,11 +1036,59 @@ var elements: Dictionary = {
 			"https://www.britannica.com/biography/Hypatia"
 	]
 	},
-	"Xe": {"name": "Xeno", "number": 54, "category": "Gas nobile", "group": 18, "period": 5},
+	"Xe": {
+		"name": "Xenon",
+		"number": 54,
+		"category": "Gas nobile",
+		"group": 18,
+		"period": 5,
+		"image": "res://Images/Xiaowei Zhuang.jpg",
+		"scientist_name": "Xiaowei Zhuang",
+		"profession": "Biofisica",
+		"brief_subtitle": "Pioniera della microscopia super-risoluzione",
+		"year": "1972 - ",
+		"nationality": "Cinese-Americana",
+		"description": "Biofisica e nanotecnologa cinese-americana che ha rivoluzionato la biologia cellulare con lo sviluppo della microscopia STORM, superando il limite di diffrazione della luce. La sua tecnica permette di osservare strutture cellulari a livello nanometrico, rivelando dettagli molecolari prima invisibili. I suoi studi includono anche le interazioni biomolecolari e l’analisi del cervello.",
+		"awards": "",
+		"quote": "La scienza è un'opportunità per esplorare e scoprire i misteri più profondi della vita, e ogni piccolo progresso ci porta più vicino alla comprensione dei fenomeni che ci circondano.",
+		"links": ["<https://en.wikipedia.org/wiki/Xiaowei_Zhuang>"]
+	},
 
-	# Periodo 6
-	"Cs": {"name": "Cesio", "number": 55, "category": "Metallo alcalino", "group": 1, "period": 6},
-	"Ba": {"name": "Bario", "number": 56, "category": "Metallo alcalino-terroso", "group": 2, "period": 6},
+	"Cs": {
+		"name": "Cesio",
+		"number": 55,
+		"category": "Metallo alcalino",
+		"group": 1,
+		"period": 6,
+		"image": "res://Images/Samantha Cristoforetti.jpg",
+		"scientist_name": "Samantha Cristoforetti",
+		"profession": "Astronauta e Ingegnere",
+		"brief_subtitle": "Prima italiana nello spazio",
+		"year": "1977 - ",
+		"nationality": "Italiana",
+		"description": "Astronauta italiana dell’ESA e pilota militare, prima donna europea a stabilire il record di permanenza nello spazio (199 giorni) durante la missione Futura sulla ISS (2014-2015). Promuove l’educazione STEM e la parità di genere. Icona globale delle scienze aerospaziali e ambasciatrice dell’esplorazione spaziale.",
+		"awards": "",
+		"quote": "Quando guardi la Terra dallo spazio, ti rendi conto che siamo tutti sulla stessa barca.",
+		"links": ["<https://en.wikipedia.org/wiki/Samantha_Cristoforetti>"]
+	},
+
+	"Ba": {
+		"name": "Bario",
+		"number": 56,
+		"category": "Metallo alcalino-terroso",
+		"group": 2,
+		"period": 6,
+		"image": "res://Images/Barbara Liskov.jpg",
+		"scientist_name": "Barbara Liskov",
+		"profession": "Informatica",
+		"brief_subtitle": "Innovatrice della programmazione a oggetti",
+		"year": "1939 - ",
+		"nationality": "Statunitense",
+		"description": "Informatica statunitense vincitrice del Premio Turing (2008) per il Principio di Sostituzione di Liskov (LSP), pilastro della programmazione a oggetti. Sviluppò il linguaggio CLU negli anni ’70, introducendo concetti rivoluzionari come la tipizzazione forte e la gestione automatica della memoria, anticipando linguaggi moderni come Java e Python.",
+		"awards": "Premio Turing (2008)",
+		"quote": "La chiarezza e la semplicità nel design del software non sono solo una questione di estetica, ma un mezzo per garantire che il sistema funzioni in modo affidabile e scalabile.",
+		"links": ["<https://en.wikipedia.org/wiki/Barbara_Liskov>"]
+	},
 	
 	" . ": {
 		"name": "Lantanidi", 
@@ -493,55 +1106,543 @@ var elements: Dictionary = {
 		"period": 7,
 	},
 	
-	"Hf": {"name": "Hafnio", "number": 72, "category": "Metallo di transizione", "group": 4, "period": 6},
-	"Ta": {"name": "Tantalio", "number": 73, "category": "Metallo di transizione", "group": 5, "period": 6},
-	"W":  {"name": "Tungsteno", "number": 74, "category": "Metallo di transizione", "group": 6, "period": 6},
-	"Re": {"name": "Renio", "number": 75, "category": "Metallo di transizione", "group": 7, "period": 6},
-	"Os": {"name": "Osmio", "number": 76, "category": "Metallo di transizione", "group": 8, "period": 6},
-	"Ir": {"name": "Iridio", "number": 77, "category": "Metallo di transizione", "group": 9, "period": 6},
-	"Pt": {"name": "Platino", "number": 78, "category": "Metallo di transizione", "group": 10, "period": 6},
+	"Hf": {
+		"name": "Afnio",
+		"number": 72,
+		"category": "Metallo di transizione",
+		"group": 4,
+		"period": 6,
+		"image": "res://Images/Stefanie Horovitz.jpg",
+		"scientist_name": "Stefanie Horovitz",
+		"profession": "Chimica",
+		"brief_subtitle": "Pioniera degli isotopi radioattivi",
+		"year": "1887 - 1942",
+		"nationality": "Polacca",
+		"description": "Chimica polacca di origine ebraica che contribuì alla scoperta degli isotopi lavorando con Otto Hönigschmid all'Istituto per la Ricerca sul Radio di Vienna. Determinò il peso atomico del piombo derivante dal decadimento dell'uranio, dimostrando l'esistenza degli isotopi. Dopo la Prima Guerra Mondiale, abbandonò la carriera scientifica per fondare una casa di accoglienza per bambini. Durante l'Olocausto, si consegnò volontariamente ai nazisti per proteggere altri ebrei, morendo a Treblinka. Il suo lavoro, a lungo dimenticato, è oggi riconosciuto come fondamentale per la chimica nucleare.",
+		"awards": "",
+		"quote": "",
+		"links": ["<https://de.wikipedia.org/wiki/Stefanie_Horovitz>"]
+	},
+
+	"Ta": {
+		"name": "Tantalio",
+		"number": 73,
+		"category": "Metallo di transizione",
+		"group": 5,
+		"period": 6,
+		"image": "res://Images/Tania A. Baker.jpg",
+		"scientist_name": "Tania A. Baker",
+		"profession": "Biochimica",
+		"brief_subtitle": "Esperta in replicazione del DNA",
+		"year": "",
+		"nationality": "Statunitense",
+		"description": "Biochimica statunitense e professoressa al MIT, specializzata nei meccanismi di replicazione del DNA e degradazione proteica. Ha studiato gli enzimi Clp/Hsp100, cruciali per la risposta cellulare allo stress. Vincitrice del Premio Arthur Kornberg e Paul Berg, è membro della National Academy of Sciences. La sua ricerca ha influenzato profondamente la biologia molecolare moderna.",
+		"awards": "Premio Arthur Kornberg, Premio Paul Berg",
+		"quote": "",
+		"links": ["<https://en.wikipedia.org/wiki/Tania_Baker>"]
+	},
+
+	"W": {
+		"name": "Tungsteno",
+		"number": 74,
+		"category": "Metallo di transizione",
+		"group": 6,
+		"period": 6,
+		"image": "res://Images/Wanda Diaz Merced.jpg",
+		"scientist_name": "Wanda Díaz-Merced",
+		"profession": "Astrofisica",
+		"brief_subtitle": "Pioniera dell'astronomia inclusiva",
+		"year": "1981 - ",
+		"nationality": "Portoricana",
+		"description": "Astrofisica portoricana rivoluzionaria che ha sviluppato la sonificazione dei dati astronomici, trasformando segnali spaziali in suoni per rendere l'astronomia accessibile ai non vedenti. Dottorata nel 2013, ha lavorato ad Harvard e all'Osservatorio Gravitazionale Europeo. Inclusa tra le donne più innovative in scienza dalla BBC (2020), il suo TED Talk ha ispirato progetti globali per l'accessibilità scientifica.",
+		"awards": "",
+		"quote": "Il mio lavoro dimostra che l'inclusività e la diversità sono essenziali per il progresso della scienza.",
+		"links": ["<https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced>"]
+	},
+
+	"Re": {
+		"name": "Renio",
+		"number": 75,
+		"category": "Metallo di transizione",
+		"group": 7,
+		"period": 6,
+		"image": "res://Images/Renata Kallosh.jpg",
+		"scientist_name": "Renata Kallosh",
+		"profession": "Fisica teorica",
+		"brief_subtitle": "Esperta in supergravità e cosmologia",
+		"year": "1943 - ",
+		"nationality": "Russo-Americana",
+		"description": "Fisica teorica russa-americana pioniera nella supergravità e nella teoria delle stringhe. Professoressa a Stanford, ha sviluppato modelli per spiegare l'espansione accelerata dell'universo. Vincitrice del Lise Meitner Award (2009) e membro dell'American Academy of Arts and Sciences. Collabora con il marito Andrei Linde, celebre per i suoi studi sull'inflazione cosmica.",
+		"awards": "Lise Meitner Award (2009), Cattedra Lorentz (2017)",
+		"quote": "Ogni teoria è come una finestra che ci permette di guardare il mondo in un modo diverso.",
+		"links": ["<https://en.wikipedia.org/wiki/Renata_Kallosh>"]
+	},
+
+	"Os": {
+		"name": "Osmio",
+		"number": 76,
+		"category": "Metallo di transizione",
+		"group": 8,
+		"period": 6,
+		"image": "res://Images/Olga Taussky-Todd.jpg",
+		"scientist_name": "Olga Taussky-Todd",
+		"profession": "Chimica e Matematica",
+		"brief_subtitle": "Innovatrice della chimica inorganica",
+		"year": "1906 - 1995",
+		"nationality": "Austriaca-Statunitense",
+		"description": "Chimica e matematica austriaca naturalizzata statunitense. Pioniera nello studio dei composti di transizione e nella teoria dei legami chimici al Caltech. Vincitrice del Perkin Medal (1977) e Lavoisier Medal, fu tra le prime donne a ottenere riconoscimenti in un campo dominato dagli uomini. Il suo lavoro sui metalli di transizione ha influenzato generazioni di ricercatori.",
+		"awards": "Perkin Medal (1977), Lavoisier Medal",
+		"quote": "La matematica è una lingua universale che ci permette di comprendere la bellezza intrinseca dell'universo.",
+		"links": ["<https://en.wikipedia.org/wiki/Olga_Taussky-Todd>"]
+	},
+	"Ir": {  
+		"name": "Iridio",  
+	   "number": 77,  
+	   "category": "Metallo di transizione",  
+	   "group": 9,  
+	   "period": 6,  
+	   "image": "res://Images/Irène Joliot-Curie.jpg",  
+	   "scientist_name": "Irène Joliot-Curie",  
+	   "profession": "Chimica e Fisica",  
+	   "brief_subtitle": "Scopritrice della radioattività artificiale",  
+	   "year": "1897 - 1956",  
+	   "nationality": "Francese",  
+		   "description": "Chimica e fisica francese, figlia di Marie e Pierre Curie. Nel 1934, con il marito Frédéric Joliot-Curie, scoprì la radioattività artificiale, vincendo il Nobel per la Chimica nel 1935. Continuò gli studi sulla radioattività e i radioisotopi, rivoluzionando la medicina nucleare. Morì di leucemia nel 1956, probabilmente a causa dell'esposizione alle radiazioni. La sua eredità scientifica influenzò la ricerca nucleare e le applicazioni mediche.",  
+		   "awards": "Premio Nobel per la Chimica (1935)",  
+		   "quote": "Se la scienza è la chiave per il progresso, è essenziale che la sua applicazione venga guidata dalla morale.",  
+		   "links": ["<https://en.wikipedia.org/wiki/Ir%C3%A8ne_Joliot-Curie>"]  
+},  
+
+	"Pt": {  
+		"name": "Platino",  
+		"number": 78,  
+	   "category": "Metallo di transizione",  
+	   "group": 10,  
+	   "period": 6,  
+	   "image": "res://Images/Patricia Bath.jpg",  
+	   "scientist_name": "Patricia Bath",  
+	   "profession": "Oftalmologa e Inventrice",  
+	   "brief_subtitle": "Pioniera della chirurgia della cataratta",  
+	   "year": "1942 - 2019",  
+	   "nationality": "Americana",  
+	   "description": "Oftalmologa e inventrice americana, prima donna afroamericana a ottenere un brevetto medico (1988) per la sonda Laserphaco, che rivoluzionò la chirurgia della cataratta. Fondò l’American Institute for the Prevention of Blindness e fu la prima donna nera a dirigere un programma di specializzazione in oftalmologia negli USA. Il suo lavoro migliorò l’accesso alle cure oculistiche per le comunità svantaggiate.",  
+	   "awards": "Brevetto per la Laserphaco (1988), Fondatrice dell’American Institute for the Prevention of Blindness (1976)",  
+	   "quote": "La capacità di ripristinare la vista è la ricompensa finale.",  
+	   "links": ["<https://en.wikipedia.org/wiki/Patricia_Bath>"]  
+	},
 	"Au": {"name": "Oro", "number": 79, "category": "Metallo di transizione", "group": 11, "period": 6},
-	"Hg": {"name": "Mercurio", "number": 80, "category": "Metallo di transizione", "group": 12, "period": 6},
-	"Tl": {"name": "Tallio", "number": 81, "category": "Metallo post-transizionale", "group": 13, "period": 6},
-	"Pb": {"name": "Piombo", "number": 82, "category": "Metallo post-transizionale", "group": 14, "period": 6},
-	"Bi": {"name": "Bismuto", "number": 83, "category": "Metallo post-transizionale", "group": 15, "period": 6},
-	"Po": {"name": "Polonio", "number": 84, "category": "Metalloide", "group": 16, "period": 6},
-	"At": {"name": "Astato", "number": 85, "category": "Alogeno", "group": 17, "period": 6},
-	"Rn": {"name": "Radon", "number": 86, "category": "Gas nobile", "group": 18, "period": 6},
+	"Hg": {  
+		"name": "Mercurio",  
+		"number": 80,  
+		"category": "Metallo post-transizionale",  
+		"group": 12,  
+		"period": 6,  
+		"image": "res://Images/Margherita Hack.jpg",  
+		"scientist_name": "Margherita Hack",  
+		"profession": "Astronoma e Divulgatrice",  
+		"brief_subtitle": "Icona dell'astronomia italiana",  
+		"year": "1922 - 2013",  
+		"nationality": "Italiana",  
+		"description": "Astronoma e fisica italiana, prima donna a dirigere l’Osservatorio Astronomico di Trieste. Studiò l’evoluzione stellare e la radiazione cosmica, diventando un simbolo della divulgazione scientifica e dei diritti civili. Membro dell’Accademia dei Lincei, ha ispirato generazioni di scienziati con il suo impegno per la scienza libera e l’inclusione delle donne nella ricerca.",  
+		"awards": "Membro dell'Accademia dei Lincei",  
+		"quote": "Nella vita non c’è nulla da temere, solo da capire.",  
+		"links": ["<https://en.wikipedia.org/wiki/Margherita_Hack>"]  
+	},  
+
+	"Tl": {  
+		"name": "Tallio",  
+		"number": 81,  
+		"category": "Metallo post-transizionale",  
+		"group": 13,  
+		"period": 6,  
+		"image": "res://Images/Tilly Edinger.jpg",  
+		"scientist_name": "Tilly Edinger",  
+		"profession": "Paleontologa",  
+		"brief_subtitle": "Fondatrice della paleoneurobiologia",  
+		"year": "1897 - 1967",  
+		"nationality": "Tedesca",  
+		"description": "Paleontologa tedesca pioniera nello studio dell’evoluzione del cervello attraverso i fossili. Analizzando i calchi endocranici di rettili preistorici come il *Nothosaurus*, integrò anatomia comparata e stratigrafia, creando la paleoneurobiologia. Il suo lavoro rivoluzionò la comprensione dello sviluppo cerebrale nei vertebrati.",  
+		"awards": "",  
+		"quote": "Il cervello non si fossilizza, ma le sue tracce si.",  
+		"links": ["<https://en.wikipedia.org/wiki/Tilly_Edinger>"]  
+	},  
+
+	"Pb": {  
+		"name": "Piombo",  
+		"number": 82,  
+		"category": "Metallo post-transizionale",  
+		"group": 14,  
+		"period": 6,  
+		"image": "res://Images/Paola Bonfante.jpg",  
+		"scientist_name": "Paola Bonfante",  
+		"profession": "Biologa",  
+		"brief_subtitle": "Esperta di simbiosi micorriziche",  
+		"year": "1947 - ",  
+		"nationality": "Italiana",  
+		"description": "Biologa italiana, professoressa emerita all’Università di Torino. Ha studiato le micorrize, simbiosi tra funghi e piante che coinvolgono il 90% delle specie vegetali. La sua ricerca ha implicazioni cruciali per l’agricoltura sostenibile e la salute degli ecosistemi.",  
+		"awards": "",  
+		"quote": "Una pianta non è un’isola.",  
+		"links": ["<https://en.wikipedia.org/wiki/Paola_Bonfante>"]  
+	},  
+
+	"Bi": {  
+		"name": "Bismuto",  
+		"number": 83,  
+		"category": "Metallo post-transizionale",  
+		"group": 15,  
+		"period": 6,  
+		"image": "res://Images/Bice Fubini.jpg",  
+		"scientist_name": "Bice Fubini",  
+		"profession": "Chimica",  
+		"brief_subtitle": "Studiosa degli effetti degli inquinanti",  
+		"year": "1943 - ",  
+		"nationality": "Italiana",  
+		"description": "Chimica italiana, socia corrispondente dell’Accademia delle Scienze di Torino e Presidente del Centro per lo studio degli Amianti. Si è dedicata alla tossicità delle particelle inquinanti e al ruolo delle donne nella scienza, promuovendo l’uguaglianza di genere nella ricerca.",  
+		"awards": "",  
+		"quote": "L’unica rivoluzione compiuta nel secolo passato è quella delle donne.",  
+		"links": ["<https://it.wikipedia.org/wiki/Bice_Fubini>"]  
+	},  
+
+	"Po": {  
+		"name": "Polonio",  
+		"number": 84,  
+		"category": "Metallo post-transizionale",  
+		"group": 16,  
+		"period": 6,  
+		"image": "res://Images/Polly Matzinger.jpg",  
+		"scientist_name": "Polly Matzinger",  
+		"profession": "Immunologa",  
+		"brief_subtitle": "Teorica del modello di pericolo",  
+		"year": "1947 - ",  
+		"nationality": "Francese",  
+		"description": "Immunologa francese nota per la teoria del modello di pericolo, che spiega come il sistema immunitario risponda a segnali di danno cellulare piuttosto che al semplice riconoscimento di agenti esterni. La sua teoria ha rivoluzionato la comprensione delle allergie e delle malattie autoimmuni.",  
+		"awards": "",  
+		"quote": "Il sistema immunitario non distingue tra sé e non-sé, ma tra ciò che è pericoloso e ciò che non lo è.",  
+		"links": ["<https://en.wikipedia.org/wiki/Polly_Matzinger>"]  
+	},  
+
+	"At": {  
+		"name": "Astato",  
+		"number": 85,  
+		"category": "Alogeno",  
+		"group": 17,  
+		"period": 6,  
+		"image": "res://Images/Astrid Cleve.jpg",  
+		"scientist_name": "Astrid Cleve",  
+		"profession": "Botanica e Chimica",  
+		"brief_subtitle": "Pioniera svedese della chimica organica",  
+		"year": "1875 - 1968",  
+		"nationality": "Svedese",  
+		"description": "Botanica e chimica svedese, prima donna nel suo Paese a ottenere un dottorato in scienze. Collaborò con il marito Hans von Euler-Chelpin nella sintesi di alcoli e composti azotati. I suoi studi sul plancton delle acque di Stoccolma sono un riferimento storico per la ricerca ecologica.",  
+		"awards": "",  
+		"quote": "La scienza è un viaggio attraverso il tempo e la natura: chi la segue lascia tracce che ispirano generazioni future.",  
+		"links": ["<https://en.wikipedia.org/wiki/Astrid_Cleve>"]  
+	},  
+
+	"Rn": {  
+		"name": "Radon",  
+		"number": 86,  
+		"category": "Gas nobile",  
+		"group": 18,  
+		"period": 6,  
+		"image": "res://Images/Ruth Nussenzweig.jpg",  
+		"scientist_name": "Ruth Nussenzweig",  
+		"profession": "Immunologa",  
+		"brief_subtitle": "Combattente contro la malaria",  
+		"year": "1928 - 2018",  
+		"nationality": "Austro-Brasiliana",  
+		"description": "Immunologa austro-brasiliana che sviluppò i primi vaccini sperimentali contro la malaria. Identificò proteine chiave del parassita *Plasmodium* come bersagli per la vaccinazione, aprendo la strada a strategie preventive globali. Il suo lavoro ha salvato milioni di vite nelle regioni endemiche.",  
+		"awards": "",  
+		"quote": "La ricerca scientifica è una battaglia incessante contro le malattie che affliggono l'umanità; con passione e determinazione, possiamo sconfiggerle.",  
+		"links": ["<https://en.wikipedia.org/wiki/Ruth_Nussenzweig>"]  
+	},
 
 	# Periodo 7
-	"Fr": {"name": "Francio", "number": 87, "category": "Metallo alcalino", "group": 1, "period": 7},
-	"Ra": {"name": "Radio", "number": 88, "category": "Metallo alcalino-terroso", "group": 2, "period": 7},
-	#"89-103": {"name": "Vedi attanidi", "number": "Vedi attanidi", "category": "Vedi attanidi", "group": 3, "period": 7},
-	#"Th": {"name": "Torio", "number": 90, "category": "Attinide", "group": 3, "period": 7},
-	#"Pa": {"name": "Protoattinio", "number": 91, "category": "Attinide", "group": 3, "period": 7},
-	#"U":  {"name": "Uranio", "number": 92, "category": "Attinide", "group": 3, "period": 7},
-	#"Np": {"name": "Nettunio", "number": 93, "category": "Attinide", "group": 3, "period": 7},
-	#"Pu": {"name": "Plutonio", "number": 94, "category": "Attinide", "group": 3, "period": 7},
-	#"Am": {"name": "Americio", "number": 95, "category": "Attinide", "group": 3, "period": 7},
-	#"Cm": {"name": "Curio", "number": 96, "category": "Attinide", "group": 3, "period": 7},
-	#"Bk": {"name": "Berkelio", "number": 97, "category": "Attinide", "group": 3, "period": 7},
-	#"Cf": {"name": "Californio", "number": 98, "category": "Attinide", "group": 3, "period": 7},
-	#"Es": {"name": "Einsteinio", "number": 99, "category": "Attinide", "group": 3, "period": 7},
-	#"Fm": {"name": "Fermio", "number": 100, "category": "Attinide", "group": 3, "period": 7},
-	#"Md": {"name": "Mendelevio", "number": 101, "category": "Attinide", "group": 3, "period": 7},
-	#"No": {"name": "Nobelio", "number": 102, "category": "Attinide", "group": 3, "period": 7},
-	#"Lr": {"name": "Laurenzio", "number": 103, "category": "Attinide", "group": 3, "period": 7},
-	"Rf": {"name": "Rutherfordio", "number": 104, "category": "Metallo di transizione", "group": 4, "period": 7},
-	"Db": {"name": "Dubnio", "number": 105, "category": "Metallo di transizione", "group": 5, "period": 7},
+	"Fr": {  
+		"name": "Francio",  
+		"number": 87,  
+		"category": "Metallo alcalino",  
+		"group": 1,  
+		"period": 7,  
+		"image": "res://Images/Rosalind Franklin.jpg",  
+		"scientist_name": "Rosalind Franklin",  
+		"profession": "Chimica e Cristallografa",  
+		"brief_subtitle": "La donna che svelò il DNA",  
+		"year": "1920 - 1958",  
+		"nationality": "Britannica",  
+		"description": "Cristallografa britannica che catturò la celebre *Foto 51*, dimostrando la struttura a doppia elica del DNA. Il suo lavoro fu utilizzato senza riconoscimento da Watson, Crick e Wilkins, che vinsero il Nobel nel 1962. Morì a 37 anni per tumore, probabilmente causato dall’esposizione alle radiazioni durante gli esperimenti. Il suo contributo fu rivalutato postumo, rendendola un simbolo delle donne nella scienza.",  
+		"awards": "Riconoscimento postumo per la scoperta del DNA",  
+		"quote": "La scienza e la vita quotidiana non possono e non devono essere separate.",  
+		"links": ["<https://en.wikipedia.org/wiki/Rosalind_Franklin>"]  
+	},  
+
+	"Ra": {  
+		"name": "Radio",  
+		"number": 88,  
+		"category": "Metallo alcalino-terroso",  
+		"group": 2,  
+		"period": 7,  
+		"image": "res://Images/Rachel Carson.jpg",  
+		"scientist_name": "Rachel Carson",  
+		"profession": "Biologa e Ambientalista",  
+		"brief_subtitle": "Madre del movimento ambientalista",  
+		"year": "1907 - 1964",  
+		"nationality": "Statunitense",  
+		"description": "Biologa marina e zoologa statunitense, autrice di *Primavera Silenziosa* (1962), libro che denunciò gli effetti devastanti del DDT sugli ecosistemi, innescando il movimento ambientalista globale. Lavorò per il Dipartimento della Pesca USA, combinando scienza e scrittura per sensibilizzare sull’inquinamento degli oceani e i rischi dei pesticidi.",  
+		"awards": "Medaglia Presidenziale della Libertà (postuma, 1980)",  
+		"quote": "L'uomo fa parte della natura e la sua guerra contro la natura è inevitabilmente una guerra contro se stesso.",  
+		"links": ["<https://en.wikipedia.org/wiki/Rachel_Carson>"]  
+	},
+	"Rf": {
+		"name": "Rutherfordio",
+		"number": 104,
+		"category": "Metallo di transizione",
+		"group": 4,
+		"period": 7,
+		"image": "res://Images/Rachel Fuller Brown.jpg",
+		"scientist_name": "Rachel Fuller Brown",
+		"profession": "Chimica",
+		"brief_subtitle": "Scopritrice della nistatina",
+		"year": "1898 - 1980",
+		"nationality": "Statunitense",
+		"description": "Chimica statunitense che, insieme a Elizabeth Lee Hazen, scoprì la nistatina (1948), primo antibiotico antifungino efficace e non tossico per l’uomo. La loro invenzione rivoluzionò il trattamento delle infezioni da lieviti, donando i diritti d’autore alla ricerca scientifica.",
+		"awards": "",
+		"quote": "Non abbiamo mai pensato di arricchirci con la nostra scoperta. Il nostro obiettivo era aiutare le persone.",
+		"links": ["<https://en.wikipedia.org/wiki/Rachel_Fuller_Brown>"]
+	},
+
+	"Db": {
+		"name": "Dubnio",
+		"number": 105,
+		"category": "Metallo di transizione",
+		"group": 5,
+		"period": 7,
+		"image": "res://Images/Segenet Kelemu.jpg",
+		"scientist_name": "Segenet Kelemu",
+		"profession": "Scienziata agricola",
+		"brief_subtitle": "Pioniera dell'agricoltura sostenibile in Africa",
+		"year": "1957 - ",
+		"nationality": "Etiope",
+		"description": "Scienziata etiope, prima donna africana a dirigere l’ICIPE in Kenya. Ha sviluppato metodi per combattere le malattie delle piante e migliorare la resa dei raccolti in condizioni climatiche estreme, sostenendo gli agricoltori subsahariani.",
+		"awards": "Premio L’Oréal-UNESCO per le Donne e la Scienza (2014)",
+		"quote": "Voglio fare la differenza in Africa, aiutare gli agricoltori e migliorare l'agricoltura attraverso la scienza e l'innovazione.",
+		"links": ["<https://en.wikipedia.org/wiki/Segenet_Kelemu>"]
+	},
 	"Sg": {"name": "Seaborgio", "number": 106, "category": "Metallo di transizione", "group": 6, "period": 7},
-	"Bh": {"name": "Bohrio", "number": 107, "category": "Metallo di transizione", "group": 7, "period": 7},
-	"Hs": {"name": "Hassio", "number": 108, "category": "Metallo di transizione", "group": 8, "period": 7},
-	"Mt": {"name": "Meitnerio", "number": 109, "category": "Metallo di transizione", "group": 9, "period": 7},
-	"Ds": {"name": "Darmstadtio", "number": 110, "category": "Metallo di transizione", "group": 10, "period": 7},
-	"Rg": {"name": "Roentgenio", "number": 111, "category": "Metallo di transizione", "group": 11, "period": 7},
-	"Cn": {"name": "Copernicio", "number": 112, "category": "Metallo di transizione", "group": 12, "period": 7},
-	"Nh": {"name": "Nihonio", "number": 113, "category": "Metallo post-transizionale", "group": 13, "period": 7},
-	"Fl": {"name": "Flerovio", "number": 114, "category": "Metallo post-transizionale", "group": 14, "period": 7},
-	"Mc": {"name": "Moscovio", "number": 115, "category": "Metallo post-transizionale", "group": 15, "period": 7},
-	"Lv": {"name": "Livermorio", "number": 116, "category": "Metallo post-transizionale", "group": 16, "period": 7},
-	"Ts": {"name": "Tenessino", "number": 117, "category": "Alogeno", "group": 17, "period": 7},
-	"Og": {"name": "Oganesson", "number": 118, "category": "Gas nobile", "group": 18, "period": 7},
+	"Bh": {
+		"name": "Bohrio",
+		"number": 107,
+		"category": "Metallo di transizione",
+		"group": 7,
+		"period": 7,
+		"image": "res://Images/Beatrice Hicks.jpg",
+		"scientist_name": "Beatrice Hicks",
+		"profession": "Ingegnera aerospaziale",
+		"brief_subtitle": "Pioniera delle donne in ingegneria",
+		"year": "1919 - 1979",
+		"nationality": "Statunitense",
+		"description": "Ingegnera statunitense, tra le prime donne nel settore aerospaziale. Progettò sensori di gas per la NASA e co-fondò la Society of Women Engineers (SWE) per promuovere l’uguaglianza di genere in un campo dominato dagli uomini.",
+		"awards": "National Inventors Hall of Fame (2019, postuma)",
+		"quote": "Ho sempre sentito di dover lavorare più duramente e più a lungo di un uomo per dimostrare il mio valore.",
+		"links": ["<https://en.wikipedia.org/wiki/Beatrice_Hicks>"]
+	},
+
+	"Hs": {
+		"name": "Hassio",
+		"number": 108,
+		"category": "Metallo di transizione",
+		"group": 8,
+		"period": 7,
+		"image": "res://Images/Helen Sawyer Hogg.jpg",
+		"scientist_name": "Helen Sawyer Hogg",
+		"profession": "Astronoma",
+		"brief_subtitle": "Mappatrice delle Cefeidi",
+		"year": "1905 - 1993",
+		"nationality": "Statunitense-Canadese",
+		"description": "Astronoma pioniera nello studio delle stelle variabili Cefeidi negli ammassi globulari. Professoressa all’Università di Toronto, unì ricerca accademica e divulgazione, scrivendo una rubrica di astronomia per il pubblico per oltre 30 anni.",
+		"awards": "Order of Canada (1976)",
+		"quote": "Le stelle appartengono a tutti.",
+		"links": ["<https://en.wikipedia.org/wiki/Helen_Sawyer_Hogg>"]
+	},
+
+	"Mt": {
+		"name": "Meitnerio",
+		"number": 109,
+		"category": "Sconosciuto",
+		"group": 9,
+		"period": 7,
+		"image": "res://Images/Martha Chase.jpg",
+		"scientist_name": "Martha Chase",
+		"profession": "Genetista",
+		"brief_subtitle": "Confermatrice del ruolo del DNA",
+		"year": "1927 - 2003",
+		"nationality": "Statunitense",
+		"description": "Genetista statunitense nota per l’*esperimento di Hershey-Chase* (1952), che dimostrò che il DNA (non le proteine) è il materiale genetico. Il suo lavoro fu fondamentale per la scoperta della doppia elica da parte di Watson e Crick.",
+		"awards": "",
+		"quote": "Credo che la scienza sia qualcosa che deve essere fatta con passione.",
+		"links": ["<https://en.wikipedia.org/wiki/Martha_Chase>"]
+	},
+
+	"Ds": {
+		"name": "Darmstadio",
+		"number": 110,
+		"category": "Sconosciuto",
+		"group": 10,
+		"period": 7,
+		"image": "res://Images/Doris Taylor.jpg",
+		"scientist_name": "Doris Taylor",
+		"profession": "Biologa della rigenerazione",
+		"brief_subtitle": "Pioniera degli organi bioartificiali",
+		"year": "1956 - ",
+		"nationality": "Statunitense",
+		"description": "Biologa statunitense pioniera nella medicina rigenerativa. Nel 2008 rigenerò un cuore di ratto funzionante utilizzando una matrice decellularizzata, aprendo la strada alla creazione di organi per trapianti su misura.",
+		"awards": "",
+		"quote": "Credo che il futuro della medicina risieda nella creazione di soluzioni per i pazienti che siano su misura per loro, non una soluzione universale.",
+		"links": ["<https://en.wikipedia.org/wiki/Doris_Taylor_(scientist)>"]
+	},
+	"Rg": {
+		"name": "Roentgenio",
+		"number": 111,
+		"category": "Sconosciuto",
+		"group": 11,
+		"period": 7,
+		"image": "res://Images/Regina Kapeller-Adler.jpg",
+		"scientist_name": "Regina Kapeller-Adler",
+		"profession": "Biochimica",
+		"brief_subtitle": "Pioniera dei test di gravidanza",
+		"year": "1900 - 1991",
+		"nationality": "Austriaca",
+		"description": "Biochimica austriaca che sviluppò il primo test rapido per la diagnosi precoce della gravidanza (1933), rilevando l’istidina nelle urine in sole 4 ore. Il suo metodo sostituì procedure lunghe e invasive, rivoluzionando la medicina prenatale.",
+		"awards": "",
+		"quote": "La ricerca è un viaggio di scoperta che può cambiare la vita di milioni di persone, un passo alla volta.",
+		"links": ["<https://en.wikipedia.org/wiki/Regina_Kapeller-Adler>"]
+	},
+
+	"Cn": {
+		"name": "Copernicio",
+		"number": 112,
+		"category": "Metallo post-transizionale",
+		"group": 12,
+		"period": 7,
+		"image": "res://Images/Caroline Herschel.jpg",
+		"scientist_name": "Caroline Herschel",
+		"profession": "Astronoma",
+		"brief_subtitle": "Cacciatrice di comete",
+		"year": "1750 - 1848",
+		"nationality": "Tedesca-Britannica",
+		"description": "Astronoma tedesco-britannica, prima donna a ricevere uno stipendio per lavoro scientifico. Scoprì 8 comete e collaborò al catalogo stellare di William Herschel. Il suo lavoro gettò le basi per l’astronomia moderna, sfidando le barriere di genere del XVIII secolo.",
+		"awards": "Medaglia d'oro della Royal Astronomical Society (1828)",
+		"quote": "Non ho cercato nulla al di fuori del lavoro che mio fratello mi ha affidato.",
+		"links": ["<https://en.wikipedia.org/wiki/Caroline_Herschel>"]
+	},
+
+	"Nh": {
+		"name": "Nihonio",
+		"number": 113,
+		"category": "Sconosciuto",
+		"group": 13,
+		"period": 7,
+		"image": "res://Images/Nucharin Songsasen.jpg",
+		"scientist_name": "Nucharin Songsasen",
+		"profession": "Biologa della conservazione",
+		"brief_subtitle": "Salvatrice delle specie a rischio",
+		"year": "",
+		"nationality": "Thailandese",
+		"description": "Biologa thailandese che ha rivoluzionato la crioconservazione di embrioni animali. Guidò il team che realizzò la prima fecondazione in vitro nei cani, aprendo nuove strade per la conservazione delle specie selvatiche in via di estinzione.",
+		"awards": "",
+		"quote": "Ogni specie che salviamo è una storia che continuiamo a raccontare, un legame che preserviamo per il futuro del nostro pianeta.",
+		"links": ["<https://nationalzoo.si.edu/staff/nucharin-songsasen>"]
+	},
+
+	"Fl": {
+		"name": "Flerovio",
+		"number": 114,
+		"category": "Sconosciuto",
+		"group": 14,
+		"period": 7,
+		"image": "res://Images/Filomena Nitti.jpg",
+		"scientist_name": "Filomena Nitti",
+		"profession": "Chimica e Farmacologa",
+		"brief_subtitle": "Pioniera degli antibiotici",
+		"year": "1909 - 1994",
+		"nationality": "Italiana",
+		"description": "Chimica italiana che collaborò con Daniel Bovet (Premio Nobel 1957) alla ricerca su sulfamidici e penicillina durante la Seconda Guerra Mondiale. Il suo lavoro contribuì alla produzione di sieri antitetanici salvavita per i soldati.",
+		"awards": "",
+		"quote": "La scienza non è solo una ricerca di risposte, ma un viaggio continuo verso una comprensione più profonda del nostro mondo e di noi stessi.",
+		"links": ["<https://it.wikipedia.org/wiki/Filomena_Nitti>"]
+	},
+
+	"Mc": {
+		"name": "Moscovio",
+		"number": 115,
+		"category": "Sconosciuto",
+		"group": 15,
+		"period": 7,
+		"image": "res://Images/Mildred Cohn.jpg",
+		"scientist_name": "Mildred Cohn",
+		"profession": "Biochimica",
+		"brief_subtitle": "Innovatrice della risonanza magnetica",
+		"year": "1913 - 2009",
+		"nationality": "Statunitense",
+		"description": "Biochimica statunitense pioniera nell’uso della risonanza magnetica nucleare (NMR) per studiare reazioni enzimatiche e metabolismo. Le sue tecniche rivoluzionarie sono alla base della moderna biochimica strutturale.",
+		"awards": "National Medal of Science (1983)",
+		"quote": "Se vuoi qualcosa, vai a prendertelo. Non aspettarti che gli altri ti aprano la strada.",
+		"links": ["<https://en.wikipedia.org/wiki/Mildred_Cohn>"]
+	},
+
+	"Lv": {
+		"name": "Livermorio",
+		"number": 116,
+		"category": "Sconosciuto",
+		"group": 16,
+		"period": 7,
+		"image": "res://Images/Lydia Villa-Komaroff.jpg",
+		"scientist_name": "Lydia Villa-Komaroff",
+		"profession": "Biologa molecolare",
+		"brief_subtitle": "Pioniera dell'insulina sintetica",
+		"year": "1947 - ",
+		"nationality": "Statunitense",
+		"description": "Biologa molecolare che dimostrò nel 1978 come produrre insulina umana usando batteri geneticamente modificati. La sua scoperta rivoluzionò il trattamento del diabete, rendendo possibile la produzione industriale di farmaci biotecnologici.",
+		"awards": "",
+		"quote": "La scienza non ha genere, razza o etnia: è per tutti.",
+		"links": ["<https://en.wikipedia.org/wiki/Lydia_Villa-Komaroff>"]
+	},
+
+	"Ts": {
+		"name": "Tennesso",
+		"number": 117,
+		"category": "Sconosciuto",
+		"group": 17,
+		"period": 7,
+		"image": "res://Images/Tatyana Sharpee.jpg",
+		"scientist_name": "Tatyana Sharpee",
+		"profession": "Neuroscienziata e Fisica teorica",
+		"brief_subtitle": "Decifratrice del codice neurale",
+		"year": "",
+		"nationality": "Americana",
+		"description": "Neuroscienziata russa-americana che applica modelli matematici per studiare come il cervello codifica informazioni sensoriali. Il suo lavoro ha chiarito i meccanismi alla base della percezione e dell’apprendimento.",
+		"awards": "",
+		"quote": "Comprendere il cervello significa comprendere la natura stessa dell’intelligenza.",
+		"links": ["<https://en.wikipedia.org/wiki/Tatyana_Sharpee>"]
+	},
+
+	"Og": {
+		"name": "Oganesson",
+		"number": 118,
+		"category": "Sconosciuto",
+		"group": 18,
+		"period": 7,
+		"image": "res://Images/Olga Kennard.jpg",
+		"scientist_name": "Olga Kennard",
+		"profession": "Cristallografa",
+		"brief_subtitle": "Archivista della struttura molecolare",
+		"year": "1924 - 2023",
+		"nationality": "Britannica",
+		"description": "Cristallografa britannica, fondatrice del Cambridge Crystallographic Data Centre (CCDC). Creò un database globale di strutture molecolari, strumento essenziale per la ricerca farmaceutica e la chimica moderna.",
+		"awards": "Order of the British Empire (1987)",
+		"quote": "La scienza è un viaggio collettivo: la conoscenza condivisa è la chiave del progresso.",
+		"links": ["<https://en.wikipedia.org/wiki/Olga_Kennard>"]
+	},
 
 	# Lantanidi (periodo fittizio 9, gruppo 3-18)
 	"La": {"name": "Lantanio", "number": 57, "category": "Lantanide", "group": 3, "period": 9},
@@ -634,6 +1735,7 @@ var category_colors = {
 	"Gas nobile": Color.SKY_BLUE, 
 	"Lantanide": Color.WEB_PURPLE, 
 	"Attinide": Color.LIME_GREEN, 
+	"Sconosciuto": Color.DIM_GRAY, 
 }
 
 func _input(event):
@@ -649,6 +1751,7 @@ func _ready() -> void:
 	control_element_container.queue_free()
 	popup_panel.visible = false 
 	popup_margin.visible = false 
+
 
 func create_periodic_table():
 	var total_elements = elements.size()
@@ -699,8 +1802,8 @@ func create_periodic_table():
 			if symbol == null:
 				# Spazio vuoto per mantenere la struttura della tavola
 				var empty = Control.new()
-				empty.custom_minimum_size = Vector2(btn_size/3, btn_size/3)
-				empty.size = Vector2(btn_size/3, btn_size/3)
+				empty.custom_minimum_size = Vector2(btn_size/3.0, btn_size/3.0)
+				empty.size = Vector2(btn_size/3.0, btn_size/3.0)
 				grid_container.add_child(empty)
 			else:
 				# Crea il bottone per l'elemento
@@ -796,11 +1899,16 @@ func elements_animation(grid_container):
 			tween.tween_property(element, "scale", Vector2(1.4, 1.4), speed)
 			tween.tween_property(element, "scale", Vector2(1, 1), speed)
 		await get_tree().create_timer(0.08).timeout
+		animation_finished = true
+
 
 func on_element_selected(symbol, button):
+	if animation_finished:
+		button.scale = Vector2(1.0, 1.0)
+		
 	if not can_press:
 		return
-		
+
 	if selected_button == button:
 		selected_button = null
 		popup_margin.visible = false 
@@ -845,16 +1953,20 @@ func on_element_selected(symbol, button):
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
 
 func calculate_popup_position(button):
-	var offset = 5
+	var offset = 10
 	
 	popup_margin.reset_size()
 	
 	var popup_pos_x = button.global_position.x + button.size.x
+	print("popup_pos_x: ", popup_pos_x, " button.global_position.x: ", button.global_position.x, " button.size.x: ", button.size.x)
+	print("button_scale: ", button.scale)
 	var popup_pos_y = button.global_position.y - button.size.y
 	if popup_pos_x > screen_size.x / 2:
 		popup_pos_x = popup_pos_x - button.size.x - popup_margin.size.x - offset
 	else:
+		print("popup_pos_x: ", popup_pos_x, " offset: ", offset)
 		popup_pos_x = popup_pos_x + offset
+	
 
 	if popup_pos_y > screen_size.y / 2 - button.size.y:
 		popup_margin.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
@@ -864,7 +1976,7 @@ func calculate_popup_position(button):
 		popup_pos_y = offset
 		
 	var popup_pos = Vector2(popup_pos_x, popup_pos_y)
-
+	
 	popup_margin.global_position = popup_pos
 	popup_panel.global_position = popup_pos
 
