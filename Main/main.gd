@@ -19,6 +19,7 @@ extends Control
 
 @onready var screen_size = get_viewport_rect().size
 
+var selected_category_symbol := ""
 var selected_button: Control = null
 var periods: int = 7+3
 var groups: int = 18
@@ -99,7 +100,7 @@ var elements: Dictionary = {
 			"https://en.wikipedia.org/wiki/Dorothy_Hodgkin",
 			"https://www.nobelprize.org/prizes/chemistry/1964/hodgkin/biographical/"
 		],
-		"profession_id": "Chem",
+		"profession_keys": "Chem",
 	},
 	"He": {
 		"name": "Elio", 
@@ -120,7 +121,7 @@ var elements: Dictionary = {
 			"https://en.wikipedia.org/wiki/Hedy_Lamarr",
 			"https://www.women-inventors.com/Hedy-Lamarr.asp"
 		],
-		"profession_id": ["Ing", "Hum"]
+		"profession_keys": ["Ing", "Hum"]
 	},
 	"Li": {
 		"name": "Litio", 
@@ -177,7 +178,8 @@ var elements: Dictionary = {
 		"quote": "Non importa quanto difficile sia il cammino, la scienza ha il potere di cambiare la vita e migliorare il destino dell'umanità.",
 		"links": [
 			"https://en.wikipedia.org/wiki/Alice_Augusta_Ball"
-		]
+		],
+		"profession_keys":["Chem"],
 	},
 	"C": {
 		"name": "Carbonio", 
@@ -235,7 +237,8 @@ var elements: Dictionary = {
 		"links": [
 			"https://en.wikipedia.org/wiki/Olga_Ladyzhenskaya",
 			"https://mathshistory.st-andrews.ac.uk/Biographies/Ladyzhenskaya/"
-		]
+		],
+		"profession_keys": ["Mat"]
 	},
 	"F": {
 		"name": "Fluoro",
@@ -311,7 +314,8 @@ var elements: Dictionary = {
 	  "description": "Nota per aver scoperto il francio nel 1939. Lavorò come assistente di Marie Curie all'Istituto del Radio di Parigi, specializzandosi nello studio degli elementi radioattivi. La sua scoperta del francio, l'ultimo elemento naturale individuato, fu cruciale per la chimica nucleare. Fu la prima donna ammessa all'Académie des Sciences di Francia. Il suo lavoro contribuì allo sviluppo della fisica atomica, nonostante le conseguenze sulla sua salute dovute all'esposizione alle radiazioni.",
 	  "awards": "",
 	  "quote": "La scoperta del francio non è stata il risultato di un colpo di genio, ma di un paziente e meticoloso lavoro di ricerca.",
-	  "links": []
+	  "links": [],
+		"profession_keys": "Chem",
 	},
 	"Al": {
 	  "name": "Alluminio",
@@ -328,7 +332,8 @@ var elements: Dictionary = {
 	  "description": "È considerata la prima programmatrice della storia. È nota per il suo lavoro sulla macchina analitica di Charles Babbage, un prototipo di computer meccanico. Lovelace non solo tradusse un articolo sull’argomento, ma aggiunse anche delle note in cui descrisse un algoritmo per calcolare i numeri di Bernoulli, considerato il primo programma informatico della storia. Nonostante il suo contributo pionieristico, Ada Lovelace non ricevette premi durante la sua vita, poiché il suo lavoro fu riconosciuto solo molti anni dopo la sua morte. Oggi, però, è celebrata come una figura fondamentale nella storia dell’informatica.",
 	  "awards": "",
 	  "quote": "Quel cervello mio è qualcosa di più che meramente mortale, come il tempo dimostrerà.",
-	  "links": []
+	  "links": [],
+		"profession_keys": ["Mat", "Ing"],
 	},
 	"Si": {
 	  "name": "Silicio",
@@ -362,7 +367,8 @@ var elements: Dictionary = {
 	  "description": "Pardis Sabeti è una genetista e biologa computazionale iraniano-americana, nota per il suo lavoro sull'evoluzione dei patogeni e la risposta alle epidemie. Professoressa ad Harvard e membro del Broad Institute, ha sviluppato algoritmi per studiare la selezione naturale nel DNA umano. Durante l'epidemia di Ebola del 2014, il suo team ha sequenziato rapidamente il virus, contribuendo alla comprensione della sua diffusione. Oltre alla ricerca, è anche musicista e ha ricevuto numerosi riconoscimenti scientifici.",
 	  "awards": "",
 	  "quote": "Abbiamo la capacità di cambiare, adattarci ed essere resilienti. Ed è questo che fa la scienza: trovare soluzioni e andare avanti.",
-	  "links": []
+	  "links": [],
+	"profession_keys": ["Bio"],
 	},
 	"S": {
 	  "name": "Zolfo",
@@ -396,7 +402,8 @@ var elements: Dictionary = {
 	  "description": "Claudia Alexander è conosciuta per il suo lavoro nel campo dell’astrofisica e dell’esplorazione spaziale. È stata una delle scienziate di punta nella NASA, contribuendo in modo significativo a progetti di missioni spaziali, in particolare alla missione Galileo, che ha studiato Giove e le sue lune. Nel corso della sua carriera, Claudia Alexander ha lavorato instancabilmente per promuovere la scienza tra i giovani, in particolare le ragazze, cercando di abbattere le barriere di genere nelle scienze STEM.",
 	  "awards": "",
 	  "quote": "La scienza non ha confini, e se continuiamo a guardare in alto, possiamo scoprire sempre qualcosa di nuovo.",
-	  "links": []
+	  "links": [],
+	"profession_keys": ["Ing"],
 	},
 	"Ar": {
 	  "name": "Argon",
@@ -434,7 +441,8 @@ var elements: Dictionary = {
 		"quote": "La matematica è la lingua con cui Dio ha scritto l’universo.",
 		"links": [
 			"<https://en.wikipedia.org/wiki/Katherine_Johnson>"
-		]
+		],
+		"profession_keys": ["Astro", "Mat"],
 	},
 	"Ca": {
 		"name": "Calcio",
@@ -508,7 +516,8 @@ var elements: Dictionary = {
 		"description": "Medica statunitense che rivoluzionò la neonatologia con il punteggio Apgar (1952), sistema standardizzato per valutare la salute dei neonati. Studiò gli effetti dell’anestesia su madri e bambini, migliorando la sicurezza del parto. Negli ultimi anni si dedicò alla prevenzione delle malformazioni congenite.",
 		"awards": "",
 		"quote": "Un buon medico è colui che non solo cura, ma anche comprende, educa e dà speranza.",
-		"links": ["<https://en.wikipedia.org/wiki/Virginia_Apgar>"]
+		"links": ["<https://en.wikipedia.org/wiki/Virginia_Apgar>"],
+		"profession_keys": ["Med"],
 	},
 	"Cr": {
 		"name": "Cromo",
@@ -525,7 +534,8 @@ var elements: Dictionary = {
 		"description": "Neuroscienziata italiana specializzata nello studio della memoria. Professoressa alla Mount Sinai School of Medicine di New York, indaga i processi molecolari alla base dell’apprendimento e della codifica delle esperienze emotive nel cervello.",
 		"awards": "",
 		"quote": "La memoria non è un contenitore di informazioni, ma un processo dinamico che cambia nel tempo.",
-		"links": ["<https://en.wikipedia.org/wiki/Cristina_Alberini>"]
+		"links": ["<https://en.wikipedia.org/wiki/Cristina_Alberini>"],
+		"profession_keys": ["Med"],
 	},
 	"Mn": {
 		"name": "Manganese",
@@ -542,7 +552,8 @@ var elements: Dictionary = {
 		"description": "Medica e pedagogista italiana, prima donna a laurearsi in medicina in Italia. Sviluppò il metodo Montessori, basato su indipendenza e sviluppo naturale del bambino, adottato globalmente.",
 		"awards": "",
 		"quote": "Aiutami a fare da solo.",
-		"links": ["<https://en.wikipedia.org/wiki/Maria_Montessori>"]
+		"links": ["<https://en.wikipedia.org/wiki/Maria_Montessori>"],
+		"profession_keys": ["Med", "Hum"],
 	},
 	"Fe": {
 		"name": "Ferro",
@@ -560,6 +571,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "",
 		"links": ["<https://en.wikipedia.org/wiki/Felisa_Wolfe-Simon>"]
+
 	},
 	"Co": {
 		"name": "Cobalto",
@@ -593,7 +605,8 @@ var elements: Dictionary = {
 		"description": "Infermiera inglese che rivoluzionò l’assistenza sanitaria durante la guerra di Crimea. Introdusse l’uso della statistica per dimostrare l’efficacia dell’igiene nella riduzione della mortalità.",
 		"awards": "",
 		"quote": "La professione infermieristica è l’arte di servire e aiutare l’umanità, ed è più di un semplice compito, è una vocazione.",
-		"links": ["<https://en.wikipedia.org/wiki/Florence_Nightingale>"]
+		"links": ["<https://en.wikipedia.org/wiki/Florence_Nightingale>"],
+		"profession_keys": ["Med"],
 	},
 	"Cu": {
 		"name": "Rame",
@@ -627,7 +640,8 @@ var elements: Dictionary = {
 		"description": "Ingegnera chimica cinese, professoressa a Stanford. Sviluppa materiali elettronici flessibili che imitano la pelle umana, con applicazioni in sensori e tecnologie mediche.",
 		"awards": "",
 		"quote": "L’innovazione è la capacità di vedere le opportunità nei problemi e di trasformarli in soluzioni che possano migliorare la vita quotidiana.",
-		"links": ["<https://en.wikipedia.org/wiki/Zhenan_Bao>"]
+		"links": ["<https://en.wikipedia.org/wiki/Zhenan_Bao>"],
+		"profession_keys": ["Ing"],
 	},
 	"Ga": {
 		"name": "Gallio",
@@ -678,7 +692,8 @@ var elements: Dictionary = {
 		"description": "Chimica indiana pioniera: studiò alcaloidi della vinca per sviluppare farmaci contro cancro ed epilessia. Prima donna indiana a ottenere un dottorato in scienze.",
 		"awards": "",
 		"quote": "Desidero dedicare la mia vita, per quanto possibile, alla causa dell'umanità sofferente.",
-		"links": ["<https://en.wikipedia.org/wiki/Asima_Chatterjee>"]
+		"links": ["<https://en.wikipedia.org/wiki/Asima_Chatterjee>"],
+		"profession_keys": "Chem",
 	},
 	"Se": {
 		"name": "Selenio",
@@ -714,7 +729,6 @@ var elements: Dictionary = {
 		"quote": "Comprendere la chimica del cervello apre la porta a nuovi trattamenti per la salute mentale.",
 		"links": ["<https://en.wikipedia.org/wiki/Brigitte_Kieffer>"]
 	},
-
 	"Kr": {
 		"name": "Kripton",
 		"number": 36,
@@ -730,7 +744,8 @@ var elements: Dictionary = {
 		"description": "Ingegnera statunitense specializzata in fotonica ed energie rinnovabili. Ex rettore della Ohio State University e Segretaria dell’Energia USA. Co-fondatrice di aziende green-tech.",
 		"awards": "",
 		"quote": "L’innovazione consiste nel vedere il mondo in modo diverso e fare la differenza.",
-		"links": ["<https://en.wikipedia.org/wiki/Kristina_M._Johnson>"]
+		"links": ["<https://en.wikipedia.org/wiki/Kristina_M._Johnson>"],
+		"profession_keys": ["Ing"],
 	},
 
 	# Periodo 5
@@ -838,7 +853,8 @@ var elements: Dictionary = {
 		"description": "Neuroscienziata italiana Premio Nobel per la Medicina nel 1986 per la scoperta del NGF, proteina cruciale per lo sviluppo e la sopravvivenza dei neuroni. La sua ricerca ha aperto nuove strade nello studio delle malattie neurodegenerative. Senatrice a vita, ha lottato per i diritti delle donne nella scienza e per la libertà accademica durante il fascismo.",
 		"awards": "Premio Nobel per la Medicina (1986)",
 		"quote": "Meglio aggiungere vita ai giorni, che non giorni alla vita.",
-		"links": ["<https://en.wikipedia.org/wiki/Rita_Levi-Montalcini>"]
+		"links": ["<https://en.wikipedia.org/wiki/Rita_Levi-Montalcini>"],
+		"profession_keys": ["Med"],
 	},
 
 	"Tc": {
@@ -856,7 +872,8 @@ var elements: Dictionary = {
 		"description": "Neuroscienziata e linguista russa specializzata nello studio della neurobiologia della coscienza e dell’elaborazione del linguaggio nel cervello. Il suo lavoro interdisciplinare unisce neuroscienze cognitive, intelligenza artificiale e filosofia della mente, esplorando come il cervello genera pensiero, creatività e percezione del mondo.",
 		"awards": "",
 		"quote": "Non siamo noi a pensare con il cervello, è il cervello che pensa con noi.",
-		"links": ["<https://en.wikipedia.org/wiki/Tatiana_Chernigovskaya>"]
+		"links": ["<https://en.wikipedia.org/wiki/Tatiana_Chernigovskaya>"],
+		"profession_keys": ["Med","Hum"],
 	},
 
 	"Ru": {
@@ -909,7 +926,8 @@ var elements: Dictionary = {
 		"description": "Neuroscienziata americana che rivoluzionò lo studio della corteccia prefrontale e della memoria di lavoro. I suoi studi hanno gettato le basi per terapie contro l'Alzheimer, la schizofrenia e l'ADHD. Integrò neuroscienze cognitive e neurobiologia, ridefinendo la comprensione delle funzioni cerebrali superiori.",
 		"awards": "",
 		"quote": "Capire la mente significa capire la nostra essenza più profonda.",
-		"links": ["<https://en.wikipedia.org/wiki/Patricia_Goldman-Rakic>"]
+		"links": ["<https://en.wikipedia.org/wiki/Patricia_Goldman-Rakic>"],
+		"profession_keys": ["Med"],
 	},
 
 	"Ag": {
@@ -945,7 +963,8 @@ var elements: Dictionary = {
 		"description": "Farmacologa americana che scoprì i recettori degli oppioidi nel cervello, rivoluzionando la comprensione del dolore e delle emozioni. Il suo lavoro ha ispirato lo sviluppo di farmaci per disturbi neurologici e ha esplorato il legame tra neurochimica e medicina mente-corpo.",
 		"awards": "",
 		"quote": "Le emozioni parlano al nostro corpo attraverso la biochimica.",
-		"links": ["<https://en.wikipedia.org/wiki/Candace_Pert>"]
+		"links": ["<https://en.wikipedia.org/wiki/Candace_Pert>"],
+		"profession_keys": ["Med"],
 	},
 
 	"In": {
@@ -963,7 +982,8 @@ var elements: Dictionary = {
 		"description": "Immunologa indiana pioniera nella ricerca sulla lebbra. I suoi studi sulla risposta immunitaria hanno migliorato i trattamenti per questa malattia, riducendo lo stigma sociale. È stata un faro per la scienza nei Paesi in via di sviluppo.",
 		"awards": "Numerosi premi per la ricerca sulle malattie infettive",
 		"quote": "La scienza non riguarda solo la conoscenza, ma il miglioramento della vita umana.",
-		"links": ["<https://en.wikipedia.org/wiki/Indira_Nath>"]
+		"links": ["<https://en.wikipedia.org/wiki/Indira_Nath>"],
+		"profession_keys": ["Med"],
 	},
 
 	"Sn": {
@@ -981,7 +1001,8 @@ var elements: Dictionary = {
 		"description": "Matematica italiana specializzata in logica costruttiva e sistemi deduttivi. I suoi lavori hanno applicazioni nell'informatica teorica e nell'intelligenza artificiale, ponendo ponti tra filosofia della logica e tecnologia avanzata.",
 		"awards": "",
 		"quote": "La logica è il ponte tra il pensiero e la conoscenza.",
-		"links": ["<https://en.wikipedia.org/wiki/Sara_Negri>"]
+		"links": ["<https://en.wikipedia.org/wiki/Sara_Negri>"],
+		"profession_keys": ["Mat"],
 	},
 
 	"Sb": {
@@ -1017,7 +1038,7 @@ var elements: Dictionary = {
 		"description": "Cosmonauta sovietica che nel 1963 completò 48 orbite terrestri a bordo della Vostok 6, diventando la prima donna nello spazio. Dopo il volo, ricoprì ruoli politici nel Partito Comunista e nel Parlamento russo, promuovendo il ruolo delle donne nella scienza.",
 		"awards": "Eroe dell'Unione Sovietica",
 		"quote": "Un uccello non può volare con una sola ala. Il volo spaziale umano non può progredire ulteriormente senza la partecipazione attiva delle donne.",
-		"links": ["<https://en.wikipedia.org/wiki/Valentina_Tereshkova>"]
+		"links": ["<https://en.wikipedia.org/wiki/Valentina_Tereshkova>"],
 	},
 	"I": {
 		"name": "Iodio", 
@@ -1037,7 +1058,8 @@ var elements: Dictionary = {
 		"links": [
 			"https://it.wikipedia.org/wiki/Ipazia",
 			"https://www.britannica.com/biography/Hypatia"
-	]
+		],
+		"profession_keys": ["Astro, Mat, Hum"],
 	},
 	"Xe": {
 		"name": "Xenon",
@@ -1214,8 +1236,7 @@ var elements: Dictionary = {
 		   "awards": "Premio Nobel per la Chimica (1935)",  
 		   "quote": "Se la scienza è la chiave per il progresso, è essenziale che la sua applicazione venga guidata dalla morale.",  
 		   "links": ["<https://en.wikipedia.org/wiki/Ir%C3%A8ne_Joliot-Curie>"]  
-},  
-
+	},
 	"Pt": {  
 		"name": "Platino",  
 		"number": 78,  
@@ -1231,7 +1252,8 @@ var elements: Dictionary = {
 	   "description": "Oftalmologa e inventrice americana, prima donna afroamericana a ottenere un brevetto medico (1988) per la sonda Laserphaco, che rivoluzionò la chirurgia della cataratta. Fondò l’American Institute for the Prevention of Blindness e fu la prima donna nera a dirigere un programma di specializzazione in oftalmologia negli USA. Il suo lavoro migliorò l’accesso alle cure oculistiche per le comunità svantaggiate.",  
 	   "awards": "Brevetto per la Laserphaco (1988), Fondatrice dell’American Institute for the Prevention of Blindness (1976)",  
 	   "quote": "La capacità di ripristinare la vista è la ricompensa finale.",  
-	   "links": ["<https://en.wikipedia.org/wiki/Patricia_Bath>"]  
+	   "links": ["<https://en.wikipedia.org/wiki/Patricia_Bath>"],
+		"profession_keys": ["Med"],
 	},
 	"Au": {"name": "Oro", "number": 79, "category": "Metallo di transizione", "group": 11, "period": 6},
 	"Hg": {  
@@ -1285,7 +1307,8 @@ var elements: Dictionary = {
 		"description": "Biologa italiana, professoressa emerita all’Università di Torino. Ha studiato le micorrize, simbiosi tra funghi e piante che coinvolgono il 90% delle specie vegetali. La sua ricerca ha implicazioni cruciali per l’agricoltura sostenibile e la salute degli ecosistemi.",  
 		"awards": "",  
 		"quote": "Una pianta non è un’isola.",  
-		"links": ["<https://en.wikipedia.org/wiki/Paola_Bonfante>"]  
+		"links": ["<https://en.wikipedia.org/wiki/Paola_Bonfante>"]  ,
+		"profession_keys": ["Bio"],
 	},  
 
 	"Bi": {  
@@ -1321,7 +1344,8 @@ var elements: Dictionary = {
 		"description": "Immunologa francese nota per la teoria del modello di pericolo, che spiega come il sistema immunitario risponda a segnali di danno cellulare piuttosto che al semplice riconoscimento di agenti esterni. La sua teoria ha rivoluzionato la comprensione delle allergie e delle malattie autoimmuni.",  
 		"awards": "",  
 		"quote": "Il sistema immunitario non distingue tra sé e non-sé, ma tra ciò che è pericoloso e ciò che non lo è.",  
-		"links": ["<https://en.wikipedia.org/wiki/Polly_Matzinger>"]  
+		"links": ["<https://en.wikipedia.org/wiki/Polly_Matzinger>"],
+		"profession_keys": ["Med"],
 	},  
 
 	"At": {  
@@ -1394,7 +1418,8 @@ var elements: Dictionary = {
 		"description": "Biologa marina e zoologa statunitense, autrice di *Primavera Silenziosa* (1962), libro che denunciò gli effetti devastanti del DDT sugli ecosistemi, innescando il movimento ambientalista globale. Lavorò per il Dipartimento della Pesca USA, combinando scienza e scrittura per sensibilizzare sull’inquinamento degli oceani e i rischi dei pesticidi.",  
 		"awards": "Medaglia Presidenziale della Libertà (postuma, 1980)",  
 		"quote": "L'uomo fa parte della natura e la sua guerra contro la natura è inevitabilmente una guerra contro se stesso.",  
-		"links": ["<https://en.wikipedia.org/wiki/Rachel_Carson>"]  
+		"links": ["<https://en.wikipedia.org/wiki/Rachel_Carson>"],
+		"profession_keys": ["Bio", "Hum"],
 	},
 	"Rf": {
 		"name": "Rutherfordio",
@@ -1447,7 +1472,8 @@ var elements: Dictionary = {
 		"description": "Ingegnera statunitense, tra le prime donne nel settore aerospaziale. Progettò sensori di gas per la NASA e co-fondò la Society of Women Engineers (SWE) per promuovere l’uguaglianza di genere in un campo dominato dagli uomini.",
 		"awards": "National Inventors Hall of Fame (2019, postuma)",
 		"quote": "Ho sempre sentito di dover lavorare più duramente e più a lungo di un uomo per dimostrare il mio valore.",
-		"links": ["<https://en.wikipedia.org/wiki/Beatrice_Hicks>"]
+		"links": ["<https://en.wikipedia.org/wiki/Beatrice_Hicks>"],
+		"profession_keys": ["Ing","Astro"],
 	},
 	"Hs": {
 		"name": "Hassio",
@@ -1498,7 +1524,8 @@ var elements: Dictionary = {
 		"description": "Biologa statunitense pioniera nella medicina rigenerativa. Nel 2008 rigenerò un cuore di ratto funzionante utilizzando una matrice decellularizzata, aprendo la strada alla creazione di organi per trapianti su misura.",
 		"awards": "",
 		"quote": "Credo che il futuro della medicina risieda nella creazione di soluzioni per i pazienti che siano su misura per loro, non una soluzione universale.",
-		"links": ["<https://en.wikipedia.org/wiki/Doris_Taylor_(scientist)>"]
+		"links": ["<https://en.wikipedia.org/wiki/Doris_Taylor_(scientist)>"],
+		"profession_keys": ["Med, Bio"],
 	},
 	"Rg": {
 		"name": "Roentgenio",
@@ -1549,7 +1576,8 @@ var elements: Dictionary = {
 		"description": "Biologa thailandese che ha rivoluzionato la crioconservazione di embrioni animali. Guidò il team che realizzò la prima fecondazione in vitro nei cani, aprendo nuove strade per la conservazione delle specie selvatiche in via di estinzione.",
 		"awards": "",
 		"quote": "Ogni specie che salviamo è una storia che continuiamo a raccontare, un legame che preserviamo per il futuro del nostro pianeta.",
-		"links": ["<https://nationalzoo.si.edu/staff/nucharin-songsasen>"]
+		"links": ["<https://nationalzoo.si.edu/staff/nucharin-songsasen>"],
+		"profession_keys": ["Bio"],
 	},
 	"Fl": {
 		"name": "Flerovio",
@@ -1600,7 +1628,8 @@ var elements: Dictionary = {
 		"description": "Biologa molecolare che dimostrò nel 1978 come produrre insulina umana usando batteri geneticamente modificati. La sua scoperta rivoluzionò il trattamento del diabete, rendendo possibile la produzione industriale di farmaci biotecnologici.",
 		"awards": "",
 		"quote": "La scienza non ha genere, razza o etnia: è per tutti.",
-		"links": ["<https://en.wikipedia.org/wiki/Lydia_Villa-Komaroff>"]
+		"links": ["<https://en.wikipedia.org/wiki/Lydia_Villa-Komaroff>"],
+		"profession_keys": ["Bio"],
 	},
 	"Ts": {
 		"name": "Tennesso",
@@ -1724,7 +1753,8 @@ var elements: Dictionary = {
 		"description": "Biologa brasiliana fondatrice del Lowland Tapir Conservation Initiative. Il suo lavoro ha protetto habitat critici in Amazzonia, salvando il tapiro e preservando la biodiversità.",
 		"awards": "Premio Whitley per la Conservazione (2008)",
 		"quote": "Salvare i tapiri significa salvare i loro habitat...",
-		"links": ["<https://en.wikipedia.org/wiki/Patricia_Medici>"]
+		"links": ["<https://en.wikipedia.org/wiki/Patricia_Medici>"],
+		"profession_keys": ["Bio"],
 	},
 	"Sm": {
 		"name": "Samario",
@@ -1741,7 +1771,8 @@ var elements: Dictionary = {
 		"description": "Statistica americana, professoressa ad Harvard. Ha creato i SMART trials per ottimizzare terapie in tempo reale, rivoluzionando il trattamento di malattie croniche come diabete e depressione.",
 		"awards": "MacArthur Fellowship (2013), Medaglia Nazionale della Scienza (2021)",
 		"quote": "Amo la statistica e mi piace che permetta così tanta libertà.",
-		"links": ["<https://en.wikipedia.org/wiki/Susan_Murphy_(statistician)>"]
+		"links": ["<https://en.wikipedia.org/wiki/Susan_Murphy_(statistician)>"],
+		"profession_keys": ["Med, Mat"],
 	},
 	"Eu": {
 		"name": "Europio",
@@ -1758,7 +1789,8 @@ var elements: Dictionary = {
 		"description": "Biologa marina americana, pioniera nello studio degli squali. Fondò il Mote Marine Laboratory e dimostrò l’intelligenza di questi predatori, sfatando miti e promuovendo la conservazione degli oceani. Scoprì nuove specie e scrisse libri per avvicinare il pubblico alla vita marina.",
 		"awards": "",
 		"quote": "Anche la più piccola creatura sulla Terra ha uno scopo. Non esiste una vita insignificante.",
-		"links": ["<https://en.wikipedia.org/wiki/Eugenie_Clark>"]
+		"links": ["<https://en.wikipedia.org/wiki/Eugenie_Clark>"],
+		"profession_keys": ["Bio"],
 	},
 
 	"Gd": {
@@ -1830,7 +1862,8 @@ var elements: Dictionary = {
 		"description": "Geobiologa americana, autrice di *Lab Girl* (2016) e *The Story of More* (2020). Studia l’impatto umano sul clima attraverso l’analisi degli isotopi nelle piante, unendo ricerca scientifica e divulgazione accessibile.",
 		"awards": "",
 		"quote": "Lavorare in un laboratorio significa ogni giorno chiedere al mondo qualcosa che non ha mai chiesto prima...",
-		"links": ["<https://en.wikipedia.org/wiki/Hope_Jahren>"]
+		"links": ["<https://en.wikipedia.org/wiki/Hope_Jahren>"],
+		"profession_keys": ["Bio"],
 	},
 	"Er": {
 		"name": "Erbio",
@@ -1858,14 +1891,15 @@ var elements: Dictionary = {
 		"period": 9,
 		"image": "res://Images/Margaret Todd.jpg",
 		"scientist_name": "Margaret Todd",
-		"profession": "Medico e Scrittrice",
+		"profession": "Medica e Scrittrice",
 		"brief_subtitle": "Ideatrice del termine 'isotopo'",
 		"year": "1859 - 1918",
 		"nationality": "Scozzese",
 		"description": "Medica e scrittrice scozzese che coniò il termine *isotopo* nel 1913, suggerendolo a Frederick Soddy durante i suoi studi sulla radioattività. Autrice del romanzo *Mona Maclean, Medical Student* (1892), ispirato alla sua esperienza in medicina. Fu una figura poliedrica, impegnata anche per i diritti delle donne nella scienza.",
 		"awards": "",
 		"quote": "La scoperta della verità non è nelle mani di uno solo, ma nella collaborazione di molti.",
-		"links": ["<https://en.wikipedia.org/wiki/Margaret_Todd_(doctor)>"]
+		"links": ["<https://en.wikipedia.org/wiki/Margaret_Todd_(doctor)>"],
+		"profession_keys": ["Med", "Hum"],
 	},
 
 	"Yb": {
@@ -1883,7 +1917,8 @@ var elements: Dictionary = {
 		"description": "Matematica e fisica francese, prima donna eletta all'Académie des Sciences (1979). Risolse le equazioni di Einstein della relatività generale, dimostrando l'esistenza di soluzioni per lo spazio-tempo. Insegnò a Princeton e all'IHÉS, influenzando la cosmologia e la fisica matematica moderna.",
 		"awards": "Premio Dannie Heineman (2003), Grande Médaille de l'Académie des Sciences (2015)",
 		"quote": "Volevo comprendere le leggi fondamentali della fisica con rigore matematico.",
-		"links": ["<https://en.wikipedia.org/wiki/Yvonne_Choquet-Bruhat>"]
+		"links": ["<https://en.wikipedia.org/wiki/Yvonne_Choquet-Bruhat>"],
+		"profession_keys": ["Phy, Mat"],
 	},
 
 	"Lu": {
@@ -1901,7 +1936,8 @@ var elements: Dictionary = {
 		"description": "Biologa americana rivoluzionaria, propose la teoria endosimbiotica (1967), dimostrando che mitocondri e cloroplasti derivano da batteri antichi. Collaborò con James Lovelock sulla teoria di Gaia e sfidò il paradigma darwiniano, enfatizzando la cooperazione nell'evoluzione. Vincitrice del Premio Darwin-Wallace (1999).",
 		"awards": "Premio Darwin-Wallace (1999), National Medal of Science (1999)",
 		"quote": "L’essere umano si crede invincibile, invulnerabile. Niente di più lontano dalla realtà.",
-		"links": ["<https://en.wikipedia.org/wiki/Lynn_Margulis>"]
+		"links": ["<https://en.wikipedia.org/wiki/Lynn_Margulis>"],
+		"profession_keys": ["Bio"],
 	},
 
 	# Attinidi (periodo fittizio 10, gruppo 3-18)
@@ -1937,7 +1973,8 @@ var elements: Dictionary = {
 		"description": "Informatica americana che integrò l’IA nell’assistenza sanitaria, sviluppando sistemi esperti per analisi mediche. Prima donna a dirigere il Dipartimento di Ingegneria Biomedica all’UCLA, promosse l’inclusione femminile nella tecnologia.",
 		"awards": "",
 		"quote": "Bisogna ampliare l'accesso delle donne alla tecnologia, rompendo la storia patriarcale della scienza.",
-		"links": ["<https://en.wikipedia.org/wiki/Thelma_Estrin>"]
+		"links": ["<https://en.wikipedia.org/wiki/Thelma_Estrin>"],
+		"profession_keys": ["Ing","Med"],
 	},
 	"Pa": {
 		"name": "Protoattinio",
@@ -2022,10 +2059,8 @@ var elements: Dictionary = {
 		"description": "Emmy Noether è stata una matematica tedesca nota per il suo contributo all'algebra astratta e alla fisica teorica. Il suo teorema ha rivoluzionato la comprensione delle simmetrie in fisica. Nonostante le difficoltà dovute alla discriminazione di genere, ha lasciato un'eredità fondamentale nella matematica e nella fisica.",
 		"awards": "Premio Ackermann-Teubner (1932)",
 		"quote": "La matematica non è solo un mezzo per risolvere problemi, ma un linguaggio attraverso cui possiamo comprendere la struttura profonda della realtà.",
-		"links": [
-			"https://en.wikipedia.org/wiki/Emmy_Noether",
-			"https://mathshistory.st-andrews.ac.uk/Biographies/Noether/"
-			]
+		"links": ["https://en.wikipedia.org/wiki/Emmy_Noether", "https://mathshistory.st-andrews.ac.uk/Biographies/Noether/"],
+		"profession_keys": ["Phy, Mat"],
 	},
 	"Cm": {
 		"name": "Curio", 
@@ -2062,7 +2097,8 @@ var elements: Dictionary = {
 		"description": "Biologa statunitense premio Nobel per la Medicina (1983) per la scoperta dei trasposoni, segmenti di DNA mobili che rivoluzionarono la genetica. Il suo lavoro pionieristico, inizialmente osteggiato, dimostrò che il genoma non è statico ma dinamico.",
 		"awards": "Premio Nobel per la Medicina (1983)",
 		"quote": "Bisogna sempre credere alle nostre osservazioni, per quanto bizzarre possano essere. Forse stanno cercando di dirci qualcosa.",
-		"links": ["<https://en.wikipedia.org/wiki/Barbara_McClintock>"]
+		"links": ["<https://en.wikipedia.org/wiki/Barbara_McClintock>"],
+		"profession_keys": ["Med, Bio"],
 	},
 	"Cf": {
 		"name": "Californio",
@@ -2170,25 +2206,25 @@ var elements: Dictionary = {
 }
 #Database colori degli elementi
 var category_colors = {
-		"Category": {
-			"1": Color(0.5, 0, 0.5),  # Rebecca Purple (Viola)
-			"2": Color(0.6, 0, 0.8),  # Web Purple
-			"3": Color(0.8, 0, 0.8),  # Blue Violet
-			"4": Color(0.9, 0, 0.7),  # Magenta
-			"5": Color(1, 0, 0.6),    # Strong Pink
-			"6": Color(1, 0.3, 0.5),  # Hot Pink
-			"7": Color(1, 0.5, 0.3),  # Light Pink
-			"8": Color(1, 0.7, 0.2),  # Light Rose
-		},
+	"Category": {
+		"1": Color(0.5, 0, 0.5),  # Rebecca Purple (Viola)
+		"2": Color(0.6, 0, 0.8),  # Web Purple
+		"3": Color(0.8, 0, 0.8),  # Blue Violet
+		"4": Color(0.9, 0, 0.7),  # Magenta
+		"5": Color(1, 0, 0.6),    # Strong Pink
+		"6": Color(1, 0.3, 0.5),  # Hot Pink
+		"7": Color(1, 0.5, 0.4),  # Light Pink
+		"8": Color(1, 0.6, 0.3),  # Light Rose
+	},
 	"F-Block": Color("#596759"),
-   "Metallo alcalino": Color(1.0, 0.0, 0.0),           # Rosso vivo
-	"Metallo alcalino-terroso": Color(1.0, 0.5, 0.0),   # Arancione brillante
-	"Metallo di transizione": Color(0.2, 0.8, 0.4),     # Verde smeraldo chiaro (modificato)
-	"Metallo post-transizionale": Color(0.0, 0.8, 1.0), # Celeste
-	"Metalloide": Color(1.0, 0.4, 0.2),                 # Rosso-arancio
-	"Non metallo": Color(1.0, 0.7, 0.3),                # Arancio chiaro
-	"Alogeno": Color(0.4, 0.9, 0.5),                   # Verde smeraldo pastello (aggiustato)
-	"Gas nobile": Color(0.4, 0.9, 1.0),                 # Celeste chiaro
+	"Metallo alcalino": Color(1.0, 0.0, 0.0),        # Rosso vivo
+	"Metallo alcalino-terroso": Color(1.0, 0.3, 0.0),# Arancio intenso
+	"Metallo di transizione": Color(0.9, 0.5, 0.1), # Arancio dorato
+	"Metallo post-transizionale": Color(0.6, 0.8, 0.2), # Verde pera
+	"Metalloide": Color(0.4, 0.9, 0.4),              # Verde pera chiaro
+	"Non metallo": Color(0.2, 0.95, 0.7),            # Verde acqua
+	"Alogeno": Color(0.1, 0.9, 0.9),                 # Azzurro tenue
+	"Gas nobile": Color(0.0, 0.8, 1.0),              # Celeste pieno
 	"Lantanide": Color(0.2, 0.2, 1.0),                # Blu violaceo
 	"Attinide": Color(0.4, 0.0, 0.8),                  # Viola
 	"Sconosciuto": Color.DIM_GRAY, 
@@ -2218,7 +2254,6 @@ func _ready() -> void:
 	control_element_container.queue_free()
 	popup_panel.visible = false 
 	popup_margin.visible = false 
-
 
 func create_periodic_table():
 	var total_elements = elements.size()
@@ -2308,7 +2343,7 @@ func create_periodic_table():
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
 				btn.add_theme_font_override("font", load("res://Fonts/texgyreheros-bold.otf"))
 				if not "number" in element:
-					btn.add_theme_font_size_override("font_size", 20)
+					btn.add_theme_font_size_override("font_size", 18)
 				else:
 					btn.add_theme_font_size_override("font_size", 25)
 				btn.pivot_offset = btn.size/2
@@ -2329,8 +2364,6 @@ func create_periodic_table():
 					if element["category"] == "Category":
 						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
 						style.bg_color = category_colors["Category"][str(category_counter)]
-						print(style.bg_color)
-						print(category_counter)
 					else:
 						style.bg_color = category_colors[element["category"]]
 					btn.add_theme_stylebox_override("normal", style)
@@ -2341,11 +2374,6 @@ func create_periodic_table():
 					elements_created += 1
 					var original_color = style.bg_color
 					var hover_color = original_color
-					if "profession_id" in element:
-						for prof in element["profession_id"]:
-							if prof in prof_to_key:
-								hover_color = category_colors["Category"][ prof_to_key[prof] ]
-								break
 					btn.mouse_entered.connect(func():
 						var tween = element_container.create_tween()
 						style.bg_color = hover_color.darkened(0.2)  # o .brightened() se preferisci
@@ -2393,7 +2421,6 @@ func elements_animation(grid_container):
 		await get_tree().create_timer(0.08).timeout
 		animation_finished = true
 
-
 func on_element_selected(symbol, button):
 	if animation_finished:
 		button.scale = Vector2(1.0, 1.0)
@@ -2411,7 +2438,10 @@ func on_element_selected(symbol, button):
 	selected_button = button
 		
 	var element = elements[symbol]
-	if element["category"] == "Category" or element["category"] == "F-Block":
+	if element["category"] == "F-Block":
+		return
+	if element["category"] == "Category":
+		on_category_selected(symbol, button)
 		return
 	popup_name_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
 		element["name"], element["number"], element["category"]
@@ -2439,11 +2469,46 @@ func on_element_selected(symbol, button):
 	popup_margin.visible = true 
 	popup_panel.visible = true 
 	popup_animation(button) 
+
 	await get_tree().create_timer(0.3).timeout
 	can_press = true
+
 	
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
 
+
+func on_category_selected(symbol: String, _button):
+	# 1) Trova i nomi di tutti gli elementi che hanno quella profession_key
+	reset_all_colors()
+	var matching_symbols := []
+	for sym in elements.keys():
+		var data = elements[sym]
+		if data.has("profession_keys") and symbol in data["profession_keys"]:
+			matching_symbols.append(sym)
+	printerr("Simboli matching:", matching_symbols)
+
+	# 2) Per ogni element_container dentro grid_container
+	for element_container in grid_container.get_children():
+		var btns := element_container.get_children().filter(func(c):
+			return c is Button
+		)
+		if btns.is_empty():
+			continue  # nessun Button qui, salta
+		var btn := btns[0] as Button
+		
+		if btn.text in matching_symbols:
+			printerr("Match: ", btn.text)
+			var key = prof_to_key.get(symbol)
+			var color = category_colors["Category"].get(key, Color.WHITE)
+			var sb = (btn.get_theme_stylebox("normal") as StyleBoxFlat).duplicate() as StyleBoxFlat
+			sb.bg_color = color
+			btn.add_theme_stylebox_override("normal", sb)
+		if btn == null:
+			continue  # nessun Button trovato, salta
+
+		
+
+		
 func calculate_popup_position(button):
 	var offset = 5
 	
@@ -2478,3 +2543,45 @@ func popup_animation(button):
 	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.075).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 	tween.tween_property(button, "scale", Vector2(1, 1), 0.05).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
 	popup_panel.size.y = (popup_margin.size.y)
+
+func reset_all_colors():
+	# Deseleziona categoria
+	selected_category_symbol = ""
+	# Riparti dal primo colore
+	category_counter = 0
+
+	# Cicla tutti i container nella grid
+	for element_container in grid_container.get_children():
+		# Trova il Button figlio
+		var btn: Button = null
+		for child in element_container.get_children():
+			if child is Button:
+				btn = child as Button
+				break
+		if btn == null:
+			continue
+
+		# Ricava i dati dell'elemento
+		var data = elements.get(btn.text)
+		if data == null:
+			continue
+
+		# Ricrea lo StyleBoxFlat con radius e colore di default
+		var style = StyleBoxFlat.new()
+		var r = 2
+		style.corner_radius_bottom_left = r
+		style.corner_radius_bottom_right = r
+		style.corner_radius_top_left = r
+		style.corner_radius_top_right = r
+
+		if data["category"] == "Category":
+			category_counter = (category_counter % 8) + 1
+			style.bg_color = category_colors["Category"][str(category_counter)]
+		else:
+			style.bg_color = category_colors[data["category"]]
+
+		# Applica l'override a tutti gli stati
+		for state in ["normal","hover","pressed","disabled"]:
+			btn.add_theme_stylebox_override(state, style)
+		# Ripristina il colore del testo
+		btn.add_theme_color_override("font_color", Color.GHOST_WHITE)
