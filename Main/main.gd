@@ -2181,16 +2181,16 @@ var category_colors = {
 			"8": Color(1, 0.7, 0.2),  # Light Rose
 		},
 	"F-Block": Color("#596759"),
-	"Metallo alcalino": Color.CORAL,  
-	"Metallo alcalino-terroso": Color.SADDLE_BROWN,
-	"Metallo di transizione": Color.BROWN, 
-	"Metallo post-transizionale": Color.DARK_SLATE_BLUE,  
-	"Metalloide": Color.TEAL, 
-	"Non metallo": Color.SEA_GREEN,  
-	"Alogeno": Color.VIOLET,  
-	"Gas nobile": Color.SKY_BLUE, 
-	"Lantanide": Color.WEB_PURPLE, 
-	"Attinide": Color.LIME_GREEN, 
+   "Metallo alcalino": Color(1.0, 0.0, 0.0),           # Rosso vivo
+	"Metallo alcalino-terroso": Color(1.0, 0.5, 0.0),   # Arancione brillante
+	"Metallo di transizione": Color(0.2, 0.8, 0.4),     # Verde smeraldo chiaro (modificato)
+	"Metallo post-transizionale": Color(0.0, 0.8, 1.0), # Celeste
+	"Metalloide": Color(1.0, 0.4, 0.2),                 # Rosso-arancio
+	"Non metallo": Color(1.0, 0.7, 0.3),                # Arancio chiaro
+	"Alogeno": Color(0.4, 0.9, 0.5),                   # Verde smeraldo pastello (aggiustato)
+	"Gas nobile": Color(0.4, 0.9, 1.0),                 # Celeste chiaro
+	"Lantanide": Color(0.2, 0.2, 1.0),                # Blu violaceo
+	"Attinide": Color(0.4, 0.0, 0.8),                  # Viola
 	"Sconosciuto": Color.DIM_GRAY, 
 }
 
