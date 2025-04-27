@@ -138,9 +138,8 @@ var elements: Dictionary = {
 		"description": "Fisica svedese di origine austriaca. Insieme a Otto Hahn, scoprì la fissione nucleare. A causa delle discriminazioni di genere e delle persecuzioni razziali non ricevette il premio Nobel come il suo compagno di laboratorio, ma le sue scoperte furono utilizzate per costruire la bomba atomica, attraverso il progetto Manhattan, a cui la scienziata si rifiutò di partecipare. Da quel momento in poi si dedicò all’uso pacifico dell’energia atomica. Scoprì il proattinio, elemento 91.",
 		"awards": "Medaglia Max Planck (1949), Premio Enrico Fermi (1966)",
 		"quote": "Penso che sia una bella scoperta, se non fosse per la guerra che piega anche la scienza alle sue atroci necessità.",
-		"links": [
-			"https://en.wikipedia.org/wiki/Lise_Meitner"
-		]
+		"links": ["https://en.wikipedia.org/wiki/Lise_Meitner"],
+		"profession_keys": ["Phy"],
 	},
 	"Be": {
 		"name": "Berillio", 
@@ -198,7 +197,8 @@ var elements: Dictionary = {
 		"quote": "L'unico uomo che non ha mai commesso un errore è quello che non ha mai fatto nulla.",
 		"links": [
 			"https://en.wikipedia.org/wiki/Cecilia_Payne-Gaposchkin"
-		]
+		],
+		"profession_keys": ["Phy", "Astro"],
 	},
 	"N": {
 		"name": "Azoto", 
@@ -403,7 +403,7 @@ var elements: Dictionary = {
 	  "awards": "",
 	  "quote": "La scienza non ha confini, e se continuiamo a guardare in alto, possiamo scoprire sempre qualcosa di nuovo.",
 	  "links": [],
-	"profession_keys": ["Ing"],
+	"profession_keys": ["Ing","Phy", "Astro"],
 	},
 	"Ar": {
 	  "name": "Argon",
@@ -420,7 +420,8 @@ var elements: Dictionary = {
 	  "description": "Artemisia Gentileschi è stata una pittrice italiana del periodo barocco, tra le prime donne a ottenere successo nel mondo dell'arte. Formata dal padre Orazio, sviluppò uno stile drammatico e realistico influenzato da Caravaggio. Le sue opere spesso raffigurano eroine bibliche e mitologiche con grande forza espressiva, come Giuditta che decapita Oloferne. Il suo lavoro è considerato un simbolo della resilienza femminile e del talento artistico.",
 	  "awards": "",
 	  "quote": "L’opera d’arte è il riflesso dell’anima di chi la crea.",
-	  "links": []
+	  "links": [],
+	"profession_keys": ["Hum"],
 	},
 
 	# Periodo 4
@@ -764,7 +765,8 @@ var elements: Dictionary = {
 		"description": "Fisica e radioastronoma australiana, tra le prime a utilizzare le onde radio per studiare il Sole. Contribuì alla scoperta delle tempeste solari radio e sviluppò tecniche fondamentali per l'interferometria radioastronomica. La sua carriera fu interrotta a causa delle restrizioni contro le donne sposate nel servizio pubblico, ma il suo lavoro gettò le basi per la moderna radioastronomia.",
 		"awards": "",
 		"quote": "La scoperta scientifica è un viaggio, non una destinazione.",
-		"links": ["<https://en.wikipedia.org/wiki/Ruby_Payne-Scott>"]
+		"links": ["<https://en.wikipedia.org/wiki/Ruby_Payne-Scott>"],
+		"profession_keys": ["Phy"],
 	},
 
 	"Sr": {
@@ -835,7 +837,8 @@ var elements: Dictionary = {
 		"description": "Fisica teorica americana che ha contribuito allo studio delle interazioni elettrodeboli e della fisica delle particelle. Il suo lavoro sulle simmetrie ha influenzato la comprensione della fisica fondamentale. Attivista per la documentazione storica del ruolo delle donne nella scienza, ha dedicato parte della sua carriera a valorizzare il loro contributo spesso dimenticato.",
 		"awards": "",
 		"quote": "Molte donne hanno contribuito in modo sostanziale alla scienza, anche se la loro storia è stata spesso trascurata.",
-		"links": ["<https://en.wikipedia.org/wiki/Nina_Byers>"]
+		"links": ["<https://en.wikipedia.org/wiki/Nina_Byers>"],
+		"profession_keys": ["Phy"],
 	},
 
 	"Mo": {
@@ -891,7 +894,8 @@ var elements: Dictionary = {
 		"description": "Astronoma americana che ha rivoluzionato l’astrofisica dimostrando l’esistenza della materia oscura attraverso lo studio delle curve di rotazione delle galassie. Le sue osservazioni hanno rivelato che la maggior parte della massa dell’universo è invisibile, ridefinendo i modelli cosmologici. Icona femminile in un campo dominato dagli uomini, ha aperto la strada alle scienziate del XX secolo.",
 		"awards": "",
 		"quote": "La scienza non ha genere. C’è solo la scienza che deve essere fatta, e ci sono persone che la fanno.",
-		"links": ["<https://en.wikipedia.org/wiki/Vera_Rubin>"]
+		"links": ["<https://en.wikipedia.org/wiki/Vera_Rubin>"],
+		"profession_keys": ["Astro"],
 	},
 
 	"Rh": {
@@ -1076,7 +1080,8 @@ var elements: Dictionary = {
 		"description": "Biofisica e nanotecnologa cinese-americana che ha rivoluzionato la biologia cellulare con lo sviluppo della microscopia STORM, superando il limite di diffrazione della luce. La sua tecnica permette di osservare strutture cellulari a livello nanometrico, rivelando dettagli molecolari prima invisibili. I suoi studi includono anche le interazioni biomolecolari e l’analisi del cervello.",
 		"awards": "",
 		"quote": "La scienza è un'opportunità per esplorare e scoprire i misteri più profondi della vita, e ogni piccolo progresso ci porta più vicino alla comprensione dei fenomeni che ci circondano.",
-		"links": ["<https://en.wikipedia.org/wiki/Xiaowei_Zhuang>"]
+		"links": ["<https://en.wikipedia.org/wiki/Xiaowei_Zhuang>"],
+		"profession_keys": ["Phy", "Bio"],
 	},
 
 	"Cs": {
@@ -1182,7 +1187,8 @@ var elements: Dictionary = {
 		"description": "Astrofisica portoricana rivoluzionaria che ha sviluppato la sonificazione dei dati astronomici, trasformando segnali spaziali in suoni per rendere l'astronomia accessibile ai non vedenti. Dottorata nel 2013, ha lavorato ad Harvard e all'Osservatorio Gravitazionale Europeo. Inclusa tra le donne più innovative in scienza dalla BBC (2020), il suo TED Talk ha ispirato progetti globali per l'accessibilità scientifica.",
 		"awards": "",
 		"quote": "Il mio lavoro dimostra che l'inclusività e la diversità sono essenziali per il progresso della scienza.",
-		"links": ["<https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced>"]
+		"links": ["<https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced>"],
+		"profession_keys": ["Phy", "Astro"],
 	},
 
 	"Re": {
@@ -1200,7 +1206,8 @@ var elements: Dictionary = {
 		"description": "Fisica teorica russa-americana pioniera nella supergravità e nella teoria delle stringhe. Professoressa a Stanford, ha sviluppato modelli per spiegare l'espansione accelerata dell'universo. Vincitrice del Lise Meitner Award (2009) e membro dell'American Academy of Arts and Sciences. Collabora con il marito Andrei Linde, celebre per i suoi studi sull'inflazione cosmica.",
 		"awards": "Lise Meitner Award (2009), Cattedra Lorentz (2017)",
 		"quote": "Ogni teoria è come una finestra che ci permette di guardare il mondo in un modo diverso.",
-		"links": ["<https://en.wikipedia.org/wiki/Renata_Kallosh>"]
+		"links": ["<https://en.wikipedia.org/wiki/Renata_Kallosh>"],
+		"profession_keys": ["Phy"],
 	},
 
 	"Os": {
@@ -1235,7 +1242,8 @@ var elements: Dictionary = {
 		   "description": "Chimica e fisica francese, figlia di Marie e Pierre Curie. Nel 1934, con il marito Frédéric Joliot-Curie, scoprì la radioattività artificiale, vincendo il Nobel per la Chimica nel 1935. Continuò gli studi sulla radioattività e i radioisotopi, rivoluzionando la medicina nucleare. Morì di leucemia nel 1956, probabilmente a causa dell'esposizione alle radiazioni. La sua eredità scientifica influenzò la ricerca nucleare e le applicazioni mediche.",  
 		   "awards": "Premio Nobel per la Chimica (1935)",  
 		   "quote": "Se la scienza è la chiave per il progresso, è essenziale che la sua applicazione venga guidata dalla morale.",  
-		   "links": ["<https://en.wikipedia.org/wiki/Ir%C3%A8ne_Joliot-Curie>"]  
+		   "links": ["<https://en.wikipedia.org/wiki/Ir%C3%A8ne_Joliot-Curie>"],
+		"profession_keys": ["Phy","Chem"],
 	},
 	"Pt": {  
 		"name": "Platino",  
@@ -1271,7 +1279,8 @@ var elements: Dictionary = {
 		"description": "Astronoma e fisica italiana, prima donna a dirigere l’Osservatorio Astronomico di Trieste. Studiò l’evoluzione stellare e la radiazione cosmica, diventando un simbolo della divulgazione scientifica e dei diritti civili. Membro dell’Accademia dei Lincei, ha ispirato generazioni di scienziati con il suo impegno per la scienza libera e l’inclusione delle donne nella ricerca.",  
 		"awards": "Membro dell'Accademia dei Lincei",  
 		"quote": "Nella vita non c’è nulla da temere, solo da capire.",  
-		"links": ["<https://en.wikipedia.org/wiki/Margherita_Hack>"]  
+		"links": ["<https://en.wikipedia.org/wiki/Margherita_Hack>"],
+		"profession_keys": ["Phy","Astro"],
 	},  
 
 	"Tl": {  
@@ -1646,7 +1655,8 @@ var elements: Dictionary = {
 		"description": "Neuroscienziata russa-americana che applica modelli matematici per studiare come il cervello codifica informazioni sensoriali. Il suo lavoro ha chiarito i meccanismi alla base della percezione e dell’apprendimento.",
 		"awards": "",
 		"quote": "Comprendere il cervello significa comprendere la natura stessa dell’intelligenza.",
-		"links": ["<https://en.wikipedia.org/wiki/Tatyana_Sharpee>"]
+		"links": ["<https://en.wikipedia.org/wiki/Tatyana_Sharpee>"],
+		"profession_keys": ["Phy","Med"],
 	},
 	"Og": {
 		"name": "Oganesson",
@@ -1682,7 +1692,8 @@ var elements: Dictionary = {
 		"description": "Fisica italiana pioniera, prima donna in Europa a ottenere un dottorato in filosofia (1732) e cattedratica di fisica sperimentale a Bologna (1776). Diffuse le teorie newtoniane e condusse esperimenti su elettricità e meccanica in un’epoca dominata dagli uomini.",
 		"awards": "",
 		"quote": "La scienza è il linguaggio della verità, e il mio impegno è nel rivelarla attraverso la curiosità e la dedizione, senza limiti di genere.",
-		"links": ["<https://en.wikipedia.org/wiki/Laura_Bassi>"]
+		"links": ["<https://en.wikipedia.org/wiki/Laura_Bassi>"],
+		"profession_keys": ["Phy"],
 	},
 
 	"Ce": {
@@ -1826,7 +1837,7 @@ var elements: Dictionary = {
 		"description": "Scienziata russa specializzata nello studio di DNA, micelle e polimeri. Lavorò all’Istituto dei Composti Macromolecolari di San Pietroburgo, contribuendo a definire i principi strutturali delle macromolecole. Vincitrice del Premio L’Oréal-UNESCO (2007).",
 		"awards": "Premio L’Oréal-UNESCO per le Donne nella Scienza (2007)",
 		"quote": "La scienza dei polimeri è un filo invisibile che lega il mondo materiale alla comprensione profonda della natura.",
-		"links": ["<https://en.wikipedia.org/wiki/Tatiana_Birshtein>"]
+		"links": ["<https://en.wikipedia.org/wiki/Tatiana_Birshtein>"],
 	},
 
 	"Dy": {
@@ -1880,7 +1891,8 @@ var elements: Dictionary = {
 		"description": "Chimica fisica tedesca che sviluppò la cromatografia a gas nel 1944, tecnica rivoluzionaria per l'analisi chimica. Nonostante il suo lavoro sia stato inizialmente ignorato a causa del genere, è oggi riconosciuta come una delle figure chiave della chimica analitica del XX secolo. Professoressa all'Università di Innsbruck, dedicò la vita alla ricerca scientifica.",
 		"awards": "",
 		"quote": "La scienza avanza grazie alla perseveranza di chi osa esplorare l'invisibile.",
-		"links": ["<https://en.wikipedia.org/wiki/Erika_Cremer>"]
+		"links": ["<https://en.wikipedia.org/wiki/Erika_Cremer>"],
+		"profession_keys": ["Phy", "Chem"],
 	},
 
 	"Tm": {
@@ -2217,8 +2229,8 @@ var category_colors = {
 		"8": Color(1, 0.6, 0.3),  # Light Rose
 	},
 	"F-Block": Color("#596759"),
-	"Metallo alcalino": Color(1.0, 0.0, 0.0),        # Rosso vivo
-	"Metallo alcalino-terroso": Color(1.0, 0.3, 0.0),# Arancio intenso
+	"Metallo alcalino": Color(0.99, 0.0, 0.0),        # Rosso vivo
+	"Metallo alcalino-terroso": Color(0.98, 0.3, 0.0),# Arancio intenso
 	"Metallo di transizione": Color(0.9, 0.5, 0.1), # Arancio dorato
 	"Metallo post-transizionale": Color(0.6, 0.8, 0.2), # Verde pera
 	"Metalloide": Color(0.4, 0.9, 0.4),              # Verde pera chiaro
@@ -2377,6 +2389,7 @@ func create_periodic_table():
 					btn.mouse_entered.connect(func():
 						var tween = element_container.create_tween()
 						style.bg_color = hover_color.darkened(0.2)  # o .brightened() se preferisci
+						on_category_selected(symbol)
 						tween.tween_property(element_container, "scale", Vector2(1.1,1.1), 0.2) \
 							 .set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 					)
@@ -2392,12 +2405,12 @@ func create_periodic_table():
 					if elements_created == total_elements:
 						elements_animation(grid_container)
 
-func elements_animation(grid_container):
+func elements_animation(grid):
 	var speed: float = 0.3
 	var delay_map := {}
 	# Prepara una mappa: key = diagonale (riga + colonna), value = lista di elementi
-	for index in grid_container.get_child_count():
-		var element = grid_container.get_child(index)
+	for index in grid.get_child_count():
+		var element = grid.get_child(index)
 		if element.is_in_group("elements"):
 			var row = index / (groups + 1)
 			var col = index % (groups + 1)
@@ -2441,7 +2454,7 @@ func on_element_selected(symbol, button):
 	if element["category"] == "F-Block":
 		return
 	if element["category"] == "Category":
-		on_category_selected(symbol, button)
+		on_category_selected(symbol)
 		return
 	popup_name_label.text = "Nome: %s\nNumero: %d\nCategoria: %s" % [
 		element["name"], element["number"], element["category"]
@@ -2477,7 +2490,7 @@ func on_element_selected(symbol, button):
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
 
 
-func on_category_selected(symbol: String, _button):
+func on_category_selected(symbol: String):
 	# 1) Trova i nomi di tutti gli elementi che hanno quella profession_key
 	reset_all_colors()
 	var matching_symbols := []
@@ -2503,10 +2516,9 @@ func on_category_selected(symbol: String, _button):
 			var sb = (btn.get_theme_stylebox("normal") as StyleBoxFlat).duplicate() as StyleBoxFlat
 			sb.bg_color = color
 			btn.add_theme_stylebox_override("normal", sb)
-		if btn == null:
-			continue  # nessun Button trovato, salta
-
-		
+			var tween = create_tween()
+			tween.tween_property(btn, "scale", Vector2(1.2,1.2), 0.1).set_trans(Tween.TRANS_BOUNCE)
+			tween.tween_property(btn, "scale", Vector2(1.0,1.0), 0.05)
 
 		
 func calculate_popup_position(button):
