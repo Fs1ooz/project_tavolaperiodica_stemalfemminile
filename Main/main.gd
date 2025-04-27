@@ -590,7 +590,8 @@ var elements: Dictionary = {
 		"description": "Artista britannica che realizzò i disegni della struttura del DNA per l’articolo di Crick e Watson su Nature (1953). Contribuì a rendere iconica la doppia elica nel panorama scientifico.",
 		"awards": "",
 		"quote": "L'arte e la scienza si intrecciano come i filamenti del DNA, rivelando la bellezza intrinseca della vita.",
-		"links": ["<https://en.wikipedia.org/wiki/Odile_Crick>"]
+		"links": ["<https://en.wikipedia.org/wiki/Odile_Crick>"],
+		"profession_keys": ["Hum"],
 	},
 	"Ni": {
 		"name": "Nichel",
@@ -625,7 +626,8 @@ var elements: Dictionary = {
 		"description": "Sociologa francese pioniera negli studi su genere e razza. Analizzò i meccanismi strutturali delle disuguaglianze, contribuendo alla sociologia critica del lavoro e dei ruoli sociali.",
 		"awards": "",
 		"quote": "Le disuguaglianze non sono il frutto di differenze naturali, ma di una costruzione sociale.",
-		"links": ["<https://en.wikipedia.org/wiki/Colette_Guillaumin>"]
+		"links": ["<https://en.wikipedia.org/wiki/Colette_Guillaumin>"],
+		"profession_keys": ["Hum"],
 	},
 	"Zn": {
 		"name": "Zinco",
@@ -660,7 +662,8 @@ var elements: Dictionary = {
 		"description": "Etologa britannica rivoluzionaria: dimostrò l’uso di strumenti e la caccia organizzata negli scimpanzé. Attivista per la conservazione della natura e il benessere animale.",
 		"awards": "",
 		"quote": "Ciò che fai fa la differenza, e devi decidere che tipo di differenza vuoi fare.",
-		"links": ["<https://en.wikipedia.org/wiki/Jane_Goodall>"]
+		"links": ["<https://en.wikipedia.org/wiki/Jane_Goodall>"],
+		"profession_keys": ["Bio","Hum"],
 	},
 	"Ge": {
 		"name": "Germanio",
@@ -677,7 +680,8 @@ var elements: Dictionary = {
 		"description": "Prima donna a vincere il Nobel per la medicina (1947). Scoprì con il marito Carl il ciclo di Cori, fondamentale per la comprensione del metabolismo energetico.",
 		"awards": "Premio Nobel per la Fisiologia o Medicina (1947)",
 		"quote": "I momenti indimenticabili sono le pietre miliari della conoscenza.",
-		"links": ["<https://en.wikipedia.org/wiki/Gerty_Cori>"]
+		"links": ["<https://en.wikipedia.org/wiki/Gerty_Cori>"],
+		"profession_keys": ["Chem", "Bio"],
 	},
 	"As": {
 		"name": "Arsenico",
@@ -712,7 +716,8 @@ var elements: Dictionary = {
 		"description": "Biochimica statunitense che sviluppò il test PPD per diagnosticare la tubercolosi. Migliorò la sterilizzazione delle soluzioni endovenose, rendendo le trasfusioni più sicure.",
 		"awards": "National Women’s Hall of Fame (1990)",
 		"quote": "Sono sempre stata felice in laboratorio e mi sono sentita più a casa lì.",
-		"links": ["<https://en.wikipedia.org/wiki/Florence_Seibert>"]
+		"links": ["<https://en.wikipedia.org/wiki/Florence_Seibert>"],
+		"profession_keys": ["Chem", "Bio"],
 	},
 	"Br": {
 		"name": "Bromo",
@@ -787,7 +792,8 @@ var elements: Dictionary = {
 		"description": "Artista poliedrica svizzera, figura centrale del movimento Dada. Sperimentò l'arte astratta attraverso pittura, scultura, tessuti e design, con un approccio geometrico innovativo. Il suo lavoro influenzò profondamente l'evoluzione dell'arte astratta del XX secolo, sfidando le convenzioni artistiche dell'epoca.",
 		"awards": "",
 		"quote": "L'arte non è qualcosa che fai, è qualcosa che vivi.",
-		"links": ["<https://en.wikipedia.org/wiki/Sophie_Taeuber-Arp>"]
+		"links": ["<https://en.wikipedia.org/wiki/Sophie_Taeuber-Arp>"],
+			"profession_keys": ["Hum"],
 	},
 
 	"Y": {
@@ -841,7 +847,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "Molte donne hanno contribuito in modo sostanziale alla scienza, anche se la loro storia è stata spesso trascurata.",
 		"links": ["<https://en.wikipedia.org/wiki/Nina_Byers>"],
-		"profession_keys": ["Phy"],
+		"profession_keys": ["Phy", "Hum"],
 	},
 
 	"Mo": {
@@ -971,7 +977,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "Le emozioni parlano al nostro corpo attraverso la biochimica.",
 		"links": ["<https://en.wikipedia.org/wiki/Candace_Pert>"],
-		"profession_keys": ["Med"],
+		"profession_keys": ["Med","Chem", "Bio"],
 	},
 
 	"In": {
@@ -1099,7 +1105,8 @@ var elements: Dictionary = {
 		"description": "Astronauta italiana dell’ESA e pilota militare, prima donna europea a stabilire il record di permanenza nello spazio (199 giorni) durante la missione Futura sulla ISS (2014-2015). Promuove l’educazione STEM e la parità di genere. Icona globale delle scienze aerospaziali e ambasciatrice dell’esplorazione spaziale.",
 		"awards": "",
 		"quote": "Quando guardi la Terra dallo spazio, ti rendi conto che siamo tutti sulla stessa barca.",
-		"links": ["<https://en.wikipedia.org/wiki/Samantha_Cristoforetti>"]
+		"links": ["<https://en.wikipedia.org/wiki/Samantha_Cristoforetti>"],
+		"profession_keys": ["Astro", "Eng"],
 	},
 
 	"Ba": {
@@ -1169,7 +1176,8 @@ var elements: Dictionary = {
 		"description": "Biochimica statunitense e professoressa al MIT, specializzata nei meccanismi di replicazione del DNA e degradazione proteica. Ha studiato gli enzimi Clp/Hsp100, cruciali per la risposta cellulare allo stress. Vincitrice del Premio Arthur Kornberg e Paul Berg, è membro della National Academy of Sciences. La sua ricerca ha influenzato profondamente la biologia molecolare moderna.",
 		"awards": "Premio Arthur Kornberg, Premio Paul Berg",
 		"quote": "",
-		"links": ["<https://en.wikipedia.org/wiki/Tania_Baker>"]
+		"links": ["<https://en.wikipedia.org/wiki/Tania_Baker>"],
+		"profession_keys": ["Chem", "Bio"],
 	},
 
 	"W": {
@@ -1299,7 +1307,8 @@ var elements: Dictionary = {
 		"description": "Paleontologa tedesca pioniera nello studio dell’evoluzione del cervello attraverso i fossili. Analizzando i calchi endocranici di rettili preistorici come il *Nothosaurus*, integrò anatomia comparata e stratigrafia, creando la paleoneurobiologia. Il suo lavoro rivoluzionò la comprensione dello sviluppo cerebrale nei vertebrati.",  
 		"awards": "",  
 		"quote": "Il cervello non si fossilizza, ma le sue tracce si.",  
-		"links": ["<https://en.wikipedia.org/wiki/Tilly_Edinger>"]  
+		"links": ["<https://en.wikipedia.org/wiki/Tilly_Edinger>"],
+		"profession_keys": ["Bio"]
 	},  
 
 	"Pb": {  
@@ -1393,7 +1402,8 @@ var elements: Dictionary = {
 		"description": "Immunologa austro-brasiliana che sviluppò i primi vaccini sperimentali contro la malaria. Identificò proteine chiave del parassita *Plasmodium* come bersagli per la vaccinazione, aprendo la strada a strategie preventive globali. Il suo lavoro ha salvato milioni di vite nelle regioni endemiche.",  
 		"awards": "",  
 		"quote": "La ricerca scientifica è una battaglia incessante contro le malattie che affliggono l'umanità; con passione e determinazione, possiamo sconfiggerle.",  
-		"links": ["<https://en.wikipedia.org/wiki/Ruth_Nussenzweig>"]  
+		"links": ["<https://en.wikipedia.org/wiki/Ruth_Nussenzweig>"],
+		"profession_keys": ["Bio"],
 	},
 
 	# Periodo 7
@@ -1412,7 +1422,8 @@ var elements: Dictionary = {
 		"description": "Cristallografa britannica che catturò la celebre *Foto 51*, dimostrando la struttura a doppia elica del DNA. Il suo lavoro fu utilizzato senza riconoscimento da Watson, Crick e Wilkins, che vinsero il Nobel nel 1962. Morì a 37 anni per tumore, probabilmente causato dall’esposizione alle radiazioni durante gli esperimenti. Il suo contributo fu rivalutato postumo, rendendola un simbolo delle donne nella scienza.",  
 		"awards": "Riconoscimento postumo per la scoperta del DNA",  
 		"quote": "La scienza e la vita quotidiana non possono e non devono essere separate.",  
-		"links": ["<https://en.wikipedia.org/wiki/Rosalind_Franklin>"]  
+		"links": ["<https://en.wikipedia.org/wiki/Rosalind_Franklin>"],
+		"profession_keys": ["Bio", "Chem"],
 	},  
 
 	"Ra": {  
@@ -1441,14 +1452,15 @@ var elements: Dictionary = {
 		"period": 7,
 		"image": "res://Images/Rachel Fuller Brown.jpg",
 		"scientist_name": "Rachel Fuller Brown",
-		"profession": "Chimica",
+		"profession": "Biochimica",
 		"brief_subtitle": "Scopritrice della nistatina",
 		"year": "1898 - 1980",
 		"nationality": "Statunitense",
 		"description": "Chimica statunitense che, insieme a Elizabeth Lee Hazen, scoprì la nistatina (1948), primo antibiotico antifungino efficace e non tossico per l’uomo. La loro invenzione rivoluzionò il trattamento delle infezioni da lieviti, donando i diritti d’autore alla ricerca scientifica.",
 		"awards": "",
 		"quote": "Non abbiamo mai pensato di arricchirci con la nostra scoperta. Il nostro obiettivo era aiutare le persone.",
-		"links": ["<https://en.wikipedia.org/wiki/Rachel_Fuller_Brown>"]
+		"links": ["<https://en.wikipedia.org/wiki/Rachel_Fuller_Brown>"],
+		"profession_keys": ["Bio", "Chem"],
 	},
 
 	"Db": {
@@ -1457,25 +1469,36 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 5,
 		"period": 7,
-
+		"scientist_name": "Ildegarda di Bingen",
+		"profession": "Naturalista",
+		"brief_subtitle": "Fondatrice della ginecologia e studiosa del mondo naturale",
+		"year": "1098-1179",
+		"nationality": "Tedesca",
+		"description": "Naturalista, guaritrice, scienziata, filosofa, poeta e compositrice del Medioevo. Gettò le basi per lo studio della ginecologia e della salute delle donne. Fu ordinata suora sotto la regola benedettina. Ha scritto opere di botanica e medicina. Nel volume *Physica*, descrisse gli elementi del mondo naturale, indicandone le proprietà utili per gli esseri umani. È stata canonizzata Santa dalla Chiesa nel 2012 da papa Benedetto XVI.",
+		"awards": "",
+		"quote": "Guarda il cielo: Guarda il sole e le stelle. E adesso, rifletti. Quanto grande è il diletto che Dio dà all'umanità con tutte queste cose.. Dobbiamo lavorare insieme a lei.",
+		"links": [
+			"https://it.wikipedia.org/wiki/Ildegarda_di_Bingen"
+		],
+		"profession_keys": ["Hum", "Med"]
 	},
 	"Sg": {
-	"name": "Seaborgio", 
-	"number": 106,
-	"category": "Metallo di transizione", 
-	"group": 6,
-	"period": 7,
-	"image": "res://Images/Segenet Kelemu.jpg",
-	"scientist_name": "Segenet Kelemu",
-	"profession": "Scienziata agricola",
-	"brief_subtitle": "Pioniera dell'agricoltura sostenibile in Africa",
-	"year": "1957 - ",
-	"nationality": "Etiope",
-	"description": "Scienziata etiope, prima donna africana a dirigere l’ICIPE in Kenya. Ha sviluppato metodi per combattere le malattie delle piante e migliorare la resa dei raccolti in condizioni climatiche estreme, sostenendo gli agricoltori subsahariani.",
-	"awards": "Premio L’Oréal-UNESCO per le Donne e la Scienza (2014)",
-	"quote": "Voglio fare la differenza in Africa, aiutare gli agricoltori e migliorare l'agricoltura attraverso la scienza e l'innovazione.",
-	"links": ["<https://en.wikipedia.org/wiki/Segenet_Kelemu>"],
-	"profession_keys": ["Bio"],
+		"name": "Seaborgio", 
+		"number": 106,
+		"category": "Metallo di transizione", 
+		"group": 6,
+		"period": 7,
+		"image": "res://Images/Segenet Kelemu.jpg",
+		"scientist_name": "Segenet Kelemu",
+		"profession": "Scienziata agricola",
+		"brief_subtitle": "Pioniera dell'agricoltura sostenibile in Africa",
+		"year": "1957 - ",
+		"nationality": "Etiope",
+		"description": "Scienziata etiope, prima donna africana a dirigere l’ICIPE in Kenya. Ha sviluppato metodi per combattere le malattie delle piante e migliorare la resa dei raccolti in condizioni climatiche estreme, sostenendo gli agricoltori subsahariani.",
+		"awards": "Premio L’Oréal-UNESCO per le Donne e la Scienza (2014)",
+		"quote": "Voglio fare la differenza in Africa, aiutare gli agricoltori e migliorare l'agricoltura attraverso la scienza e l'innovazione.",
+		"links": ["<https://en.wikipedia.org/wiki/Segenet_Kelemu>"],
+		"profession_keys": ["Bio"],
 	},
 	"Bh": {
 		"name": "Bohrio",
@@ -1562,7 +1585,8 @@ var elements: Dictionary = {
 		"description": "Biochimica austriaca che sviluppò il primo test rapido per la diagnosi precoce della gravidanza (1933), rilevando l’istidina nelle urine in sole 4 ore. Il suo metodo sostituì procedure lunghe e invasive, rivoluzionando la medicina prenatale.",
 		"awards": "",
 		"quote": "La ricerca è un viaggio di scoperta che può cambiare la vita di milioni di persone, un passo alla volta.",
-		"links": ["<https://en.wikipedia.org/wiki/Regina_Kapeller-Adler>"]
+		"links": ["<https://en.wikipedia.org/wiki/Regina_Kapeller-Adler>"],
+		"profession_keys": ["Chem", "Bio"],
 	},
 	"Cn": {
 		"name": "Copernicio",
@@ -1690,7 +1714,8 @@ var elements: Dictionary = {
 		"description": "Cristallografa britannica, fondatrice del Cambridge Crystallographic Data Centre (CCDC). Creò un database globale di strutture molecolari, strumento essenziale per la ricerca farmaceutica e la chimica moderna.",
 		"awards": "Order of the British Empire (1987)",
 		"quote": "La scienza è un viaggio collettivo: la conoscenza condivisa è la chiave del progresso.",
-		"links": ["<https://en.wikipedia.org/wiki/Olga_Kennard>"]
+		"links": ["<https://en.wikipedia.org/wiki/Olga_Kennard>"],
+		"profession_keys": ["Chem"],
 	},
 
 	# Lantanidi (periodo fittizio 9, gruppo 3-18)
@@ -2037,7 +2062,8 @@ var elements: Dictionary = {
 		"description": "Fisica canadese di origine tedesca, pioniera nello studio degli impatti sociali della tecnologia. Denunciò i rischi delle armi nucleari e promosse un uso sostenibile dell’energia. Prima donna professoressa di ingegneria a Toronto.",
 		"awards": "Order of Canada (1981)",
 		"quote": "La pace non è l'assenza di guerra, la pace è l'assenza di paura.",
-		"links": ["<https://en.wikipedia.org/wiki/Ursula_Franklin>"]
+		"links": ["<https://en.wikipedia.org/wiki/Ursula_Franklin>"],
+		"profession_keys": ["Hum","Phy"],
 	},
 	"Np": {
 		"name": "Nettunio",
@@ -2196,7 +2222,8 @@ var elements: Dictionary = {
 		"description": "Biochimica canadese che rivoluzionò lo studio degli enzimi sviluppando, con Leonor Michaelis, l'equazione di Michaelis-Menten. Questo modello descrive la velocità delle reazioni enzimatiche e rimane un pilastro della biochimica moderna. Contribuì anche alla comprensione del metabolismo cellulare, superando le barriere di genere nella scienza del XX secolo.",
 		"awards": "",
 		"quote": "La chimica è il ponte che collega la biologia alla fisica.",
-		"links": ["<https://en.wikipedia.org/wiki/Maud_Menten>"]
+		"links": ["<https://en.wikipedia.org/wiki/Maud_Menten>"],
+		"profession_keys": ["Chem", "Bio"],
 	},
 
 	"No": {
@@ -2214,7 +2241,8 @@ var elements: Dictionary = {
 		"description": "Biochimica britannica pioniera nell'ingegneria genetica. Sviluppò vettori di DNA ricombinante fondamentali per la terapia genica e la biotecnologia. Il suo lavoro ha permesso progressi nella produzione di farmaci biologici e nella ricerca biomedica.",
 		"awards": "",
 		"quote": "La scienza è una porta aperta verso l’innovazione, e ogni scoperta è un passo avanti per migliorare il mondo.",
-		"links": ["<https://en.wikipedia.org/wiki/Noreen_Murray>"]
+		"links": ["<https://en.wikipedia.org/wiki/Noreen_Murray>"],
+		"profession_keys": ["Chem", "Bio"],
 	},
 	"Lr": {
 		"name": "Laurenzio",
