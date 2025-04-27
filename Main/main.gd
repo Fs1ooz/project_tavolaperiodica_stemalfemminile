@@ -61,7 +61,7 @@ var elements: Dictionary = {
 		"group": 8, 
 		"period": 2,
 	},
-	"Ing": {
+	"Eng": {
 		"name": "Ingegneria", 
 		"category": "Category", 
 		"group": 9, 
@@ -100,7 +100,7 @@ var elements: Dictionary = {
 			"https://en.wikipedia.org/wiki/Dorothy_Hodgkin",
 			"https://www.nobelprize.org/prizes/chemistry/1964/hodgkin/biographical/"
 		],
-		"profession_keys": "Chem",
+		"profession_keys": ["Chem"],
 	},
 	"He": {
 		"name": "Elio", 
@@ -121,7 +121,7 @@ var elements: Dictionary = {
 			"https://en.wikipedia.org/wiki/Hedy_Lamarr",
 			"https://www.women-inventors.com/Hedy-Lamarr.asp"
 		],
-		"profession_keys": ["Ing", "Hum"]
+		"profession_keys": ["Eng", "Hum"]
 	},
 	"Li": {
 		"name": "Litio", 
@@ -201,22 +201,22 @@ var elements: Dictionary = {
 		"profession_keys": ["Phy", "Astro"],
 	},
 	"N": {
-		"name": "Azoto", 
-		"number": 7, 
-		"category": "Non metallo", 
-		"group": 15, 
+		"name": "Azoto",
+		"number": 7,
+		"category": "Non metallo",
+		"group": 15,
 		"period": 2,
-		"image": "res://Images/Francine_Ntoumi.jpg",
-		"scientist_name": "Francine Ntoumi", 
-		"profession": "Parassitologa", 
-		"brief_subtitle": "Esperta nella lotta al paludismo", 
-		"year": "1961 -",
-		"nationality": "Congolese",
-		"description": "Scienziata specializzata nella ricerca sul paludismo. È stata la prima donna africana a dirigere il segretariato dell'Iniziativa Multilaterale sul Paludismo. Ha contribuito alla creazione della rete CANTAM per la ricerca su tubercolosi, HIV/AIDS e paludismo, rafforzando la collaborazione scientifica in Africa centrale.",
-		"awards": "Premio Christophe Mérieux (2016)",
-		"quote": "Mio padre si è indebitato perché io potessi studiare.",
+		"image": "res://Images/Mary_Anning.jpg",
+		"scientist_name": "Mary Anning",
+		"profession": "Paleontologa",
+		"brief_subtitle": "Pioniera della paleontologia",
+		"year": "1799–1847",
+		"nationality": "Inglese",
+		"description": "È stata una paleontologa e fossilista inglese autodidatta. Visse a Lyme Regis, sulla costa meridionale dell'Inghilterra, un'area ricca di fossili marini del Giurassico. Fin da giovane raccolse fossili, contribuendo con scoperte fondamentali come il primo scheletro completo di ittiosauro e importanti esemplari di plesiosauri e pterosauri. Nonostante il suo contributo alla scienza, fu inizialmente ignorata dalla comunità scientifica perché donna e di umili origini. Solo più tardi fu riconosciuta per il suo lavoro. Mary Anning è oggi considerata una pioniera della paleontologia.",
+		"awards": "",
+		"quote": "Il mondo mi ha trattata così duramente che temo mi abbia resa sospettosa verso tutti.",
 		"links": [
-			"https://en.wikipedia.org/wiki/Francine_Ntoumi"
+			"https://en.wikipedia.org/wiki/Mary_Anning"
 		]
 	},
 	"O": {
@@ -297,7 +297,8 @@ var elements: Dictionary = {
 	  "description": "Conosciuta come la 'Madre di Hubble' per il suo ruolo fondamentale nello sviluppo del telescopio spaziale Hubble. È stata una delle prime donne a ricoprire posizioni dirigenziali alla NASA, promuovendo la ricerca spaziale e l’astronomia. Nonostante le difficoltà incontrate come donna nella scienza, contribuì alla pianificazione di missioni pionieristiche per lo studio dello spazio profondo. Il suo lavoro ha influenzato generazioni di scienziati e ha aperto la strada a importanti scoperte cosmologiche.",
 	  "awards": "",
 	  "quote": "Lavorate sodo in qualcosa che vi appassiona e non lasciate che nessuno vi scoraggi.",
-	  "links": []
+	  "links": [],
+	"profession_keys": ["Astro"],
 	},
 	"Mg": {
 	  "name": "Magnesio",
@@ -315,7 +316,7 @@ var elements: Dictionary = {
 	  "awards": "",
 	  "quote": "La scoperta del francio non è stata il risultato di un colpo di genio, ma di un paziente e meticoloso lavoro di ricerca.",
 	  "links": [],
-		"profession_keys": "Chem",
+		"profession_keys": ["Chem"],
 	},
 	"Al": {
 	  "name": "Alluminio",
@@ -333,7 +334,7 @@ var elements: Dictionary = {
 	  "awards": "",
 	  "quote": "Quel cervello mio è qualcosa di più che meramente mortale, come il tempo dimostrerà.",
 	  "links": [],
-		"profession_keys": ["Mat", "Ing"],
+		"profession_keys": ["Mat", "Eng"],
 	},
 	"Si": {
 	  "name": "Silicio",
@@ -403,7 +404,7 @@ var elements: Dictionary = {
 	  "awards": "",
 	  "quote": "La scienza non ha confini, e se continuiamo a guardare in alto, possiamo scoprire sempre qualcosa di nuovo.",
 	  "links": [],
-	"profession_keys": ["Ing","Phy", "Astro"],
+	"profession_keys": ["Eng","Phy", "Astro"],
 	},
 	"Ar": {
 	  "name": "Argon",
@@ -462,7 +463,8 @@ var elements: Dictionary = {
 		"quote": "La passione per la scienza è la sola che possa essere veramente senza fine.",
 		"links": [
 			"<https://en.wikipedia.org/wiki/Caroline_Herschel>"
-		]
+		],
+		"profession_keys": ["Astro"]
 	},
 	"Sc": {
 		"name": "Scandio",
@@ -479,9 +481,8 @@ var elements: Dictionary = {
 		"description": "Astronoma e meteorologa italiana. Collaborò con l'Osservatorio del Collegio Romano e scoprì una cometa nel 1854. Pioniera nella divulgazione scientifica e nelle osservazioni meteorologiche, contribuì alla nascita della meteorologia moderna in Italia. Ottenne una medaglia d'oro da Pio IX.",
 		"awards": "Medaglia d'oro da Pio IX",
 		"quote": "Dedicare la vita all’osservazione del cielo è comprendere i segreti dell’universo.",
-		"links": [
-			"<https://it.wikipedia.org/wiki/Caterina_Scarpelli>"
-		]
+		"links": ["<https://it.wikipedia.org/wiki/Caterina_Scarpelli>"],
+		"profession_keys": ["Astro"]
 	},
 	"Ti": {
 		"name": "Titanio",
@@ -642,7 +643,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "L’innovazione è la capacità di vedere le opportunità nei problemi e di trasformarli in soluzioni che possano migliorare la vita quotidiana.",
 		"links": ["<https://en.wikipedia.org/wiki/Zhenan_Bao>"],
-		"profession_keys": ["Ing"],
+		"profession_keys": ["Eng"],
 	},
 	"Ga": {
 		"name": "Gallio",
@@ -694,7 +695,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "Desidero dedicare la mia vita, per quanto possibile, alla causa dell'umanità sofferente.",
 		"links": ["<https://en.wikipedia.org/wiki/Asima_Chatterjee>"],
-		"profession_keys": "Chem",
+		"profession_keys": ["Chem"],
 	},
 	"Se": {
 		"name": "Selenio",
@@ -719,16 +720,18 @@ var elements: Dictionary = {
 		"category": "Alogeno",
 		"group": 17,
 		"period": 4,
-		"image": "res://Images/Brigitte Kieffer.jpg",
-		"scientist_name": "Brigitte Kieffer",
-		"profession": "Neuroscienziata",
-		"brief_subtitle": "Scopritrice del recettore μ-oppioide",
-		"year": "1955 - ",
-		"nationality": "Francese",
-		"description": "Neuroscienziata francese che identificò il recettore della morfina (μ-oppioide). La sua ricerca ha trasformato lo studio del dolore, della dipendenza e delle emozioni.",
+		"image": "res://Images/Jocelyn_Bell_Burnell.jpg",
+		"scientist_name": "Jocelyn Bell Burnell",
+		"profession": "Astrofisica",
+		"brief_subtitle": "Scopritrice delle prime pulsar",
+		"year": "1943-",
+		"nationality": "Britannica",
+		"description": "È celebre per aver scoperto le prime pulsar nel 1967, quando era ancora una studentessa di dottorato. La scoperta fu fondamentale per l’astrofisica e portò al premio Nobel del 1974, ma fu assegnato solo al suo supervisore, non a lei. La sua esclusione suscitò ampie critiche. Nonostante ciò, Bell Burnell ha avuto una carriera brillante ed è diventata un simbolo per le donne nella scienza. Ha ricevuto numerosi riconoscimenti e ha donato un importante premio in denaro per finanziare borse di studio per studenti sottorappresentati nella fisica.",
 		"awards": "",
-		"quote": "Comprendere la chimica del cervello apre la porta a nuovi trattamenti per la salute mentale.",
-		"links": ["<https://en.wikipedia.org/wiki/Brigitte_Kieffer>"]
+		"quote": "La scienza non è un gioco da maschi, non è un gioco da femmine. È il gioco di tutti.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell"
+		]
 	},
 	"Kr": {
 		"name": "Kripton",
@@ -746,7 +749,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "L’innovazione consiste nel vedere il mondo in modo diverso e fare la differenza.",
 		"links": ["<https://en.wikipedia.org/wiki/Kristina_M._Johnson>"],
-		"profession_keys": ["Ing"],
+		"profession_keys": ["Eng"],
 	},
 
 	# Periodo 5
@@ -1059,11 +1062,8 @@ var elements: Dictionary = {
 		"description": "Figlia del matematico Teone di Alessandria, Ipazia fu pioniera nell'astronomia e nella filosofia neoplatonica. Progettò strumenti scientifici come l'astrolabio e il densimetro, fondamentali per misurare la posizione delle stelle e la densità dei liquidi. Simbolicamente, lo iodio (essenziale per la mente e la crescita) riflette il suo impegno per la conoscenza. Fu assassinata per le sue idee, diventando un'icona della libertà di pensiero e del femminismo scientifico.",
 		"awards": "",  # Non applicabile, ma potresti usare "Icona eterna della scienza"
 		"quote": "Quando ti vedo mi prostro davanti a te e alle tue parole, vedendo la casa astrale della Vergine, infatti verso il cielo è rivolto ogni tuo atto Ipazia sacra, bellezza delle parole, astro incontaminato della sapiente cultura.",
-		"links": [
-			"https://it.wikipedia.org/wiki/Ipazia",
-			"https://www.britannica.com/biography/Hypatia"
-		],
-		"profession_keys": ["Astro, Mat, Hum"],
+		"links": ["https://it.wikipedia.org/wiki/Ipazia", "https://www.britannica.com/biography/Hypatia"],
+		"profession_keys": ["Astro", "Mat", "Hum"],
 	},
 	"Xe": {
 		"name": "Xenon",
@@ -1178,18 +1178,19 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 6,
 		"period": 6,
-		"image": "res://Images/Wanda Diaz Merced.jpg",
-		"scientist_name": "Wanda Díaz-Merced",
-		"profession": "Astrofisica",
-		"brief_subtitle": "Pioniera dell'astronomia inclusiva",
-		"year": "1981 - ",
-		"nationality": "Portoricana",
-		"description": "Astrofisica portoricana rivoluzionaria che ha sviluppato la sonificazione dei dati astronomici, trasformando segnali spaziali in suoni per rendere l'astronomia accessibile ai non vedenti. Dottorata nel 2013, ha lavorato ad Harvard e all'Osservatorio Gravitazionale Europeo. Inclusa tra le donne più innovative in scienza dalla BBC (2020), il suo TED Talk ha ispirato progetti globali per l'accessibilità scientifica.",
+		"image": "res://Images/Mary Winston Jackson.jpg",
+		"scientist_name": "Mary Winston Jackson",
+		"profession": "Matematica e Ingegnera aerospaziale",
+		"brief_subtitle": "Pioniera dell'inclusione alla NASA",
+		"year": "1921–2005",
+		"nationality": "Statunitense",
+		"description": "È stata la prima donna afroamericana a lavorare come ingegnere alla NASA. Iniziò come calcolatrice umana al Langley Research Center, superando barriere razziali e di genere. Dopo anni di lavoro tecnico, passò alle risorse umane per promuovere l'inclusione e supportare donne e minoranze nelle carriere scientifiche. La sua storia è raccontata nel libro e film 'Il diritto di contare'. Ha lasciato un'eredità di lotta per l'uguaglianza e l'accesso equo alle opportunità.",
 		"awards": "",
-		"quote": "Il mio lavoro dimostra che l'inclusività e la diversità sono essenziali per il progresso della scienza.",
-		"links": ["<https://en.wikipedia.org/wiki/Wanda_D%C3%ADaz-Merced>"],
-		"profession_keys": ["Phy", "Astro"],
+		"quote": "Dobbiamo fare qualcosa del genere per farli interessare alla scienza. A volte devono solo vedere un volto femminile.",
+		"links": ["<https://en.wikipedia.org/wiki/Mary_Jackson_(engineer)>"],
+		"profession_keys": ["Mat", "Eng"]
 	},
+
 
 	"Re": {
 		"name": "Renio",
@@ -1335,7 +1336,8 @@ var elements: Dictionary = {
 		"description": "Chimica italiana, socia corrispondente dell’Accademia delle Scienze di Torino e Presidente del Centro per lo studio degli Amianti. Si è dedicata alla tossicità delle particelle inquinanti e al ruolo delle donne nella scienza, promuovendo l’uguaglianza di genere nella ricerca.",  
 		"awards": "",  
 		"quote": "L’unica rivoluzione compiuta nel secolo passato è quella delle donne.",  
-		"links": ["<https://it.wikipedia.org/wiki/Bice_Fubini>"]  
+		"links": ["<https://it.wikipedia.org/wiki/Bice_Fubini>"],
+		"profession_keys": ["Chem"],
 	},  
 
 	"Po": {  
@@ -1372,7 +1374,8 @@ var elements: Dictionary = {
 		"description": "Botanica e chimica svedese, prima donna nel suo Paese a ottenere un dottorato in scienze. Collaborò con il marito Hans von Euler-Chelpin nella sintesi di alcoli e composti azotati. I suoi studi sul plancton delle acque di Stoccolma sono un riferimento storico per la ricerca ecologica.",  
 		"awards": "",  
 		"quote": "La scienza è un viaggio attraverso il tempo e la natura: chi la segue lascia tracce che ispirano generazioni future.",  
-		"links": ["<https://en.wikipedia.org/wiki/Astrid_Cleve>"]  
+		"links": ["<https://en.wikipedia.org/wiki/Astrid_Cleve>"],
+		"profession_keys": ["Bio,Chem"],
 	},  
 
 	"Rn": {  
@@ -1454,18 +1457,26 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 5,
 		"period": 7,
-		"image": "res://Images/Segenet Kelemu.jpg",
-		"scientist_name": "Segenet Kelemu",
-		"profession": "Scienziata agricola",
-		"brief_subtitle": "Pioniera dell'agricoltura sostenibile in Africa",
-		"year": "1957 - ",
-		"nationality": "Etiope",
-		"description": "Scienziata etiope, prima donna africana a dirigere l’ICIPE in Kenya. Ha sviluppato metodi per combattere le malattie delle piante e migliorare la resa dei raccolti in condizioni climatiche estreme, sostenendo gli agricoltori subsahariani.",
-		"awards": "Premio L’Oréal-UNESCO per le Donne e la Scienza (2014)",
-		"quote": "Voglio fare la differenza in Africa, aiutare gli agricoltori e migliorare l'agricoltura attraverso la scienza e l'innovazione.",
-		"links": ["<https://en.wikipedia.org/wiki/Segenet_Kelemu>"]
+
 	},
-	"Sg": {"name": "Seaborgio", "number": 106, "category": "Metallo di transizione", "group": 6, "period": 7},
+	"Sg": {
+	"name": "Seaborgio", 
+	"number": 106,
+	"category": "Metallo di transizione", 
+	"group": 6,
+	"period": 7,
+	"image": "res://Images/Segenet Kelemu.jpg",
+	"scientist_name": "Segenet Kelemu",
+	"profession": "Scienziata agricola",
+	"brief_subtitle": "Pioniera dell'agricoltura sostenibile in Africa",
+	"year": "1957 - ",
+	"nationality": "Etiope",
+	"description": "Scienziata etiope, prima donna africana a dirigere l’ICIPE in Kenya. Ha sviluppato metodi per combattere le malattie delle piante e migliorare la resa dei raccolti in condizioni climatiche estreme, sostenendo gli agricoltori subsahariani.",
+	"awards": "Premio L’Oréal-UNESCO per le Donne e la Scienza (2014)",
+	"quote": "Voglio fare la differenza in Africa, aiutare gli agricoltori e migliorare l'agricoltura attraverso la scienza e l'innovazione.",
+	"links": ["<https://en.wikipedia.org/wiki/Segenet_Kelemu>"],
+	"profession_keys": ["Bio"],
+	},
 	"Bh": {
 		"name": "Bohrio",
 		"number": 107,
@@ -1482,7 +1493,7 @@ var elements: Dictionary = {
 		"awards": "National Inventors Hall of Fame (2019, postuma)",
 		"quote": "Ho sempre sentito di dover lavorare più duramente e più a lungo di un uomo per dimostrare il mio valore.",
 		"links": ["<https://en.wikipedia.org/wiki/Beatrice_Hicks>"],
-		"profession_keys": ["Ing","Astro"],
+		"profession_keys": ["Eng","Astro"],
 	},
 	"Hs": {
 		"name": "Hassio",
@@ -1603,7 +1614,7 @@ var elements: Dictionary = {
 		"description": "Chimica italiana che collaborò con Daniel Bovet (Premio Nobel 1957) alla ricerca su sulfamidici e penicillina durante la Seconda Guerra Mondiale. Il suo lavoro contribuì alla produzione di sieri antitetanici salvavita per i soldati.",
 		"awards": "",
 		"quote": "La scienza non è solo una ricerca di risposte, ma un viaggio continuo verso una comprensione più profonda del nostro mondo e di noi stessi.",
-		"links": ["<https://it.wikipedia.org/wiki/Filomena_Nitti>"]
+		"links": ["<https://it.wikipedia.org/wiki/Filomena_Nitti>"],
 	},
 	"Mc": {
 		"name": "Moscovio",
@@ -1611,17 +1622,21 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 15,
 		"period": 7,
-		"image": "res://Images/Mildred Cohn.jpg",
-		"scientist_name": "Mildred Cohn",
-		"profession": "Biochimica",
-		"brief_subtitle": "Innovatrice della risonanza magnetica",
-		"year": "1913 - 2009",
+		"image": "res://Images/Mae_Jemison.jpg",
+		"scientist_name": "Mae Carol Jemison",
+		"profession": "Medico e astronauta",
+		"brief_subtitle": "Prima donna afroamericana nello spazio",
+		"year": "1956-",
 		"nationality": "Statunitense",
-		"description": "Biochimica statunitense pioniera nell’uso della risonanza magnetica nucleare (NMR) per studiare reazioni enzimatiche e metabolismo. Le sue tecniche rivoluzionarie sono alla base della moderna biochimica strutturale.",
-		"awards": "National Medal of Science (1983)",
-		"quote": "Se vuoi qualcosa, vai a prendertelo. Non aspettarti che gli altri ti aprano la strada.",
-		"links": ["<https://en.wikipedia.org/wiki/Mildred_Cohn>"]
+		"description": "Mae Carol Jemison è un medico, ingegnere e astronauta statunitense, celebre per essere stata la prima donna afroamericana nello spazio. Volò a bordo dello Space Shuttle Endeavour nel 1992. Laureata in ingegneria chimica e medicina, ha lavorato come medico in Africa con i Peace Corps prima di entrare alla NASA. Oltre alla carriera scientifica, ha promosso attivamente l’educazione STEM e l’inclusione delle minoranze. Dopo la NASA, ha fondato aziende e progetti educativi per connettere scienza, arte e innovazione. Mae Jemison è anche comparsa in un episodio di Star Trek, realizzando un sogno d’infanzia.",
+		"awards": "",
+		"quote": "Non lasciarti mai limitare dalle immaginazioni limitate degli altri.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Mae_Jemison"
+		],
+		"profession_keys": ["Med","Astro"]
 	},
+
 	"Lv": {
 		"name": "Livermorio",
 		"number": 116,
@@ -1646,18 +1661,20 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 17,
 		"period": 7,
-		"image": "res://Images/Tatyana Sharpee.jpg",
-		"scientist_name": "Tatyana Sharpee",
-		"profession": "Neuroscienziata e Fisica teorica",
-		"brief_subtitle": "Decifratrice del codice neurale",
-		"year": "",
-		"nationality": "Americana",
-		"description": "Neuroscienziata russa-americana che applica modelli matematici per studiare come il cervello codifica informazioni sensoriali. Il suo lavoro ha chiarito i meccanismi alla base della percezione e dell’apprendimento.",
+		"image": "res://Images/Donna_Theo_Strickland.jpg",
+		"scientist_name": "Donna Theo Strickland",
+		"profession": "Fisica",
+		"brief_subtitle": "Pioniera dei laser ad alta intensità",
+		"year": "1959-",
+		"nationality": "Canadese",
+		"description": "Donna Theo Strickland è una fisica canadese, nata nel 1959, specializzata in ottica e laser. Ha vinto il Premio Nobel per la Fisica nel 2018 per lo sviluppo della chirped pulse amplification (CPA), una tecnica che ha rivoluzionato i laser ad alta intensità. Il premio lo ha condiviso con Gérard Mourou, con cui ha sviluppato la tecnica durante il dottorato. La CPA è oggi usata in applicazioni come la chirurgia oculare e la fisica dei plasmi. È stata la terza donna nella storia a ricevere il Nobel per la fisica, dopo Marie Curie e Maria Goeppert Mayer. Strickland è anche professoressa all’Università di Waterloo ed è nota per la sua passione per l’insegnamento e la scienza accessibile.",
 		"awards": "",
-		"quote": "Comprendere il cervello significa comprendere la natura stessa dell’intelligenza.",
-		"links": ["<https://en.wikipedia.org/wiki/Tatyana_Sharpee>"],
-		"profession_keys": ["Phy","Med"],
+		"quote": "Ho sempre pensato che fosse semplicemente ciò che fanno i fisici: costruiscono laser.",
+		"links": [
+			"https://en.wikipedia.org/wiki/Donna_Strickland"
+		]
 	},
+
 	"Og": {
 		"name": "Oganesson",
 		"number": 118,
@@ -1986,7 +2003,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "Bisogna ampliare l'accesso delle donne alla tecnologia, rompendo la storia patriarcale della scienza.",
 		"links": ["<https://en.wikipedia.org/wiki/Thelma_Estrin>"],
-		"profession_keys": ["Ing","Med"],
+		"profession_keys": ["Eng","Med"],
 	},
 	"Pa": {
 		"name": "Protoattinio",
@@ -2127,7 +2144,8 @@ var elements: Dictionary = {
 		"description": "Genetista francese che ha guidato il sequenziamento del genoma del frumento, aprendo la strada a colture resistenti ai cambiamenti climatici. Direttrice scientifica di aziende agrotech, il suo lavoro è cruciale per la sicurezza alimentare globale.",
 		"awards": "",
 		"quote": "La genetica è la chiave per nutrire il futuro.",
-		"links": ["<https://en.wikipedia.org/wiki/Catherine_Feuillet>"]
+		"links": ["<https://en.wikipedia.org/wiki/Catherine_Feuillet>"],
+		"profession_keys": ["Bio"],
 	},
 	"Es": {
 		"name": "Einsteinio",
@@ -2248,7 +2266,7 @@ var prof_to_key = {
 	"Chem": "3",
 	"Bio": "4",
 	"Mat": "5",
-	"Ing": "6",
+	"Eng": "6",
 	"Med": "7",
 	"Hum": "8",
 }
@@ -2497,8 +2515,8 @@ func on_category_selected(symbol: String):
 	for sym in elements.keys():
 		var data = elements[sym]
 		if data.has("profession_keys") and symbol in data["profession_keys"]:
+			print(matching_symbols)
 			matching_symbols.append(sym)
-	printerr("Simboli matching:", matching_symbols)
 
 	# 2) Per ogni element_container dentro grid_container
 	for element_container in grid_container.get_children():
@@ -2510,7 +2528,6 @@ func on_category_selected(symbol: String):
 		var btn := btns[0] as Button
 		
 		if btn.text in matching_symbols:
-			printerr("Match: ", btn.text)
 			var key = prof_to_key.get(symbol)
 			var color = category_colors["Category"].get(key, Color.WHITE)
 			var sb = (btn.get_theme_stylebox("normal") as StyleBoxFlat).duplicate() as StyleBoxFlat
