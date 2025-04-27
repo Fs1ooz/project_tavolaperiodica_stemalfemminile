@@ -18,6 +18,7 @@ extends Control
 @export var popup_quote_label: Label
 @export var popup_links_label: Label
 @export var popup_image: TextureRect
+@export var title_label: RichTextLabel
 
 @onready var screen_size = get_viewport_rect().size
 
@@ -28,12 +29,55 @@ var groups: int = 18
 var btn_size: int = 60
 var can_press: bool = true
 var animation_finished: bool = false
-var category_counter: int
+var category_counter: int = 0
 var piano_key = 0
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
-	# Periodo 1-2 Gruppo 4-11 Fittizio
+	
+	#"Per": {
+		#"name": "", 
+		#"category": "Title", 
+		#"group": 4, 
+		#"period": 1,
+	#},
+	#"iod": {
+		#"name": "", 
+		#"category": "Title", 
+		#"group": 5, 
+		#"period": 1,
+	#},
+	#"ica": {
+		#"name": "", 
+		#"category": "Title", 
+		#"group": 6, 
+		#"period": 1,
+	#},
+	#"Men": {
+		#"name": "", 
+		#"category": "Title", 
+		#"group": 7, 
+		#"period": 1,
+	#},
+	#"te    ": {
+		#"name": "", 
+		#"category": "Title", 
+		#"group": 8, 
+		#"period": 1,
+	#},
+	#"Don": {
+		#"name": "", 
+		#"category": "Title", 
+		#"group": 10, 
+		#"period": 1,
+	#},
+	#"ne   ": {
+		#"name": "", 
+		#"category": "Title", 
+		#"group": 11, 
+		#"period": 1,
+	#},
+	## Periodo 1-2 Gruppo 4-11 Fittizio
 	"Phy": {
 		"name": "Fisica", 
 		"category": "Category", 
@@ -2262,8 +2306,14 @@ var elements: Dictionary = {
 		"description": "Archeologa britannica che scoprì le impronte fossili di Laetoli (Tanzania, 1978), risalenti a 3,6 milioni di anni fa. Queste impronte dimostrarono che gli ominidi camminavano eretti molto prima del previsto, rivoluzionando la comprensione dell'evoluzione umana.",
 		"awards": "",
 		"quote": "Le ossa raccontano la storia dell’umanità, dobbiamo solo imparare ad ascoltarle.",
-		"links": ["<https://en.wikipedia.org/wiki/Mary_Leakey>"]
-	}
+		"links": ["<https://en.wikipedia.org/wiki/Mary_Leakey>"],
+	},
+	"4B Licei SGF": {
+		"name": "", 
+		"category": "Credits", 
+		"group": 1, 
+		"period": 10,
+	},
 }
 #Database colori degli elementi
 var category_colors = {
@@ -2277,6 +2327,18 @@ var category_colors = {
 		"7": Color(1, 0.5, 0.4),  # Light Pink
 		"8": Color(1, 0.6, 0.3),  # Light Rose
 	},
+	"Title": Color.TRANSPARENT,
+	"TitleFont": {
+		"1": Color(0.26, 0.0, 0.65),   # #4300A7 (viola profondo)
+		"2": Color(0.32, 0.0, 0.63),   # Viola scuro
+		"3": Color(0.39, 0.0, 0.61),   # Viola più chiaro
+		"4": Color(0.46, 0.0, 0.59),   # Viola intenso
+		"5": Color(0.56, 0.0, 0.53),   # Viola con toni rossi
+		"6": Color(0.69, 0.01, 0.43),  # Rosso-violetto
+		"7": Color(0.85, 0.02, 0.27),  # Rosso vivo
+		"8": Color(0.87, 0.01, 0.07),  # #DF0114 (rosso brillante)
+	},
+	"Credits": Color.ROYAL_BLUE,
 	"F-Block": Color("#596759"),
 	"Metallo alcalino": Color(0.99, 0.0, 0.0),        # Rosso vivo
 	"Metallo alcalino-terroso": Color(0.98, 0.3, 0.0),# Arancio intenso
@@ -2405,6 +2467,8 @@ func create_periodic_table():
 				btn.add_theme_font_override("font", load("res://Fonts/texgyreheros-bold.otf"))
 				if not "number" in element:
 					btn.add_theme_font_size_override("font_size", 18)
+					if element["category"] == "Title":
+						btn.add_theme_font_size_override("font_size", 30)
 				else:
 					btn.add_theme_font_size_override("font_size", 25)
 				btn.pivot_offset = btn.size/2
@@ -2422,14 +2486,19 @@ func create_periodic_table():
 					style.corner_radius_bottom_right = radius
 					style.corner_radius_top_left = radius
 					style.corner_radius_top_right = radius
+					print(category_counter)
+					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
 					if element["category"] == "Category":
 						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
 						style.bg_color = category_colors["Category"][str(category_counter)]
+					elif element["category"] == "Title":
+						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
+						style.bg_color = Color.TRANSPARENT
+						btn.add_theme_color_override("font_color",category_colors["TitleFont"][str(category_counter)])
 					else:
 						style.bg_color = category_colors[element["category"]]
 					btn.add_theme_stylebox_override("normal", style)
 					btn.add_theme_stylebox_override("hover", style)
-					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
 					element_container.add_to_group("elements")
 					grid_container.add_child(element_container)
 					elements_created += 1
@@ -2449,8 +2518,8 @@ func create_periodic_table():
 							piano_key += 1
 							printerr(piano_pitches)
 							printerr(piano_key)
+							on_category_selected(symbol)
 						style.bg_color = hover_color.darkened(0.2)  # o .brightened() se preferisci
-						on_category_selected(symbol)
 						tween.tween_property(element_container, "scale", Vector2(1.1,1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 					)
 					btn.mouse_exited.connect(func():
@@ -2513,6 +2582,8 @@ func on_element_selected(symbol, button):
 		
 	var element = elements[symbol]
 	if element["category"] == "F-Block":
+		return
+	if element["category"] == "Credits":
 		return
 	if element["category"] == "Category":
 		on_category_selected(symbol)
@@ -2654,5 +2725,3 @@ func reset_all_colors():
 		# Applica l'override a tutti gli stati
 		for state in ["normal","hover","pressed","disabled"]:
 			btn.add_theme_stylebox_override(state, style)
-		# Ripristina il colore del testo
-		btn.add_theme_color_override("font_color", Color.GHOST_WHITE)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8bt1n7irs0ni"]
+[gd_scene load_steps=12 format=3 uid="uid://b8bt1n7irs0ni"]
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
 [ext_resource type="Texture2D" uid="uid://cf658dkmnvg2s" path="res://Images/background2.png" id="2_2w1kt"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bmaqqh0c6lbcd" path="res://Audio/piano.wav" id="3_rj11h"]
 [ext_resource type="Theme" uid="uid://0b13p35f616s" path="res://Main/Themes/BodySubTheme1.tres" id="4_ib3t1"]
 [ext_resource type="FontFile" uid="uid://d1lxp1jbqqlmx" path="res://Fonts/Gravity-Italic.otf" id="4_k3v36"]
+[ext_resource type="FontFile" uid="uid://bhd16i4grejq3" path="res://Fonts/texgyreheros-bold.otf" id="4_qac2q"]
 [ext_resource type="Theme" uid="uid://btaqw5ipnxw2a" path="res://Main/Themes/BodySubTheme2.tres" id="5_f6fdm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w1kt"]
@@ -22,7 +23,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="Main" type="Control" node_paths=PackedStringArray("element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image")]
+[node name="Main" type="Control" node_paths=PackedStringArray("element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "title_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +49,7 @@ popup_awards_panel = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyV
 popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/QuotePanelContainer/PopupQuoteLabel")
 popup_links_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/LinksPanelContainer/PopupLinksLabel")
 popup_image = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/PopupImage")
+title_label = NodePath("PeriodicTableLayer/Title")
 metadata/_edit_use_anchors_ = true
 
 [node name="ElementHovering" type="AudioStreamPlayer2D" parent="."]
@@ -99,6 +101,30 @@ grow_vertical = 2
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Title" type="RichTextLabel" parent="PeriodicTableLayer"]
+z_index = 6
+anchors_preset = -1
+anchor_left = 0.114
+anchor_top = 0.043
+anchor_right = 0.114
+anchor_bottom = 0.043
+offset_left = -6.328
+offset_top = 0.136
+offset_right = 643.672
+offset_bottom = 73.136
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("4_qac2q")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[color=#4300A7]Per[/color][color=#5a00a2]io[/color][color=#6f00a0]di[/color][color=#85009d]ca[/color][color=#9a009a]Men[/color][color=#b20097]te[/color] [color=#cc0094]Don[/color][color=#DF0114]ne[/color]
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="PopupLayer" type="CanvasLayer" parent="."]
 
@@ -277,6 +303,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
 layer = 0
 
 [node name="Background" type="TextureRect" parent="BackgroundLayer"]
+z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
