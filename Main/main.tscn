@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b8bt1n7irs0ni"]
+[gd_scene load_steps=11 format=3 uid="uid://b8bt1n7irs0ni"]
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
 [ext_resource type="Texture2D" uid="uid://cf658dkmnvg2s" path="res://Images/background2.png" id="2_2w1kt"]
 [ext_resource type="Theme" uid="uid://cenwcc374gahw" path="res://Main/Themes/HeadTheme.tres" id="2_eunhr"]
+[ext_resource type="AudioStream" uid="uid://c458kpwteqh0t" path="res://Audio/hover.wav" id="2_f6fdm"]
 [ext_resource type="Theme" uid="uid://bmweex4776dnj" path="res://Main/Themes/BodyTheme.tres" id="2_qvhan"]
+[ext_resource type="AudioStream" uid="uid://bmaqqh0c6lbcd" path="res://Audio/piano.wav" id="3_rj11h"]
 [ext_resource type="Theme" uid="uid://0b13p35f616s" path="res://Main/Themes/BodySubTheme1.tres" id="4_ib3t1"]
 [ext_resource type="FontFile" uid="uid://d1lxp1jbqqlmx" path="res://Fonts/Gravity-Italic.otf" id="4_k3v36"]
 [ext_resource type="Theme" uid="uid://btaqw5ipnxw2a" path="res://Main/Themes/BodySubTheme2.tres" id="5_f6fdm"]
@@ -20,7 +22,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="Main" type="Control" node_paths=PackedStringArray("grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image")]
+[node name="Main" type="Control" node_paths=PackedStringArray("element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,6 +30,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yh5la")
+element_hovering_audio = NodePath("ElementHovering")
+category_hovering_audio = NodePath("CategoryHovering")
 grid_container = NodePath("PeriodicTableLayer/MarginContainer/GridContainer")
 control_element_container = NodePath("PeriodicTableLayer/ControlElementContainer")
 popup_layer = NodePath("PopupLayer")
@@ -45,6 +49,14 @@ popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVB
 popup_links_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/LinksPanelContainer/PopupLinksLabel")
 popup_image = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/PopupImage")
 metadata/_edit_use_anchors_ = true
+
+[node name="ElementHovering" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_f6fdm")
+attenuation = 2.73208
+
+[node name="CategoryHovering" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rj11h")
+attenuation = 2.73208
 
 [node name="PeriodicTableLayer" type="CanvasLayer" parent="."]
 

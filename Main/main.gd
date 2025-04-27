@@ -1,5 +1,7 @@
 extends Control
 
+@export var element_hovering_audio: AudioStreamPlayer2D
+@export var category_hovering_audio: AudioStreamPlayer2D
 @export var grid_container: GridContainer
 @export var control_element_container: Control 
 @export var popup_layer: CanvasLayer 
@@ -27,6 +29,7 @@ var btn_size: int = 60
 var can_press: bool = true
 var animation_finished: bool = false
 var category_counter: int
+var piano_key = 0
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
@@ -2432,15 +2435,27 @@ func create_periodic_table():
 					elements_created += 1
 					var original_color = style.bg_color
 					var hover_color = original_color
+					var piano_pitches = [1.0, 1.12246204831, 1.25992104989, 1.33483985417, 1.49830707688, 1.68179283051, 1.88774862536, 2.0]
 					btn.mouse_entered.connect(func():
 						var tween = element_container.create_tween()
+						if element["category"] != "Category":
+							element_hovering_audio.pitch_scale = randf_range(0.9,1.2)
+							element_hovering_audio.play()
+						else:
+							if piano_key == piano_pitches.size():
+								piano_key = 0
+							element_hovering_audio.pitch_scale = piano_pitches[piano_key]
+							element_hovering_audio.play()
+							piano_key += 1
+							printerr(piano_pitches)
+							printerr(piano_key)
 						style.bg_color = hover_color.darkened(0.2)  # o .brightened() se preferisci
 						on_category_selected(symbol)
-						tween.tween_property(element_container, "scale", Vector2(1.1,1.1), 0.2) \
-							 .set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+						tween.tween_property(element_container, "scale", Vector2(1.1,1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 					)
 					btn.mouse_exited.connect(func():
 						var tween = element_container.create_tween()
+						#element_hovering_audio.stop()
 						if element["category"] == "Category":
 							category_counter = 0
 							category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
@@ -2476,7 +2491,7 @@ func elements_animation(grid):
 			var tween = element.create_tween().set_trans(Tween.TRANS_CUBIC)
 			tween.set_parallel(false)
 			tween.tween_property(element, "scale", Vector2(1.4, 1.4), speed)
-			tween.tween_property(element, "scale", Vector2(1, 1), speed)
+			tween.tween_property(element, "scale", Vector2(1.0, 1.0), speed)
 		await get_tree().create_timer(0.08).timeout
 		animation_finished = true
 
@@ -2543,7 +2558,7 @@ func on_category_selected(symbol: String):
 	for sym in elements.keys():
 		var data = elements[sym]
 		if data.has("profession_keys") and symbol in data["profession_keys"]:
-			print(matching_symbols)
+			#print(matching_symbols)
 			matching_symbols.append(sym)
 
 	# 2) Per ogni element_container dentro grid_container
@@ -2596,9 +2611,8 @@ func calculate_popup_position(button):
 
 func popup_animation(button):
 	var tween = create_tween()
-	tween.tween_property(button, "scale", Vector2(1, 1), 0.01).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
-	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.075).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
-	tween.tween_property(button, "scale", Vector2(1, 1), 0.05).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
+	tween.tween_property(button, "scale", Vector2(1.3, 1.3), 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_IN)
+	tween.tween_property(button, "scale", Vector2(1.1,1.1), 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	popup_panel.size.y = (popup_margin.size.y)
 
 func reset_all_colors():
