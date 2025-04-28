@@ -309,23 +309,14 @@ pivot_offset = Vector2(200, 0)
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
 
-[node name="BackgroundLayer" type="ParallaxBackground" parent="."]
-layer = 0
-scale = Vector2(0.7, 0.7)
-transform = Transform2D(0.7, 0, 0, 0.7, 0, 0)
-scroll_offset = Vector2(11.805, 0)
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scale = Vector2(0.8, 0.8)
+scroll_scale = Vector2(1.19, 1.19)
+repeat_size = Vector2(512, 512)
+autoscroll = Vector2(50, 2)
+repeat_times = 2
 
-[node name="Background" type="TextureRect" parent="BackgroundLayer"]
+[node name="Background" type="Sprite2D" parent="Parallax2D"]
 z_index = -1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -448.0
-offset_top = -358.5
-offset_right = 1600.0
-offset_bottom = 1006.5
-grow_horizontal = 2
-grow_vertical = 2
+position = Vector2(835, 410)
 texture = ExtResource("10_qac2q")
-expand_mode = 1
-stretch_mode = 1
