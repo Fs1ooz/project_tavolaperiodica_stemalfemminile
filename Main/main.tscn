@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8bt1n7irs0ni"]
+[gd_scene load_steps=13 format=3 uid="uid://b8bt1n7irs0ni"]
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
-[ext_resource type="Texture2D" uid="uid://cf658dkmnvg2s" path="res://Images/background2.png" id="2_2w1kt"]
 [ext_resource type="Theme" uid="uid://cenwcc374gahw" path="res://Main/Themes/HeadTheme.tres" id="2_eunhr"]
 [ext_resource type="AudioStream" uid="uid://c458kpwteqh0t" path="res://Audio/hover.wav" id="2_f6fdm"]
 [ext_resource type="Theme" uid="uid://bmweex4776dnj" path="res://Main/Themes/BodyTheme.tres" id="2_qvhan"]
@@ -10,6 +9,9 @@
 [ext_resource type="FontFile" uid="uid://d1lxp1jbqqlmx" path="res://Fonts/Gravity-Italic.otf" id="4_k3v36"]
 [ext_resource type="FontFile" uid="uid://bhd16i4grejq3" path="res://Fonts/texgyreheros-bold.otf" id="4_qac2q"]
 [ext_resource type="Theme" uid="uid://btaqw5ipnxw2a" path="res://Main/Themes/BodySubTheme2.tres" id="5_f6fdm"]
+[ext_resource type="Texture2D" uid="uid://cjpl1bjn8roug" path="res://Images/tile_512x512_1745872675273.png" id="10_qac2q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qac2q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w1kt"]
 bg_color = Color(1, 0.878431, 0.929412, 1)
@@ -96,6 +98,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qac2q")
 
 [node name="AtomicNumberLabel" type="Label" parent="PeriodicTableLayer/ControlElementContainer"]
 layout_mode = 1
@@ -116,6 +119,13 @@ offset_bottom = 73.136
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0.948167, 0.952473, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.118581, 0.118581, 0.118581, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_outline_size = 5
+theme_override_constants/line_separation = 0
 theme_override_fonts/normal_font = ExtResource("4_qac2q")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
@@ -299,15 +309,23 @@ pivot_offset = Vector2(200, 0)
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
 
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="ParallaxBackground" parent="."]
 layer = 0
+scale = Vector2(0.7, 0.7)
+transform = Transform2D(0.7, 0, 0, 0.7, 0, 0)
+scroll_offset = Vector2(11.805, 0)
 
 [node name="Background" type="TextureRect" parent="BackgroundLayer"]
 z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -448.0
+offset_top = -358.5
+offset_right = 1600.0
+offset_bottom = 1006.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_2w1kt")
-expand_mode = 5
+texture = ExtResource("10_qac2q")
+expand_mode = 1
+stretch_mode = 1

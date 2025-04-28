@@ -22,6 +22,9 @@ extends Control
 
 @onready var screen_size = get_viewport_rect().size
 
+var radius: int = 2
+var border: int = 2
+
 var selected_category_symbol := ""
 var selected_button: Control = null
 var periods: int = 7+3
@@ -1319,7 +1322,23 @@ var elements: Dictionary = {
 	   "links": ["<https://en.wikipedia.org/wiki/Patricia_Bath>"],
 		"profession_keys": ["Med"],
 	},
-	"Au": {"name": "Oro", "number": 79, "category": "Metallo di transizione", "group": 11, "period": 6},
+	"Au": {
+		"name": "Oro",
+		"number": 79,
+		"category": "Metallo di transizione",
+		"group": 11,
+		"period": 6,
+		"image": "res://Images/Audrey Tang.jpg",
+		"scientist_name": "Audrey Tang",
+		"profession": "Programmatrice e Politica",
+		"brief_subtitle": "Innovatrice della democrazia digitale",
+		"year": "1981-",
+		"nationality": "Cinese (Taiwanese)",
+		"description": "Audrey Tang, nata a Taiwan, è una programmatrice, attivista e politica nota per il suo lavoro nel campo della tecnologia e della democrazia digitale. È diventata il ministro digitale di Taiwan, ed è la prima persona transgender ad assumere una carica ministeriale nel paese. Sebbene non sia una chimica, ha avuto un impatto significativo nel migliorare la trasparenza governativa e il coinvolgimento civico attraverso l'uso delle tecnologie digitali. Tang è riconosciuta per le sue innovazioni nel promuovere la democrazia partecipativa e per il suo impegno verso una società più equa e inclusiva.",
+		"awards": "",
+		"quote": "La tecnologia è solo uno strumento. La vera innovazione nasce quando lo utilizziamo per costruire una società più equa e inclusiva.",
+		"links": ["https://en.wikipedia.org/wiki/Audrey_Tang"]
+	},
 	"Hg": {  
 		"name": "Mercurio",  
 		"number": 80,  
@@ -1784,7 +1803,6 @@ var elements: Dictionary = {
 		"links": ["<https://en.wikipedia.org/wiki/Laura_Bassi>"],
 		"profession_keys": ["Phy"],
 	},
-
 	"Ce": {
 		"name": "Cerio",
 		"number": 58,
@@ -1802,7 +1820,6 @@ var elements: Dictionary = {
 		"quote": "La scienza è il nostro strumento più potente per comprendere e affrontare le sfide globali...",
 		"links": ["<https://en.wikipedia.org/wiki/Celeste_Saulo>"]
 	},
-
 	"Pr": {
 		"name": "Praseodimio",
 		"number": 59,
@@ -1820,23 +1837,22 @@ var elements: Dictionary = {
 		"quote": "La scienza è una finestra sul mondo microscopico...",
 		"links": ["<https://en.wikipedia.org/wiki/Pratibha_Gai>"]
 	},
-
 	"Nd": {
 		"name": "Neodimio",
 		"number": 60,
 		"category": "Lantanide",
 		"group": 6,
 		"period": 9,
-		"image": "res://Images/Nina Fedoroff.jpg",
-		"scientist_name": "Nina Fedoroff",
-		"profession": "Biotecnologa e Genetista",
-		"brief_subtitle": "Pioniera degli OGM sostenibili",
-		"year": "1942 - ",
-		"nationality": "Americana",
-		"description": "Biotecnologa americana, ex presidente della AAAS. Ha sviluppato piante geneticamente modificate resistenti a malattie e clima estremo, promuovendo soluzioni per la sicurezza alimentare globale.",
-		"awards": "National Medal of Science (2006)",
-		"quote": "La biotecnologia agricola ha il potenziale per alimentare il mondo in modo sostenibile...",
-		"links": ["<https://en.wikipedia.org/wiki/Nina_Fedoroff>"]
+		"image": "res://Images/Ida Noddack.jpg",
+		"scientist_name": "Ida Noddack",
+		"profession": "Chimica e Fisica",
+		"brief_subtitle": "Pioniera della chimica nucleare",
+		"year": "1896-1978",
+		"nationality": "Tedesca",
+		"description": "Ida Noddack è stata una chimica e fisica tedesca nota per la scoperta del renio nel 1925 insieme a suo marito, Walter Noddack. Nel 1934, intuì che il nucleo dell'uranio poteva spezzarsi in elementi più leggeri, anticipando la fissione nucleare, ma la sua teoria fu inizialmente ignorata. Nonostante le difficoltà dovute ai pregiudizi di genere, continuò a contribuire alla ricerca scientifica, lasciando un'eredità importante nella chimica nucleare.",
+		"awards": "",
+		"quote": "La scienza non è una questione di semplici esperimenti, ma di intuizioni che richiedono coraggio e perseveranza per essere espresse.",
+		"links": ["https://en.wikipedia.org/wiki/Ida_Noddack"]
 	},
 	"Pm": {
 		"name": "Promezio",
@@ -2340,8 +2356,8 @@ var category_colors = {
 	},
 	"Credits": Color.ROYAL_BLUE,
 	"F-Block": Color("#596759"),
-	"Metallo alcalino": Color(0.99, 0.0, 0.0),        # Rosso vivo
-	"Metallo alcalino-terroso": Color(0.98, 0.3, 0.0),# Arancio intenso
+	"Metallo alcalino": Color(0.96, 0.01, 0.1),        # Rosso vivo
+	"Metallo alcalino-terroso": Color(0.95, 0.3, 0.0),# Arancio intenso
 	"Metallo di transizione": Color(0.9, 0.5, 0.1), # Arancio dorato
 	"Metallo post-transizionale": Color(0.6, 0.8, 0.2), # Verde pera
 	"Metalloide": Color(0.4, 0.9, 0.4),              # Verde pera chiaro
@@ -2364,14 +2380,34 @@ var prof_to_key = {
 	"Hum": "8",
 }
 
+func desaturate_colors_in_place(amount: float) -> void:
+		for key in category_colors.keys():
+			if key != "Category" and  key != "TitleFont":
+				category_colors[key] = category_colors[key].lerp(Color.LIGHT_GRAY, amount)
+
+func darken_colors_in_place(amount: float) -> void:
+	for key in category_colors.keys():
+		if key != "Category" and  key != "TitleFont":
+			category_colors[key] = category_colors[key].darkened(amount)
+
+func lighten_colors_in_place(amount: float) -> void:
+	for key in category_colors.keys():
+		if key != "Category" and  key != "TitleFont":
+			category_colors[key] = category_colors[key].lightened(amount)
+
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and popup_panel.visible and popup_margin.visible:
 		if not popup_panel.get_global_rect().has_point(get_global_mouse_position()):
 			popup_panel.visible = false
 			popup_margin.visible = false
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_SPACE:
+			elements_animation(grid_container)
+			reset_all_colors()
 
 func _ready() -> void:
-	print(Color.LIME_GREEN.to_html())
+	desaturate_colors_in_place(0.05)
+	darken_colors_in_place(0.07)
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
 	control_element_container.queue_free()
@@ -2446,11 +2482,16 @@ func create_periodic_table():
 				lbl.add_theme_font_size_override("font_size", 14)
 				lbl.z_index = 2
 				nm_lbl.text = str(element["name"])
+
 				nm_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				nm_lbl.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 				nm_lbl.add_theme_constant_override("line_spacing", -5)
 				nm_lbl.add_theme_font_override("font", load("res://Fonts/texgyreheroscn-bold.otf"))
 				nm_lbl.add_theme_font_size_override("font_size", 12)
+				if "scientist_name" in element:
+					var first_word = str(element["scientist_name"]).split(" ")[0]
+					nm_lbl.text = first_word
+					nm_lbl.add_theme_font_size_override("font_size", 14)
 				if element["category"] == "Category":
 					nm_lbl.add_theme_font_size_override("font_size", 13)
 					nm_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -2464,6 +2505,7 @@ func create_periodic_table():
 				btn.pressed.connect(on_element_selected.bind(symbol, element_container))
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
+				btn.focus_mode = Control.FOCUS_NONE
 				btn.add_theme_font_override("font", load("res://Fonts/texgyreheros-bold.otf"))
 				if not "number" in element:
 					btn.add_theme_font_size_override("font_size", 18)
@@ -2481,12 +2523,9 @@ func create_periodic_table():
 				element_container.pivot_offset = btn.size/2
 				var style = StyleBoxFlat.new()
 				if style:
-					var radius: int = 2
-					style.corner_radius_bottom_left = radius
-					style.corner_radius_bottom_right = radius
-					style.corner_radius_top_left = radius
-					style.corner_radius_top_right = radius
-					print(category_counter)
+					style.set_corner_radius_all(radius)
+					style.set_expand_margin_all(0.3)
+					style.border_color = Color.ANTIQUE_WHITE
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
 					if element["category"] == "Category":
 						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
@@ -2505,10 +2544,11 @@ func create_periodic_table():
 					var original_color = style.bg_color
 					var hover_color = original_color
 					var piano_pitches = [1.0, 1.12246204831, 1.25992104989, 1.33483985417, 1.49830707688, 1.68179283051, 1.88774862536, 2.0]
+					
 					btn.mouse_entered.connect(func():
 						var tween = element_container.create_tween()
 						if element["category"] != "Category":
-							element_hovering_audio.pitch_scale = randf_range(0.9,1.2)
+							element_hovering_audio.pitch_scale = randf_range(1.0,1.2)
 							element_hovering_audio.play()
 						else:
 							if piano_key == piano_pitches.size():
@@ -2516,8 +2556,6 @@ func create_periodic_table():
 							element_hovering_audio.pitch_scale = piano_pitches[piano_key]
 							element_hovering_audio.play()
 							piano_key += 1
-							printerr(piano_pitches)
-							printerr(piano_key)
 							on_category_selected(symbol)
 						style.bg_color = hover_color.darkened(0.2)  # o .brightened() se preferisci
 						tween.tween_property(element_container, "scale", Vector2(1.1,1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
@@ -2530,6 +2568,7 @@ func create_periodic_table():
 							category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
 							style.bg_color = original_color
 						else:
+							element_hovering_audio.stop()
 							style.bg_color = category_colors[element["category"]]
 						tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
 					if elements_created == total_elements:
@@ -2618,38 +2657,41 @@ func on_element_selected(symbol, button):
 	await get_tree().create_timer(0.3).timeout
 	can_press = true
 
-	
 	#forza feb sei un mitico scemo de best in de uorld ma come fai a essere cosi bravo ad essere scemo lucA mi ha detto di chiederti se vuoi fare sesso con lui e oliver taigher ti va???? sexting chilling 
 
-
 func on_category_selected(symbol: String):
-	# 1) Trova i nomi di tutti gli elementi che hanno quella profession_key
 	reset_all_colors()
 	var matching_symbols := []
+
+	# 1) Trova i simboli che corrispondono alla professione
 	for sym in elements.keys():
 		var data = elements[sym]
 		if data.has("profession_keys") and symbol in data["profession_keys"]:
-			#print(matching_symbols)
 			matching_symbols.append(sym)
-
-	# 2) Per ogni element_container dentro grid_container
+	
+	# Prepara un solo StyleBox da riutilizzare
+	var key = prof_to_key.get(symbol)
+	var color = category_colors["Category"].get(key, Color.WHITE)
+	var shared_style = StyleBoxFlat.new()
+	shared_style.bg_color = color
+	shared_style.set_corner_radius_all(radius)
+	shared_style.set_border_width_all(border)
+	# 2) Anima solo i bottoni che corrispondono
 	for element_container in grid_container.get_children():
-		var btns := element_container.get_children().filter(func(c):
-			return c is Button
-		)
-		if btns.is_empty():
-			continue  # nessun Button qui, salta
-		var btn := btns[0] as Button
-		
-		if btn.text in matching_symbols:
-			var key = prof_to_key.get(symbol)
-			var color = category_colors["Category"].get(key, Color.WHITE)
-			var sb = (btn.get_theme_stylebox("normal") as StyleBoxFlat).duplicate() as StyleBoxFlat
-			sb.bg_color = color
-			btn.add_theme_stylebox_override("normal", sb)
-			var tween = create_tween()
-			tween.tween_property(btn, "scale", Vector2(1.2,1.2), 0.1).set_trans(Tween.TRANS_BOUNCE)
-			tween.tween_property(btn, "scale", Vector2(1.0,1.0), 0.05)
+		for child in element_container.get_children():
+			if child is Button and child.text in matching_symbols:
+				# Applica lo stile condiviso
+				child.add_theme_stylebox_override("normal", shared_style)
+				# Usa un solo tween per tutti i bottoni
+				var tween = create_tween()
+				tween.tween_property(child, "scale", Vector2(1.2, 1.2), 0.1).set_trans(Tween.TRANS_BOUNCE)
+				tween.tween_property(child, "scale", Vector2(1.0, 1.0), 0.05)
+
+
+func animate_button(button):
+	var tween = create_tween()
+	tween.tween_property(button, "scale", Vector2(1.2,1.2), 0.1).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(button, "scale", Vector2(1.0,1.0), 0.05)
 
 		
 func calculate_popup_position(button):
@@ -2691,7 +2733,6 @@ func reset_all_colors():
 	selected_category_symbol = ""
 	# Riparti dal primo colore
 	category_counter = 0
-
 	# Cicla tutti i container nella grid
 	for element_container in grid_container.get_children():
 		# Trova il Button figlio
@@ -2702,26 +2743,31 @@ func reset_all_colors():
 				break
 		if btn == null:
 			continue
-
 		# Ricava i dati dell'elemento
 		var data = elements.get(btn.text)
 		if data == null:
 			continue
-
-		# Ricrea lo StyleBoxFlat con radius e colore di default
-		var style = StyleBoxFlat.new()
-		var r = 2
-		style.corner_radius_bottom_left = r
-		style.corner_radius_bottom_right = r
-		style.corner_radius_top_left = r
-		style.corner_radius_top_right = r
-
+		# Ottieni lo StyleBoxFlat corrente (se disponibile)
+		var current_style = btn.get_theme_stylebox("normal")
+		var style
+		
+		if current_style is StyleBoxFlat:
+			# Duplica per mantenere i corner radius e altre proprietà
+			style = current_style.duplicate()
+			style.set_corner_radius_all(radius)
+			style.set_border_width_all(0.0)
+		else:
+			# Fallback: crea un nuovo StyleBoxFlat con corner radius predefinito
+			style = StyleBoxFlat.new()
+			style.set_border_width_all(0.0)
+			style.set_corner_radius_all(radius)
+		# Aggiorna il colore in base alla categoria
 		if data["category"] == "Category":
 			category_counter = (category_counter % 8) + 1
 			style.bg_color = category_colors["Category"][str(category_counter)]
 		else:
 			style.bg_color = category_colors[data["category"]]
-
-		# Applica l'override a tutti gli stati
-		for state in ["normal","hover","pressed","disabled"]:
+			
+		# Applica lo stile aggiornato
+		for state in ["normal", "hover", "pressed", "disabled"]:
 			btn.add_theme_stylebox_override(state, style)
