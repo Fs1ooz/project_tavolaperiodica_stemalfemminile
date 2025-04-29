@@ -2475,16 +2475,16 @@ func _ready() -> void:
 	grid_container.resized.connect(center_table)
 
 func center_table():
-	var size = grid_container.get_combined_minimum_size()
+	var container_size = grid_container.get_combined_minimum_size()
 	var offset_x = -10
 	grid_container.anchor_left = 0.5
 	grid_container.anchor_top = 0.5
 	grid_container.anchor_right = 0.5
 	grid_container.anchor_bottom = 0.5
-	grid_container.offset_left = -size.x / 2 + offset_x
-	grid_container.offset_top = -size.y / 2
-	grid_container.offset_right = size.x / 2 
-	grid_container.offset_bottom = size.y / 2
+	grid_container.offset_left = -container_size.x / 2 + offset_x
+	grid_container.offset_top = -container_size.y / 2
+	grid_container.offset_right = container_size.x / 2 
+	grid_container.offset_bottom = container_size.y / 2
 
 
 
@@ -2505,8 +2505,6 @@ func calculate_scale_factor():
 
 
 func create_periodic_table():
-	var available_width = screen_size.x * 0.9  
-	var available_height = screen_size.y * 0.8
 	var total_elements = elements.size()
 	var elements_created = 0
 	grid_container.columns = groups + 1  # +1 per la colonna dei periodi a sinistra
