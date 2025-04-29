@@ -1,5 +1,8 @@
 extends Control
 
+@export var default_theme = "default"
+
+@export var periodic_table_layer: CanvasLayer
 @export var element_hovering_audio: AudioStreamPlayer2D
 @export var category_hovering_audio: AudioStreamPlayer2D
 @export var grid_container: GridContainer
@@ -20,10 +23,13 @@ extends Control
 @export var popup_image: TextureRect
 @export var title_label: RichTextLabel
 
+@export var background: ColorRect
 @onready var screen_size = get_viewport_rect().size
+@onready var current_theme = themes[default_theme]
 
 var radius: int = 2
 var border: int = 2
+var scale_factor: float = 1.0
 
 var selected_category_symbol := ""
 var selected_button: Control = null
@@ -37,7 +43,6 @@ var piano_key = 0
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
-	
 	#"Per": {
 		#"name": "", 
 		#"category": "Title", 
@@ -179,7 +184,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino", 
 		"group": 1, 
 		"period": 2,
-		"image": "res://Images/Lise Meitner.jpg",
+		"image": "res://Images/STEAM Women/Lise Meitner.jpg",
 		"scientist_name": "Lise Meitner",
 		"profession": "Fisica",
 		"brief_subtitle": "Madre della fissione nucleare",
@@ -197,7 +202,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino-terroso", 
 		"group": 2, 
 		"period": 2,
-		"image": "res://Images/Beatrice Shilling.jpg",
+		"image": "res://Images/STEAM Women/Beatrice Shilling.jpg",
 		"scientist_name": "Beatrice Shilling", 
 		"profession": "Ingegnera aeronautica", 
 		"brief_subtitle": "Pioniera dell'aeronautica", 
@@ -216,8 +221,8 @@ var elements: Dictionary = {
 		"category": "Metalloide", 
 		"group": 13, 
 		"period": 2,
-		"image": "res://Images/Alice_Augusta_Ball.jpg",
-		"scientist_name": "Alice Augusta Ball", 
+		"image": "res://Images/STEAM Women/Ball Alice Augusta.jpg",
+		"scientist_name": "Ball Alice Augusta", 
 		"profession": "Chimica", 
 		"brief_subtitle": "Sviluppò il trattamento per la lebbra", 
 		"year": "1892 - 1916",
@@ -236,7 +241,7 @@ var elements: Dictionary = {
 		"category": "Non metallo", 
 		"group": 14, 
 		"period": 2,
-		"image": "res://Images/Cecilia_Payne-Gaposchkin.jpg",
+		"image": "res://Images/STEAM Women/Cecilia Payne-Gaposchkin.jpg",
 		"scientist_name": "Cecilia Payne-Gaposchkin", 
 		"profession": "Astrofisica", 
 		"brief_subtitle": "Scoprì la composizione delle stelle", 
@@ -256,7 +261,7 @@ var elements: Dictionary = {
 		"category": "Non metallo",
 		"group": 15,
 		"period": 2,
-		"image": "res://Images/Mary_Anning.jpg",
+		"image": "res://Images/STEAM Women/Mary_Anning.jpg",
 		"scientist_name": "Mary Anning",
 		"profession": "Paleontologa",
 		"brief_subtitle": "Pioniera della paleontologia",
@@ -338,7 +343,7 @@ var elements: Dictionary = {
 	  "category": "Metallo alcalino",
 	  "group": 1,
 	  "period": 3,
-	  "image": "",
+	  "image": "res://Images/STEAM Women/Nancy Grace Roman.jpg",
 	  "scientist_name": "Nancy Grace Roman",
 	  "profession": "Astronoma",
 	  "brief_subtitle": "Madre del telescopio spaziale Hubble",
@@ -444,7 +449,7 @@ var elements: Dictionary = {
 	  "category": "Alogeno",
 	  "group": 17,
 	  "period": 3,
-	  "image": "",
+	  "image": "res://Images/STEAM Women/Claudia Alexander.jpg",
 	  "scientist_name": "Claudia Alexander",
 	  "profession": "Scienziata e ingegnera",
 	  "brief_subtitle": "Astrofisica NASA, protagonista delle missioni Galileo",
@@ -462,10 +467,10 @@ var elements: Dictionary = {
 	  "category": "Gas nobile",
 	  "group": 18,
 	  "period": 3,
-	  "image": "",
+	  "image": "res://Images/STEAM Women/Artemisia Gentileschi.png",
 	  "scientist_name": "Artemisia Gentileschi",
 	  "profession": "Artista",
-	  "brief_subtitle": "Pioniera del Barocco, simbolo della resilienza femminile",
+	  "brief_subtitle": "Artista simbolo della resilienza femminile",
 	  "year": "1593-1653",
 	  "nationality": "Italiana",
 	  "description": "Artemisia Gentileschi è stata una pittrice italiana del periodo barocco, tra le prime donne a ottenere successo nel mondo dell'arte. Formata dal padre Orazio, sviluppò uno stile drammatico e realistico influenzato da Caravaggio. Le sue opere spesso raffigurano eroine bibliche e mitologiche con grande forza espressiva, come Giuditta che decapita Oloferne. Il suo lavoro è considerato un simbolo della resilienza femminile e del talento artistico.",
@@ -482,7 +487,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino",
 		"group": 1,
 		"period": 4,
-		"image": "res://Images/Katherine Johnson.jpg",
+		"image": "res://Images/STEAM Women/Katherine Johnson.jpg",
 		"scientist_name": "Katherine Johnson",
 		"profession": "Matematica e scienziata",
 		"brief_subtitle": "Pioniera della scienza spaziale",
@@ -502,7 +507,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino-terroso",
 		"group": 2,
 		"period": 4,
-		"image": "res://Images/Caroline Herschel.jpg",
+		"image": "res://Images/STEAM Women/Caroline Herschel.jpg",
 		"scientist_name": "Caroline Herschel",
 		"profession": "Astronoma",
 		"brief_subtitle": "Prima donna astronoma stipendiata",
@@ -522,7 +527,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 3,
 		"period": 4,
-		"image": "res://Images/Caterina Scarpelli.jpg",
+		"image": "res://Images/STEAM Women/Caterina Scarpelli.jpg",
 		"scientist_name": "Caterina Scarpelli",
 		"profession": "Astronoma e meteorologa",
 		"brief_subtitle": "Pioniera della meteorologia italiana",
@@ -540,7 +545,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 4,
 		"period": 4,
-		"image": "res://Images/Tina M. Henkin.jpg",
+		"image": "res://Images/STEAM Women/Tina M. Henkin.jpg",
 		"scientist_name": "Tina M. Henkin",
 		"profession": "Microbiologa",
 		"brief_subtitle": "Esperta in regolazione genica batterica",
@@ -559,7 +564,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 5,
 		"period": 4,
-		"image": "res://Images/Virginia Apgar.jpg",
+		"image": "res://Images/STEAM Women/Virginia Apgar.jpg",
 		"scientist_name": "Virginia Apgar",
 		"profession": "Dottoressa e anestesiologa",
 		"brief_subtitle": "Pioniera della medicina neonatale",
@@ -577,7 +582,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 6,
 		"period": 4,
-		"image": "res://Images/Cristina Alberini.jpg",
+		"image": "res://Images/STEAM Women/Cristina Alberini.jpg",
 		"scientist_name": "Cristina Alberini",
 		"profession": "Neuroscienziata",
 		"brief_subtitle": "Esperta nei meccanismi della memoria",
@@ -613,7 +618,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 8,
 		"period": 4,
-		"image": "res://Images/Felisa Wolfe-Simon.jpg",
+		"image": "res://Images/STEAM Women/Felisa Wolfe-Simon.jpg",
 		"scientist_name": "Felisa Wolfe-Simon",
 		"profession": "Microbiologa",
 		"brief_subtitle": "Esploratrice della chimica della vita",
@@ -631,7 +636,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 9,
 		"period": 4,
-		"image": "res://Images/Odile Speed.jpg",
+		"image": "res://Images/STEAM Women/Odile Speed.jpg",
 		"scientist_name": "Odile Speed",
 		"profession": "Artista",
 		"brief_subtitle": "Ritrattista della doppia elica",
@@ -649,7 +654,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 10,
 		"period": 4,
-		"image": "res://Images/Florence Nightingale.jpg",
+		"image": "res://Images/STEAM Women/Florence Nightingale.jpg",
 		"scientist_name": "Florence Nightingale",
 		"profession": "Infermiera",
 		"brief_subtitle": "Fondatrice dell'infermieristica moderna",
@@ -667,7 +672,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 11,
 		"period": 4,
-		"image": "res://Images/Colette Guillaum.jpg",
+		"image": "res://Images/STEAM Women/Colette Guillaum.jpg",
 		"scientist_name": "Colette Guillaumin",
 		"profession": "Sociologa",
 		"brief_subtitle": "Teorica delle disuguaglianze sociali",
@@ -685,7 +690,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 12,
 		"period": 4,
-		"image": "res://Images/Zhenan Bao.jpg",
+		"image": "res://Images/STEAM Women/Zhenan Bao.jpg",
 		"scientist_name": "Zhenan Bao",
 		"profession": "Scienziata e ingegnera",
 		"brief_subtitle": "Pioniera della pelle elettronica",
@@ -703,7 +708,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",
 		"group": 13,
 		"period": 4,
-		"image": "res://Images/Jane Goodall.jpg",
+		"image": "res://Images/STEAM Women/Jane Goodall.jpg",
 		"scientist_name": "Jane Goodall",
 		"profession": "Etologa e antropologa",
 		"brief_subtitle": "Voce degli scimpanzé",
@@ -721,7 +726,7 @@ var elements: Dictionary = {
 		"category": "Metalloide",
 		"group": 14,
 		"period": 4,
-		"image": "res://Images/Gerty Cori.jpg",
+		"image": "res://Images/STEAM Women/Gerty Cori.jpg",
 		"scientist_name": "Gerty Cori",
 		"profession": "Biochimica",
 		"brief_subtitle": "Nobel per il metabolismo del glucosio",
@@ -739,7 +744,7 @@ var elements: Dictionary = {
 		"category": "Metalloide",
 		"group": 15,
 		"period": 4,
-		"image": "res://Images/Asima Chatterjee.jpg",
+		"image": "res://Images/STEAM Women/Asima Chatterjee.jpg",
 		"scientist_name": "Asima Chatterjee",
 		"profession": "Chimica",
 		"brief_subtitle": "Pioniera dei farmaci antitumorali",
@@ -757,7 +762,7 @@ var elements: Dictionary = {
 		"category": "Non metallo",
 		"group": 16,
 		"period": 4,
-		"image": "res://Images/Florence Seibert.jpg",
+		"image": "res://Images/STEAM Women/Florence Seibert.jpg",
 		"scientist_name": "Florence Seibert",
 		"profession": "Biochimica",
 		"brief_subtitle": "Combattente contro la tubercolosi",
@@ -775,7 +780,7 @@ var elements: Dictionary = {
 		"category": "Alogeno",
 		"group": 17,
 		"period": 4,
-		"image": "res://Images/Jocelyn_Bell_Burnell.jpg",
+		"image": "res://Images/STEAM Women/Jocelyn_Bell_Burnell.jpg",
 		"scientist_name": "Jocelyn Bell Burnell",
 		"profession": "Astrofisica",
 		"brief_subtitle": "Scopritrice delle prime pulsar",
@@ -794,7 +799,7 @@ var elements: Dictionary = {
 		"category": "Gas nobile",
 		"group": 18,
 		"period": 4,
-		"image": "res://Images/Kristina M. Johnson.jpg",
+		"image": "res://Images/STEAM Women/Kristina M. Johnson.jpg",
 		"scientist_name": "Kristina M. Johnson",
 		"profession": "Ingegnera",
 		"brief_subtitle": "Innovatrice in ottica ed energia",
@@ -814,7 +819,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino",
 		"group": 1,
 		"period": 5,
-		"image": "res://Images/Ruby Payne-Scott.jpg",
+		"image": "res://Images/STEAM Women/Ruby Payne-Scott.jpg",
 		"scientist_name": "Ruby Payne-Scott",
 		"profession": "Fisica",
 		"brief_subtitle": "Pioniera della radioastronomia solare",
@@ -833,7 +838,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino-terroso",
 		"group": 2,
 		"period": 5,
-		"image": "res://Images/Sophie Taeuber-Arp.jpg",
+		"image": "res://Images/STEAM Women/Sophie Taeuber-Arp.jpg",
 		"scientist_name": "Sophie Taeuber-Arp",
 		"profession": "Pittrice e designer",
 		"brief_subtitle": "Icona del movimento Dada",
@@ -852,7 +857,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 3,
 		"period": 5,
-		"image": "res://Images/Ada Yonath.jpg",
+		"image": "res://Images/STEAM Women/Ada Yonath.jpg",
 		"scientist_name": "Ada Yonath",
 		"profession": "Chimica e cristallografa",
 		"brief_subtitle": "Decifratrice dei ribosomi",
@@ -870,7 +875,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 4,
 		"period": 5,
-		"image": "res://Images/Maria Zuber.jpg",
+		"image": "res://Images/STEAM Women/Maria Zuber.jpg",
 		"scientist_name": "Maria Zuber",
 		"profession": "Scienziata planetaria",
 		"brief_subtitle": "Esploratrice di Marte",
@@ -887,7 +892,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 5,
 		"period": 5,
-		"image": "res://Images/Nina Byers.jpg",
+		"image": "res://Images/STEAM Women/Nina Byers.png",
 		"scientist_name": "Nina Byers",
 		"profession": "Fisica teorica",
 		"brief_subtitle": "Pioniera delle simmetrie nella fisica fondamentale",
@@ -906,7 +911,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 6,
 		"period": 5,
-		"image": "res://Images/Rita Levi-Montalcini.jpg",
+		"image": "res://Images/STEAM Women/Rita Levi-Montalcini.png",
 		"scientist_name": "Rita Levi-Montalcini",
 		"profession": "Neurologa",
 		"brief_subtitle": "Scopritrice del fattore di crescita nervoso (NGF)",
@@ -925,7 +930,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 7,
 		"period": 5,
-		"image": "res://Images/Tatyana Chernigovskaya.jpg",
+		"image": "res://Images/STEAM Women/Tatyana Chernigovskaya.png",
 		"scientist_name": "Tatyana Chernigovskaya",
 		"profession": "Neuroscienziata e linguista",
 		"brief_subtitle": "Esploratrice del cervello e del linguaggio",
@@ -944,7 +949,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 8,
 		"period": 5,
-		"image": "res://Images/Vera Rubin.jpg",
+		"image": "res://Images/STEAM Women/Vera Rubin.png",
 		"scientist_name": "Vera Rubin",
 		"profession": "Astronoma",
 		"brief_subtitle": "Rivelatrice della materia oscura",
@@ -963,7 +968,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 9,
 		"period": 5,
-		"image": "res://Images/Rashika El Ridi.jpg",
+		"image": "res://Images/STEAM Women/Rashika El Ridi.jpg",
 		"scientist_name": "Rashika El Ridi",
 		"profession": "Immunologa",
 		"brief_subtitle": "Combattente contro le malattie parassitarie",
@@ -980,7 +985,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 10,
 		"period": 5,
-		"image": "res://Images/Patricia Goldman-Rakic.jpg",
+		"image": "res://Images/STEAM Women/Patricia Goldman-Rakic.png",
 		"scientist_name": "Patricia S. Goldman-Rakic",
 		"profession": "Neuroscienziata",
 		"brief_subtitle": "Pioniera della memoria di lavoro",
@@ -999,7 +1004,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 11,
 		"period": 5,
-		"image": "res://Images/Agnes Pockels.jpg",
+		"image": "res://Images/STEAM Women/Agnes Pockels.png",
 		"scientist_name": "Agnes Pockels",
 		"profession": "Chimica",
 		"brief_subtitle": "Innovatrice della chimica delle superfici",
@@ -1017,7 +1022,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 12,
 		"period": 5,
-		"image": "res://Images/Candace Pert.jpg",
+		"image": "res://Images/STEAM Women/Candace Pert.png",
 		"scientist_name": "Candace Pert",
 		"profession": "Neuroscienziata e Farmacologa",
 		"brief_subtitle": "Scopritrice dei recettori degli oppioidi",
@@ -1036,7 +1041,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",
 		"group": 13,
 		"period": 5,
-		"image": "res://Images/STEAM Women/Indira Nath.jpg",
+		"image": "res://Images/STEAM Women/STEAM Women/Indira Nath.png",
 		"scientist_name": "Indira Nath",
 		"profession": "Immunologa",
 		"brief_subtitle": "Combattente contro la lebbra",
@@ -1055,7 +1060,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",
 		"group": 14,
 		"period": 5,
-		"image": "res://Images/STEAM Women/Sara Negri.jpg",
+		"image": "res://Images/STEAM Women/STEAM Women/Sara Negri.jpg",
 		"scientist_name": "Sara Negri",
 		"profession": "Matematica e Logica",
 		"brief_subtitle": "Esperta in logica costruttiva",
@@ -1074,7 +1079,7 @@ var elements: Dictionary = {
 		"category": "Metalloide",
 		"group": 15,
 		"period": 5,
-		"image": "res://Images/Sara Borrel Ruiz.jpg",
+		"image": "res://Images/STEAM Women/Sara Borrel Ruiz.png",
 		"scientist_name": "Sara Borrel Ruiz",
 		"profession": "Farmacista e Biochimica",
 		"brief_subtitle": "Pioniera degli ormoni steroidei",
@@ -1092,7 +1097,7 @@ var elements: Dictionary = {
 		"category": "Metalloide",
 		"group": 16,
 		"period": 5,
-		"image": "res://Images/Valentina Tereshkova.jpg",
+		"image": "res://Images/STEAM Women/Valentina Tereshkova.png",
 		"scientist_name": "Valentina Tereshkova",
 		"profession": "Cosmonauta e Politica",
 		"brief_subtitle": "Prima donna nello spazio",
@@ -1127,7 +1132,7 @@ var elements: Dictionary = {
 		"category": "Gas nobile",
 		"group": 18,
 		"period": 5,
-		"image": "res://Images/Xiaowei Zhuang.jpg",
+		"image": "res://Images/STEAM Women/Xiaowei Zhuang.jpg",
 		"scientist_name": "Xiaowei Zhuang",
 		"profession": "Biofisica",
 		"brief_subtitle": "Pioniera della microscopia super-risoluzione",
@@ -1146,7 +1151,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino",
 		"group": 1,
 		"period": 6,
-		"image": "res://Images/Samantha Cristoforetti.jpg",
+		"image": "res://Images/STEAM Women/Samantha Cristoforetti.jpg",
 		"scientist_name": "Samantha Cristoforetti",
 		"profession": "Astronauta e Ingegnere",
 		"brief_subtitle": "Prima italiana nello spazio",
@@ -1165,7 +1170,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino-terroso",
 		"group": 2,
 		"period": 6,
-		"image": "res://Images/Barbara Liskov.jpg",
+		"image": "res://Images/STEAM Women/Barbara Liskov.png",
 		"scientist_name": "Barbara Liskov",
 		"profession": "Informatica",
 		"brief_subtitle": "Innovatrice della programmazione a oggetti",
@@ -1199,7 +1204,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 4,
 		"period": 6,
-		"image": "res://Images/Stefanie Horovitz.jpg",
+		"image": "res://Images/STEAM Women/Stefanie Horovitz.jpg",
 		"scientist_name": "Stefanie Horovitz",
 		"profession": "Chimica",
 		"brief_subtitle": "Pioniera degli isotopi radioattivi",
@@ -1217,7 +1222,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 5,
 		"period": 6,
-		"image": "res://Images/Tania A. Baker.jpg",
+		"image": "res://Images/STEAM Women/Tania A. Baker.jpg",
 		"scientist_name": "Tania A. Baker",
 		"profession": "Biochimica",
 		"brief_subtitle": "Esperta in replicazione del DNA",
@@ -1236,7 +1241,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 6,
 		"period": 6,
-		"image": "res://Images/Mary Winston Jackson.jpg",
+		"image": "res://Images/STEAM Women/Mary Winston Jackson.jpg",
 		"scientist_name": "Mary Winston Jackson",
 		"profession": "Matematica e Ingegnera aerospaziale",
 		"brief_subtitle": "Pioniera dell'inclusione alla NASA",
@@ -1256,7 +1261,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 7,
 		"period": 6,
-		"image": "res://Images/Renata Kallosh.jpg",
+		"image": "res://Images/STEAM Women/Renata Kallosh.jpg",
 		"scientist_name": "Renata Kallosh",
 		"profession": "Fisica teorica",
 		"brief_subtitle": "Esperta in supergravità e cosmologia",
@@ -1275,7 +1280,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 8,
 		"period": 6,
-		"image": "res://Images/Olga Taussky-Todd.jpg",
+		"image": "res://Images/STEAM Women/Olga Taussky-Todd.jpg",
 		"scientist_name": "Olga Taussky-Todd",
 		"profession": "Chimica e Matematica",
 		"brief_subtitle": "Innovatrice della chimica inorganica",
@@ -1292,7 +1297,7 @@ var elements: Dictionary = {
 	   "category": "Metallo di transizione",  
 	   "group": 9,  
 	   "period": 6,  
-	   "image": "res://Images/Irène Joliot-Curie.jpg",  
+	   "image": "res://Images/STEAM Women/Irène Joliot-Curie.jpg",  
 	   "scientist_name": "Irène Joliot-Curie",  
 	   "profession": "Chimica e Fisica",  
 	   "brief_subtitle": "Scopritrice della radioattività artificiale",  
@@ -1310,7 +1315,7 @@ var elements: Dictionary = {
 	   "category": "Metallo di transizione",  
 	   "group": 10,  
 	   "period": 6,  
-	   "image": "res://Images/Patricia Bath.jpg",  
+	   "image": "res://Images/STEAM Women/Patricia Bath.jpg",  
 	   "scientist_name": "Patricia Bath",  
 	   "profession": "Oftalmologa e Inventrice",  
 	   "brief_subtitle": "Pioniera della chirurgia della cataratta",  
@@ -1328,7 +1333,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 11,
 		"period": 6,
-		"image": "res://Images/Audrey Tang.jpg",
+		"image": "res://Images/STEAM Women/Audrey Tang.jpg",
 		"scientist_name": "Audrey Tang",
 		"profession": "Programmatrice e Politica",
 		"brief_subtitle": "Innovatrice della democrazia digitale",
@@ -1345,7 +1350,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",  
 		"group": 12,  
 		"period": 6,  
-		"image": "res://Images/Margherita Hack.jpg",  
+		"image": "res://Images/STEAM Women/Margherita Hack.jpg",  
 		"scientist_name": "Margherita Hack",  
 		"profession": "Astronoma e Divulgatrice",  
 		"brief_subtitle": "Icona dell'astronomia italiana",  
@@ -1364,7 +1369,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",  
 		"group": 13,  
 		"period": 6,  
-		"image": "res://Images/Tilly Edinger.jpg",  
+		"image": "res://Images/STEAM Women/Tilly Edinger.jpg",  
 		"scientist_name": "Tilly Edinger",  
 		"profession": "Paleontologa",  
 		"brief_subtitle": "Fondatrice della paleoneurobiologia",  
@@ -1383,7 +1388,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",  
 		"group": 14,  
 		"period": 6,  
-		"image": "res://Images/Paola Bonfante.jpg",  
+		"image": "res://Images/STEAM Women/Paola Bonfante.jpg",  
 		"scientist_name": "Paola Bonfante",  
 		"profession": "Biologa",  
 		"brief_subtitle": "Esperta di simbiosi micorriziche",  
@@ -1402,7 +1407,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",  
 		"group": 15,  
 		"period": 6,  
-		"image": "res://Images/Bice Fubini.jpg",  
+		"image": "res://Images/STEAM Women/Bice Fubini.jpg",  
 		"scientist_name": "Bice Fubini",  
 		"profession": "Chimica",  
 		"brief_subtitle": "Studiosa degli effetti degli inquinanti",  
@@ -1421,7 +1426,7 @@ var elements: Dictionary = {
 		"category": "Metalloide",  
 		"group": 16,  
 		"period": 6,  
-		"image": "res://Images/Polly Matzinger.jpg",  
+		"image": "res://Images/STEAM Women/Polly Matzinger.jpg",  
 		"scientist_name": "Polly Matzinger",  
 		"profession": "Immunologa",  
 		"brief_subtitle": "Teorica del modello di pericolo",  
@@ -1440,7 +1445,7 @@ var elements: Dictionary = {
 		"category": "Alogeno",  
 		"group": 17,  
 		"period": 6,  
-		"image": "res://Images/Astrid Cleve.jpg",  
+		"image": "res://Images/STEAM Women/Astrid Cleve.jpg",  
 		"scientist_name": "Astrid Cleve",  
 		"profession": "Botanica e Chimica",  
 		"brief_subtitle": "Pioniera svedese della chimica organica",  
@@ -1459,7 +1464,7 @@ var elements: Dictionary = {
 		"category": "Gas nobile",  
 		"group": 18,  
 		"period": 6,  
-		"image": "res://Images/Ruth Nussenzweig.jpg",  
+		"image": "res://Images/STEAM Women/Ruth Nussenzweig.jpg",  
 		"scientist_name": "Ruth Nussenzweig",  
 		"profession": "Immunologa",  
 		"brief_subtitle": "Combattente contro la malaria",  
@@ -1479,7 +1484,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino",  
 		"group": 1,  
 		"period": 7,  
-		"image": "res://Images/Rosalind Franklin.jpg",  
+		"image": "res://Images/STEAM Women/Rosalind Franklin.jpg",  
 		"scientist_name": "Rosalind Franklin",  
 		"profession": "Chimica e Cristallografa",  
 		"brief_subtitle": "La donna che svelò il DNA",  
@@ -1498,7 +1503,7 @@ var elements: Dictionary = {
 		"category": "Metallo alcalino-terroso",  
 		"group": 2,  
 		"period": 7,  
-		"image": "res://Images/Rachel Carson.jpg",  
+		"image": "res://Images/STEAM Women/Rachel Carson.jpg",  
 		"scientist_name": "Rachel Carson",  
 		"profession": "Biologa e Ambientalista",  
 		"brief_subtitle": "Madre del movimento ambientalista",  
@@ -1516,7 +1521,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 4,
 		"period": 7,
-		"image": "res://Images/Rachel Fuller Brown.jpg",
+		"image": "res://Images/STEAM Women/Rachel Fuller Brown.jpg",
 		"scientist_name": "Rachel Fuller Brown",
 		"profession": "Biochimica",
 		"brief_subtitle": "Scopritrice della nistatina",
@@ -1554,7 +1559,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione", 
 		"group": 6,
 		"period": 7,
-		"image": "res://Images/Segenet Kelemu.jpg",
+		"image": "res://Images/STEAM Women/Segenet Kelemu.jpg",
 		"scientist_name": "Segenet Kelemu",
 		"profession": "Scienziata agricola",
 		"brief_subtitle": "Pioniera dell'agricoltura sostenibile in Africa",
@@ -1572,7 +1577,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 7,
 		"period": 7,
-		"image": "res://Images/Beatrice Hicks.jpg",
+		"image": "res://Images/STEAM Women/Beatrice Hicks.jpg",
 		"scientist_name": "Beatrice Hicks",
 		"profession": "Ingegnera aerospaziale",
 		"brief_subtitle": "Pioniera delle donne in ingegneria",
@@ -1590,7 +1595,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 8,
 		"period": 7,
-		"image": "res://Images/Helen Sawyer Hogg.jpg",
+		"image": "res://Images/STEAM Women/Helen Sawyer Hogg.jpg",
 		"scientist_name": "Helen Sawyer Hogg",
 		"profession": "Astronoma",
 		"brief_subtitle": "Mappatrice delle Cefeidi",
@@ -1607,7 +1612,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 9,
 		"period": 7,
-		"image": "res://Images/Martha Chase.jpg",
+		"image": "res://Images/STEAM Women/Martha Chase.jpg",
 		"scientist_name": "Martha Chase",
 		"profession": "Genetista",
 		"brief_subtitle": "Confermatrice del ruolo del DNA",
@@ -1624,7 +1629,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 10,
 		"period": 7,
-		"image": "res://Images/Doris Taylor.jpg",
+		"image": "res://Images/STEAM Women/Doris Taylor.jpg",
 		"scientist_name": "Doris Taylor",
 		"profession": "Biologa della rigenerazione",
 		"brief_subtitle": "Pioniera degli organi bioartificiali",
@@ -1642,7 +1647,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 11,
 		"period": 7,
-		"image": "res://Images/Regina Kapeller-Adler.jpg",
+		"image": "res://Images/STEAM Women/Regina Kapeller-Adler.jpg",
 		"scientist_name": "Regina Kapeller-Adler",
 		"profession": "Biochimica",
 		"brief_subtitle": "Pioniera dei test di gravidanza",
@@ -1660,7 +1665,7 @@ var elements: Dictionary = {
 		"category": "Metallo di transizione",
 		"group": 12,
 		"period": 7,
-		"image": "res://Images/Caroline Herschel.jpg",
+		"image": "res://Images/STEAM Women/Caroline Herschel.jpg",
 		"scientist_name": "Caroline Herschel",
 		"profession": "Astronoma",
 		"brief_subtitle": "Cacciatrice di comete",
@@ -1677,7 +1682,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 13,
 		"period": 7,
-		"image": "res://Images/Nucharin Songsasen.jpg",
+		"image": "res://Images/STEAM Women/Nucharin Songsasen.jpg",
 		"scientist_name": "Nucharin Songsasen",
 		"profession": "Biologa della conservazione",
 		"brief_subtitle": "Salvatrice delle specie a rischio",
@@ -1695,7 +1700,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 14,
 		"period": 7,
-		"image": "res://Images/Filomena Nitti.jpg",
+		"image": "res://Images/STEAM Women/Filomena Nitti.jpg",
 		"scientist_name": "Filomena Nitti",
 		"profession": "Chimica e Farmacologa",
 		"brief_subtitle": "Pioniera degli antibiotici",
@@ -1712,7 +1717,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 15,
 		"period": 7,
-		"image": "res://Images/Mae_Jemison.jpg",
+		"image": "res://Images/STEAM Women/Mae_Jemison.jpg",
 		"scientist_name": "Mae Carol Jemison",
 		"profession": "Medico e astronauta",
 		"brief_subtitle": "Prima donna afroamericana nello spazio",
@@ -1733,7 +1738,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 16,
 		"period": 7,
-		"image": "res://Images/Lydia Villa-Komaroff.jpg",
+		"image": "res://Images/STEAM Women/Lydia Villa-Komaroff.jpg",
 		"scientist_name": "Lydia Villa-Komaroff",
 		"profession": "Biologa molecolare",
 		"brief_subtitle": "Pioniera dell'insulina sintetica",
@@ -1751,7 +1756,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 17,
 		"period": 7,
-		"image": "res://Images/Donna_Theo_Strickland.jpg",
+		"image": "res://Images/STEAM Women/Donna_Theo_Strickland.jpg",
 		"scientist_name": "Donna Theo Strickland",
 		"profession": "Fisica",
 		"brief_subtitle": "Pioniera dei laser ad alta intensità",
@@ -1771,7 +1776,7 @@ var elements: Dictionary = {
 		"category": "Sconosciuto",
 		"group": 18,
 		"period": 7,
-		"image": "res://Images/Olga Kennard.jpg",
+		"image": "res://Images/STEAM Women/Olga Kennard.jpg",
 		"scientist_name": "Olga Kennard",
 		"profession": "Cristallografa",
 		"brief_subtitle": "Archivista della struttura molecolare",
@@ -1791,7 +1796,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 3,
 		"period": 9,
-		"image": "res://Images/Laura Bassi.jpg",
+		"image": "res://Images/STEAM Women/Laura Bassi.png",
 		"scientist_name": "Laura Bassi",
 		"profession": "Fisica e Accademica",
 		"brief_subtitle": "Prima donna europea con un dottorato in scienze",
@@ -1809,7 +1814,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 4,
 		"period": 9,
-		"image": "res://Images/Celeste Saulo.jpg",
+		"image": "res://Images/STEAM Women/Celeste Saulo.png",
 		"scientist_name": "Celeste Saulo",
 		"profession": "Meteorologa",
 		"brief_subtitle": "Pioniera della meteorologia globale",
@@ -1826,7 +1831,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 5,
 		"period": 9,
-		"image": "res://Images/Pratibha Gai.jpg",
+		"image": "res://Images/STEAM Women/Pratibha Gai.png",
 		"scientist_name": "Pratibha Gai",
 		"profession": "Chimica e Ricercatrice",
 		"brief_subtitle": "Rivoluzionaria della microscopia atomica",
@@ -1843,7 +1848,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 6,
 		"period": 9,
-		"image": "res://Images/Ida Noddack.jpg",
+		"image": "res://Images/STEAM Women/Ida Noddack.jpg",
 		"scientist_name": "Ida Noddack",
 		"profession": "Chimica e Fisica",
 		"brief_subtitle": "Pioniera della chimica nucleare",
@@ -1860,7 +1865,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 7,
 		"period": 9,
-		"image": "res://Images/Patricia Medici.jpg",
+		"image": "res://Images/STEAM Women/Patricia Medici.jpg",
 		"scientist_name": "Patricia Medici",
 		"profession": "Biologa della conservazione",
 		"brief_subtitle": "Protettrice dei tapiri sudamericani",
@@ -1878,7 +1883,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 8,
 		"period": 9,
-		"image": "res://Images/Susan Murphy.jpg",
+		"image": "res://Images/STEAM Women/Susan Murphy.jpg",
 		"scientist_name": "Susan Murphy",
 		"profession": "Statistica",
 		"brief_subtitle": "Innovatrice della medicina personalizzata",
@@ -1896,7 +1901,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 9,
 		"period": 9,
-		"image": "res://Images/Eugenie Clark.jpg",
+		"image": "res://Images/STEAM Women/Eugenie Clark.jpg",
 		"scientist_name": "Eugenie Clark",
 		"profession": "Biologa marina",
 		"brief_subtitle": "La Signora degli Squali",
@@ -1915,7 +1920,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 10,
 		"period": 9,
-		"image": "res://Images/Gertrude Elion.jpg",
+		"image": "res://Images/STEAM Women/Gertrude Elion.jpg",
 		"scientist_name": "Gertrude Elion",
 		"profession": "Chimica e Farmacologa",
 		"brief_subtitle": "Nobel per i farmaci salva-vita",
@@ -1933,7 +1938,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 11,
 		"period": 9,
-		"image": "res://Images/Tatiana Birshtein.jpg",
+		"image": "res://Images/STEAM Women/Tatiana Birshtein.jpg",
 		"scientist_name": "Tatiana Birshtein",
 		"profession": "Scienziata dei polimeri",
 		"brief_subtitle": "Pioniera della fisica macromolecolare",
@@ -1951,7 +1956,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 12,
 		"period": 9,
-		"image": "res://Images/Dian Fossey.jpg",
+		"image": "res://Images/STEAM Women/Dian Fossey.jpg",
 		"scientist_name": "Dian Fossey",
 		"profession": "Primatologa",
 		"brief_subtitle": "Protettrice dei gorilla di montagna",
@@ -1969,7 +1974,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 13,
 		"period": 9,
-		"image": "res://Images/Hope Jahren.jpg",
+		"image": "res://Images/STEAM Women/Hope Jahren.jpg",
 		"scientist_name": "Hope Jahren",
 		"profession": "Geobiologa",
 		"brief_subtitle": "Voce della crisi climatica",
@@ -1987,7 +1992,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 14,
 		"period": 9,
-		"image": "res://Images/Erika Cremer.jpg",
+		"image": "res://Images/STEAM Women/Erika Cremer.jpg",
 		"scientist_name": "Erika Cremer",
 		"profession": "Chimica e Fisica",
 		"brief_subtitle": "Pioniera della cromatografia a gas",
@@ -2006,7 +2011,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 15,
 		"period": 9,
-		"image": "res://Images/Margaret Todd.jpg",
+		"image": "res://Images/STEAM Women/Margaret Todd.jpg",
 		"scientist_name": "Margaret Todd",
 		"profession": "Medica e Scrittrice",
 		"brief_subtitle": "Ideatrice del termine 'isotopo'",
@@ -2025,7 +2030,7 @@ var elements: Dictionary = {
 		"category": "Lantanide",
 		"group": 16,
 		"period": 9,
-		"image": "res://Images/Yvonne Choquet-Bruhat.jpg",
+		"image": "res://Images/STEAM Women/Yvonne Choquet-Bruhat.jpg",
 		"scientist_name": "Yvonne Choquet-Bruhat",
 		"profession": "Matematica e Fisica",
 		"brief_subtitle": "Decifratrice delle equazioni di Einstein",
@@ -2037,14 +2042,13 @@ var elements: Dictionary = {
 		"links": ["<https://en.wikipedia.org/wiki/Yvonne_Choquet-Bruhat>"],
 		"profession_keys": ["Phy, Mat"],
 	},
-
 	"Lu": {
 		"name": "Lutezio",
 		"number": 71,
 		"category": "Lantanide",
 		"group": 17,
 		"period": 9,
-		"image": "res://Images/Lynn Margulis.jpg",
+		"image": "res://Images/STEAM Women/Lynn Margulis.jpg",
 		"scientist_name": "Lynn Margulis",
 		"profession": "Biologa evoluzionista",
 		"brief_subtitle": "Teorica dell'endosimbiosi",
@@ -2064,7 +2068,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 3,
 		"period": 10,
-		"image": "res://Images/Alice Catherine Evans.jpg",
+		"image": "res://Images/STEAM Women/Alice Catherine Evans.jpg",
 		"scientist_name": "Alice Catherine Evans",
 		"profession": "Microbiologa",
 		"brief_subtitle": "Salvatrice del latte sicuro",
@@ -2081,7 +2085,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 4,
 		"period": 10,
-		"image": "res://Images/Thelma Estrin.jpg",
+		"image": "res://Images/STEAM Women/Thelma Estrin.jpg",
 		"scientist_name": "Thelma Estrin",
 		"profession": "Informatica e Ingegnere biomedica",
 		"brief_subtitle": "Pioniera dell’informatica medica",
@@ -2099,7 +2103,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 5,
 		"period": 10,
-		"image": "res://Images/Patricia Cowings.jpg",
+		"image": "res://Images/STEAM Women/Patricia Cowings.jpg",
 		"scientist_name": "Patricia Cowings",
 		"profession": "Psicofisiologa aerospaziale",
 		"brief_subtitle": "Addestratrice di astronauti",
@@ -2116,7 +2120,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 6,
 		"period": 10,
-		"image": "res://Images/Ursula Franklin.jpg",
+		"image": "res://Images/STEAM Women/Ursula Franklin.jpg",
 		"scientist_name": "Ursula Franklin",
 		"profession": "Fisica e Attivista",
 		"brief_subtitle": "Paladina della tecnologia etica",
@@ -2134,7 +2138,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 7,
 		"period": 10,
-		"image": "res://Images/Nathalie Picqué.jpg",
+		"image": "res://Images/STEAM Women/Nathalie Picqué.jpg",
 		"scientist_name": "Nathalie Picqué",
 		"profession": "Fisica quantistica",
 		"brief_subtitle": "Maestra della metrologia quantistica",
@@ -2151,7 +2155,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 8,
 		"period": 10,
-		"image": "res://Images/Purnima Sinha.jpg",
+		"image": "res://Images/STEAM Women/Purnima Sinha.jpg",
 		"scientist_name": "Purnima Sinha",
 		"profession": "Fisica ambientale",
 		"brief_subtitle": "Difensora della sostenibilità",
@@ -2206,7 +2210,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 11,
 		"period": 10,
-		"image": "res://Images/Barbara McClintock.jpg",
+		"image": "res://Images/STEAM Women/Barbara McClintock.jpg",
 		"scientist_name": "Barbara McClintock",
 		"profession": "Biologa",
 		"brief_subtitle": "Scopritrice dei 'geni che saltano'",
@@ -2224,7 +2228,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 12,
 		"period": 10,
-		"image": "res://Images/Chaterine Feuillet.jpg",
+		"image": "res://Images/STEAM Women/Chaterine Feuillet.jpg",
 		"scientist_name": "Catherine Feuillet",
 		"profession": "Genetista delle piante",
 		"brief_subtitle": "Mappatrice del genoma del grano",
@@ -2242,7 +2246,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 13,
 		"period": 10,
-		"image": "res://Images/Esther Lederberg.jpg",
+		"image": "res://Images/STEAM Women/Esther Lederberg.jpg",
 		"scientist_name": "Esther Lederberg",
 		"profession": "Microbiologa e Genetista",
 		"brief_subtitle": "Pioniera della genetica batterica",
@@ -2259,7 +2263,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 14,
 		"period": 10,
-		"image": "res://Images/Fay Ajzenberg-Selove.jpg",
+		"image": "res://Images/STEAM Women/Fay Ajzenberg-Selove.jpg",
 		"scientist_name": "Fay Ajzenberg-Selove",
 		"profession": "Fisica Nucleare",
 		"brief_subtitle": "Esploratrice dei nuclei atomici",
@@ -2276,7 +2280,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 15,
 		"period": 10,
-		"image": "res://Images/Maud Menten.jpg",
+		"image": "res://Images/STEAM Women/Maud Menten.jpg",
 		"scientist_name": "Maud Menten",
 		"profession": "Biochimica",
 		"brief_subtitle": "Pioniera della cinetica enzimatica",
@@ -2295,7 +2299,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 16,
 		"period": 10,
-		"image": "res://Images/Noreen Murray.jpg",
+		"image": "res://Images/STEAM Women/Noreen Murray.jpg",
 		"scientist_name": "Noreen Murray",
 		"profession": "Biochimica e Genetista Molecolare",
 		"brief_subtitle": "Architetta del DNA ricombinante",
@@ -2313,7 +2317,7 @@ var elements: Dictionary = {
 		"category": "Attinide",
 		"group": 17,
 		"period": 10,
-		"image": "res://Images/Mary Leakey.jpg",
+		"image": "res://Images/STEAM Women/Mary Leakey.jpg",
 		"scientist_name": "Mary Leakey",
 		"profession": "Archeologa e Paleontologa",
 		"brief_subtitle": "Scopritrice delle impronte di Laetoli",
@@ -2332,42 +2336,87 @@ var elements: Dictionary = {
 	},
 }
 #Database colori degli elementi
-var category_colors = {
-	"Category": {
-		"1": Color(0.5, 0, 0.5),  # Rebecca Purple (Viola)
-		"2": Color(0.6, 0, 0.8),  # Web Purple
-		"3": Color(0.8, 0, 0.8),  # Blue Violet
-		"4": Color(0.9, 0, 0.7),  # Magenta
-		"5": Color(1, 0, 0.6),    # Strong Pink
-		"6": Color(1, 0.3, 0.5),  # Hot Pink
-		"7": Color(1, 0.5, 0.4),  # Light Pink
-		"8": Color(1, 0.6, 0.3),  # Light Rose
+var themes = {
+	"default": {
+		"Category": {
+			"1": Color(0.5, 0, 0.5),
+			"2": Color(0.6, 0, 0.8),
+			"3": Color(0.8, 0, 0.8),
+			"4": Color(0.9, 0, 0.7),
+			"5": Color(1, 0, 0.6),
+			"6": Color(1, 0.3, 0.5),
+			"7": Color(1, 0.5, 0.4),
+			"8": Color(1, 0.6, 0.3),
+		},
+		"Title": Color.TRANSPARENT,
+		"TitleFont": {
+			"1": Color(0.26, 0.0, 0.65),
+			"2": Color(0.32, 0.0, 0.63),
+			"3": Color(0.39, 0.0, 0.61),
+			"4": Color(0.46, 0.0, 0.59),
+			"5": Color(0.56, 0.0, 0.53),
+			"6": Color(0.69, 0.01, 0.43),
+			"7": Color(0.85, 0.02, 0.27),
+			"8": Color(0.87, 0.01, 0.07),
+		},
+		"Credits": Color.ROYAL_BLUE,
+		"F-Block": Color("#596759"),
+		"Metallo alcalino": Color(0.96, 0.2, 0.3),
+		"Metallo alcalino-terroso": Color(0.95, 0.4, 0.15),
+		"Metallo di transizione": Color(0.9, 0.5, 0.1),  
+		"Metallo post-transizionale": Color(0.85, 0.6, 0.15),  
+		"Metalloide": Color(0.3, 0.85, 0.4),
+		"Non metallo": Color(0.2, 0.85, 0.6),
+		"Alogeno": Color(0.1, 0.8, 0.8),
+		"Gas nobile": Color(0.1, 0.75, 1.0),
+		"Lantanide": Color(0.3, 0.3, 1.0),
+		"Attinide": Color(0.5, 0.1, 0.9),
+		"Sconosciuto": Color.DIM_GRAY,
+		"Background": "default"
 	},
-	"Title": Color.TRANSPARENT,
-	"TitleFont": {
-		"1": Color(0.26, 0.0, 0.65),   # #4300A7 (viola profondo)
-		"2": Color(0.32, 0.0, 0.63),   # Viola scuro
-		"3": Color(0.39, 0.0, 0.61),   # Viola più chiaro
-		"4": Color(0.46, 0.0, 0.59),   # Viola intenso
-		"5": Color(0.56, 0.0, 0.53),   # Viola con toni rossi
-		"6": Color(0.69, 0.01, 0.43),  # Rosso-violetto
-		"7": Color(0.85, 0.02, 0.27),  # Rosso vivo
-		"8": Color(0.87, 0.01, 0.07),  # #DF0114 (rosso brillante)
-	},
-	"Credits": Color.ROYAL_BLUE,
-	"F-Block": Color("#596759"),
-	"Metallo alcalino": Color(0.96, 0.01, 0.1),        # Rosso vivo
-	"Metallo alcalino-terroso": Color(0.95, 0.3, 0.0),# Arancio intenso
-	"Metallo di transizione": Color(0.9, 0.5, 0.1), # Arancio dorato
-	"Metallo post-transizionale": Color(0.6, 0.8, 0.2), # Verde pera
-	"Metalloide": Color(0.4, 0.9, 0.4),              # Verde pera chiaro
-	"Non metallo": Color(0.2, 0.95, 0.7),            # Verde acqua
-	"Alogeno": Color(0.1, 0.9, 0.9),                 # Azzurro tenue
-	"Gas nobile": Color(0.0, 0.8, 1.0),              # Celeste pieno
-	"Lantanide": Color(0.2, 0.2, 1.0),                # Blu violaceo
-	"Attinide": Color(0.4, 0.0, 0.8),                  # Viola
-	"Sconosciuto": Color.DIM_GRAY, 
+	"dark": {
+		"Category": {
+			"1": Color(0.3, 0, 0.3),
+			"2": Color(0.4, 0, 0.6),
+			"3": Color(0.5, 0, 0.5),
+			"4": Color(0.6, 0, 0.4),
+			"5": Color(0.7, 0, 0.3),
+			"6": Color(0.7, 0.2, 0.3),
+			"7": Color(0.7, 0.3, 0.2),
+			"8": Color(0.7, 0.4, 0.1),
+		},
+		"Title": Color(0.1, 0.1, 0.1, 0.5),  # Trasparente ma più scuro
+		"TitleFont": {
+			"1": Color(0.18, 0.0, 0.45),
+			"2": Color(0.22, 0.0, 0.43),
+			"3": Color(0.27, 0.0, 0.41),
+			"4": Color(0.33, 0.0, 0.39),
+			"5": Color(0.4, 0.0, 0.36),
+			"6": Color(0.5, 0.01, 0.29),
+			"7": Color(0.65, 0.02, 0.15),
+			"8": Color(0.6, 0.01, 0.05),
+		},
+		"Credits": Color(0.15, 0.2, 0.4),  # Blu spento
+		"F-Block": Color("#3d473d"),
+		"Metallo alcalino": Color(0.6, 0.0, 0.1),
+		"Metallo alcalino-terroso": Color(0.6, 0.2, 0.0),
+		"Metallo di transizione": Color(0.55, 0.3, 0.05),
+		"Metallo post-transizionale": Color(0.4, 0.5, 0.1),
+		"Metalloide": Color(0.25, 0.5, 0.25),
+		"Non metallo": Color(0.1, 0.5, 0.35),
+		"Alogeno": Color(0.05, 0.45, 0.45),
+		"Gas nobile": Color(0.0, 0.4, 0.6),
+		"Lantanide": Color(0.1, 0.1, 0.6),
+		"Attinide": Color(0.2, 0.0, 0.5),
+		"Sconosciuto": Color(0.25, 0.25, 0.25),
+		"Background": Color.DIM_GRAY,
+	}
+	#
+	#"pastel": {
+		## Altra palette
+	#},
 }
+
 
 var prof_to_key = {
 	"Phy": "1",
@@ -2380,20 +2429,24 @@ var prof_to_key = {
 	"Hum": "8",
 }
 
+func set_new_theme(theme_name: String):
+	if themes.has(theme_name):
+		current_theme = theme_name
+
 func desaturate_colors_in_place(amount: float) -> void:
-		for key in category_colors.keys():
-			if key != "Category" and  key != "TitleFont":
-				category_colors[key] = category_colors[key].lerp(Color.LIGHT_GRAY, amount)
+		for key in current_theme.keys():
+			if key != "Category" and  key != "TitleFont" and key!= "Background":
+				current_theme[key] = current_theme[key].lerp(Color.LIGHT_GRAY, amount)
 
 func darken_colors_in_place(amount: float) -> void:
-	for key in category_colors.keys():
-		if key != "Category" and  key != "TitleFont":
-			category_colors[key] = category_colors[key].darkened(amount)
+	for key in current_theme.keys():
+		if key != "Category" and  key != "TitleFont" and key!= "Background":
+			current_theme[key] = current_theme[key].darkened(amount)
 
 func lighten_colors_in_place(amount: float) -> void:
-	for key in category_colors.keys():
-		if key != "Category" and  key != "TitleFont":
-			category_colors[key] = category_colors[key].lightened(amount)
+	for key in current_theme.keys():
+		if key != "Category" and  key != "TitleFont" and key!= "Background":
+			current_theme[key] = current_theme[key].lightened(amount)
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and popup_panel.visible and popup_margin.visible:
@@ -2406,6 +2459,10 @@ func _input(event):
 			reset_all_colors()
 
 func _ready() -> void:
+	calculate_scale_factor()
+	if default_theme != "default":
+		$Parallax2D.visible = false
+		background.color = current_theme["Background"]
 	desaturate_colors_in_place(0.05)
 	darken_colors_in_place(0.07)
 	screen_size = get_viewport_rect().size
@@ -2413,8 +2470,43 @@ func _ready() -> void:
 	control_element_container.queue_free()
 	popup_panel.visible = false 
 	popup_margin.visible = false 
+	await get_tree().process_frame
+	center_table()
+	grid_container.resized.connect(center_table)
+
+func center_table():
+	var size = grid_container.get_combined_minimum_size()
+	var offset_x = -10
+	grid_container.anchor_left = 0.5
+	grid_container.anchor_top = 0.5
+	grid_container.anchor_right = 0.5
+	grid_container.anchor_bottom = 0.5
+	grid_container.offset_left = -size.x / 2 + offset_x
+	grid_container.offset_top = -size.y / 2
+	grid_container.offset_right = size.x / 2 
+	grid_container.offset_bottom = size.y / 2
+
+
+
+func calculate_scale_factor():
+	# Dimensione di riferimento (la dimensione originale dello schermo per cui è stato progettato)
+	var reference_width = 1152.0  # Ad esempio, se hai progettato per 1920x1080
+	var reference_height = 648.0
+	
+	# Calcola il fattore di scala orizzontale e verticale
+	var width_scale = screen_size.x / reference_width
+	var height_scale = screen_size.y / reference_height
+	
+	# Usa il minore tra i due per mantenere le proporzioni
+	scale_factor = min(width_scale, height_scale)
+	
+	# Aggiorna btn_size in base al fattore di scala
+	btn_size = int(60 * scale_factor)  # 60 è la tua dimensione originale dei bottoni
+
 
 func create_periodic_table():
+	var available_width = screen_size.x * 0.9  
+	var available_height = screen_size.y * 0.8
 	var total_elements = elements.size()
 	var elements_created = 0
 	grid_container.columns = groups + 1  # +1 per la colonna dei periodi a sinistra
@@ -2482,16 +2574,15 @@ func create_periodic_table():
 				lbl.add_theme_font_size_override("font_size", 14)
 				lbl.z_index = 2
 				nm_lbl.text = str(element["name"])
-
 				nm_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 				nm_lbl.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 				nm_lbl.add_theme_constant_override("line_spacing", -5)
 				nm_lbl.add_theme_font_override("font", load("res://Fonts/texgyreheroscn-bold.otf"))
 				nm_lbl.add_theme_font_size_override("font_size", 12)
-				if "scientist_name" in element:
-					var first_word = str(element["scientist_name"]).split(" ")[0]
-					nm_lbl.text = first_word
-					nm_lbl.add_theme_font_size_override("font_size", 14)
+				#if "scientist_name" in element:
+					#var first_word = str(element["scientist_name"]).split(" ")[0]
+					#nm_lbl.text = first_word
+					#nm_lbl.add_theme_font_size_override("font_size", 14)
 				if element["category"] == "Category":
 					nm_lbl.add_theme_font_size_override("font_size", 13)
 					nm_lbl.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
@@ -2529,13 +2620,13 @@ func create_periodic_table():
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
 					if element["category"] == "Category":
 						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
-						style.bg_color = category_colors["Category"][str(category_counter)]
+						style.bg_color = current_theme["Category"][str(category_counter)]
 					elif element["category"] == "Title":
 						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
 						style.bg_color = Color.TRANSPARENT
-						btn.add_theme_color_override("font_color",category_colors["TitleFont"][str(category_counter)])
+						btn.add_theme_color_override("font_color",current_theme["TitleFont"][str(category_counter)])
 					else:
-						style.bg_color = category_colors[element["category"]]
+						style.bg_color = current_theme[element["category"]]
 					btn.add_theme_stylebox_override("normal", style)
 					btn.add_theme_stylebox_override("hover", style)
 					element_container.add_to_group("elements")
@@ -2548,7 +2639,7 @@ func create_periodic_table():
 					btn.mouse_entered.connect(func():
 						var tween = element_container.create_tween()
 						if element["category"] != "Category":
-							element_hovering_audio.pitch_scale = randf_range(1.0,1.2)
+							element_hovering_audio.pitch_scale = randf_range(1.2,1.5)
 							element_hovering_audio.play()
 						else:
 							if piano_key == piano_pitches.size():
@@ -2569,7 +2660,7 @@ func create_periodic_table():
 							style.bg_color = original_color
 						else:
 							element_hovering_audio.stop()
-							style.bg_color = category_colors[element["category"]]
+							style.bg_color = current_theme[element["category"]]
 						tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
 					if elements_created == total_elements:
 						elements_animation(grid_container)
@@ -2671,7 +2762,7 @@ func on_category_selected(symbol: String):
 	
 	# Prepara un solo StyleBox da riutilizzare
 	var key = prof_to_key.get(symbol)
-	var color = category_colors["Category"].get(key, Color.WHITE)
+	var color = current_theme["Category"].get(key, Color.WHITE)
 	var shared_style = StyleBoxFlat.new()
 	shared_style.bg_color = color
 	shared_style.set_corner_radius_all(radius)
@@ -2764,9 +2855,9 @@ func reset_all_colors():
 		# Aggiorna il colore in base alla categoria
 		if data["category"] == "Category":
 			category_counter = (category_counter % 8) + 1
-			style.bg_color = category_colors["Category"][str(category_counter)]
+			style.bg_color = current_theme["Category"][str(category_counter)]
 		else:
-			style.bg_color = category_colors[data["category"]]
+			style.bg_color = current_theme[data["category"]]
 			
 		# Applica lo stile aggiornato
 		for state in ["normal", "hover", "pressed", "disabled"]:

@@ -13,11 +13,13 @@ config_version=5
 config/name="TavolaPeriodicaFemminile"
 run/main_scene="uid://b8bt1n7irs0ni"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://Images/icon.svg"
+boot_splash/image="uid://l7ctjw1rujts"
+config/icon="uid://dheddrsnro7os"
 
 [display]
 
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
