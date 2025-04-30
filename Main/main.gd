@@ -2410,13 +2410,49 @@ var themes = {
 		"Attinide": Color(0.2, 0.0, 0.5),
 		"Sconosciuto": Color(0.25, 0.25, 0.25),
 		"Background": Color.DIM_GRAY,
+	},
+	"majlinda": {
+		"Category": {
+			"1": Color(0.3, 0, 0.3),
+			"2": Color(0.4, 0, 0.6),
+			"3": Color(0.5, 0, 0.5),
+			"4": Color(0.6, 0, 0.4),
+			"5": Color(0.7, 0, 0.3),
+			"6": Color(0.7, 0.2, 0.3),
+			"7": Color(0.7, 0.3, 0.2),
+			"8": Color(0.7, 0.4, 0.1),
+		},
+		"Title": Color(0.1, 0.1, 0.1, 0.5),  # Trasparente ma più scuro
+		"TitleFont": {
+			"1": Color(0.18, 0.0, 0.45),
+			"2": Color(0.22, 0.0, 0.43),
+			"3": Color(0.27, 0.0, 0.41),
+			"4": Color(0.33, 0.0, 0.39),
+			"5": Color(0.4, 0.0, 0.36),
+			"6": Color(0.5, 0.01, 0.29),
+			"7": Color(0.65, 0.02, 0.15),
+			"8": Color(0.6, 0.01, 0.05),
+		},
+		"Credits": Color.ROYAL_BLUE,  # Blu spento
+		"F-Block": Color("#3d473d"),
+		"Metallo alcalino": Color("#C5B4E3"),
+		"Metallo alcalino-terroso": Color("#C1A68B"),
+		"Metallo di transizione": Color("#D2B2D5"),
+		"Metallo post-transizionale": Color("#CCE0DC"),
+		"Metalloide": Color("#C9D9B3"),
+		"Non metallo": Color("#F7C9CF"),
+		"Alogeno": Color("#E6D2C9"),
+		"Gas nobile": Color(),
+		"Lantanide": Color(0.1, 0.1, 0.6),
+		"Attinide": Color(0.2, 0.0, 0.5),
+		"Sconosciuto": Color(0.25, 0.25, 0.25),
+		"Background": Color.WHITE_SMOKE,
 	}
 	#
 	#"pastel": {
 		## Altra palette
 	#},
 }
-
 
 var prof_to_key = {
 	"Phy": "1",
@@ -2463,6 +2499,7 @@ func _ready() -> void:
 	if default_theme != "default":
 		$Parallax2D.visible = false
 		background.color = current_theme["Background"]
+		background.global_position = Vector2(-size.x/2, -size.y/2)
 	desaturate_colors_in_place(0.05)
 	darken_colors_in_place(0.07)
 	screen_size = get_viewport_rect().size
@@ -2476,7 +2513,7 @@ func _ready() -> void:
 
 func center_table():
 	var container_size = grid_container.get_combined_minimum_size()
-	var offset_x = -10
+	var offset_x = 0
 	grid_container.anchor_left = 0.5
 	grid_container.anchor_top = 0.5
 	grid_container.anchor_right = 0.5
@@ -2485,8 +2522,6 @@ func center_table():
 	grid_container.offset_top = -container_size.y / 2
 	grid_container.offset_right = container_size.x / 2 
 	grid_container.offset_bottom = container_size.y / 2
-
-
 
 func calculate_scale_factor():
 	# Dimensione di riferimento (la dimensione originale dello schermo per cui è stato progettato)
@@ -2499,7 +2534,7 @@ func calculate_scale_factor():
 	
 	# Usa il minore tra i due per mantenere le proporzioni
 	scale_factor = min(width_scale, height_scale)
-	
+	screen_size = get_viewport_rect().size
 	# Aggiorna btn_size in base al fattore di scala
 	btn_size = int(60 * scale_factor)  # 60 è la tua dimensione originale dei bottoni
 
@@ -2798,7 +2833,6 @@ func calculate_popup_position(button):
 		print("popup_pos_x: ", popup_pos_x, " offset: ", offset)
 		popup_pos_x = popup_pos_x + offset
 	
-
 	if popup_pos_y > screen_size.y / 2 - button.size.y:
 		popup_margin.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
 		popup_pos_y = screen_size.y - popup_margin.size.y - offset
