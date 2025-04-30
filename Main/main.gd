@@ -2434,23 +2434,58 @@ var themes = {
 			"8": Color(0.6, 0.01, 0.05),
 		},
 		"Credits": Color.ROYAL_BLUE,  # Blu spento
-		"F-Block": Color("#3d473d"),
-		"Metallo alcalino": Color("#C5B4E3"),
-		"Metallo alcalino-terroso": Color("#C1A68B"),
-		"Metallo di transizione": Color("#D2B2D5"),
-		"Metallo post-transizionale": Color("#CCE0DC"),
-		"Metalloide": Color("#C9D9B3"),
-		"Non metallo": Color("#F7C9CF"),
-		"Alogeno": Color("#E6D2C9"),
-		"Gas nobile": Color(),
-		"Lantanide": Color(0.1, 0.1, 0.6),
-		"Attinide": Color(0.2, 0.0, 0.5),
-		"Sconosciuto": Color(0.25, 0.25, 0.25),
-		"Background": Color.WHITE_SMOKE,
-	}
-	#
-	#"pastel": {
-		## Altra palette
+		"F-Block": Color.GRAY,
+		"Metallo alcalino": Color("f3a7a7"),
+		"Metallo alcalino-terroso": Color("#e8c7c1"),
+		"Metallo di transizione": Color("#F2C854"),
+		"Metallo post-transizionale": Color("#EAED9C"),
+	 	"Metalloide": Color("#b3ddca"),
+		"Non metallo": Color("#9dd0ee"),
+		"Alogeno": Color("#90beec"),
+		"Gas nobile": Color("#83ace9"),
+		"Lantanide": Color("#b7b1f8"),
+		"Attinide": Color("#ecb4ed"),
+		"Sconosciuto": Color("7D8BBC"),
+		"Background": Color("#F8F7D6"),
+	},
+	"pastel": {
+		"Category": {
+		"1": Color(0.8, 0.6, 0.8),
+		"2": Color(0.85, 0.6, 0.9),
+		"3": Color(0.9, 0.7, 0.9),
+		"4": Color(0.95, 0.7, 0.85),
+		"5": Color(1.0, 0.75, 0.85),
+		"6": Color(1.0, 0.8, 0.85),
+		"7": Color(1.0, 0.85, 0.8),
+		"8": Color(1.0, 0.9, 0.75),
+	},
+	"Title": Color(1, 1, 1, 0),  # trasparente
+	"TitleFont": {
+		"1": Color(0.7, 0.6, 0.9),
+		"2": Color(0.72, 0.6, 0.88),
+		"3": Color(0.75, 0.65, 0.87),
+		"4": Color(0.78, 0.7, 0.86),
+		"5": Color(0.82, 0.75, 0.85),
+		"6": Color(0.87, 0.75, 0.82),
+		"7": Color(0.93, 0.78, 0.78),
+		"8": Color(0.95, 0.8, 0.75),
+	},
+	"Credits": Color(0.65, 0.75, 0.95),  # pastello per royal blue
+	"F-Block": Color(0.75, 0.8, 0.75),
+	"Metallo alcalino": Color(1.0, 0.65, 0.7),
+	"Metallo alcalino-terroso": Color(1.0, 0.75, 0.6),
+	"Metallo di transizione": Color(1.0, 0.8, 0.6),
+	"Metallo post-transizionale": Color(1.0, 0.85, 0.65),
+	"Metalloide": Color(0.75, 1.0, 0.75),
+	"Non metallo": Color(0.7, 1.0, 0.85),
+	"Alogeno": Color(0.7, 1.0, 1.0),
+	"Gas nobile": Color(0.7, 0.95, 1.0),
+	"Lantanide": Color(0.75, 0.75, 1.0),
+	"Attinide": Color(0.85, 0.65, 1.0),
+	"Sconosciuto": Color(0.7, 0.7, 0.7),
+	"Background": Color("F8F7D6")
+	},
+		
 	#},
 }
 
