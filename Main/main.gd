@@ -23,7 +23,7 @@ extends Control
 @export var popup_image: TextureRect
 @export var title_label: RichTextLabel
 
-@export var background: ColorRect
+@export var solid_bg: ColorRect
 @onready var screen_size = get_viewport_rect().size
 @onready var current_theme = themes[default_theme]
 
@@ -2520,21 +2520,27 @@ func lighten_colors_in_place(amount: float) -> void:
 			current_theme[key] = current_theme[key].lightened(amount)
 
 func _input(event):
-	if event is InputEventMouseButton and event.pressed and popup_panel.visible and popup_margin.visible:
-		if not popup_panel.get_global_rect().has_point(get_global_mouse_position()):
-			popup_panel.visible = false
-			popup_margin.visible = false
+	if event is InputEventMouseButton:
+		reset_all_colors()
+		if event.pressed and popup_panel.visible and popup_margin.visible:
+			if not popup_panel.get_global_rect().has_point(get_global_mouse_position()):
+				popup_panel.visible = false
+				popup_margin.visible = false
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_SPACE:
 			elements_animation(grid_container)
 			reset_all_colors()
 
 func _ready() -> void:
+	await get_tree().process_frame
+	center_table()
+	grid_container.resized.connect(center_table)
 	calculate_scale_factor()
 	if default_theme != "default":
 		$Parallax2D.visible = false
-		background.color = current_theme["Background"]
-		background.global_position = Vector2(-size.x/2, -size.y/2)
+		solid_bg.color = current_theme["Background"]
+		solid_bg.global_position = Vector2(-size.x/2, -size.y/2)
+
 	desaturate_colors_in_place(0.05)
 	darken_colors_in_place(0.07)
 	screen_size = get_viewport_rect().size
@@ -2542,9 +2548,7 @@ func _ready() -> void:
 	control_element_container.queue_free()
 	popup_panel.visible = false 
 	popup_margin.visible = false 
-	await get_tree().process_frame
-	center_table()
-	grid_container.resized.connect(center_table)
+
 
 func center_table():
 	var container_size = grid_container.get_combined_minimum_size()
@@ -2726,6 +2730,7 @@ func create_periodic_table():
 							category_counter = 0
 							category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
 							style.bg_color = original_color
+							reset_all_colors()
 						else:
 							element_hovering_audio.stop()
 							style.bg_color = current_theme[element["category"]]
@@ -2832,26 +2837,29 @@ func on_category_selected(symbol: String):
 	var key = prof_to_key.get(symbol)
 	var color = current_theme["Category"].get(key, Color.WHITE)
 	var shared_style = StyleBoxFlat.new()
+	var unselected_style = StyleBoxFlat.new()
 	shared_style.bg_color = color
+	unselected_style.bg_color = Color.SLATE_GRAY
 	shared_style.set_corner_radius_all(radius)
 	shared_style.set_border_width_all(border)
 	# 2) Anima solo i bottoni che corrispondono
 	for element_container in grid_container.get_children():
 		for child in element_container.get_children():
-			if child is Button and child.text in matching_symbols:
-				# Applica lo stile condiviso
-				child.add_theme_stylebox_override("normal", shared_style)
-				# Usa un solo tween per tutti i bottoni
-				var tween = create_tween()
-				tween.tween_property(child, "scale", Vector2(1.2, 1.2), 0.1).set_trans(Tween.TRANS_BOUNCE)
-				tween.tween_property(child, "scale", Vector2(1.0, 1.0), 0.05)
-
+			if child is Button:
+				if child.text in matching_symbols:
+					# Applica lo stile condiviso
+					child.add_theme_stylebox_override("normal", shared_style)
+					# Usa un solo tween per tutti i bottoni
+					var tween = create_tween()
+					tween.tween_property(child, "scale", Vector2(1.2, 1.2), 0.1).set_trans(Tween.TRANS_BOUNCE)
+					tween.tween_property(child, "scale", Vector2(1.0, 1.0), 0.05)
+				else:
+					child.add_theme_stylebox_override("normal", unselected_style)
 
 func animate_button(button):
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2(1.2,1.2), 0.1).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(button, "scale", Vector2(1.0,1.0), 0.05)
-
 		
 func calculate_popup_position(button):
 	var offset = 5

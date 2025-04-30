@@ -9,7 +9,7 @@
 [ext_resource type="FontFile" uid="uid://d1lxp1jbqqlmx" path="res://Fonts/Gravity-Italic.otf" id="4_k3v36"]
 [ext_resource type="FontFile" uid="uid://bhd16i4grejq3" path="res://Fonts/texgyreheros-bold.otf" id="4_qac2q"]
 [ext_resource type="Theme" uid="uid://btaqw5ipnxw2a" path="res://Main/Themes/BodySubTheme2.tres" id="5_f6fdm"]
-[ext_resource type="Texture2D" uid="uid://cjpl1bjn8roug" path="res://Images/scrollingBg.png" id="10_qac2q"]
+[ext_resource type="Texture2D" uid="uid://cjpl1bjn8roug" path="res://Images/scrollingBg.png" id="11_o60nc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qac2q"]
 
@@ -25,7 +25,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="Main" type="Control" node_paths=PackedStringArray("periodic_table_layer", "element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "title_label", "background")]
+[node name="Main" type="Control" node_paths=PackedStringArray("periodic_table_layer", "element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "title_label", "solid_bg")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,8 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yh5la")
-default_theme = "majlinda"
-periodic_table_layer = NodePath("CanvasLayer")
+periodic_table_layer = NodePath("BackgroundLayer")
 element_hovering_audio = NodePath("ElementHovering")
 category_hovering_audio = NodePath("CategoryHovering")
 grid_container = NodePath("PeriodicTableLayer/MarginContainer/GridContainer")
@@ -54,8 +53,7 @@ popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVB
 popup_links_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/LinksPanelContainer/PopupLinksLabel")
 popup_image = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/PopupImage")
 title_label = NodePath("PeriodicTableLayer/Title")
-background = NodePath("CanvasLayer/Background")
-metadata/_edit_use_anchors_ = true
+solid_bg = NodePath("BackgroundLayer/Background")
 
 [node name="ElementHovering" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_f6fdm")
@@ -314,12 +312,13 @@ pivot_offset = Vector2(200, 0)
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -2
 follow_viewport_enabled = true
 follow_viewport_scale = 1000.0
 
-[node name="Background" type="ColorRect" parent="CanvasLayer"]
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -337,11 +336,11 @@ follow_viewport = false
 ignore_camera_scroll = true
 
 [node name="Background" type="Sprite2D" parent="Parallax2D"]
-self_modulate = Color(0.851769, 0.851769, 0.851769, 1)
+self_modulate = Color(0.9025, 0.912792, 0.95, 1)
 z_index = -1
 texture_filter = 6
 position = Vector2(768, 512)
-texture = ExtResource("10_qac2q")
+texture = ExtResource("11_o60nc")
 region_enabled = true
 region_rect = Rect2(0, 0, 1536, 1024)
 
