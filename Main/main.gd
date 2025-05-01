@@ -24,11 +24,17 @@ extends Control
 @export var title_label: RichTextLabel
 
 @export var solid_bg: ColorRect
+
 @onready var screen_size = get_viewport_rect().size
 @onready var current_theme = themes[default_theme]
 
+@onready var theme_names = themes.keys()
+@onready var timer: Timer = $Timer
+
 var radius: int = 2
 var border: int = 2
+var margin: float = 0.3
+
 var scale_factor: float = 1.0
 
 var selected_category_symbol := ""
@@ -40,6 +46,8 @@ var can_press: bool = true
 var animation_finished: bool = false
 var category_counter: int = 0
 var piano_key = 0
+
+var current_theme_index = 0
 
 #Database di tutti gli elementi
 var elements: Dictionary = {
@@ -2349,26 +2357,16 @@ var themes = {
 			"8": Color(1, 0.6, 0.3),
 		},
 		"Title": Color.TRANSPARENT,
-		"TitleFont": {
-			"1": Color(0.26, 0.0, 0.65),
-			"2": Color(0.32, 0.0, 0.63),
-			"3": Color(0.39, 0.0, 0.61),
-			"4": Color(0.46, 0.0, 0.59),
-			"5": Color(0.56, 0.0, 0.53),
-			"6": Color(0.69, 0.01, 0.43),
-			"7": Color(0.85, 0.02, 0.27),
-			"8": Color(0.87, 0.01, 0.07),
-		},
 		"Credits": Color.ROYAL_BLUE,
 		"F-Block": Color("#596759"),
-		"Metallo alcalino": Color(0.96, 0.2, 0.3),
-		"Metallo alcalino-terroso": Color(0.95, 0.4, 0.15),
-		"Metallo di transizione": Color(0.9, 0.5, 0.1),  
-		"Metallo post-transizionale": Color(0.85, 0.6, 0.15),  
-		"Metalloide": Color(0.3, 0.85, 0.4),
-		"Non metallo": Color(0.2, 0.85, 0.6),
-		"Alogeno": Color(0.1, 0.8, 0.8),
-		"Gas nobile": Color(0.1, 0.75, 1.0),
+		"Metallo alcalino": Color("#F2334C"),
+		"Metallo alcalino-terroso": Color("#EF5F45"),
+		"Metallo di transizione": Color("#EB8B3D"),  
+		"Metallo post-transizionale": Color("#E2BC48"),  
+		"Metalloide": Color("86D855"),
+		"Non metallo": Color("#4CD866"),
+		"Alogeno": Color("19CCCC"),
+		"Gas nobile": Color("#19BFFF"),
 		"Lantanide": Color(0.3, 0.3, 1.0),
 		"Attinide": Color(0.5, 0.1, 0.9),
 		"Sconosciuto": Color.DIM_GRAY,
@@ -2386,16 +2384,6 @@ var themes = {
 			"8": Color(0.7, 0.4, 0.1),
 		},
 		"Title": Color(0.1, 0.1, 0.1, 0.5),  # Trasparente ma più scuro
-		"TitleFont": {
-			"1": Color(0.18, 0.0, 0.45),
-			"2": Color(0.22, 0.0, 0.43),
-			"3": Color(0.27, 0.0, 0.41),
-			"4": Color(0.33, 0.0, 0.39),
-			"5": Color(0.4, 0.0, 0.36),
-			"6": Color(0.5, 0.01, 0.29),
-			"7": Color(0.65, 0.02, 0.15),
-			"8": Color(0.6, 0.01, 0.05),
-		},
 		"Credits": Color(0.15, 0.2, 0.4),  # Blu spento
 		"F-Block": Color("#3d473d"),
 		"Metallo alcalino": Color(0.6, 0.0, 0.1),
@@ -2423,16 +2411,6 @@ var themes = {
 			"8": Color(0.7, 0.4, 0.1),
 		},
 		"Title": Color(0.1, 0.1, 0.1, 0.5),  # Trasparente ma più scuro
-		"TitleFont": {
-			"1": Color(0.18, 0.0, 0.45),
-			"2": Color(0.22, 0.0, 0.43),
-			"3": Color(0.27, 0.0, 0.41),
-			"4": Color(0.33, 0.0, 0.39),
-			"5": Color(0.4, 0.0, 0.36),
-			"6": Color(0.5, 0.01, 0.29),
-			"7": Color(0.65, 0.02, 0.15),
-			"8": Color(0.6, 0.01, 0.05),
-		},
 		"Credits": Color.ROYAL_BLUE,  # Blu spento
 		"F-Block": Color.GRAY,
 		"Metallo alcalino": Color("f3a7a7"),
@@ -2450,43 +2428,31 @@ var themes = {
 	},
 	"pastel": {
 		"Category": {
-		"1": Color(0.8, 0.6, 0.8),
-		"2": Color(0.85, 0.6, 0.9),
-		"3": Color(0.9, 0.7, 0.9),
-		"4": Color(0.95, 0.7, 0.85),
-		"5": Color(1.0, 0.75, 0.85),
-		"6": Color(1.0, 0.8, 0.85),
-		"7": Color(1.0, 0.85, 0.8),
-		"8": Color(1.0, 0.9, 0.75),
+			"1": Color(0.8, 0.4, 0.8), 
+			"2": Color(0.9, 0.4, 0.9), 
+			"3": Color(0.9, 0.4, 0.9),
+			"4": Color(1.0, 0.5, 0.8),  
+			"5": Color(1.0, 0.6, 0.7),
+			"6": Color(1.0, 0.7, 0.7),  
+			"7": Color(1.0, 0.8, 0.6),  
+			"8": Color(1.0, 0.9, 0.6),  
+		},
+		"Title": Color(1, 1, 1, 0),  
+		"Credits": Color(0.6, 0.6, 1.0), 
+		"F-Block": Color("#A4B18C"),  
+		"Metallo alcalino": Color("#F9A0A7"), 
+		"Metallo alcalino-terroso": Color("#F9A38C"),  
+		"Metallo di transizione": Color("#F7C7A3"),  
+		"Metallo post-transizionale": Color("#F7DDB4"),  
+		"Metalloide": Color("#B6EBA5"),  
+		"Non metallo": Color("#A6F7B3"), 
+		"Alogeno": Color("#A2D9D9"),  
+		"Gas nobile": Color("#A2DFF7"),  
+		"Lantanide": Color(0.6, 0.6, 1.0),  
+		"Attinide": Color(0.7, 0.4, 1.0),
+		"Sconosciuto": Color("7D8BBC"),
+		"Background": Color.DARK_KHAKI.darkened(0.6),
 	},
-	"Title": Color(1, 1, 1, 0),  # trasparente
-	"TitleFont": {
-		"1": Color(0.7, 0.6, 0.9),
-		"2": Color(0.72, 0.6, 0.88),
-		"3": Color(0.75, 0.65, 0.87),
-		"4": Color(0.78, 0.7, 0.86),
-		"5": Color(0.82, 0.75, 0.85),
-		"6": Color(0.87, 0.75, 0.82),
-		"7": Color(0.93, 0.78, 0.78),
-		"8": Color(0.95, 0.8, 0.75),
-	},
-	"Credits": Color(0.65, 0.75, 0.95),  # pastello per royal blue
-	"F-Block": Color(0.75, 0.8, 0.75),
-	"Metallo alcalino": Color(1.0, 0.65, 0.7),
-	"Metallo alcalino-terroso": Color(1.0, 0.75, 0.6),
-	"Metallo di transizione": Color(1.0, 0.8, 0.6),
-	"Metallo post-transizionale": Color(1.0, 0.85, 0.65),
-	"Metalloide": Color(0.75, 1.0, 0.75),
-	"Non metallo": Color(0.7, 1.0, 0.85),
-	"Alogeno": Color(0.7, 1.0, 1.0),
-	"Gas nobile": Color(0.7, 0.95, 1.0),
-	"Lantanide": Color(0.75, 0.75, 1.0),
-	"Attinide": Color(0.85, 0.65, 1.0),
-	"Sconosciuto": Color(0.7, 0.7, 0.7),
-	"Background": Color("F8F7D6")
-	},
-		
-	#},
 }
 
 var prof_to_key = {
@@ -2502,7 +2468,7 @@ var prof_to_key = {
 
 func set_new_theme(theme_name: String):
 	if themes.has(theme_name):
-		current_theme = theme_name
+		current_theme = themes[theme_name]
 
 func desaturate_colors_in_place(amount: float) -> void:
 		for key in current_theme.keys():
@@ -2530,17 +2496,36 @@ func _input(event):
 		if event.keycode == KEY_SPACE:
 			elements_animation(grid_container)
 			reset_all_colors()
+		if event.keycode == KEY_T:
+			# Incrementa l'indice e cicla
+			current_theme_index = (current_theme_index + 1) % theme_names.size()
+			# Ottieni il nome del tema all'indice corrente
+			var next_theme_name = theme_names[current_theme_index]
+			# Applica il nuovo tema
+			set_new_theme(next_theme_name)
+			change_bg(next_theme_name)
+			reset_all_colors()
+
+#func _process(delta: float) -> void:
+
+func change_bg(new_theme):
+	if not themes.has(new_theme):
+		return
+	var bg_value = current_theme["Background"]
+	if bg_value is not String:
+		$Parallax2D.visible = false
+		solid_bg.color = current_theme["Background"]
+		solid_bg.global_position = Vector2(-size.x/2, -size.y/2)
+	else:
+		$Parallax2D.visible = true
 
 func _ready() -> void:
+	timer.connect("timeout",reset_all_colors)
 	await get_tree().process_frame
 	center_table()
 	grid_container.resized.connect(center_table)
 	calculate_scale_factor()
-	if default_theme != "default":
-		$Parallax2D.visible = false
-		solid_bg.color = current_theme["Background"]
-		solid_bg.global_position = Vector2(-size.x/2, -size.y/2)
-
+	change_bg(default_theme)
 	desaturate_colors_in_place(0.05)
 	darken_colors_in_place(0.07)
 	screen_size = get_viewport_rect().size
@@ -2687,7 +2672,7 @@ func create_periodic_table():
 				var style = StyleBoxFlat.new()
 				if style:
 					style.set_corner_radius_all(radius)
-					style.set_expand_margin_all(0.3)
+					style.set_expand_margin_all(margin)
 					style.border_color = Color.ANTIQUE_WHITE
 					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
 					if element["category"] == "Category":
@@ -2707,8 +2692,13 @@ func create_periodic_table():
 					var original_color = style.bg_color
 					var hover_color = original_color
 					var piano_pitches = [1.0, 1.12246204831, 1.25992104989, 1.33483985417, 1.49830707688, 1.68179283051, 1.88774862536, 2.0]
-					
+
 					btn.mouse_entered.connect(func():
+						# Annulla il timer se attivo
+						if timer.wait_time != 0:
+							timer.stop()
+							timer.wait_time = 0.5
+						
 						var tween = element_container.create_tween()
 						if element["category"] != "Category":
 							element_hovering_audio.pitch_scale = randf_range(1.2,1.5)
@@ -2720,21 +2710,24 @@ func create_periodic_table():
 							element_hovering_audio.play()
 							piano_key += 1
 							on_category_selected(symbol)
-						style.bg_color = hover_color.darkened(0.2)  # o .brightened() se preferisci
+						
+						style.bg_color = hover_color.darkened(0.2)
 						tween.tween_property(element_container, "scale", Vector2(1.1,1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 					)
 					btn.mouse_exited.connect(func():
 						var tween = element_container.create_tween()
-						#element_hovering_audio.stop()
 						if element["category"] == "Category":
-							category_counter = 0
-							category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
+							# Reset immediato del colore
 							style.bg_color = original_color
-							reset_all_colors()
+							timer.start()
+							
+		
 						else:
 							element_hovering_audio.stop()
 							style.bg_color = current_theme[element["category"]]
-						tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT))
+						
+						tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+					)
 					if elements_created == total_elements:
 						elements_animation(grid_container)
 
@@ -2841,7 +2834,10 @@ func on_category_selected(symbol: String):
 	shared_style.bg_color = color
 	unselected_style.bg_color = Color.SLATE_GRAY
 	shared_style.set_corner_radius_all(radius)
+	shared_style.set_expand_margin_all(margin)
 	shared_style.set_border_width_all(border)
+	unselected_style.set_corner_radius_all(radius)
+	unselected_style.set_expand_margin_all(margin)
 	# 2) Anima solo i bottoni che corrispondono
 	for element_container in grid_container.get_children():
 		for child in element_container.get_children():
@@ -2894,46 +2890,53 @@ func popup_animation(button):
 	tween.tween_property(button, "scale", Vector2(1.1,1.1), 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	popup_panel.size.y = (popup_margin.size.y)
 
-func reset_all_colors():
-	# Deseleziona categoria
+const STATES = ["normal", "hover", "pressed", "disabled"]
+
+func reset_all_colors() -> void:
 	selected_category_symbol = ""
-	# Riparti dal primo colore
-	category_counter = 0
-	# Cicla tutti i container nella grid
+	var category_counter := 0
+	var style_cache := {}  # Cache per gli stili riutilizzabili
+	
 	for element_container in grid_container.get_children():
-		# Trova il Button figlio
-		var btn: Button = null
-		for child in element_container.get_children():
-			if child is Button:
-				btn = child as Button
-				break
-		if btn == null:
+		# Ottimizzazione ricerca Button
+		var btn: Button = _find_button_in_children(element_container)
+		if not btn:
 			continue
-		# Ricava i dati dell'elemento
-		var data = elements.get(btn.text)
-		if data == null:
-			continue
-		# Ottieni lo StyleBoxFlat corrente (se disponibile)
-		var current_style = btn.get_theme_stylebox("normal")
-		var style
 		
-		if current_style is StyleBoxFlat:
-			# Duplica per mantenere i corner radius e altre proprietà
-			style = current_style.duplicate()
-			style.set_corner_radius_all(radius)
-			style.set_border_width_all(0.0)
-		else:
-			# Fallback: crea un nuovo StyleBoxFlat con corner radius predefinito
-			style = StyleBoxFlat.new()
-			style.set_border_width_all(0.0)
-			style.set_corner_radius_all(radius)
-		# Aggiorna il colore in base alla categoria
-		if data["category"] == "Category":
+		var data = elements.get(btn.text)
+		if not data:
+			continue
+		
+		var category: String = data["category"]
+		var style: StyleBoxFlat
+		style = StyleBoxFlat.new()
+		style.set_corner_radius_all(radius)
+		style.set_expand_margin_all(margin)
+		# Gestione stili con caching
+		if category == "Category":
 			category_counter = (category_counter % 8) + 1
+			
 			style.bg_color = current_theme["Category"][str(category_counter)]
 		else:
-			style.bg_color = current_theme[data["category"]]
+			style = style_cache.get(category, null)
+			if not style:
+				style = StyleBoxFlat.new()
+				style.set_corner_radius_all(radius)
+				style.bg_color = current_theme[category]
+				style_cache[category] = style
+		
+		# Applicazione stile
+		_apply_style_to_button(btn, style)
+
+# Funzione helper per trovare il primo Button nei figli
+func _find_button_in_children(parent: Node) -> Button:
+	for child in parent.get_children():
+		if child is Button:
+			return child as Button
+	return null
+
+# Funzione helper per applicare gli stili
+func _apply_style_to_button(btn: Button, style: StyleBoxFlat) -> void:
+	for state in STATES:
+		btn.add_theme_stylebox_override(state, style)
 			
-		# Applica lo stile aggiornato
-		for state in ["normal", "hover", "pressed", "disabled"]:
-			btn.add_theme_stylebox_override(state, style)
