@@ -3007,20 +3007,25 @@ func popup_animation(button):
 
 const STATES = ["normal", "hover", "pressed", "disabled"]
 
+# Cache globale per gli stili
+var global_style_cache = {}
+
 func reset_all_colors() -> void:
 	selected_category_symbol = ""
 	var category_counter := 0
-	var style_cache := {}  # Cache per gli stili riutilizzabili
+	
+	# Resettiamo e svuotiamo la cache per assicurarci che non rimangano stili vecchi
+	global_style_cache.clear()
 	
 	for element_container in grid_container.get_children():
-# Applica il font_color a tutti i Label dentro
+		# Applica il font_color a tutti i Label dentro
+		var font_color = current_theme.get("Font", Color.GHOST_WHITE)
 		for child in element_container.get_children():
-			if child is Label and "Font" in current_theme:
-				child.add_theme_color_override("font_color", current_theme["Font"])
-			else:
-				child.add_theme_color_override("font_color", Color.GHOST_WHITE)
+			if child is Label:
+				child.add_theme_color_override("font_color", font_color)
+		
 		# Ottimizzazione ricerca Button
-		var btn: Button = _find_button_in_children(element_container)
+		var btn = find_button_in_children(element_container)
 		if not btn:
 			continue
 		
@@ -3028,40 +3033,56 @@ func reset_all_colors() -> void:
 		if not data:
 			continue
 		
+		# Reset completo delle scale per garantire che l'animazione precedente non influenzi
+		btn.scale = Vector2(1.0, 1.0)
+		
 		var category: String = data["category"]
-		var style: StyleBoxFlat
-		style = StyleBoxFlat.new()
-		style.set_corner_radius_all(radius)
-		style.set_expand_margin_all(margin)
-		# Gestione stili con caching
+		var style_key = category
+		
+		# Gestione categorie speciali
 		if category == "Category":
 			category_counter = (category_counter % 8) + 1
+			style_key = "Category_" + str(category_counter)
+		
+		# Crea e memorizza lo stile nella cache solo se non esiste già
+		if not style_key in global_style_cache:
+			var style = StyleBoxFlat.new()
+			style.set_corner_radius_all(radius)
+			style.set_expand_margin_all(margin)
 			
-			style.bg_color = current_theme["Category"][str(category_counter)]
-		else:
-			style = style_cache.get(category, null)
-			if not style:
-				style = StyleBoxFlat.new()
-				style.set_corner_radius_all(radius)
+			if category == "Category":
+				style.bg_color = current_theme["Category"][str(category_counter)]
+			else:
 				style.bg_color = current_theme[category]
-				style_cache[category] = style
+				
+			global_style_cache[style_key] = style
 		
 		# Applicazione stile
-		_apply_style_to_button(btn, style)
+		apply_style_to_button(btn, global_style_cache[style_key])
 
-# Funzione helper per trovare il primo Button nei figli
-func _find_button_in_children(parent: Node) -> Button:
+# Funzione helper ottimizzata per trovare il primo Button nei figli
+# Usiamo l'accesso diretto se possibile, altrimenti cerca tra i figli
+func find_button_in_children(parent: Node) -> Button:
+	var btn = parent.get_node_or_null("Button")
+	if btn and btn is Button:
+		return btn
+	
+	# Fallback alla ricerca tra tutti i figli
 	for child in parent.get_children():
 		if child is Button:
-			return child as Button
+			return child
+			
 	return null
 
-# Funzione helper per applicare gli stili
-func _apply_style_to_button(btn: Button, style: StyleBoxFlat) -> void:
+# Funzione helper per applicare gli stili - garantisce che tutti gli stati vengano resettati
+func apply_style_to_button(btn: Button, style: StyleBoxFlat) -> void:
 	for state in STATES:
 		btn.add_theme_stylebox_override(state, style)
-		if "Font" in current_theme:
-			btn.add_theme_color_override("font_color", current_theme["Font"])
+	
+	if "Font" in current_theme:
+		btn.add_theme_color_override("font_color", current_theme["Font"])
+	else:
+		btn.add_theme_color_override("font_color", Color.GHOST_WHITE)
 
 
 func _on_theme_button_pressed() -> void:
