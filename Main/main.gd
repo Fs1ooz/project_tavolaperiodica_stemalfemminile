@@ -2497,14 +2497,17 @@ func _input(event):
 			elements_animation(grid_container)
 			reset_all_colors()
 		if event.keycode == KEY_T:
-			# Incrementa l'indice e cicla
-			current_theme_index = (current_theme_index + 1) % theme_names.size()
-			# Ottieni il nome del tema all'indice corrente
-			var next_theme_name = theme_names[current_theme_index]
-			# Applica il nuovo tema
-			set_new_theme(next_theme_name)
-			change_bg(next_theme_name)
-			reset_all_colors()
+			change_theme()
+
+func change_theme():
+		# Incrementa l'indice e cicla
+	current_theme_index = (current_theme_index + 1) % theme_names.size()
+	# Ottieni il nome del tema all'indice corrente
+	var next_theme_name = theme_names[current_theme_index]
+	# Applica il nuovo tema
+	set_new_theme(next_theme_name)
+	change_bg(next_theme_name)
+	reset_all_colors()
 
 #func _process(delta: float) -> void:
 
@@ -2940,3 +2943,7 @@ func _apply_style_to_button(btn: Button, style: StyleBoxFlat) -> void:
 	for state in STATES:
 		btn.add_theme_stylebox_override(state, style)
 			
+
+
+func _on_theme_button_pressed() -> void:
+	change_theme()
