@@ -2479,7 +2479,34 @@ var themes = {
 		"Attinide": Color(0.5, 0.1, 0.9),
 		"Sconosciuto": Color.DIM_GRAY,
 		"Background": Color("#9995ff")
-}
+	},
+	"fabrizio": {
+		"Category": {
+			"1": Color("#FF6A0B"),
+			"2": Color("E85157"),
+			"3": Color("D138A3"),
+			"4": Color("A224E0"),
+			"5": Color("6647E0"),
+			"6": Color("2A6AE0"),
+			"7": Color("10B8C2"),
+			"8": Color("03CDB9"),
+		},
+		"Title": Color.TRANSPARENT,
+		"Credits": Color.ROYAL_BLUE,
+		"F-Block": Color("#49495B"),
+		"Metallo alcalino": Color("#333399"),
+		"Metallo alcalino-terroso": Color("#4D2DA0"),
+		"Metallo di transizione": Color("#6627A6"),  
+		"Metallo post-transizionale": Color("#8021AD"),  
+		"Metalloide": Color("#991AB3"),
+		"Non metallo": Color("#B314BA"),
+		"Alogeno": Color("#CC0DC0"),
+		"Gas nobile": Color("#FF00CC"),
+		"Lantanide": Color("#991AB3"),
+		"Attinide": Color("#6627A6"),
+		"Sconosciuto": Color("#5A445F"),
+		"Background": Color.MIDNIGHT_BLUE.darkened(0.6),
+	}
 }
 
 var prof_to_key = {
@@ -2556,8 +2583,6 @@ func _ready() -> void:
 	grid_container.resized.connect(center_table)
 	calculate_scale_factor()
 	change_bg(default_theme)
-	desaturate_colors_in_place(0.05)
-	darken_colors_in_place(0.07)
 	screen_size = get_viewport_rect().size
 	create_periodic_table()
 	control_element_container.queue_free()
@@ -2862,7 +2887,7 @@ func on_category_selected(symbol: String):
 	var shared_style = StyleBoxFlat.new()
 	var unselected_style = StyleBoxFlat.new()
 	shared_style.bg_color = color
-	unselected_style.bg_color = Color.SLATE_GRAY
+	unselected_style.bg_color = Color(0.8, 0.8, 0.8, 0.4)
 	shared_style.set_corner_radius_all(radius)
 	shared_style.set_expand_margin_all(margin)
 	shared_style.set_border_width_all(border)
