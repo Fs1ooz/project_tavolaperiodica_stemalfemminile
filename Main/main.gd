@@ -2372,32 +2372,141 @@ var themes = {
 		"Sconosciuto": Color.DIM_GRAY,
 		"Background": "default"
 	},
+	#"dark": {
+		#"Category": {
+			#"1": Color(0.3, 0, 0.3),
+			#"2": Color(0.4, 0, 0.6),
+			#"3": Color(0.5, 0, 0.5),
+			#"4": Color(0.6, 0, 0.4),
+			#"5": Color(0.7, 0, 0.3),
+			#"6": Color(0.7, 0.2, 0.3),
+			#"7": Color(0.7, 0.3, 0.2),
+			#"8": Color(0.7, 0.4, 0.1),
+		#},
+		#"Title": Color(0.1, 0.1, 0.1, 0.5),  # Trasparente ma più scuro
+		#"Credits": Color(0.15, 0.2, 0.4),  # Blu spento
+		#"F-Block": Color("#3d473d"),
+		#"Metallo alcalino": Color(0.6, 0.0, 0.1),
+		#"Metallo alcalino-terroso": Color(0.6, 0.2, 0.0),
+		#"Metallo di transizione": Color(0.55, 0.3, 0.05),
+		#"Metallo post-transizionale": Color(0.4, 0.5, 0.1),
+		#"Metalloide": Color(0.25, 0.5, 0.25),
+		#"Non metallo": Color(0.1, 0.5, 0.35),
+		#"Alogeno": Color(0.05, 0.45, 0.45),
+		#"Gas nobile": Color(0.0, 0.4, 0.6),
+		#"Lantanide": Color(0.1, 0.1, 0.6),
+		#"Attinide": Color(0.2, 0.0, 0.5),
+		#"Sconosciuto": Color(0.25, 0.25, 0.25),
+		#"Background": Color.DIM_GRAY,
+	#},
+	"plain": {
+		"Category": {
+			"1": Color(0.5, 0, 0.5),
+			"2": Color(0.6, 0, 0.8),
+			"3": Color(0.8, 0, 0.8),
+			"4": Color(0.9, 0, 0.7),
+			"5": Color(1, 0, 0.6),
+			"6": Color(1, 0.3, 0.5),
+			"7": Color(1, 0.5, 0.4),
+			"8": Color(1, 0.6, 0.3),
+		},
+		"Title": Color.TRANSPARENT,
+		"Credits": Color.ROYAL_BLUE,
+		"F-Block": Color("#596759"),
+		"Metallo alcalino": Color("#F2334C"),
+		"Metallo alcalino-terroso": Color("#EF5F45"),
+		"Metallo di transizione": Color("#EB8B3D"),  
+		"Metallo post-transizionale": Color("#E2BC48"),  
+		"Metalloide": Color("86D855"),
+		"Non metallo": Color("#4CD866"),
+		"Alogeno": Color("19CCCC"),
+		"Gas nobile": Color("#19BFFF"),
+		"Lantanide": Color(0.3, 0.3, 1.0),
+		"Attinide": Color(0.5, 0.1, 0.9),
+		"Sconosciuto": Color.DIM_GRAY,
+		"Background": Color("#9995ff")
+	},
+	"light": {
+		"Category": {
+			"1": Color(0.5, 0, 0.5),
+			"2": Color(0.6, 0, 0.8),
+			"3": Color(0.8, 0, 0.8),
+			"4": Color(0.9, 0, 0.7),
+			"5": Color(1, 0, 0.6),
+			"6": Color(1, 0.3, 0.5),
+			"7": Color(1, 0.5, 0.4),
+			"8": Color(1, 0.6, 0.3),
+		},
+		"Title": Color(0.1, 0.1, 0.1),
+		"Credits": Color(0.2, 0.3, 0.8),
+		"F-Block": Color("#728072"),
+		"Metallo alcalino": Color("#D02040"),
+		"Metallo alcalino-terroso": Color("#DD533A"),
+		"Metallo di transizione": Color("#E06E30"),
+		"Metallo post-transizionale": Color("#D1A832"),
+		"Metalloide": Color("#6ADD55"),
+		"Non metallo": Color("#32D87C"),
+		"Alogeno": Color("#1ACCCC"),
+		"Gas nobile": Color("#1ABFFF"),
+		"Lantanide": Color(0.3, 0.3, 0.8),
+		"Attinide": Color(0.5, 0.2, 0.7),
+		"Sconosciuto": Color("#888888"),
+		"Background": Color(1, 1, 1)
+	},
 	"dark": {
 		"Category": {
-			"1": Color(0.3, 0, 0.3),
-			"2": Color(0.4, 0, 0.6),
-			"3": Color(0.5, 0, 0.5),
-			"4": Color(0.6, 0, 0.4),
-			"5": Color(0.7, 0, 0.3),
-			"6": Color(0.7, 0.2, 0.3),
-			"7": Color(0.7, 0.3, 0.2),
-			"8": Color(0.7, 0.4, 0.1),
+			"1": Color(0.5, 0, 0.5),
+			"2": Color(0.6, 0, 0.8),
+			"3": Color(0.8, 0, 0.8),
+			"4": Color(0.9, 0, 0.7),
+			"5": Color(1, 0, 0.6),
+			"6": Color(1, 0.3, 0.5),
+			"7": Color(1, 0.5, 0.4),
+			"8": Color(1, 0.6, 0.3),
 		},
-		"Title": Color(0.1, 0.1, 0.1, 0.5),  # Trasparente ma più scuro
-		"Credits": Color(0.15, 0.2, 0.4),  # Blu spento
-		"F-Block": Color("#3d473d"),
-		"Metallo alcalino": Color(0.6, 0.0, 0.1),
-		"Metallo alcalino-terroso": Color(0.6, 0.2, 0.0),
-		"Metallo di transizione": Color(0.55, 0.3, 0.05),
-		"Metallo post-transizionale": Color(0.4, 0.5, 0.1),
-		"Metalloide": Color(0.25, 0.5, 0.25),
-		"Non metallo": Color(0.1, 0.5, 0.35),
-		"Alogeno": Color(0.05, 0.45, 0.45),
-		"Gas nobile": Color(0.0, 0.4, 0.6),
-		"Lantanide": Color(0.1, 0.1, 0.6),
-		"Attinide": Color(0.2, 0.0, 0.5),
-		"Sconosciuto": Color(0.25, 0.25, 0.25),
-		"Background": Color.DIM_GRAY,
+		"Title": Color(1, 1, 1),
+		"Credits": Color(0.5, 0.6, 1),
+		"F-Block": Color("#596759"),
+		"Metallo alcalino": Color("#F2334C"),
+		"Metallo alcalino-terroso": Color("#EF5F45"),
+		"Metallo di transizione": Color("#EB8B3D"),
+		"Metallo post-transizionale": Color("#E2BC48"),
+		"Metalloide": Color("#86D855"),
+		"Non metallo": Color("#4CD866"),
+		"Alogeno": Color("#19CCCC"),
+		"Gas nobile": Color("#19BFFF"),
+		"Lantanide": Color(0.3, 0.3, 1.0),
+		"Attinide": Color(0.5, 0.1, 0.9),
+		"Sconosciuto": Color("#444444"),
+		"Background": Color(0.08, 0.08, 0.08)
+	},
+	"pastel": {
+		"Category": {
+			"1": Color("#D9A5D9"),
+			"2": Color("#E5A5E5"),
+			"3": Color("#E8A5E8"),
+			"4": Color("#F5B3DD"),
+			"5": Color("#F9B6C5"),
+			"6": Color("#FFC2C2"),
+			"7": Color("#FFD6AA"),
+			"8": Color("#FFE5AA"),
+		},
+		"Title": Color("#00000000"),  # completamente trasparente
+		"Credits": Color("#A5A5FF"),
+		"F-Block": Color("#B3C2A3"),
+		"Metallo alcalino": Color("#F9B0B5"),
+		"Metallo alcalino-terroso": Color("#F9C2A5"),
+		"Metallo di transizione": Color("#FAD9B6"),
+		"Metallo post-transizionale": Color("#FBEAB5"),
+		"Metalloide": Color("#C4F1B8"),
+		"Non metallo": Color("#B3F7C5"),
+		"Alogeno": Color("#B0E5E5"),
+		"Gas nobile": Color("#B0EBF9"),
+		"Lantanide": Color("#A5A5FF"),
+		"Attinide": Color("#C3A5F9"),
+		"Sconosciuto": Color("#9CA6C1"),
+		"Background": Color("#EDE8DC"),
+		"Font": Color("A87676")  
 	},
 	"majlinda": {
 		"Category": {
@@ -2425,60 +2534,6 @@ var themes = {
 		"Attinide": Color("#ecb4ed"),
 		"Sconosciuto": Color("7D8BBC"),
 		"Background": Color("#F8F7D6"),
-	},
-	"pastel": {
-		"Category": {
-			"1": Color(0.8, 0.4, 0.8), 
-			"2": Color(0.9, 0.4, 0.9), 
-			"3": Color(0.9, 0.4, 0.9),
-			"4": Color(1.0, 0.5, 0.8),  
-			"5": Color(1.0, 0.6, 0.7),
-			"6": Color(1.0, 0.7, 0.7),  
-			"7": Color(1.0, 0.8, 0.6),  
-			"8": Color(1.0, 0.9, 0.6),  
-		},
-		"Title": Color(1, 1, 1, 0),  
-		"Credits": Color(0.6, 0.6, 1.0), 
-		"F-Block": Color("#A4B18C"),  
-		"Metallo alcalino": Color("#F9A0A7"), 
-		"Metallo alcalino-terroso": Color("#F9A38C"),  
-		"Metallo di transizione": Color("#F7C7A3"),  
-		"Metallo post-transizionale": Color("#F7DDB4"),  
-		"Metalloide": Color("#B6EBA5"),  
-		"Non metallo": Color("#A6F7B3"), 
-		"Alogeno": Color("#A2D9D9"),  
-		"Gas nobile": Color("#A2DFF7"),  
-		"Lantanide": Color(0.6, 0.6, 1.0),  
-		"Attinide": Color(0.7, 0.4, 1.0),
-		"Sconosciuto": Color("7D8BBC"),
-		"Background": Color.DARK_KHAKI.darkened(0.6),
-	},
-	"plain": {
-		"Category": {
-			"1": Color(0.5, 0, 0.5),
-			"2": Color(0.6, 0, 0.8),
-			"3": Color(0.8, 0, 0.8),
-			"4": Color(0.9, 0, 0.7),
-			"5": Color(1, 0, 0.6),
-			"6": Color(1, 0.3, 0.5),
-			"7": Color(1, 0.5, 0.4),
-			"8": Color(1, 0.6, 0.3),
-		},
-		"Title": Color.TRANSPARENT,
-		"Credits": Color.ROYAL_BLUE,
-		"F-Block": Color("#596759"),
-		"Metallo alcalino": Color("#F2334C"),
-		"Metallo alcalino-terroso": Color("#EF5F45"),
-		"Metallo di transizione": Color("#EB8B3D"),  
-		"Metallo post-transizionale": Color("#E2BC48"),  
-		"Metalloide": Color("86D855"),
-		"Non metallo": Color("#4CD866"),
-		"Alogeno": Color("19CCCC"),
-		"Gas nobile": Color("#19BFFF"),
-		"Lantanide": Color(0.3, 0.3, 1.0),
-		"Attinide": Color(0.5, 0.1, 0.9),
-		"Sconosciuto": Color.DIM_GRAY,
-		"Background": Color("#9995ff")
 	},
 	"fabrizio": {
 		"Category": {
@@ -2634,6 +2689,7 @@ func create_periodic_table():
 		grid_container.add_child(group_label)
 		group_label.add_theme_font_override("font", load("res://Fonts/Gravity-Bold.otf"))
 		group_label.add_theme_font_size_override("font_size", 17)
+		group_label.add_theme_color_override("font_color", Color.LIGHT_GRAY)
 	# Inizializziamo la tabella solo con spazi vuoti
 	var table_layout := []  
 	for _i in range(periods):  # 7 periodi
@@ -2662,6 +2718,7 @@ func create_periodic_table():
 		grid_container.add_child(period_label)
 		period_label.add_theme_font_override("font", load("res://Fonts/Gravity-Bold.otf"))
 		period_label.add_theme_font_size_override("font_size", 17)
+		period_label.add_theme_color_override("font_color", Color.LIGHT_GRAY)
 		# Aggiungiamo gli elementi della riga
 		for symbol in table_layout[i]:
 			if symbol == null:
@@ -2729,7 +2786,10 @@ func create_periodic_table():
 					style.set_corner_radius_all(radius)
 					style.set_expand_margin_all(margin)
 					style.border_color = Color.ANTIQUE_WHITE
-					btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
+					if "Font" in current_theme:
+						btn.add_theme_color_override("font_color", current_theme["Font"]) # Applica lo stile al bottone
+					else:
+						btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
 					if element["category"] == "Category":
 						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
 						style.bg_color = current_theme["Category"][str(category_counter)]
@@ -2953,6 +3013,12 @@ func reset_all_colors() -> void:
 	var style_cache := {}  # Cache per gli stili riutilizzabili
 	
 	for element_container in grid_container.get_children():
+# Applica il font_color a tutti i Label dentro
+		for child in element_container.get_children():
+			if child is Label and "Font" in current_theme:
+				child.add_theme_color_override("font_color", current_theme["Font"])
+			else:
+				child.add_theme_color_override("font_color", Color.GHOST_WHITE)
 		# Ottimizzazione ricerca Button
 		var btn: Button = _find_button_in_children(element_container)
 		if not btn:
@@ -2994,7 +3060,8 @@ func _find_button_in_children(parent: Node) -> Button:
 func _apply_style_to_button(btn: Button, style: StyleBoxFlat) -> void:
 	for state in STATES:
 		btn.add_theme_stylebox_override(state, style)
-			
+		if "Font" in current_theme:
+			btn.add_theme_color_override("font_color", current_theme["Font"])
 
 
 func _on_theme_button_pressed() -> void:

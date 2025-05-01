@@ -29,6 +29,10 @@ enabled=PackedStringArray("res://addons/inspector_tabs/plugin.cfg")
 
 elements=""
 
+[input_devices]
+
+pointing/android/rotary_input_scroll_axis=0
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
