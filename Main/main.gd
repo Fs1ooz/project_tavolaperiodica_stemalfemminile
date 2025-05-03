@@ -253,7 +253,7 @@ var elements: Dictionary = {
 		"image": "res://Images/STEAM Women/Cecilia Payne-Gaposchkin.jpg",
 		"scientist_name": "Cecilia Payne", 
 		"profession": "Astrofisica", 
-		"brief_subtitle": "Scoprì la composizione delle stelle", 
+		"brief_subtitle": "Rivelatrice della natura stellare", 
 		"year": "1900 - 1979",
 		"nationality": "Anglo-statunitense",
 		"description": "Rivoluzionò l'astrofisica dimostrando nel 1925 che le stelle sono composte principalmente da idrogeno ed elio. Nonostante l'opposizione iniziale della comunità scientifica (all'epoca si credeva fossero simili alla Terra), la sua tesi divenne pietra miliare dell'astronomia. Prima donna a dirigere un dipartimento ad Harvard, aprì la strada alle scienziate nello studio del cosmo.",
@@ -333,7 +333,7 @@ var elements: Dictionary = {
 		"image": "res://Images/STEAM Women/Nettie Stevens.jpg",
 		"scientist_name": "Nettie Stevens",
 		"profession": "Genetista",
-		"brief_subtitle": "Scoprì il ruolo dei cromosomi sessuali",
+		"brief_subtitle": "Madre della genetica moderna",
 		"year": "1861 - 1912",
 		"nationality": "Statunitense",
 		"description": "Genetista statunitense che nel 1905 scoprì che il sesso negli organismi è determinato dai cromosomi X e Y. Studiando gli insetti, identificò che i maschi possedevano un cromosoma più piccolo (poi chiamato cromosoma Y), mentre le femmine avevano due cromosomi X. Questa scoperta fu fondamentale per comprendere il meccanismo genetico della determinazione sessuale. ",
@@ -426,7 +426,7 @@ var elements: Dictionary = {
 	  "image": "",
 	  "scientist_name": "Pardis Sabeti",
 	  "profession": "Biologa",
-	  "brief_subtitle": "Genetista esperta in epidemie e genomica evolutiva",
+	  "brief_subtitle": "Esperta di malattia infettive",
 	  "year": "1975-",
 	  "nationality": "Iraniano-Americana",
 	  "description": "Pardis Sabeti è una genetista e biologa computazionale iraniano-americana, nota per il suo lavoro sull'evoluzione dei patogeni e la risposta alle epidemie. Professoressa ad Harvard e membro del Broad Institute, ha sviluppato algoritmi per studiare la selezione naturale nel DNA umano. Durante l'epidemia di Ebola del 2014, il suo team ha sequenziato rapidamente il virus, contribuendo alla comprensione della sua diffusione. Oltre alla ricerca, è anche musicista e ha ricevuto numerosi riconoscimenti scientifici.",
@@ -458,10 +458,10 @@ var elements: Dictionary = {
 	  "category": "Alogeno",
 	  "group": 17,
 	  "period": 3,
-	  "image": "res://Images/STEAM Women/Claudia Alexander.jpg",
+	  "image": "res://Images/STEAM Women/Claudia Alexander.png",
 	  "scientist_name": "Claudia Alexander",
 	  "profession": "Scienziata e ingegnera",
-	  "brief_subtitle": "Astrofisica NASA, protagonista delle missioni Galileo",
+	  "brief_subtitle": "Manager della Missione Galileo",
 	  "year": "1961–2015",
 	  "nationality": "Americana",
 	  "description": "Claudia Alexander è conosciuta per il suo lavoro nel campo dell’astrofisica e dell’esplorazione spaziale. È stata una delle scienziate di punta nella NASA, contribuendo in modo significativo a progetti di missioni spaziali, in particolare alla missione Galileo, che ha studiato Giove e le sue lune. Nel corso della sua carriera, Claudia Alexander ha lavorato instancabilmente per promuovere la scienza tra i giovani, in particolare le ragazze, cercando di abbattere le barriere di genere nelle scienze STEM.",
@@ -612,7 +612,7 @@ var elements: Dictionary = {
 		"image": "res://Images/STEAM Women/Maria Montessori.png",
 		"scientist_name": "Maria Montessori",
 		"profession": "Educatrice e Medica",
-		"brief_subtitle": "Rivoluzionaria dell'educazione infantile",
+		"brief_subtitle": "Educatrice rivoluzionaria",
 		"year": "1870 - 1952",
 		"nationality": "Italiana",
 		"description": "Medica e pedagogista italiana, prima donna a laurearsi in medicina in Italia. Sviluppò il metodo Montessori, basato su indipendenza e sviluppo naturale del bambino, adottato globalmente.",
@@ -738,7 +738,7 @@ var elements: Dictionary = {
 		"image": "res://Images/STEAM Women/Gerty Cori.jpg",
 		"scientist_name": "Gerty Cori",
 		"profession": "Biochimica",
-		"brief_subtitle": "Nobel per il metabolismo del glucosio",
+		"brief_subtitle": "Decifratrice del metabolismo umano",
 		"year": "1896 - 1957",
 		"nationality": "Ceco-americana",
 		"description": "Prima donna a vincere il Nobel per la medicina (1947). Scoprì con il marito Carl il ciclo di Cori, fondamentale per la comprensione del metabolismo energetico.",
@@ -756,7 +756,7 @@ var elements: Dictionary = {
 		"image": "res://Images/STEAM Women/Asima Chatterjee.jpg",
 		"scientist_name": "Asima Chatterjee",
 		"profession": "Chimica",
-		"brief_subtitle": "Pioniera dei farmaci antitumorali",
+		"brief_subtitle": "Pioniera della chemioterapia naturale",
 		"year": "1917 - 2006",
 		"nationality": "Indiana",
 		"description": "Chimica indiana pioniera: studiò alcaloidi della vinca per sviluppare farmaci contro cancro ed epilessia. Prima donna indiana a ottenere un dottorato in scienze.",
@@ -1050,7 +1050,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",
 		"group": 13,
 		"period": 5,
-		"image": "res://Images/STEAM Women/STEAM Women/Indira Nath.png",
+		"image": "res://Images/STEAM Women/Indira Nath.png",
 		"scientist_name": "Indira Nath",
 		"profession": "Immunologa",
 		"brief_subtitle": "Combattente contro la lebbra",
@@ -1069,7 +1069,7 @@ var elements: Dictionary = {
 		"category": "Metallo post-transizionale",
 		"group": 14,
 		"period": 5,
-		"image": "res://Images/STEAM Women/STEAM Women/Sara Negri.jpg",
+		"image": "res://Images/STEAM Women/Sara Negri.jpg",
 		"scientist_name": "Sara Negri",
 		"profession": "Matematica e Logica",
 		"brief_subtitle": "Esperta in logica costruttiva",
@@ -2202,7 +2202,7 @@ var elements: Dictionary = {
 		"image": "res://Images/STEAM Women/Maria Curie.jpg",
 		"scientist_name": "Maria Curie", 
 		"profession": "Fisica e Chimica", 
-		"brief_subtitle": "Madre della radioattività", 
+		"brief_subtitle": "Prima donna nobel, madre della radioattività", 
 		"year": "1867 - 1934", 
 		"nationality": "Polacca-Francese", 
 		"description": "Maria Skłodowska Curie è stata una scienziata rivoluzionaria, pioniera degli studi sulla radioattività. Prima persona a vincere due Premi Nobel in discipline scientifiche diverse, ha scoperto il radio e il polonio e ha contribuito allo sviluppo della medicina e della fisica nucleare.",
@@ -2875,9 +2875,9 @@ func on_element_selected(symbol, button):
 		popup_image.texture = img_texture
 
 	if "links" in element:
-		popup_name_label.text = " " + element["scientist_name"]
-		popup_profession_label.text =  " " + element["profession"]
-		popup_brief_label.text = " " + element["brief_subtitle"]
+		popup_name_label.text = "" + element["scientist_name"]
+		popup_profession_label.text =  "" + element["profession"]
+		popup_brief_label.text = "" + element["brief_subtitle"]
 		popup_year_label.text = element["year"]
 		popup_description_label.text = element["description"]
 		popup_quote_label.text = element["quote"]

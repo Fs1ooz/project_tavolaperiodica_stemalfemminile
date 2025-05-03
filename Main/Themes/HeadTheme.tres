@@ -4,11 +4,14 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c4d5t"]
 bg_color = Color(0.780392, 0.756863, 0.905882, 1)
+border_width_left = 5
+border_color = Color(0.780392, 0.756863, 0.905882, 1)
 
 [resource]
 Label/colors/font_color = Color(0.540888, 0.353448, 0.658205, 1)
-Label/colors/font_outline_color = Color(0.280728, 0.163617, 0.352479, 1)
-Label/constants/outline_size = 5
+Label/colors/font_outline_color = Color(0.328366, 0.195584, 0.409844, 1)
+Label/colors/font_shadow_color = Color(0.219501, 0.219501, 0.219501, 0.713)
+Label/constants/outline_size = 3
 Label/font_sizes/font_size = 40
 Label/fonts/font = ExtResource("1_c4d5t")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_c4d5t")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8bt1n7irs0ni"]
+[gd_scene load_steps=15 format=3 uid="uid://b8bt1n7irs0ni"]
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
 [ext_resource type="Theme" uid="uid://cenwcc374gahw" path="res://Main/Themes/HeadTheme.tres" id="2_eunhr"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bhd16i4grejq3" path="res://Fonts/texgyreheros-bold.otf" id="4_qac2q"]
 [ext_resource type="Theme" uid="uid://btaqw5ipnxw2a" path="res://Main/Themes/BodySubTheme2.tres" id="5_f6fdm"]
 [ext_resource type="Script" uid="uid://bttgnk3bb2a8i" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="6_o60nc"]
+[ext_resource type="Texture2D" uid="uid://bso0vxyexpgo" path="res://Images/STEAM Women/Ipazia.jpg" id="7_f3gf5"]
 [ext_resource type="Texture2D" uid="uid://ejjregd38p83" path="res://Images/Backgrounds/tile_512x512_1746107937696.png" id="10_qac2q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qac2q"]
@@ -172,42 +173,42 @@ layout_mode = 2
 theme = ExtResource("2_eunhr")
 
 [node name="HeadVBoxContainer" type="VBoxContainer" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer"]
-custom_minimum_size = Vector2(290, 120)
+custom_minimum_size = Vector2(292, 112)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
 [node name="PopupNameControl" type="Control" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer"]
-custom_minimum_size = Vector2(0, 48)
+custom_minimum_size = Vector2(0, 44.5)
 layout_mode = 2
 
 [node name="PopupNameLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer/PopupNameControl"]
-custom_minimum_size = Vector2(285, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 1.0
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 40
-text = "\"Name\""
+theme_override_font_sizes/font_size = 38
+text = "\"Name\"jig"
 vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 3
 script = ExtResource("6_o60nc")
-_max_size = 40
+_max_size = 38
 _min_size = 2
-_current_font_size = 40
+_current_font_size = 38
 _editor_defaults_set = true
 metadata/_custom_type_script = "uid://bttgnk3bb2a8i"
 
 [node name="PopupProfessionControl" type="Control" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="PopupProfessionLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer/PopupProfessionControl"]
-custom_minimum_size = Vector2(285, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -215,24 +216,24 @@ offset_right = 1.0
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 25
 text = "\"Profession\""
 vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 3
 script = ExtResource("6_o60nc")
-_max_size = 28
-_current_font_size = 28
+_max_size = 25
+_current_font_size = 25
 _editor_defaults_set = true
 metadata/_custom_type_script = "uid://bttgnk3bb2a8i"
 
 [node name="PopupBriefSubTitleControl" type="Control" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer"]
-custom_minimum_size = Vector2(0, 32)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="PopupBriefSubTitle" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer/PopupBriefSubTitleControl"]
-custom_minimum_size = Vector2(287, 0)
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -240,25 +241,25 @@ offset_right = 280.0
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme_override_font_sizes/font_size = 28
-text = "\"Brief subtitle\""
+theme_override_font_sizes/font_size = 25
+text = "\"Brief subtitle\"hjkg"
 vertical_alignment = 1
 autowrap_mode = 3
 clip_text = true
 text_overrun_behavior = 3
 script = ExtResource("6_o60nc")
-_max_size = 28
-_min_size = 2
-_current_font_size = 28
+_max_size = 25
+_current_font_size = 25
 _editor_defaults_set = true
 metadata/_custom_type_script = "uid://bttgnk3bb2a8i"
 
 [node name="PopupImage" type="TextureRect" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer"]
 z_index = 2
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(112, 112)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+texture = ExtResource("7_f3gf5")
 expand_mode = 1
 stretch_mode = 4
 
