@@ -36,7 +36,7 @@ var border: int = 2
 var margin: float = 0.3
 
 var scale_factor: float = 1.0
-
+var default_font_color := Color.GHOST_WHITE
 var selected_category_symbol := ""
 var selected_button: Control = null
 var periods: int = 7+3
@@ -229,7 +229,7 @@ var elements: Dictionary = {
 		"category": "Metalloide", 
 		"group": 13, 
 		"period": 2,
-		"image": "res://Images/STEAM Women/Ball Alice Augusta.jpg",
+		"image": "res://Images/STEAM Women/Ball Alice Agusta.jpg",
 		"scientist_name": "Ball Alice Augusta", 
 		"profession": "Chimica", 
 		"brief_subtitle": "Sviluppò il trattamento per la lebbra", 
@@ -250,7 +250,7 @@ var elements: Dictionary = {
 		"group": 14, 
 		"period": 2,
 		"image": "res://Images/STEAM Women/Cecilia Payne-Gaposchkin.jpg",
-		"scientist_name": "Cecilia Payne-Gaposchkin", 
+		"scientist_name": "Cecilia Payne", 
 		"profession": "Astrofisica", 
 		"brief_subtitle": "Scoprì la composizione delle stelle", 
 		"year": "1900 - 1979",
@@ -478,7 +478,7 @@ var elements: Dictionary = {
 	  "image": "res://Images/STEAM Women/Artemisia Gentileschi.png",
 	  "scientist_name": "Artemisia Gentileschi",
 	  "profession": "Artista",
-	  "brief_subtitle": "Artista simbolo della resilienza femminile",
+	  "brief_subtitle": "Prima pittrice femminista",
 	  "year": "1593-1653",
 	  "nationality": "Italiana",
 	  "description": "Artemisia Gentileschi è stata una pittrice italiana del periodo barocco, tra le prime donne a ottenere successo nel mondo dell'arte. Formata dal padre Orazio, sviluppò uno stile drammatico e realistico influenzato da Caravaggio. Le sue opere spesso raffigurano eroine bibliche e mitologiche con grande forza espressiva, come Giuditta che decapita Oloferne. Il suo lavoro è considerato un simbolo della resilienza femminile e del talento artistico.",
@@ -2356,7 +2356,6 @@ var themes = {
 			"7": Color(1, 0.5, 0.4),
 			"8": Color(1, 0.6, 0.3),
 		},
-		"Title": Color.TRANSPARENT,
 		"Credits": Color.ROYAL_BLUE,
 		"F-Block": Color("#596759"),
 		"Metallo alcalino": Color("#F2334C"),
@@ -2410,7 +2409,6 @@ var themes = {
 			"7": Color(1, 0.5, 0.4),
 			"8": Color(1, 0.6, 0.3),
 		},
-		"Title": Color.TRANSPARENT,
 		"Credits": Color.ROYAL_BLUE,
 		"F-Block": Color("#596759"),
 		"Metallo alcalino": Color("#F2334C"),
@@ -2437,7 +2435,6 @@ var themes = {
 			"7": Color(1, 0.5, 0.4),
 			"8": Color(1, 0.6, 0.3),
 		},
-		"Title": Color(0.1, 0.1, 0.1),
 		"Credits": Color(0.2, 0.3, 0.8),
 		"F-Block": Color("#728072"),
 		"Metallo alcalino": Color("#D02040"),
@@ -2464,7 +2461,6 @@ var themes = {
 			"7": Color(1, 0.5, 0.4),
 			"8": Color(1, 0.6, 0.3),
 		},
-		"Title": Color(1, 1, 1),
 		"Credits": Color(0.5, 0.6, 1),
 		"F-Block": Color("#596759"),
 		"Metallo alcalino": Color("#F2334C"),
@@ -2491,7 +2487,6 @@ var themes = {
 			"7": Color("#FFD6AA"),
 			"8": Color("#FFE5AA"),
 		},
-		"Title": Color("#00000000"),  # completamente trasparente
 		"Credits": Color("#A5A5FF"),
 		"F-Block": Color("#B3C2A3"),
 		"Metallo alcalino": Color("#F9B0B5"),
@@ -2519,7 +2514,6 @@ var themes = {
 			"7": Color(0.7, 0.3, 0.2),
 			"8": Color(0.7, 0.4, 0.1),
 		},
-		"Title": Color(0.1, 0.1, 0.1, 0.5),  # Trasparente ma più scuro
 		"Credits": Color.ROYAL_BLUE,  # Blu spento
 		"F-Block": Color.GRAY,
 		"Metallo alcalino": Color("f3a7a7"),
@@ -2546,7 +2540,6 @@ var themes = {
 			"7": Color("10B8C2"),
 			"8": Color("03CDB9"),
 		},
-		"Title": Color.TRANSPARENT,
 		"Credits": Color.ROYAL_BLUE,
 		"F-Block": Color("#49495B"),
 		"Metallo alcalino": Color("#333399"),
@@ -2616,9 +2609,8 @@ func change_theme():
 	# Applica il nuovo tema
 	set_new_theme(next_theme_name)
 	change_bg(next_theme_name)
+	precompute_styles()
 	reset_all_colors()
-
-#func _process(delta: float) -> void:
 
 func change_bg(new_theme):
 	if not themes.has(new_theme):
@@ -2643,7 +2635,6 @@ func _ready() -> void:
 	control_element_container.queue_free()
 	popup_panel.visible = false 
 	popup_margin.visible = false 
-
 
 func center_table():
 	var container_size = grid_container.get_combined_minimum_size()
@@ -2671,7 +2662,6 @@ func calculate_scale_factor():
 	screen_size = get_viewport_rect().size
 	# Aggiorna btn_size in base al fattore di scala
 	btn_size = int(60 * scale_factor)  # 60 è la tua dimensione originale dei bottoni
-
 
 func create_periodic_table():
 	var total_elements = elements.size()
@@ -2786,17 +2776,24 @@ func create_periodic_table():
 					style.set_corner_radius_all(radius)
 					style.set_expand_margin_all(margin)
 					style.border_color = Color.ANTIQUE_WHITE
+
 					if "Font" in current_theme:
-						btn.add_theme_color_override("font_color", current_theme["Font"]) # Applica lo stile al bottone
+						btn.add_theme_color_override("font_color", current_theme["Font"])
+						lbl.add_theme_color_override("font_color", current_theme["Font"])
+						nm_lbl.add_theme_color_override("font_color", current_theme["Font"])
+						btn.add_theme_color_override("font_hover_color", current_theme["Font"])
+						lbl.add_theme_color_override("font_hover_color", current_theme["Font"])
+						nm_lbl.add_theme_color_override("font_hover_color", current_theme["Font"])
 					else:
-						btn.add_theme_color_override("font_color", Color.GHOST_WHITE) # Applica lo stile al bottone
+						btn.add_theme_color_override("font_color", default_font_color)
+						lbl.add_theme_color_override("font_color", default_font_color)
+						nm_lbl.add_theme_color_override("font_color", default_font_color)
+						btn.add_theme_color_override("font_hover_color", default_font_color)
+						lbl.add_theme_color_override("font_hover_color", default_font_color)
+						nm_lbl.add_theme_color_override("font_hover_color", default_font_color)
 					if element["category"] == "Category":
 						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
 						style.bg_color = current_theme["Category"][str(category_counter)]
-					elif element["category"] == "Title":
-						category_counter = (category_counter % 8) + 1  # Cicla da 1 a 8
-						style.bg_color = Color.TRANSPARENT
-						btn.add_theme_color_override("font_color",current_theme["TitleFont"][str(category_counter)])
 					else:
 						style.bg_color = current_theme[element["category"]]
 					btn.add_theme_stylebox_override("normal", style)
@@ -2804,43 +2801,38 @@ func create_periodic_table():
 					element_container.add_to_group("elements")
 					grid_container.add_child(element_container)
 					elements_created += 1
-					var original_color = style.bg_color
-					var hover_color = original_color
 					var piano_pitches = [1.0, 1.12246204831, 1.25992104989, 1.33483985417, 1.49830707688, 1.68179283051, 1.88774862536, 2.0]
-
 					btn.mouse_entered.connect(func():
-						# Annulla il timer se attivo
 						if timer.wait_time != 0:
 							timer.stop()
 							timer.wait_time = 0.5
-						
 						var tween = element_container.create_tween()
 						if element["category"] != "Category":
+							var base_color = current_theme[element["category"]]
+							var hover_color = base_color.darkened(0.2)
 							element_hovering_audio.pitch_scale = randf_range(1.2,1.5)
 							element_hovering_audio.play()
+							style.bg_color = hover_color
 						else:
+							var key = prof_to_key.get(symbol)
+							var base_color = current_theme["Category"].get(key, Color.WHITE)
 							if piano_key == piano_pitches.size():
 								piano_key = 0
 							element_hovering_audio.pitch_scale = piano_pitches[piano_key]
 							element_hovering_audio.play()
 							piano_key += 1
+							style.bg_color = base_color
 							on_category_selected(symbol)
-						
-						style.bg_color = hover_color.darkened(0.2)
+							#style.bg_color = base_color
 						tween.tween_property(element_container, "scale", Vector2(1.1,1.1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 					)
 					btn.mouse_exited.connect(func():
 						var tween = element_container.create_tween()
-						if element["category"] == "Category":
-							# Reset immediato del colore
-							style.bg_color = original_color
-							timer.start()
-							
-		
-						else:
+						if element["category"] != "Category":
 							element_hovering_audio.stop()
 							style.bg_color = current_theme[element["category"]]
-						
+						else:
+							timer.start()
 						tween.tween_property(element_container, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 					)
 					if elements_created == total_elements:
@@ -2907,12 +2899,12 @@ func on_element_selected(symbol, button):
 		popup_image.texture = img_texture
 
 	if "links" in element:
-		popup_name_label.text = element["scientist_name"]
-		popup_profession_label.text =  element["profession"]
+		popup_name_label.text = " " + element["scientist_name"]
+		popup_profession_label.text =  " " + element["profession"]
+		popup_brief_label.text = " " + element["brief_subtitle"]
 		popup_year_label.text = element["year"]
 		popup_description_label.text = element["description"]
 		popup_quote_label.text = element["quote"]
-		popup_brief_label.text = element["brief_subtitle"]
 		popup_nationality_label.text = element["nationality"]
 		popup_links_label.text = "\n".join(element["links"]) if "links" in element else ""
 		if element["awards"] != "":
@@ -2978,13 +2970,13 @@ func calculate_popup_position(button):
 	popup_margin.reset_size()
 	button.scale = Vector2(1.0, 1.0)
 	var popup_pos_x = button.global_position.x + button.size.x
-	print("popup_pos_x: ", popup_pos_x, " button.global_position.x: ", button.global_position.x, " button.size.x: ", button.size.x)
-	print("button_scale: ", button.scale)
+	#print("popup_pos_x: ", popup_pos_x, " button.global_position.x: ", button.global_position.x, " button.size.x: ", button.size.x)
+	#print("button_scale: ", button.scale)
 	var popup_pos_y = button.global_position.y - button.size.y
 	if popup_pos_x > screen_size.x / 2:
 		popup_pos_x = popup_pos_x - button.size.x - popup_margin.size.x - offset
 	else:
-		print("popup_pos_x: ", popup_pos_x, " offset: ", offset)
+		#print("popup_pos_x: ", popup_pos_x, " offset: ", offset)
 		popup_pos_x = popup_pos_x + offset
 	
 	if popup_pos_y > screen_size.y / 2 - button.size.y:
@@ -3005,24 +2997,62 @@ func popup_animation(button):
 	tween.tween_property(button, "scale", Vector2(1.1,1.1), 0.1).set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
 	popup_panel.size.y = (popup_margin.size.y)
 
-const STATES = ["normal", "hover", "pressed", "disabled"]
+const STATES = ["normal"]
 
 # Cache globale per gli stili
 var global_style_cache = {}
 
+# Disabilita i segnali di aggiornamento durante il batch di operazioni
+var _is_batch_updating = false
+
+# Precomputa gli stili per i vari stati una sola volta
+var precomputed_themes = {}
+
+# Inizializza gli stili precomputati (chiamare all'avvio)
+func precompute_styles():
+	precomputed_themes.clear()
+	
+	# Pre-calcola gli stili per le categorie principali
+	for category in current_theme.keys():
+		if category == "Category" or category == "Font" or current_theme["Background"] is String:
+			continue
+			
+		var style = StyleBoxFlat.new()
+		style.set_corner_radius_all(radius)
+		style.set_expand_margin_all(margin)
+		style.bg_color = current_theme[category]
+		precomputed_themes[category] = style
+	
+	# Pre-calcola gli stili per le categorie numerate
+	if "Category" in current_theme:
+		for i in prof_to_key:
+			var key = str(i)
+			if key in current_theme["Category"]:
+				var style = StyleBoxFlat.new()
+				style.set_corner_radius_all(radius)
+				style.set_expand_margin_all(margin)
+				style.bg_color = current_theme["Category"][key]
+				precomputed_themes["Category_" + key] = style
+
+# Versione ottimizzata della funzione principale
 func reset_all_colors() -> void:
 	selected_category_symbol = ""
-	var category_counter := 0
+	category_counter = 0
 	
-	# Resettiamo e svuotiamo la cache per assicurarci che non rimangano stili vecchi
-	global_style_cache.clear()
+	# Prepariamo una lista di aggiornamenti da applicare in batch
+	var buttons_to_update = []
+	var labels_to_update = []
+	var font_color = current_theme.get("Font", default_font_color)
 	
+	# Disabilita temporaneamente gli aggiornamenti
+	_is_batch_updating = true
+	
+	# Raccogliamo tutti gli elementi da aggiornare
 	for element_container in grid_container.get_children():
-		# Applica il font_color a tutti i Label dentro
-		var font_color = current_theme.get("Font", Color.GHOST_WHITE)
+		# Raccogli le Label
 		for child in element_container.get_children():
 			if child is Label:
-				child.add_theme_color_override("font_color", font_color)
+				labels_to_update.append(child)
 		
 		# Ottimizzazione ricerca Button
 		var btn = find_button_in_children(element_container)
@@ -3033,7 +3063,7 @@ func reset_all_colors() -> void:
 		if not data:
 			continue
 		
-		# Reset completo delle scale per garantire che l'animazione precedente non influenzi
+		# Reset completo delle scale
 		btn.scale = Vector2(1.0, 1.0)
 		
 		var category: String = data["category"]
@@ -3044,24 +3074,24 @@ func reset_all_colors() -> void:
 			category_counter = (category_counter % 8) + 1
 			style_key = "Category_" + str(category_counter)
 		
-		# Crea e memorizza lo stile nella cache solo se non esiste già
-		if not style_key in global_style_cache:
-			var style = StyleBoxFlat.new()
-			style.set_corner_radius_all(radius)
-			style.set_expand_margin_all(margin)
-			
-			if category == "Category":
-				style.bg_color = current_theme["Category"][str(category_counter)]
-			else:
-				style.bg_color = current_theme[category]
-				
-			global_style_cache[style_key] = style
-		
-		# Applicazione stile
-		apply_style_to_button(btn, global_style_cache[style_key])
+		# Aggiungi il bottone alla lista con lo stile da applicare
+		buttons_to_update.append({
+			"button": btn,
+			"style_key": style_key
+		})
+	
+	# Applica il colore del font a tutte le label in un'unica volta
+	for label in labels_to_update:
+		label.add_theme_color_override("font_color", font_color)
+	
+	# Applica gli stili a tutti i bottoni in batch
+	batch_apply_styles(buttons_to_update, font_color)
+	
+	# Riattiva gli aggiornamenti
+	_is_batch_updating = false
+	
 
 # Funzione helper ottimizzata per trovare il primo Button nei figli
-# Usiamo l'accesso diretto se possibile, altrimenti cerca tra i figli
 func find_button_in_children(parent: Node) -> Button:
 	var btn = parent.get_node_or_null("Button")
 	if btn and btn is Button:
@@ -3074,16 +3104,64 @@ func find_button_in_children(parent: Node) -> Button:
 			
 	return null
 
-# Funzione helper per applicare gli stili - garantisce che tutti gli stati vengano resettati
+# Versione ottimizzata che applica gli stili in batch
+func batch_apply_styles(buttons_data: Array, font_color: Color) -> void:
+
+	# Applica gli stili in batch
+	for data in buttons_data:
+		var btn = data["button"]
+		var style_key = data["style_key"]
+		
+		# Ottieni o crea lo stile
+		var style
+		if style_key in precomputed_themes:
+			style = precomputed_themes[style_key]
+		else:
+			# Crea il nuovo stile solo se necessario
+			style = StyleBoxFlat.new()
+			style.set_corner_radius_all(radius)
+			style.set_expand_margin_all(margin)
+			
+			if style_key.begins_with("Category_"):
+				var category_number = style_key.substr(9)
+				style.bg_color = current_theme["Category"][category_number]
+			else:
+				style.bg_color = current_theme[style_key]
+				
+			precomputed_themes[style_key] = style
+		
+		# Applica lo stile a tutti gli stati del bottone in una volta sola
+		for state in STATES:
+			btn.add_theme_stylebox_override(state, style)
+		
+		# Imposta il colore del font
+		btn.add_theme_color_override("font_color", font_color)
+		btn.add_theme_color_override("font_hover_color", font_color)
+	
+
+# Funzione originale per compatibilità, ma ottimizzata
 func apply_style_to_button(btn: Button, style: StyleBoxFlat) -> void:
+	# Se siamo in modalità batch, non fare nulla per evitare aggiornamenti multipli
+	if _is_batch_updating:
+		return
+	
+	# Disabilita temporaneamente gli aggiornamenti dell'interfaccia
+	var was_processing = get_tree().is_processing()
+	if was_processing:
+		get_tree().set_deferred_enabled(false)
+	
+	# Applica lo stile a tutti gli stati
 	for state in STATES:
 		btn.add_theme_stylebox_override(state, style)
 	
-	if "Font" in current_theme:
-		btn.add_theme_color_override("font_color", current_theme["Font"])
-	else:
-		btn.add_theme_color_override("font_color", Color.GHOST_WHITE)
-
+	# Imposta il colore del font
+	var font_color = current_theme.get("Font", default_font_color)
+	btn.add_theme_color_override("font_color", font_color)
+	btn.add_theme_color_override("font_hover_color", font_color)
+	
+	# Riattiva gli aggiornamenti dell'interfaccia
+	if was_processing:
+		get_tree().set_deferred_enabled(true)
 
 func _on_theme_button_pressed() -> void:
 	change_theme()

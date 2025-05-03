@@ -23,7 +23,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/inspector_tabs/plugin.cfg")
+enabled=PackedStringArray("res://addons/inspector_tabs/plugin.cfg", "res://addons/label_font_auto_sizer/plugin.cfg")
 
 [global_group]
 
