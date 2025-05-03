@@ -345,7 +345,6 @@ text = "\"Links\""
 autowrap_mode = 2
 
 [node name="PopupPanel" type="PanelContainer" parent="PopupLayer"]
-visible = false
 z_index = -1
 anchors_preset = 8
 anchor_left = 0.5
@@ -368,7 +367,6 @@ follow_viewport_enabled = true
 follow_viewport_scale = 1000.0
 
 [node name="Background" type="ColorRect" parent="BackgroundLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -386,7 +384,6 @@ follow_viewport = false
 ignore_camera_scroll = true
 
 [node name="Background" type="Sprite2D" parent="Parallax2D"]
-visible = false
 z_index = -1
 texture_filter = 6
 position = Vector2(768, 512)
