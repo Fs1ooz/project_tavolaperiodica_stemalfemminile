@@ -136,9 +136,7 @@ func _check_font_size() -> void:
 ## Calls for the shrink or enlarge methods accordingly.
 func _check_line_count() -> void:
 	if Engine.is_editor_hint() and _lock_size_in_editor:
-		printerr("porcod")
 		return
-	printerr("porcod")
 	if _current_font_size > _max_size and _current_font_size > _min_size:
 		_shrink_font()
 		return

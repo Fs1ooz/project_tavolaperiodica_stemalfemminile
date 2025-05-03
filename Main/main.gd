@@ -24,6 +24,7 @@ extends Control
 @export var title_label: RichTextLabel
 
 @export var solid_bg: ColorRect
+@export var moving_bg: Parallax2D
 
 @onready var screen_size = get_viewport_rect().size
 @onready var current_theme = themes[default_theme]
@@ -2590,13 +2591,15 @@ func change_bg(new_theme):
 		return
 	var bg_value = current_theme["Background"]
 	if bg_value is not String:
-		$Parallax2D.visible = false
+		moving_bg.visible = false
 		solid_bg.color = current_theme["Background"]
 		solid_bg.global_position = Vector2(-size.x/2, -size.y/2)
 	else:
-		$Parallax2D.visible = true
+		moving_bg.visible = true
 
 func _ready() -> void:
+	moving_bg.visible = true
+	solid_bg.visible = true
 	timer.connect("timeout",reset_all_colors)
 	await get_tree().process_frame
 	center_table()

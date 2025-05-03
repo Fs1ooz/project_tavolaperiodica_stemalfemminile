@@ -26,7 +26,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="Main" type="Control" node_paths=PackedStringArray("periodic_table_layer", "element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "title_label", "solid_bg")]
+[node name="Main" type="Control" node_paths=PackedStringArray("periodic_table_layer", "element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "title_label", "solid_bg", "moving_bg")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,6 +55,7 @@ popup_links_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVB
 popup_image = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/PopupImage")
 title_label = NodePath("PeriodicTableLayer/Title")
 solid_bg = NodePath("BackgroundLayer/Background")
+moving_bg = NodePath("Parallax2D")
 
 [node name="ElementHovering" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_f6fdm")
@@ -361,20 +362,6 @@ pivot_offset = Vector2(200, 0)
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
 
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
-layer = -2
-follow_viewport_enabled = true
-follow_viewport_scale = 1000.0
-
-[node name="Background" type="ColorRect" parent="BackgroundLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="Parallax2D" type="Parallax2D" parent="."]
 texture_repeat = 2
 repeat_size = Vector2(512, 512)
@@ -390,6 +377,20 @@ position = Vector2(768, 512)
 texture = ExtResource("10_qac2q")
 region_enabled = true
 region_rect = Rect2(0, 0, 1536, 1024)
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -2
+follow_viewport_enabled = true
+follow_viewport_scale = 1000.0
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
