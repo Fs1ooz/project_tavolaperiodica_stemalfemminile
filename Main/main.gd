@@ -2371,33 +2371,6 @@ var themes = {
 		"Sconosciuto": Color.DIM_GRAY,
 		"Background": "default"
 	},
-	#"dark": {
-		#"Category": {
-			#"1": Color(0.3, 0, 0.3),
-			#"2": Color(0.4, 0, 0.6),
-			#"3": Color(0.5, 0, 0.5),
-			#"4": Color(0.6, 0, 0.4),
-			#"5": Color(0.7, 0, 0.3),
-			#"6": Color(0.7, 0.2, 0.3),
-			#"7": Color(0.7, 0.3, 0.2),
-			#"8": Color(0.7, 0.4, 0.1),
-		#},
-		#"Title": Color(0.1, 0.1, 0.1, 0.5),  # Trasparente ma più scuro
-		#"Credits": Color(0.15, 0.2, 0.4),  # Blu spento
-		#"F-Block": Color("#3d473d"),
-		#"Metallo alcalino": Color(0.6, 0.0, 0.1),
-		#"Metallo alcalino-terroso": Color(0.6, 0.2, 0.0),
-		#"Metallo di transizione": Color(0.55, 0.3, 0.05),
-		#"Metallo post-transizionale": Color(0.4, 0.5, 0.1),
-		#"Metalloide": Color(0.25, 0.5, 0.25),
-		#"Non metallo": Color(0.1, 0.5, 0.35),
-		#"Alogeno": Color(0.05, 0.45, 0.45),
-		#"Gas nobile": Color(0.0, 0.4, 0.6),
-		#"Lantanide": Color(0.1, 0.1, 0.6),
-		#"Attinide": Color(0.2, 0.0, 0.5),
-		#"Sconosciuto": Color(0.25, 0.25, 0.25),
-		#"Background": Color.DIM_GRAY,
-	#},
 	"plain": {
 		"Category": {
 			"1": Color(0.5, 0, 0.5),
