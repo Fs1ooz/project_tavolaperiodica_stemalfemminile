@@ -51,49 +51,7 @@ var piano_key = 0
 var current_theme_index = 0
 
 #Database di tutti gli elementi
-var elements: Dictionary = {
-	#"Per": {
-		#"name": "", 
-		#"category": "Title", 
-		#"group": 4, 
-		#"period": 1,
-	#},
-	#"iod": {
-		#"name": "", 
-		#"category": "Title", 
-		#"group": 5, 
-		#"period": 1,
-	#},
-	#"ica": {
-		#"name": "", 
-		#"category": "Title", 
-		#"group": 6, 
-		#"period": 1,
-	#},
-	#"Men": {
-		#"name": "", 
-		#"category": "Title", 
-		#"group": 7, 
-		#"period": 1,
-	#},
-	#"te    ": {
-		#"name": "", 
-		#"category": "Title", 
-		#"group": 8, 
-		#"period": 1,
-	#},
-	#"Don": {
-		#"name": "", 
-		#"category": "Title", 
-		#"group": 10, 
-		#"period": 1,
-	#},
-	#"ne   ": {
-		#"name": "", 
-		#"category": "Title", 
-		#"group": 11, 
-		#"period": 1,
-	#},
+@onready var elements: Dictionary = {
 	## Periodo 1-2 Gruppo 4-11 Fittizio
 	"Phy": {
 		"name": "Fisica", 
@@ -222,7 +180,8 @@ var elements: Dictionary = {
 		"quote": "Se non puoi aggiustarlo, mettici le mani",
 		"links": [
 			"https://en.wikipedia.org/wiki/Beatrice_Shilling"
-		]
+		],
+		"profession_keys": ["Eng"],
 	},
 	"B": {
 		"name": "Boro", 
@@ -281,7 +240,8 @@ var elements: Dictionary = {
 		"quote": "Il mondo mi ha trattata così duramente che temo mi abbia resa sospettosa verso tutti.",
 		"links": [
 			"https://en.wikipedia.org/wiki/Mary_Anning"
-		]
+		],
+		"profession_keys": ["Bio"],
 	},
 	"O": {
 		"name": "Ossigeno",
@@ -322,7 +282,8 @@ var elements: Dictionary = {
 		"links": [
 			"https://en.wikipedia.org/wiki/Françoise_Barré-Sinoussi",
 			"https://www.nobelprize.org/prizes/medicine/2008/barre-sinoussi/facts/"
-		]
+		],
+		"profession_keys": ["Med", "Bio"],
 	},
 	"Ne": {
 		"name": "Neon",
@@ -342,7 +303,8 @@ var elements: Dictionary = {
 		"links": [
 			"https://en.wikipedia.org/wiki/Nettie_Stevens",
 			"https://www.britannica.com/biography/Nettie-Stevens"
-		]
+		],
+		"profession_keys": ["Bio"],
 	},
 
 	# Periodo 3
@@ -401,21 +363,22 @@ var elements: Dictionary = {
 		"profession_keys": ["Mat", "Eng"],
 	},
 	"Si": {
-	  "name": "Silicio",
-	  "number": 14,
-	  "category": "Metalloide",
-	  "group": 14,
-	  "period": 3,
-	  "image": "",
-	  "scientist_name": "Sibylla Maria Merian",
-	  "profession": "Naturalista e illustratrice",
-	  "brief_subtitle": "Pioniera dell'entomologia moderna",
-	  "year": "1647–1717",
-	  "nationality": "Tedesca",
-	  "description": "Famosa per i suoi studi sugli insetti e la loro metamorfosi. Ha viaggiato in Suriname, un’area tropicale, dove ha studiato la fauna e la flora locali, documentando il ciclo di vita degli insetti in modo straordinariamente preciso e dettagliato. Le sue illustrazioni, pubblicate in opere come *Metamorphosis insectorum Surinamensium* (1705), sono ancora oggi considerate capolavori di arte scientifica.",
-	  "awards": "",
-	  "quote": "La natura è un libro che ci insegna continuamente, se solo abbiamo occhi per guardare.",
-	  "links": []
+		"name": "Silicio",
+		"number": 14,
+		"category": "Metalloide",
+		"group": 14,
+		"period": 3,
+		"image": "",
+		"scientist_name": "Sibylla Maria Merian",
+		"profession": "Naturalista e illustratrice",
+		"brief_subtitle": "Pioniera dell'entomologia moderna",
+		"year": "1647–1717",
+		"nationality": "Tedesca",
+		"description": "Famosa per i suoi studi sugli insetti e la loro metamorfosi. Ha viaggiato in Suriname, un’area tropicale, dove ha studiato la fauna e la flora locali, documentando il ciclo di vita degli insetti in modo straordinariamente preciso e dettagliato. Le sue illustrazioni, pubblicate in opere come *Metamorphosis insectorum Surinamensium* (1705), sono ancora oggi considerate capolavori di arte scientifica.",
+		"awards": "",
+		"quote": "La natura è un libro che ci insegna continuamente, se solo abbiamo occhi per guardare.",
+		"links": [],
+		"profession_keys": ["Med", "Bio"],
 	},
 	"P": {
 	  "name": "Fosforo",
@@ -436,22 +399,23 @@ var elements: Dictionary = {
 	"profession_keys": ["Bio"],
 	},
 	"S": {
-	  "name": "Zolfo",
-	  "number": 16,
-	  "category": "Non metallo",
-	  "group": 16,
-	  "period": 3,
-	  "image": "",
-	  "scientist_name": "Henrietta Swan Leavitt",
-	  "profession": "Astronoma",
-	  "brief_subtitle": "Scoprì la relazione periodo-luminosità delle Cefeidi",
-	  "year": "1868-1921",
-	  "nationality": "Statunitense",
-	  "description": "Henrietta Swan Leavitt è stata un'astronoma statunitense. Ha lavorato presso l'Osservatorio di Harvard come \"computer umano\", analizzando le lastre fotografiche del cielo. La sua scoperta più importante riguarda la relazione tra il periodo e la luminosità delle variabili Cefeidi, che ha permesso di misurare le distanze cosmiche e rivoluzionato l'astronomia. Questa scoperta è stata fondamentale per Edwin Hubble nella dimostrazione dell’espansione dell’universo.",
-	  "awards": "",
-	  "quote": "A tutti coloro che studiano le stelle, spero che il mio lavoro possa essere utile.",
-	  "links": []
-	},
+		"name": "Zolfo",
+		"number": 16,
+		"category": "Non metallo",
+		"group": 16,
+		"period": 3,
+		"image": "",
+		"scientist_name": "Henrietta Swan Leavitt",
+		"profession": "Astronoma",
+		"brief_subtitle": "Scoprì la relazione periodo-luminosità delle Cefeidi",
+		"year": "1868-1921",
+		"nationality": "Statunitense",
+		"description": "Henrietta Swan Leavitt è stata un'astronoma statunitense. Ha lavorato presso l'Osservatorio di Harvard come \"computer umano\", analizzando le lastre fotografiche del cielo. La sua scoperta più importante riguarda la relazione tra il periodo e la luminosità delle variabili Cefeidi, che ha permesso di misurare le distanze cosmiche e rivoluzionato l'astronomia. Questa scoperta è stata fondamentale per Edwin Hubble nella dimostrazione dell’espansione dell’universo.",
+		"awards": "",
+		"quote": "A tutti coloro che studiano le stelle, spero che il mio lavoro possa essere utile.",
+		"links": [],
+		"profession_keys": ["Astro"],
+		},
 	"Cl": {
 	  "name": "Cloro",
 	  "number": 17,
@@ -565,7 +529,8 @@ var elements: Dictionary = {
 		"quote": "La scienza è come un codice da decifrare: ogni scoperta apre una nuova porta alla comprensione della vita.",
 		"links": [
 			"<https://en.wikipedia.org/wiki/Tina_M._Henkin>"
-		]
+		],
+		"profession_keys": ["Bio"]
 	},
 	"V": {
 		"name": "Vanadio",
@@ -636,8 +601,8 @@ var elements: Dictionary = {
 		"description": "Microbiologa nota per la scoperta (2010) di batteri che sostituiscono il fosforo con l’arsenico. La sua ricerca suggerisce possibilità di vita in ambienti estremi con biochimiche alternative.",
 		"awards": "",
 		"quote": "",
-		"links": ["<https://en.wikipedia.org/wiki/Felisa_Wolfe-Simon>"]
-
+		"links": ["<https://en.wikipedia.org/wiki/Felisa_Wolfe-Simon>"],
+		"profession_keys": ["Bio"],
 	},
 	"Co": {
 		"name": "Cobalto",
@@ -723,7 +688,7 @@ var elements: Dictionary = {
 		"brief_subtitle": "Voce degli scimpanzé",
 		"year": "1934 - ",
 		"nationality": "Britannica",
-		"description": "Etologa britannica rivoluzionaria: dimostrò l’uso di strumenti e la caccia organizzata negli scimpanzé. Attivista per la conservazione della natura e il benessere animale.",
+		"description": "Etologa britannica rivoluzionaria, Jane Goodall trascorse anni tra gli scimpanzé in Tanzania, documentando comportamenti complessi come l’uso di strumenti e la caccia organizzata. Le sue scoperte hanno ridefinito il confine tra umani e animali e ispirato un attivismo globale per la conservazione e i diritti degli esseri viventi.",
 		"awards": "",
 		"quote": "Ciò che fai fa la differenza, e devi decidere che tipo di differenza vuoi fare.",
 		"links": ["<https://en.wikipedia.org/wiki/Jane_Goodall>"],
@@ -741,7 +706,7 @@ var elements: Dictionary = {
 		"brief_subtitle": "Decifratrice del metabolismo umano",
 		"year": "1896 - 1957",
 		"nationality": "Ceco-americana",
-		"description": "Prima donna a vincere il Nobel per la medicina (1947). Scoprì con il marito Carl il ciclo di Cori, fondamentale per la comprensione del metabolismo energetico.",
+		"description": "Prima donna a vincere il Nobel per la medicina (1947), Gerty Cori scoprì insieme al marito Carl il ciclo che porta il loro nome, fondamentale per comprendere come il corpo converte e immagazzina l’energia. La sua ricerca aprì nuove strade nello studio delle malattie metaboliche, rompendo al contempo barriere di genere nella scienza.",
 		"awards": "Premio Nobel per la Fisiologia o Medicina (1947)",
 		"quote": "I momenti indimenticabili sono le pietre miliari della conoscenza.",
 		"links": ["<https://en.wikipedia.org/wiki/Gerty_Cori>"],
@@ -800,7 +765,8 @@ var elements: Dictionary = {
 		"quote": "La scienza non è un gioco da maschi, non è un gioco da femmine. È il gioco di tutti.",
 		"links": [
 			"https://en.wikipedia.org/wiki/Jocelyn_Bell_Burnell"
-		]
+		],
+		"profession_keys": ["Astro", "Phy"],
 	},
 	"Kr": {
 		"name": "Kripton",
@@ -857,7 +823,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "L'arte non è qualcosa che fai, è qualcosa che vivi.",
 		"links": ["<https://en.wikipedia.org/wiki/Sophie_Taeuber-Arp>"],
-			"profession_keys": ["Hum"],
+		"profession_keys": ["Hum"],
 	},
 
 	"Y": {
@@ -875,7 +841,8 @@ var elements: Dictionary = {
 		"description": "Cristallografa israeliana premio Nobel per la Chimica nel 2009 per aver svelato la struttura dei ribosomi mediante cristallografia a raggi X. Le sue scoperte hanno rivoluzionato la comprensione della sintesi proteica e sono alla base dello sviluppo di nuovi antibiotici. Prima donna israeliana a vincere un Nobel scientifico.",
 		"awards": "Premio Nobel per la Chimica (2009)",
 		"quote": "Non ho mai pensato al genere o alla fama, amo semplicemente la scienza.",
-		"links": ["<https://en.wikipedia.org/wiki/Ada_Yonath>"]
+		"links": ["<https://en.wikipedia.org/wiki/Ada_Yonath>"],
+		"profession_keys": ["Chem"],
 	},
 
 	"Zr": {
@@ -893,7 +860,8 @@ var elements: Dictionary = {
 		"description": "Scienziata planetaria statunitense, prima donna a dirigere il dipartimento di scienze planetarie al MIT. Ha mappato la topografia e la struttura interna di Marte attraverso missioni come il Mars Global Surveyor. Il suo lavoro è fondamentale per la comprensione dell'evoluzione geologica del sistema solare.",
 		"awards": "",
 		"quote": "La scienza non riguarda il dimostrare di avere ragione, ma nel fare le domande giuste.",
-		"links": ["<https://en.wikipedia.org/wiki/Maria_T._Zuber>"]
+		"links": ["<https://en.wikipedia.org/wiki/Maria_T._Zuber>"],
+		"profession_keys": ["Astro", "Phy"]
 	},
 	"Nb": {
 		"name": "Niobio",
@@ -986,7 +954,8 @@ var elements: Dictionary = {
 		"description": "Immunologa egiziana pioniera nella ricerca sulla schistosomiasi, malattia parassitaria tropicale. Professoressa all’Università del Cairo, ha dedicato la sua carriera allo sviluppo di un vaccino e alla comprensione della biochimica dei parassiti. Il suo lavoro ha avuto un impatto globale nella lotta contro le malattie trascurate dei Paesi in via di sviluppo.",
 		"awards": "Numerosi riconoscimenti accademici per la ricerca sulle malattie parassitarie",
 		"quote": "La scienza è la chiave per risolvere i problemi che minacciano la salute umana, e dedicare la mia vita alla ricerca è il modo migliore per fare la differenza.",
-		"links": ["<https://en.wikipedia.org/wiki/Rashika_El_Ridi>"]
+		"links": ["<https://en.wikipedia.org/wiki/Rashika_El_Ridi>"],
+		"profession_keys": ["Med", "Bio"],
 	},
 	"Pd": {
 		"name": "Palladio",
@@ -1022,7 +991,8 @@ var elements: Dictionary = {
 		"description": "Chimica tedesca autodidatta che sviluppò tecniche pionieristiche per studiare la tensione superficiale dei liquidi, nonostante la mancanza di un'istruzione formale. I suoi esperimenti domestici influenzarono la ricerca in chimica colloidale e ispirarono futuri scienziati come Irving Langmuir.",
 		"awards": "",
 		"quote": "Non bisogna essere in un laboratorio per fare scienza, basta la passione per la scoperta.",
-		"links": ["<https://en.wikipedia.org/wiki/Agnes_Pockels>"]
+		"links": ["<https://en.wikipedia.org/wiki/Agnes_Pockels>"],
+		"profession_keys": ["Chem"],
 	},
 
 	"Cd": {
@@ -1097,7 +1067,8 @@ var elements: Dictionary = {
 		"description": "Biochimica spagnola che introdusse tecniche avanzate per l'analisi degli ormoni steroidei. Direttrice della Sezione Steroidi all'Istituto Gregorio Marañón e membro fondatore della SEBBM, ha contribuito alla crescita della biochimica in Spagna.",
 		"awards": "",
 		"quote": "La scienza non è solo una raccolta di conoscenze, ma un modo di pensare, di esplorare, e di cercare risposte per migliorare la nostra comprensione del mondo.",
-		"links": ["<https://es.wikipedia.org/wiki/Sara_Borrel_Ruiz>"]
+		"links": ["<https://es.wikipedia.org/wiki/Sara_Borrel_Ruiz>"],
+		"profession_keys": ["Med", "Chem", "Bio"]
 	},
 
 	"Te": {
@@ -1116,6 +1087,7 @@ var elements: Dictionary = {
 		"awards": "Eroe dell'Unione Sovietica",
 		"quote": "Un uccello non può volare con una sola ala. Il volo spaziale umano non può progredire ulteriormente senza la partecipazione attiva delle donne.",
 		"links": ["<https://en.wikipedia.org/wiki/Valentina_Tereshkova>"],
+		"profession_keys": ["Astro", "Hum"]
 	},
 	"I": {
 		"name": "Iodio", 
@@ -1129,7 +1101,7 @@ var elements: Dictionary = {
 		"brief_subtitle": "Luce del sapere antico",  # Alternativa: "Martire della scienza"
 		"year": "360 ca. - 415 d.C.",
 		"nationality": "Alessandrina (Egitto)",
-		"description": "Figlia del matematico Teone di Alessandria, Ipazia fu pioniera nell'astronomia e nella filosofia neoplatonica. Progettò strumenti scientifici come l'astrolabio e il densimetro, fondamentali per misurare la posizione delle stelle e la densità dei liquidi. Simbolicamente, lo iodio (essenziale per la mente e la crescita) riflette il suo impegno per la conoscenza. Fu assassinata per le sue idee, diventando un'icona della libertà di pensiero e del femminismo scientifico.",
+		"description": "Figlia del matematico Teone di Alessandria, Ipazia fu pioniera nell'astronomia e nella filosofia neoplatonica. Progettò strumenti scientifici come l'astrolabio e il densimetro, fondamentali per misurare la posizione delle stelle e la densità dei liquidi.Fu assassinata per le sue idee, diventando un'icona della libertà di pensiero e del femminismo scientifico.",
 		"awards": "",  # Non applicabile, ma potresti usare "Icona eterna della scienza"
 		"quote": "Quando ti vedo mi prostro davanti a te e alle tue parole, vedendo la casa astrale della Vergine, infatti verso il cielo è rivolto ogni tuo atto Ipazia sacra, bellezza delle parole, astro incontaminato della sapiente cultura.",
 		"links": ["https://it.wikipedia.org/wiki/Ipazia", "https://www.britannica.com/biography/Hypatia"],
@@ -1188,7 +1160,8 @@ var elements: Dictionary = {
 		"description": "Informatica statunitense vincitrice del Premio Turing (2008) per il Principio di Sostituzione di Liskov (LSP), pilastro della programmazione a oggetti. Sviluppò il linguaggio CLU negli anni ’70, introducendo concetti rivoluzionari come la tipizzazione forte e la gestione automatica della memoria, anticipando linguaggi moderni come Java e Python.",
 		"awards": "Premio Turing (2008)",
 		"quote": "La chiarezza e la semplicità nel design del software non sono solo una questione di estetica, ma un mezzo per garantire che il sistema funzioni in modo affidabile e scalabile.",
-		"links": ["<https://en.wikipedia.org/wiki/Barbara_Liskov>"]
+		"links": ["<https://en.wikipedia.org/wiki/Barbara_Liskov>"],
+		"profession_keys": ["Eng", "Mat"]
 	},
 	
 	" . ": {
@@ -1222,7 +1195,8 @@ var elements: Dictionary = {
 		"description": "Chimica polacca di origine ebraica che contribuì alla scoperta degli isotopi lavorando con Otto Hönigschmid all'Istituto per la Ricerca sul Radio di Vienna. Determinò il peso atomico del piombo derivante dal decadimento dell'uranio, dimostrando l'esistenza degli isotopi. Dopo la Prima Guerra Mondiale, abbandonò la carriera scientifica per fondare una casa di accoglienza per bambini. Durante l'Olocausto, si consegnò volontariamente ai nazisti per proteggere altri ebrei, morendo a Treblinka. Il suo lavoro, a lungo dimenticato, è oggi riconosciuto come fondamentale per la chimica nucleare.",
 		"awards": "",
 		"quote": "",
-		"links": ["<https://de.wikipedia.org/wiki/Stefanie_Horovitz>"]
+		"links": ["<https://de.wikipedia.org/wiki/Stefanie_Horovitz>"],
+		"profession_keys": ["Chem"],
 	},
 
 	"Ta": {
@@ -1298,7 +1272,8 @@ var elements: Dictionary = {
 		"description": "Chimica e matematica austriaca naturalizzata statunitense. Pioniera nello studio dei composti di transizione e nella teoria dei legami chimici al Caltech. Vincitrice del Perkin Medal (1977) e Lavoisier Medal, fu tra le prime donne a ottenere riconoscimenti in un campo dominato dagli uomini. Il suo lavoro sui metalli di transizione ha influenzato generazioni di ricercatori.",
 		"awards": "Perkin Medal (1977), Lavoisier Medal",
 		"quote": "La matematica è una lingua universale che ci permette di comprendere la bellezza intrinseca dell'universo.",
-		"links": ["<https://en.wikipedia.org/wiki/Olga_Taussky-Todd>"]
+		"links": ["<https://en.wikipedia.org/wiki/Olga_Taussky-Todd>"],
+		"profession_keys": ["Chem", "Mat"]
 	},
 	"Ir": {  
 		"name": "Iridio",  
@@ -1321,19 +1296,19 @@ var elements: Dictionary = {
 	"Pt": {  
 		"name": "Platino",  
 		"number": 78,  
-	   "category": "Metallo di transizione",  
-	   "group": 10,  
-	   "period": 6,  
-	   "image": "res://Images/STEAM Women/Patricia Bath.jpg",  
-	   "scientist_name": "Patricia Bath",  
-	   "profession": "Oftalmologa e Inventrice",  
-	   "brief_subtitle": "Pioniera della chirurgia della cataratta",  
-	   "year": "1942 - 2019",  
-	   "nationality": "Americana",  
-	   "description": "Oftalmologa e inventrice americana, prima donna afroamericana a ottenere un brevetto medico (1988) per la sonda Laserphaco, che rivoluzionò la chirurgia della cataratta. Fondò l’American Institute for the Prevention of Blindness e fu la prima donna nera a dirigere un programma di specializzazione in oftalmologia negli USA. Il suo lavoro migliorò l’accesso alle cure oculistiche per le comunità svantaggiate.",  
-	   "awards": "Brevetto per la Laserphaco (1988), Fondatrice dell’American Institute for the Prevention of Blindness (1976)",  
-	   "quote": "La capacità di ripristinare la vista è la ricompensa finale.",  
-	   "links": ["<https://en.wikipedia.org/wiki/Patricia_Bath>"],
+		"category": "Metallo di transizione",  
+		"group": 10,  
+		"period": 6,  
+		"image": "res://Images/STEAM Women/Patricia Bath.jpg",  
+		"scientist_name": "Patricia Bath",  
+		"profession": "Oftalmologa e Inventrice",  
+		"brief_subtitle": "Pioniera della chirurgia della cataratta",  
+		"year": "1942 - 2019",  
+		"nationality": "Americana",  
+		"description": "Oftalmologa e inventrice americana, prima donna afroamericana a ottenere un brevetto medico (1988) per la sonda Laserphaco, che rivoluzionò la chirurgia della cataratta. Fondò l’American Institute for the Prevention of Blindness e fu la prima donna nera a dirigere un programma di specializzazione in oftalmologia negli USA. Il suo lavoro migliorò l’accesso alle cure oculistiche per le comunità svantaggiate.",  
+		"awards": "Brevetto per la Laserphaco (1988), Fondatrice dell’American Institute for the Prevention of Blindness (1976)",  
+		"quote": "La capacità di ripristinare la vista è la ricompensa finale.",  
+		"links": ["<https://en.wikipedia.org/wiki/Patricia_Bath>"],
 		"profession_keys": ["Med"],
 	},
 	"Au": {
@@ -1351,7 +1326,8 @@ var elements: Dictionary = {
 		"description": "Audrey Tang, nata a Taiwan, è una programmatrice, attivista e politica nota per il suo lavoro nel campo della tecnologia e della democrazia digitale. È diventata il ministro digitale di Taiwan, ed è la prima persona transgender ad assumere una carica ministeriale nel paese. Sebbene non sia una chimica, ha avuto un impatto significativo nel migliorare la trasparenza governativa e il coinvolgimento civico attraverso l'uso delle tecnologie digitali. Tang è riconosciuta per le sue innovazioni nel promuovere la democrazia partecipativa e per il suo impegno verso una società più equa e inclusiva.",
 		"awards": "",
 		"quote": "La tecnologia è solo uno strumento. La vera innovazione nasce quando lo utilizziamo per costruire una società più equa e inclusiva.",
-		"links": ["https://en.wikipedia.org/wiki/Audrey_Tang"]
+		"links": ["https://en.wikipedia.org/wiki/Audrey_Tang"],
+		"profession_keys": ["Eng"]
 	},
 	"Hg": {  
 		"name": "Mercurio",  
@@ -1464,7 +1440,7 @@ var elements: Dictionary = {
 		"awards": "",  
 		"quote": "La scienza è un viaggio attraverso il tempo e la natura: chi la segue lascia tracce che ispirano generazioni future.",  
 		"links": ["<https://en.wikipedia.org/wiki/Astrid_Cleve>"],
-		"profession_keys": ["Bio,Chem"],
+		"profession_keys": ["Bio","Chem"],
 	},  
 
 	"Rn": {  
@@ -1496,7 +1472,7 @@ var elements: Dictionary = {
 		"image": "res://Images/STEAM Women/Rosalind Franklin.jpg",  
 		"scientist_name": "Rosalind Franklin",  
 		"profession": "Chimica e Cristallografa",  
-		"brief_subtitle": "La donna che svelò il DNA",  
+		"brief_subtitle": "Colei che svelò il DNA",  
 		"year": "1920 - 1958",  
 		"nationality": "Britannica",  
 		"description": "Cristallografa britannica che catturò la celebre *Foto 51*, dimostrando la struttura a doppia elica del DNA. Il suo lavoro fu utilizzato senza riconoscimento da Watson, Crick e Wilkins, che vinsero il Nobel nel 1962. Morì a 37 anni per tumore, probabilmente causato dall’esposizione alle radiazioni durante gli esperimenti. Il suo contributo fu rivalutato postumo, rendendola un simbolo delle donne nella scienza.",  
@@ -1613,7 +1589,8 @@ var elements: Dictionary = {
 		"description": "Astronoma pioniera nello studio delle stelle variabili Cefeidi negli ammassi globulari. Professoressa all’Università di Toronto, unì ricerca accademica e divulgazione, scrivendo una rubrica di astronomia per il pubblico per oltre 30 anni.",
 		"awards": "Order of Canada (1976)",
 		"quote": "Le stelle appartengono a tutti.",
-		"links": ["<https://en.wikipedia.org/wiki/Helen_Sawyer_Hogg>"]
+		"links": ["<https://en.wikipedia.org/wiki/Helen_Sawyer_Hogg>"],
+		"profession_keys": ["Astro"],
 	},
 	"Mt": {
 		"name": "Meitnerio",
@@ -1630,7 +1607,8 @@ var elements: Dictionary = {
 		"description": "Genetista statunitense nota per l’*esperimento di Hershey-Chase* (1952), che dimostrò che il DNA (non le proteine) è il materiale genetico. Il suo lavoro fu fondamentale per la scoperta della doppia elica da parte di Watson e Crick.",
 		"awards": "",
 		"quote": "Credo che la scienza sia qualcosa che deve essere fatta con passione.",
-		"links": ["<https://en.wikipedia.org/wiki/Martha_Chase>"]
+		"links": ["<https://en.wikipedia.org/wiki/Martha_Chase>"],
+		"profession_keys": ["Bio"]
 	},
 	"Ds": {
 		"name": "Darmstadio",
@@ -1648,7 +1626,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "Credo che il futuro della medicina risieda nella creazione di soluzioni per i pazienti che siano su misura per loro, non una soluzione universale.",
 		"links": ["<https://en.wikipedia.org/wiki/Doris_Taylor_(scientist)>"],
-		"profession_keys": ["Med, Bio"],
+		"profession_keys": ["Med", "Bio"],
 	},
 	"Rg": {
 		"name": "Roentgenio",
@@ -1677,13 +1655,14 @@ var elements: Dictionary = {
 		"image": "res://Images/STEAM Women/Caroline Herschel.jpg",
 		"scientist_name": "Caroline Herschel",
 		"profession": "Astronoma",
-		"brief_subtitle": "Cacciatrice di comete",
+		"brief_subtitle": "Prima donna stipendiata",
 		"year": "1750 - 1848",
 		"nationality": "Tedesca-Britannica",
-		"description": "Astronoma tedesco-britannica, prima donna a ricevere uno stipendio per lavoro scientifico. Scoprì 8 comete e collaborò al catalogo stellare di William Herschel. Il suo lavoro gettò le basi per l’astronomia moderna, sfidando le barriere di genere del XVIII secolo.",
+		"description": "Astronoma tedesca-britannica, è celebre per essere stata la prima donna astronoma stipendiata, un riconoscimento fondamentale per l'epoca. Collaborò strettamente con il fratello William Herschel nelle osservazioni ma si distinse per le sue scoperte autonome, tra cui 8 comete e il catalogo di 2.500 nuove stelle. Ricevette importanti riconoscimenti per il suo lavoro, inclusa la Medaglia d'oro della Royal Astronomical Society nel 1828. La sua passione per la scienza era profonda.",
 		"awards": "Medaglia d'oro della Royal Astronomical Society (1828)",
 		"quote": "Non ho cercato nulla al di fuori del lavoro che mio fratello mi ha affidato.",
-		"links": ["<https://en.wikipedia.org/wiki/Caroline_Herschel>"]
+		"links": ["<https://en.wikipedia.org/wiki/Caroline_Herschel>"],
+		"profession_keys": ["Astro"],
 	},
 	"Nh": {
 		"name": "Nihonio",
@@ -1719,6 +1698,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "La scienza non è solo una ricerca di risposte, ma un viaggio continuo verso una comprensione più profonda del nostro mondo e di noi stessi.",
 		"links": ["<https://it.wikipedia.org/wiki/Filomena_Nitti>"],
+		"profession_keys": ["Chem","Med"],
 	},
 	"Mc": {
 		"name": "Moscovio",
@@ -1776,7 +1756,8 @@ var elements: Dictionary = {
 		"quote": "Ho sempre pensato che fosse semplicemente ciò che fanno i fisici: costruiscono laser.",
 		"links": [
 			"https://en.wikipedia.org/wiki/Donna_Strickland"
-		]
+		],
+		"profession_keys": ["Phy"]
 	},
 
 	"Og": {
@@ -1832,7 +1813,8 @@ var elements: Dictionary = {
 		"description": "Meteorologa argentina, prima donna a dirigere il Servizio Meteorologico Nazionale Argentino (2014) e Prima Vicepresidente dell’Organizzazione Meteorologica Mondiale (2018). Promuove tecnologie avanzate per previsioni climatiche precise e accessibili.",
 		"awards": "",
 		"quote": "La scienza è il nostro strumento più potente per comprendere e affrontare le sfide globali...",
-		"links": ["<https://en.wikipedia.org/wiki/Celeste_Saulo>"]
+		"links": ["<https://en.wikipedia.org/wiki/Celeste_Saulo>"],
+		"profession_keys": ["Phy"],
 	},
 	"Pr": {
 		"name": "Praseodimio",
@@ -1849,7 +1831,8 @@ var elements: Dictionary = {
 		"description": "Chimica britannica che ha rivoluzionato la microscopia elettronica (TEM), permettendo l’osservazione diretta di atomi singoli. Le sue innovazioni hanno accelerato progressi in nanotecnologia e scienza dei materiali.",
 		"awards": "Premio L’Oréal-UNESCO (2013), Medaglia Hughes della Royal Society (2020)",
 		"quote": "La scienza è una finestra sul mondo microscopico...",
-		"links": ["<https://en.wikipedia.org/wiki/Pratibha_Gai>"]
+		"links": ["<https://en.wikipedia.org/wiki/Pratibha_Gai>"],
+		"profession_keys": ["Phy", "Chem"]
 	},
 	"Nd": {
 		"name": "Neodimio",
@@ -1866,7 +1849,8 @@ var elements: Dictionary = {
 		"description": "Ida Noddack è stata una chimica e fisica tedesca nota per la scoperta del renio nel 1925 insieme a suo marito, Walter Noddack. Nel 1934, intuì che il nucleo dell'uranio poteva spezzarsi in elementi più leggeri, anticipando la fissione nucleare, ma la sua teoria fu inizialmente ignorata. Nonostante le difficoltà dovute ai pregiudizi di genere, continuò a contribuire alla ricerca scientifica, lasciando un'eredità importante nella chimica nucleare.",
 		"awards": "",
 		"quote": "La scienza non è una questione di semplici esperimenti, ma di intuizioni che richiedono coraggio e perseveranza per essere espresse.",
-		"links": ["https://en.wikipedia.org/wiki/Ida_Noddack"]
+		"links": ["https://en.wikipedia.org/wiki/Ida_Noddack"],
+		"profession_keys": ["Phy", "Chem"]
 	},
 	"Pm": {
 		"name": "Promezio",
@@ -1902,7 +1886,7 @@ var elements: Dictionary = {
 		"awards": "MacArthur Fellowship (2013), Medaglia Nazionale della Scienza (2021)",
 		"quote": "Amo la statistica e mi piace che permetta così tanta libertà.",
 		"links": ["<https://en.wikipedia.org/wiki/Susan_Murphy_(statistician)>"],
-		"profession_keys": ["Med, Mat"],
+		"profession_keys": ["Med", "Mat"],
 	},
 	"Eu": {
 		"name": "Europio",
@@ -1938,7 +1922,8 @@ var elements: Dictionary = {
 		"description": "Chimica americana vincitrice del Nobel per la Medicina (1988). Sviluppò farmaci rivoluzionari come l’azatioprina (per trapianti) e l’aciclovir (antivirale), utilizzando un approccio razionale che ha trasformato la farmacologia moderna.",
 		"awards": "Premio Nobel per la Medicina (1988)",
 		"quote": "Non aver paura del duro lavoro. Nulla di valido arriva facilmente.",
-		"links": ["<https://en.wikipedia.org/wiki/Gertrude_B._Elion>"]
+		"links": ["<https://en.wikipedia.org/wiki/Gertrude_B._Elion>"],
+		"profession_keys": ["Med", "Chem"]
 	},
 
 	"Tb": {
@@ -1957,6 +1942,7 @@ var elements: Dictionary = {
 		"awards": "Premio L’Oréal-UNESCO per le Donne nella Scienza (2007)",
 		"quote": "La scienza dei polimeri è un filo invisibile che lega il mondo materiale alla comprensione profonda della natura.",
 		"links": ["<https://en.wikipedia.org/wiki/Tatiana_Birshtein>"],
+		"profession_keys": ["Bio"]
 	},
 
 	"Dy": {
@@ -1974,7 +1960,8 @@ var elements: Dictionary = {
 		"description": "Primatologa americana che dedicò la vita allo studio e alla protezione dei gorilla in Ruanda. Fondò il Karisoke Research Center (1967) e combatté il bracconaggio fino al suo assassinio nel 1985. Il suo lavoro ispirò il film *Gorilla nella nebbia*.",
 		"awards": "",
 		"quote": "Quando ti rendi conto del valore di tutta la vita, ti concentri sulla conservazione del futuro.",
-		"links": ["<https://en.wikipedia.org/wiki/Dian_Fossey>"]
+		"links": ["<https://en.wikipedia.org/wiki/Dian_Fossey>"],
+		"profession_keys": ["Bio", "Hum"]
 	},
 
 	"Ho": {
@@ -2049,7 +2036,7 @@ var elements: Dictionary = {
 		"awards": "Premio Dannie Heineman (2003), Grande Médaille de l'Académie des Sciences (2015)",
 		"quote": "Volevo comprendere le leggi fondamentali della fisica con rigore matematico.",
 		"links": ["<https://en.wikipedia.org/wiki/Yvonne_Choquet-Bruhat>"],
-		"profession_keys": ["Phy, Mat"],
+		"profession_keys": ["Phy", "Mat"],
 	},
 	"Lu": {
 		"name": "Lutezio",
@@ -2086,7 +2073,8 @@ var elements: Dictionary = {
 		"description": "Microbiologa statunitense che identificò il Bacillus abortus come causa della brucellosi, portando alla pastorizzazione obbligatoria del latte. Prima donna a ottenere una borsa di studio in batteriologia all’Università del Wisconsin, rivoluzionò la sicurezza alimentare globale.",
 		"awards": "",
 		"quote": "La rotta che era aperta per la navigazione della mia nave era nel complesso gratificante. Il percorso a volte è stato difficile, ma c'erano tratti di navigazione libera.",
-		"links": ["<https://en.wikipedia.org/wiki/Alice_Catherine_Evans>"]
+		"links": ["<https://en.wikipedia.org/wiki/Alice_Catherine_Evans>"],
+		"profession_keys": ["Bio"],
 	},
 	"Th": {
 		"name": "Torio",
@@ -2121,7 +2109,8 @@ var elements: Dictionary = {
 		"description": "Psicofisiologa afroamericana pioniera alla NASA, sviluppò tecniche di biofeedback per contrastare il mal di spazio. Prima donna nera formata come astronauta, le sue ricerche migliorarono l’adattamento umano alle missioni spaziali.",
 		"awards": "",
 		"quote": "Se puoi imparare a controllare il tuo corpo, puoi adattarti a quasi tutto.",
-		"links": ["<https://en.wikipedia.org/wiki/Patricia_Cowings>"]
+		"links": ["<https://en.wikipedia.org/wiki/Patricia_Cowings>"],
+		"profession_keys": ["Med", "Hum", "Astro"],
 	},
 	"U": {
 		"name": "Uranio",
@@ -2156,7 +2145,8 @@ var elements: Dictionary = {
 		"description": "Fisica francese che rivoluzionò la precisione delle misurazioni con tecniche quantistiche. Direttrice al Max Planck Institute, il suo lavoro ha applicazioni in telecomunicazioni e energia pulita.",
 		"awards": "Premio Fresnel (2019)",
 		"quote": "La precisione nelle misurazioni è la chiave per comprendere l'universo.",
-		"links": ["<https://en.wikipedia.org/wiki/Nathalie_Picqu%C3%A9>"]
+		"links": ["<https://en.wikipedia.org/wiki/Nathalie_Picqu%C3%A9>"],
+		"profession_keys": ["Phy"]
 	},
 	"Pu": {
 		"name": "Plutonio",
@@ -2173,7 +2163,8 @@ var elements: Dictionary = {
 		"description": "Fisica indiana pioniera nello studio di materiali sostenibili e soluzioni per il cambiamento climatico. Ricercatrice al Tata Institute, unì scienza e attivismo per la tutela delle risorse naturali.",
 		"awards": "",
 		"quote": "La scienza deve creare un futuro sostenibile per le prossime generazioni.",
-		"links": ["<https://en.wikipedia.org/wiki/Purnima_Sinha>"]
+		"links": ["<https://en.wikipedia.org/wiki/Purnima_Sinha>"],
+		"profession_keys": ["Phy", "Bio"]
 	},
 	"Am": {
 		"name": "Americio", 
@@ -2191,7 +2182,7 @@ var elements: Dictionary = {
 		"awards": "Premio Ackermann-Teubner (1932)",
 		"quote": "La matematica non è solo un mezzo per risolvere problemi, ma un linguaggio attraverso cui possiamo comprendere la struttura profonda della realtà.",
 		"links": ["https://en.wikipedia.org/wiki/Emmy_Noether", "https://mathshistory.st-andrews.ac.uk/Biographies/Noether/"],
-		"profession_keys": ["Phy, Mat"],
+		"profession_keys": ["Phy", "Mat"],
 	},
 	"Cm": {
 		"name": "Curio", 
@@ -2211,7 +2202,8 @@ var elements: Dictionary = {
 		"links": [
 			"https://en.wikipedia.org/wiki/Marie_Curie",
 			"https://www.nobelprize.org/prizes/physics/1903/curie/biographical/"
-		]
+		],
+		"profession_keys": ["Phy", "Chem"]
 	},
 	"Bk": {
 		"name": "Berkelio",
@@ -2229,7 +2221,7 @@ var elements: Dictionary = {
 		"awards": "Premio Nobel per la Medicina (1983)",
 		"quote": "Bisogna sempre credere alle nostre osservazioni, per quanto bizzarre possano essere. Forse stanno cercando di dirci qualcosa.",
 		"links": ["<https://en.wikipedia.org/wiki/Barbara_McClintock>"],
-		"profession_keys": ["Med, Bio"],
+		"profession_keys": ["Med", "Bio"],
 	},
 	"Cf": {
 		"name": "Californio",
@@ -2264,7 +2256,8 @@ var elements: Dictionary = {
 		"description": "Microbiologa americana scopritrice del batteriofago lambda e inventrice del replica plating, tecnica per studiare mutazioni genetiche. Nonostante il marito Joshua Lederberg abbia vinto il Nobel, il suo contributo fu a lungo ignorato.",
 		"awards": "",
 		"quote": "La scienza avanza con piccoli passi, e ogni scoperta è un tassello fondamentale per comprendere il mondo che ci circonda.",
-		"links": ["<https://en.wikipedia.org/wiki/Esther_Lederberg>"]
+		"links": ["<https://en.wikipedia.org/wiki/Esther_Lederberg>"],
+		"profession_keys": ["Bio"],
 	},
 	"Fm": {
 		"name": "Fermio",
@@ -2281,7 +2274,8 @@ var elements: Dictionary = {
 		"description": "Fisica nucleare statunitense che mappò le proprietà dei nuclei leggeri, contribuendo alla comprensione della fusione stellare e della nucleosintesi. Professoressa all’Università della Pennsylvania, sfidò le barriere di genere nella fisica teorica.",
 		"awards": "",
 		"quote": "La passione per la scienza ci spinge a scoprire l'invisibile e a comprendere l'universo.",
-		"links": ["<https://en.wikipedia.org/wiki/Fay_Ajzenberg-Selove>"]
+		"links": ["<https://en.wikipedia.org/wiki/Fay_Ajzenberg-Selove>"],
+		"profession_keys": ["Bio", "Hum"]
 	},
 	"Md": {
 		"name": "Mendelevio",
@@ -2336,6 +2330,7 @@ var elements: Dictionary = {
 		"awards": "",
 		"quote": "Le ossa raccontano la storia dell’umanità, dobbiamo solo imparare ad ascoltarle.",
 		"links": ["<https://en.wikipedia.org/wiki/Mary_Leakey>"],
+		"profession_keys": ["Bio", "Hum"]
 	},
 	"4B Licei SGF": {
 		"name": "", 
@@ -2728,7 +2723,7 @@ func create_periodic_table():
 				btn.custom_minimum_size = Vector2(btn_size, btn_size)
 				btn.size = Vector2(btn_size, btn_size)
 				btn.autowrap_mode = 2
-				btn.pressed.connect(on_element_selected.bind(symbol, element_container))
+				btn.pressed.connect(on_element_selected.bind(symbol, element_container, grid_container))
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
 				btn.focus_mode = Control.FOCUS_NONE
@@ -2843,7 +2838,7 @@ func elements_animation(grid):
 		await get_tree().create_timer(0.08).timeout
 		animation_finished = true
 
-func on_element_selected(symbol, button):
+func on_element_selected(symbol, button, grid_container):
 	if animation_finished:
 		button.scale = Vector2(1.0, 1.0)
 		
@@ -2889,7 +2884,7 @@ func on_element_selected(symbol, button):
 		else:
 			popup_awards_panel.visible =  false
 	can_press = false
-	calculate_popup_position(button)
+	calculate_popup_position(button, grid_container)
 	popup_margin.visible = true 
 	popup_panel.visible = true 
 	popup_animation(button) 
@@ -2940,28 +2935,36 @@ func animate_button(button):
 	tween.tween_property(button, "scale", Vector2(1.2,1.2), 0.1).set_trans(Tween.TRANS_BOUNCE)
 	tween.tween_property(button, "scale", Vector2(1.0,1.0), 0.05)
 		
-func calculate_popup_position(button):
-	var offset = 5
+func calculate_popup_position(button, periodic_table_container):
+	var horizontal_offset = 5
+	var vertical_offset = 10
 	
 	popup_margin.reset_size()
 	button.scale = Vector2(1.0, 1.0)
-	var popup_pos_x = button.global_position.x + button.size.x
-	#print("popup_pos_x: ", popup_pos_x, " button.global_position.x: ", button.global_position.x, " button.size.x: ", button.size.x)
-	#print("button_scale: ", button.scale)
-	var popup_pos_y = button.global_position.y - button.size.y
-	if popup_pos_x > screen_size.x / 2:
-		popup_pos_x = popup_pos_x - button.size.x - popup_margin.size.x - offset
-	else:
-		#print("popup_pos_x: ", popup_pos_x, " offset: ", offset)
-		popup_pos_x = popup_pos_x + offset
 	
-	if popup_pos_y > screen_size.y / 2 - button.size.y:
-		popup_margin.set_anchors_preset(Control.PRESET_CENTER_BOTTOM)
-		popup_pos_y = screen_size.y - popup_margin.size.y - offset
+	# Otteniamo i limiti della tavola periodica invece dello schermo
+	var table_rect = Rect2(periodic_table_container.global_position, periodic_table_container.size)
+	var table_min_y = table_rect.position.y
+	var table_max_y = table_rect.position.y + table_rect.size.y
+	
+	# Calcolo posizione X (manteniamo la stessa logica ma con i limiti della tavola)
+	var popup_pos_x = button.global_position.x + button.size.x
+	if popup_pos_x > table_rect.position.x + table_rect.size.x / 2:
+		popup_pos_x = popup_pos_x - button.size.x - popup_margin.size.x - horizontal_offset
 	else:
-		popup_margin.set_anchors_preset(Control.PRESET_CENTER_TOP)
-		popup_pos_y = offset
-		
+		popup_pos_x = popup_pos_x + horizontal_offset
+	
+	# Calcolo posizione Y
+	var popup_pos_y = button.global_position.y + button.size.y / 2 - popup_margin.size.y / 2 + 100
+	
+	# Verifica che il popup non vada fuori dalla tavola in alto
+	if popup_pos_y < table_min_y + vertical_offset:
+		popup_pos_y = table_min_y - vertical_offset
+	
+	# Verifica che il popup non vada fuori dalla tavola in basso
+	if popup_pos_y + popup_margin.size.y > table_max_y - vertical_offset:
+		popup_pos_y = table_max_y - popup_margin.size.y + vertical_offset
+	
 	var popup_pos = Vector2(popup_pos_x, popup_pos_y)
 	
 	popup_margin.global_position = popup_pos

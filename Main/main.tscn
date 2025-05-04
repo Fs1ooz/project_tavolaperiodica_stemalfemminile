@@ -204,7 +204,7 @@ _editor_defaults_set = true
 metadata/_custom_type_script = "uid://bttgnk3bb2a8i"
 
 [node name="PopupProfessionControl" type="Control" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 30.9)
 layout_mode = 2
 
 [node name="PopupProfessionLabel" type="Label" parent="PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/HeadVBoxContainer/PopupProfessionControl"]
