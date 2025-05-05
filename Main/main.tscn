@@ -364,14 +364,16 @@ size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+visible = false
 texture_repeat = 2
 repeat_size = Vector2(512, 512)
-autoscroll = Vector2(8, 5)
+autoscroll = Vector2(5, 2)
 repeat_times = 20
 follow_viewport = false
 ignore_camera_scroll = true
 
 [node name="Background" type="Sprite2D" parent="Parallax2D"]
+self_modulate = Color(1, 1, 1, 0.117647)
 z_index = -1
 texture_filter = 6
 position = Vector2(768, 512)
@@ -392,6 +394,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+color = Color(0.462396, 0.446565, 0.290202, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
