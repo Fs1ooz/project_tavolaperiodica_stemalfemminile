@@ -22,6 +22,7 @@ extends Control
 @export var popup_links_label: Label
 @export var popup_image: TextureRect
 @export var title_label: RichTextLabel
+@export var credits_container: PanelContainer
 
 @export var solid_bg: ColorRect
 @export var moving_bg: Parallax2D
@@ -2332,7 +2333,8 @@ var current_theme_index = 0
 		"links": ["<https://en.wikipedia.org/wiki/Mary_Leakey>"],
 		"profession_keys": ["Bio", "Hum"]
 	},
-	"4B Licei SGF": {
+	"4B
+	Licei SGF": {
 		"name": "", 
 		"category": "Credits", 
 		"group": 1, 
@@ -2559,10 +2561,11 @@ func lighten_colors_in_place(amount: float) -> void:
 func _input(event):
 	if event is InputEventMouseButton:
 		reset_all_colors()
-		if event.pressed and popup_panel.visible and popup_margin.visible:
-			if not popup_panel.get_global_rect().has_point(get_global_mouse_position()):
-				popup_panel.visible = false
-				popup_margin.visible = false
+		if event.pressed and popup_panel.visible and popup_margin.visible or credits_container.visible:
+			if not popup_panel.get_global_rect().has_point(get_global_mouse_position()) or not credits_container.get_global_rect().has_point(get_global_mouse_position()):
+				popup_panel.hide()
+				popup_margin.hide()
+				credits_container.hide()
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_SPACE:
 			elements_animation(grid_container)
@@ -2731,8 +2734,8 @@ func create_periodic_table():
 				btn.add_theme_font_override("font", load("res://Fonts/texgyreheros-bold.otf"))
 				if not "number" in element:
 					btn.add_theme_font_size_override("font_size", 18)
-					if element["category"] == "Title":
-						btn.add_theme_font_size_override("font_size", 30)
+					if element["category"] == "Credits":
+						btn.add_theme_font_size_override("font_size", 12)
 				else:
 					btn.add_theme_font_size_override("font_size", 25)
 				btn.pivot_offset = btn.size/2
@@ -2748,7 +2751,6 @@ func create_periodic_table():
 					style.set_corner_radius_all(radius)
 					style.set_expand_margin_all(margin)
 					style.border_color = Color.ANTIQUE_WHITE
-
 					if "Font" in current_theme:
 						btn.add_theme_color_override("font_color", current_theme["Font"])
 						lbl.add_theme_color_override("font_color", current_theme["Font"])
@@ -2772,6 +2774,8 @@ func create_periodic_table():
 					btn.add_theme_stylebox_override("hover", style)
 					element_container.add_to_group("elements")
 					grid_container.add_child(element_container)
+					if element["category"] == "Credits":
+						btn.size = btn.size/2
 					elements_created += 1
 					var piano_pitches = [1.0, 1.12246204831, 1.25992104989, 1.33483985417, 1.49830707688, 1.68179283051, 1.88774862536, 2.0]
 					btn.mouse_entered.connect(func():
@@ -2839,7 +2843,7 @@ func elements_animation(grid):
 		await get_tree().create_timer(0.08).timeout
 		animation_finished = true
 
-func on_element_selected(symbol, button, grid_container):
+func on_element_selected(symbol, button, grid):
 	if animation_finished:
 		button.scale = Vector2(1.0, 1.0)
 		
@@ -2854,11 +2858,16 @@ func on_element_selected(symbol, button, grid_container):
 		return
 
 	selected_button = button
-		
+	printerr("zio per")
 	var element = elements[symbol]
 	if element["category"] == "F-Block":
 		return
 	if element["category"] == "Credits":
+		printerr("zio mela")
+		if not credits_container.visible:
+			credits_container.show()
+		else:
+			credits_container.hide()
 		return
 	if element["category"] == "Category":
 		on_category_selected(symbol)
@@ -2885,7 +2894,7 @@ func on_element_selected(symbol, button, grid_container):
 		else:
 			popup_awards_panel.visible =  false
 	can_press = false
-	calculate_popup_position(button, grid_container)
+	calculate_popup_position(button, grid)
 	popup_margin.visible = true 
 	popup_panel.visible = true 
 	popup_animation(button) 

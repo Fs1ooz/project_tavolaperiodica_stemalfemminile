@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b8bt1n7irs0ni"]
+[gd_scene load_steps=17 format=3 uid="uid://b8bt1n7irs0ni"]
 
 [ext_resource type="Script" uid="uid://cmwid6f6rrqru" path="res://Main/main.gd" id="1_yh5la"]
 [ext_resource type="Theme" uid="uid://cenwcc374gahw" path="res://Main/Themes/HeadTheme.tres" id="2_eunhr"]
@@ -7,13 +7,25 @@
 [ext_resource type="AudioStream" uid="uid://bmaqqh0c6lbcd" path="res://Audio/piano.wav" id="3_rj11h"]
 [ext_resource type="Theme" uid="uid://0b13p35f616s" path="res://Main/Themes/BodySubTheme1.tres" id="4_ib3t1"]
 [ext_resource type="FontFile" uid="uid://d1lxp1jbqqlmx" path="res://Fonts/Gravity-Italic.otf" id="4_k3v36"]
-[ext_resource type="FontFile" uid="uid://bhd16i4grejq3" path="res://Fonts/texgyreheros-bold.otf" id="4_qac2q"]
+[ext_resource type="Theme" uid="uid://pjyheky2niio" path="res://Main/Themes/Credits.tres" id="5_0jx5h"]
 [ext_resource type="Theme" uid="uid://btaqw5ipnxw2a" path="res://Main/Themes/BodySubTheme2.tres" id="5_f6fdm"]
 [ext_resource type="Script" uid="uid://bttgnk3bb2a8i" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="6_o60nc"]
 [ext_resource type="Texture2D" uid="uid://bso0vxyexpgo" path="res://Images/STEAM Women/Ipazia.jpg" id="7_f3gf5"]
 [ext_resource type="Texture2D" uid="uid://ejjregd38p83" path="res://Images/Backgrounds/tile_512x512_1746107937696.png" id="10_qac2q"]
+[ext_resource type="Texture2D" uid="uid://b75w3pr3q8oli" path="res://Images/settings.png" id="13_rix8b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qac2q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jx5h"]
+bg_color = Color(0.0509804, 0.0705882, 0.12549, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w1kt"]
 bg_color = Color(1, 0.878431, 0.929412, 1)
@@ -27,7 +39,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="Main" type="Control" node_paths=PackedStringArray("periodic_table_layer", "element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "title_label", "solid_bg", "moving_bg")]
+[node name="Main" type="Control" node_paths=PackedStringArray("periodic_table_layer", "element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "title_label", "credits_container", "solid_bg", "moving_bg")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,7 +66,8 @@ popup_awards_panel = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyV
 popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/QuotePanelContainer/PopupQuoteLabel")
 popup_links_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/LinksPanelContainer/PopupLinksLabel")
 popup_image = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/PopupImage")
-title_label = NodePath("PeriodicTableLayer/Title")
+title_label = NodePath("")
+credits_container = NodePath("PeriodicTableLayer/CreditsContainer")
 solid_bg = NodePath("BackgroundLayer/Background")
 moving_bg = NodePath("Parallax2D")
 
@@ -110,37 +123,56 @@ layout_mode = 1
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="Title" type="RichTextLabel" parent="PeriodicTableLayer"]
+[node name="CreditsContainer" type="PanelContainer" parent="PeriodicTableLayer"]
 visible = false
-z_index = 6
-anchors_preset = -1
-anchor_left = 0.114
-anchor_top = 0.043
-anchor_right = 0.114
-anchor_bottom = 0.043
-offset_left = -6.328
-offset_top = 0.136
-offset_right = 643.672
-offset_bottom = 73.136
+z_index = 4
+custom_minimum_size = Vector2(400, 500)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
 grow_horizontal = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-theme_override_colors/font_outline_color = Color(0.948167, 0.952473, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.118581, 0.118581, 0.118581, 1)
-theme_override_constants/outline_size = 3
-theme_override_constants/shadow_offset_y = 3
-theme_override_constants/shadow_offset_x = 0
-theme_override_constants/shadow_outline_size = 5
-theme_override_constants/line_separation = 0
-theme_override_fonts/normal_font = ExtResource("4_qac2q")
-theme_override_font_sizes/normal_font_size = 50
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0jx5h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PeriodicTableLayer/CreditsContainer"]
+custom_minimum_size = Vector2(510, 500)
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="PeriodicTableLayer/CreditsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 94.23)
+layout_mode = 2
+theme = ExtResource("5_0jx5h")
 bbcode_enabled = true
-text = "[color=#4300A7]Per[/color][color=#5a00a2]io[/color][color=#6f00a0]di[/color][color=#85009d]ca[/color][color=#9a009a]Men[/color][color=#b20097]te[/color] [color=#cc0094]Don[/color][color=#DF0114]ne[/color]
+text = "Progetto realizzato dagli studenti della 4B
+ del Liceo Scientificio di San Giovanni in Fiore
+con il supporto didattico della [wave amp=2 freq=5 connected=1][url=google.com]prof.ssa [color=#b01d72]Katia[/color][color=#98af40] Scarcelli[/color][/url][/wave]
 "
-fit_content = true
+horizontal_alignment = 3
+
+[node name="Label2" type="RichTextLabel" parent="PeriodicTableLayer/CreditsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 341.265)
+layout_mode = 2
+theme = ExtResource("5_0jx5h")
+bbcode_enabled = true
+text = "Con la partecipazione di:
+[rainbow freq=0.2 sat=0.6 val=0.85 speed=1]Fabrizio Spina[/rainbow]
+Angela Marasco
+Sofia Tallarico
+Alessandra Pia Loria
+Francesca Talarico
+Majlinda Ndrevataj
+Manuela Ndrevataj
+Maria Tallarico
+Francesca Pupo
+Giovanni Pulice
+Giuseppe Oliverio"
 horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="PopupLayer" type="CanvasLayer" parent="."]
 
@@ -363,8 +395,25 @@ pivot_offset = Vector2(200, 0)
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_2w1kt")
 
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="ThemeButton" type="Button" parent="UILayer"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 15
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="UILayer/ThemeButton"]
+self_modulate = Color(0.544974, 0.544974, 0.544974, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_rix8b")
+expand_mode = 3
+
 [node name="Parallax2D" type="Parallax2D" parent="."]
-visible = false
 texture_repeat = 2
 repeat_size = Vector2(512, 512)
 autoscroll = Vector2(5, 2)
@@ -401,13 +450,5 @@ color = Color(0.462396, 0.446565, 0.290202, 1)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[node name="UILayer" type="CanvasLayer" parent="."]
-
-[node name="ThemeButton" type="Button" parent="UILayer"]
-offset_right = 43.0
-offset_bottom = 16.0
-theme_override_font_sizes/font_size = 15
-text = "CAMBIA TEMA"
 
 [connection signal="pressed" from="UILayer/ThemeButton" to="." method="_on_theme_button_pressed"]
