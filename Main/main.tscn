@@ -39,7 +39,7 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[node name="Main" type="Control" node_paths=PackedStringArray("periodic_table_layer", "element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "title_label", "credits_container", "solid_bg", "moving_bg")]
+[node name="Main" type="Control" node_paths=PackedStringArray("periodic_table_layer", "element_hovering_audio", "category_hovering_audio", "grid_container", "control_element_container", "popup_layer", "popup_margin", "popup_panel", "popup_name_label", "popup_profession_label", "popup_brief_label", "popup_year_label", "popup_nationality_label", "popup_description_label", "popup_awards_label", "popup_awards_panel", "popup_quote_label", "popup_links_label", "popup_image", "credits_container", "solid_bg", "moving_bg")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +66,6 @@ popup_awards_panel = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyV
 popup_quote_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/QuotePanelContainer/PopupQuoteLabel")
 popup_links_label = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/BodyVBoxContainer/LinksPanelContainer/PopupLinksLabel")
 popup_image = NodePath("PopupLayer/PopupMargin/ContentVBoxContainer/HeadPanelContainer/PopupImage")
-title_label = NodePath("")
 credits_container = NodePath("PeriodicTableLayer/CreditsContainer")
 solid_bg = NodePath("BackgroundLayer/Background")
 moving_bg = NodePath("Parallax2D")

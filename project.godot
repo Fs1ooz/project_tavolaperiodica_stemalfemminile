@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="TavolaPeriodicaFemminile"
+config/name="PeriodicaMenteDonne"
 run/main_scene="uid://b8bt1n7irs0ni"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/image="uid://l7ctjw1rujts"
