@@ -176,6 +176,7 @@ horizontal_alignment = 1
 [node name="PopupLayer" type="CanvasLayer" parent="."]
 
 [node name="PopupMargin" type="MarginContainer" parent="PopupLayer"]
+visible = false
 texture_filter = 4
 custom_minimum_size = Vector2(420, 0)
 anchors_preset = 5
@@ -378,6 +379,7 @@ text = "\"Links\""
 autowrap_mode = 2
 
 [node name="PopupPanel" type="PanelContainer" parent="PopupLayer"]
+visible = false
 z_index = -1
 anchors_preset = 8
 anchor_left = 0.5

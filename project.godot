@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PeriodicaMenteDonne"
-run/main_scene="uid://b8bt1n7irs0ni"
+run/main_scene="uid://cdgk3aaru3ekq"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/image="uid://l7ctjw1rujts"
 config/icon="uid://dheddrsnro7os"

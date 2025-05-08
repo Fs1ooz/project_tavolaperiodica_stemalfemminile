@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdgk3aaru3ekq"]
+
+[ext_resource type="Script" uid="uid://dt2lvihkitxbf" path="res://Intro/intro.gd" id="1_1e4v0"]
+[ext_resource type="FontFile" uid="uid://dq2gp1i2qoe7e" path="res://Fonts/Cano.otf" id="2_j7okx"]
+
+[node name="Intro" type="CanvasLayer"]
+script = ExtResource("1_1e4v0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Label")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_j7okx")
+theme_override_font_sizes/font_size = 80
+text = "PeriodicaMente Donne"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.315602, 0.00115341, 0.554838, 1)
