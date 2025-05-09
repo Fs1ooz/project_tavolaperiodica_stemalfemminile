@@ -405,7 +405,7 @@ var current_theme_index = 0
 		"category": "Non metallo",
 		"group": 16,
 		"period": 3,
-		"image": "",
+		"image": "res://Images/STEAM Women/Swan Henrietta Leavitt.jpg",
 		"scientist_name": "Henrietta Swan Leavitt",
 		"profession": "Astronoma",
 		"brief_subtitle": "Scoprì la relazione periodo-luminosità delle Cefeidi",
