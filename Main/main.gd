@@ -2679,7 +2679,7 @@ func create_periodic_table():
 				btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 				btn.size_flags_vertical = Control.SIZE_EXPAND_FILL
 				btn.focus_mode = Control.FOCUS_NONE
-				btn.add_theme_font_override("font", load("res://Fonts/texgyreheros-bold.otf"))
+				btn.add_theme_font_override("font", load("res://Fonts/texgyreheros.gyreheros-bold.otf"))
 				if not "number" in element:
 					btn.add_theme_font_size_override("font_size", 18)
 					if element["category"] == "Credits":
